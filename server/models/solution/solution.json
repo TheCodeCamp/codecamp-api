@@ -1,0 +1,29 @@
+{
+    "id":{
+        "type":"string",
+        "unique":true
+    },
+    "username":{
+        "type":"string"
+    },
+    "submitted_on":{
+        "type":"date"
+    },
+    "lanuage":{
+        "type":"string"
+    },
+    "result":{
+        "type":"string"
+    },
+    "score":{
+        "type":"number",
+        "default":0
+    },
+    "status":{
+        "type":"string",
+        "default":""
+    },
+    "description":{
+        "type":"string"
+    }
+}
