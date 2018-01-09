@@ -1,7 +1,6 @@
 {
     "id":{
-        "type":"string",
-        "unique":true
+        "type":"string"
     },
     "username":{
         "type":"string"
@@ -9,7 +8,7 @@
     "submitted_on":{
         "type":"date"
     },
-    "lanuage":{
+    "language":{
         "type":"string"
     },
     "result":{

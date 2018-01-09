@@ -1,4 +1,5 @@
-const { exec } = require('child_process');
+const util = require('util');
+const exec = require('child_process').exec  ;
 const path = require('path');
 const fs = require('fs')
 
@@ -10,70 +11,126 @@ async function lsExample() {
 
 //Compile program and check for error if okay the run it
 
-var compileAndRunProblem = (lang , filename ,runCompiled,checkResult)=>{
+const compileProblem= async (lang , filename)=>{
     var cmd,file;
     switch(lang){
-        case "C":
+        case "c":
             file = path.basename(filename ,path.extname(filename)) +".out "
-            cmd="gcc -o " + file 
+            cmd="cd result && gcc -o " + file 
             break;
-        case "C++":
+        case "c++":
+        case "cpp":
             file = path.basename(filename ,path.extname(filename)) +".out "
-            cmd = "g++ -o " + file;
+            cmd = "cd result && g++ -o " + file;
             break;
-        case "JAVA":
+        case "java":
             file = path.basename(filename ,path.extname(filename)) 
-            cmd = "javac "
+            cmd = "cd result && javac "
     }
+
+        console.log( cmd + path.join(__dirname,filename))
+    return new Promise((resolve,reject)=>{
      exec(cmd + path.join(__dirname,filename), (error, stdout, stderr) => {
         if (error) {
-          console.error(`${error}`);
-          return;
+          //console.error(`${error}`);
+          reject(error);
         }
-        return runCompiled(lang,file,checkResult)
-      });
-      
-  
+        resolve(file)
+      }); 
+    })  
 }
 
 //Run Compiled if okay the check result
 
-function runCompiled(lang,file,checkResult){
+async function runCompiled(lang,file){
 
     var cmd;
     switch(lang){
-        case "C":
-            cmd="./" + file ;
+        case "c":
+            cmd="cd result && ./" + file ;
             break;
-        case "C++":
-            cmd = "./" + file;
+        case "c++":
+        case "cpp":
+            cmd = "cd result && ./" + file;
             break;
-        case "JAVA":
-            cmd = "java " + file;
+        case "java":
+            cmd = "cd result && java " + file ;
     }
-
-    exec(cmd, {timeout:1000,maxBuffer:1020000000},(error, stdout, stderr) => {
+    return new Promise((resolve,reject)=>{
+    exec(cmd, {timeout:1000,maxBuffer:1020},(error, stdout, stderr) => {
         if (error) {
-          if(error.toString().search(/Command failed: test.out/)>0){
-            console.error('TLE')
-          }else{
-              console.error("RE")
-          }
-          return;
+            //console.log(error)
+          //if(error.toString().search(/Command failed: test.out/)>0){
+           // reject('TLE');
+          //}else{
+              reject(error);
+         // }
         }
-        
-        return checkResult(stdout,fs.readFileSync(path.join(__dirname ,'result.txt')).toString());
+        var res=stdout.toString();
+        resolve(res);
       });
+    })
 }
 
 //Check Result of run program
 
-var checkResult=(UserResult,serverResult)=>{
-    if(UserResult===serverResult){
-        console.log('Correct answer')
-    }else{
-        console.log('wrong answer')
-    }
+const checkResult=async (UserResult,serverResult)=>{
+   // console.log(UserResult + " " + serverResult)
+    return new Promise((resolve,reject)=>{
+        if(UserResult===serverResult){
+            resolve('Correct answer')
+        }else{
+            reject('wrong answer')
+        }
+    })
+}
+const serverResult = async ()=>{
+    return new Promise((resolve,reject)=>{
+       var buf= fs.readFileSync(path.join(__dirname,'result/result.txt')).toString();
+      // console.log(buf)
+       resolve(buf)
+    }).catch((e)=>{
+        console.log(e)
+    })
 }
 
-compileAndRunProblem('JAVA','Hello.java',runCompiled,checkResult)
+const base64tofile = async (base64,lang)=>{
+    var fileout=new Buffer(base64,'base64').toString('ascii');
+    var filename = "Solution.";
+    if(lang=='C++'|| lang == 'c++'){
+        filename+='cpp';
+    }else{
+        filename+=lang;
+    }
+    return new Promise((resolve,reject)=>{
+        fs.writeFile(path.join(__dirname,filename),fileout, function(err) {
+            if(err) {
+                reject('Can not write file');
+            }
+            resolve(filename);
+        });
+    })
+}
+
+async function compileAndRunProblem(lang , description){
+    const filename= await base64tofile(description,lang);
+    const file = await compileProblem(lang,filename);
+    const result= await runCompiled(lang,file);
+    const serverRes= await serverResult();
+    const Result = await checkResult(result,serverRes);
+    //console.log(Result)
+    return Result;
+  
+}
+//base64tofile('dmFyIHBhdGggPSByZXF1aXJlKCdwYXRoJyk7DQp2YXIgZnMgPSByZXF1aXJlKCdmcycpOw==','C');
+//compileAndRunProblem('C','I2luY2x1ZGU8c3RkaW8uaD4NCmludCBtYWluKCl7DQoJcHJpbnRmKCJoZWxsbyB3b3JsZCIpOw0KfQ0K')
+
+/*compileProblem('C','test.c')
+    .then((file)=>{
+        runCompiled('C',file)})
+        .then((res)=>{
+            checkResult(res,'abcd')
+        })
+*/
+
+module.exports = {compileAndRunProblem,compileProblem,runCompiled,base64tofile,serverResult,checkResult}

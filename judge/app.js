@@ -27,12 +27,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 //Routes
-const problems = require('./routes/problems');
-const users = require('./routes/users');
 const solutions = require('./routes/solution');
-app.use('/problem', problems);
-app.use('/users', users);
-app.use('/solution',solutions)
+app.use('/',solutions)
 
 
 /*app.post('/problem' , (req,res)=>{
@@ -45,7 +41,7 @@ app.use('/solution',solutions)
       })
  })*/
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 app.listen(port);
 console.log('magic is started at ' + port)
 
