@@ -34,16 +34,7 @@ app.use('/problem', problems);
 app.use('/users', users);
 app.use('/solution',solutions)
 
-
-/*app.post('/problem' , (req,res)=>{
-    var body = _.pick(req.body,['code','name','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
-    var problem = new Problem(body);
-    problem.save().then((problem) => {
-        res.send(problem)
-      }, (e) => {
-        res.status(400).send(e)
-      })
- })*/
+var judge=2;
 
 const port = process.env.PORT || 3000;
 app.listen(port);

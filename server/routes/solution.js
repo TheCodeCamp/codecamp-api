@@ -1,95 +1,54 @@
 const express = require('express');
 const _ = require('lodash');
+const rp = require('request-promise')
 const http = require('http')
 const fs = require('fs')
+const app= require('./../../server/app')
 const mongoose = require('mongoose')
+const request = require('request')
 const multer = require('multer')
 const encode = require('./../utils/encoding');
 const db = require('./../utils/db/db');
-//const cr = require('./../../judge/compileProblem')
 const Solution = require('./../models/solution/solution');
 const router = express.Router();
 
-
-
-
-
-/*var storage = multer.diskStorage({
-	destination: function(req, file, callback) {
-		callback(null, './uploads')
-	},
-	filename: function(req, file, callback) {
-		callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
-	}
-})
-*/
 var upload  = multer({dest:'solutions/'})
-var originalname = 'solution'
-
-router.post('/',upload.single(originalname),(req,res)=>{
-  //console,log(req.file)
+var originalname = 'solution';
+router.post('/',upload.single(originalname),async (req,res)=>{
     if (req.file) {
+      var count =await Solution.getObjcount(req.body.username,req.body.code);
       var solution = new Solution({ 
-          id:req.body.id,
+          code:req.body.code,
           username:req.body.username,
-         // filename: req.file.originalname,
+          id:req.body.code+req.body.username+count,
           language:req.body.language.toLowerCase(),
           description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
           submitted_on:new Date()
         });
         solution.save().then((sol) => {
-         /* cr.compileAndRunProblem(sol.language,sol.description).then((okay)=>{
-            console.log(okay)            
-            res.send(okay);
-          }).catch((e)=>{
-            //res.status(200).send(e);
-            console.log(e)
-            if(e.toString().indexOf("Error: Command failed:")!=-1){
-              res.send(e)
-            }else{
-              res.send(e)
-            }
-
-          })*/
-          console.log(JSON.stringify(sol))
-
-          const options = {
-            hostname: 'localhost:3002',
-            path: '/a',
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-              'Content-Length': Buffer.byteLength(JSON.stringify(sol))
-            }
+          const agentOptions = new Object();
+          agentOptions.keepAliveMsecs = 6000;
+          agentOptions.maxSockets = 5;
+          agentOptions.maxFreeSockets = 5;
+          const httpAgent = new http.Agent(agentOptions);
+          var opt ={uri:`http://localhost:3002/${sol.id}`,
+          agent:httpAgent,
+          json:true
           };
-
-          const reqes = http.request(options, (response) => {
-            console.log(`STATUS: ${res.statusCode}`);
-            console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-            response.setEncoding('utf8');
-            response.on('data', (chunk) => {
-              console.log(`BODY: ${chunk}`);
-            });
-            response.on('end', () => {
-              console.log('No more data in response.');
-            });
-          });
-          
-          reqes.on('error', (e) => {
-            console.error(`problem with request: ${e.message}`);
-          });
-          
-          // write data to request body
-          reqes.write(JSON.stringify(sol));
-          reqes.end();
-
-
-        }, (e) => {
-          res.status(400).send(e)
-        })
-      } else {
-        res.status(500).json({ error: `No file was provided in the 'data' field` });
-      }
+          rp(opt).then((body)=>{
+            console.log(body)
+            judge=3;
+            res.send(body)
+          }).catch((e)=>{
+            console.log(e);
+            res.send(e)
+          })
+      }).catch((e)=>{
+          //console.log(e);
+          res.send(e)
+      })
+    }
 })
+
 
 module.exports = router;

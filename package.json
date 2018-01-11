@@ -27,6 +27,8 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "iconv": "^2.3.0",
+    "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
     "mongodb": "*",
     "mongoose": "*",
@@ -37,6 +39,8 @@
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",
     "passport-local": "^1.0.0",
-    "passport-twitter": "^1.0.4"
+    "passport-twitter": "^1.0.4",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   }
 }
