@@ -1,36 +1,46 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <div class="brand">
-  <a class="navbar-brand" href="#"></a>
+  <a class="navbar-brand" href="#">CodeCamp</a>
 </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <li class="nav-item" > 
         <a 
         class="nav-link" 
         routerLink="/" 
-        routerLinkActive="active">Home</a>
+        [routerLinkActiveOptions]="{exact: true}"
+        routerLinkActive="active"
+        >Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contact</a>
+      <li class="nav-item" >
+        <a 
+        class="nav-link"
+        routerLink="/about"
+        routerLinkActive="active"
+        >
+        About</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-        routerLink="/blog" 
+        routerLink="/practice" 
         routerLinkActive="active"
-        *ngIf="authService.loggedIn()">Blog</a>
+        >Practice</a>
       </li>
-    <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link"
-        routerLink="/create-blog" 
+        routerLink="/discuss" 
         routerLinkActive="active"
-        *ngIf="authService.loggedIn()">Create Blog</a>
+        >Discuss</a>
+      </li>
+    <li class="nav-item" >
+        <a class="nav-link"
+        routerLink="/contest" 
+        routerLinkActive="active"
+        >Contest</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
@@ -38,33 +48,30 @@
         <a class="nav-link" 
         routerLink="/login" 
         routerLinkActive="active"
-        *ngIf="!authService.loggedIn()">
-        Login</a>
+        >Login</a>
       </li>
 
       <li class="nav-item">
           <a class="nav-link"
           routerLink="/profile" 
           routerLinkActive="active"
-          *ngIf="authService.loggedIn()">My Profile</a>
-        </li>
-
-      <li class="nav-item">
-          <a class="nav-link" 
-          href="#" 
-          routerLinkActive="active"
-          *ngIf="authService.loggedIn()"
-         (click)="onLogoutClick()" >
-          Logout</a>
+          >My Profile</a>
         </li>
 
       <li class="nav-item">
           <a class="nav-link"
           routerLink="/register" 
           routerLinkActive="active"
-          *ngIf="!authService.loggedIn()">Register</a>
+          >Register</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link"
+          (click)="onLogoutClick()"
+          >Logout</a>
         </li>
     </ul>
   </div>
 </div>
 </nav>
+
+<!--*ngIf="authService.loggedIn()"  -->

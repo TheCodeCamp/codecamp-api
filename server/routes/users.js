@@ -10,15 +10,19 @@ router.post('/signup',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
     User.findOne({'username':body.username},function(err,user){
         if(err){
-            res.status(404).send(err)
+            res.status(404).json({
+                "success":false
+            })
         }else if(user){
-            res.status(404).send('User with Username Exists')
+            res.status(404).json({
+                "success":false
+            })
         }else{
             var user = new User(body);
             user.save().then((user) => {
-                res.send(user)
-              }, (e) => {
-                res.status(400).send(e)
+                res.json({
+                    "success":true
+                })
               })
         }
     })
@@ -30,11 +34,20 @@ router.post('/login',(req,res)=>{
     console.log(`***${body.password} *** ${body.username}`)
     User.findByUsername(body.username,body.password,(err,user)=>{
         if(err){
-            res.status(404).send(err)
+            res.status(404).json({
+                "success":false,
+                "msg" : 'Check your conection'
+            })
         }else if(!user){
-            res.status(404).send('User Not Found')
+            res.status(404).json({
+                "success":false,
+                'msg': 'User not found'
+            })
         }else if(user){
-            res.send(user)
+            res.json({
+                "success":true,
+                "msg": 'uservalid' 
+            })
         }
     })
 })

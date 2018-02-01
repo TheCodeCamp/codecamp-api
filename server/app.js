@@ -3,8 +3,13 @@ const express= require('express');
 const morgan = require('morgan');
 const passport = require('passport');
 const flash = require('connect-flash')
+const cors = require('cors');
 const app = express();
 
+app.use(cors({
+    origin:true,
+    credentials:true
+}));
 const bodyParser = require('body-parser');
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     
