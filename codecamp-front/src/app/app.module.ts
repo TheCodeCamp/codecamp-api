@@ -19,6 +19,10 @@ import { AboutComponent } from './components/about/about.component';
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { HttpModule } from '@angular/http';
+import { SubmissionComponent } from './components/submission/submission.component';
+import { SolutionComponent } from './components/solution/solution.component';
+import { RanklistComponent } from './components/ranklist/ranklist.component';
+import { IdeComponent } from './components/ide/ide.component';
 
 
 @NgModule({
@@ -32,7 +36,11 @@ import { HttpModule } from '@angular/http';
     PracticeComponent,
     DiscussComponent,
     ContestComponent,
-    AboutComponent
+    AboutComponent,
+    SubmissionComponent,
+    SolutionComponent,
+    RanklistComponent,
+    IdeComponent
   ],
   imports: [
     BrowserModule,
