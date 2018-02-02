@@ -1,0 +1,51 @@
+<h2 class="page-header">
+  Register
+</h2>
+<form (submit)="onRegisterSubmit()">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text"  name="name" [(ngModel)]="name" class="form-control" id="name" placeholder="Enter name(XYZ)">
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" [(ngModel)]="username" name="username"  class="form-control" id="username" placeholder="Enter username(XYZ)">
+  </div>
+
+  <div class="form-group">
+    <label for="email_id">Email</label>
+    <input type="email" [(ngModel)]="email_id" name="email_id" class="form-control" id="email_id" placeholder="Enter email-id(xyz@abc.com)">
+  </div>
+  
+  <div class="form-group">
+    <label for="college">College</label>
+    <input type="text" [(ngModel)]="college" name="college" class="form-control" id="college" placeholder="Enter college name">
+  </div>
+
+  <div class="form-group">
+    <label for="city">City</label>
+    <input type="text" [(ngModel)]="city" name="city" class="form-control" id="city" placeholder="Enter city"> 
+  </div>
+  
+  <div class="form-group">
+    <label for="dob">Date Of Birth</label>
+    <input type="date" [(ngModel)]="dob" name="dob" class="form-control" id="dob">
+  </div>
+
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <input type="text" [(ngModel)]="gender" name="gender" class="form-control" id="gender" placeholder="Male/Female">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder="Enter password">
+  </div>
+
+  <div class="form-group">
+    <label for="confirmpassword">Confirm Password</label>
+    <input type="password" [(ngModel)]="confirmpassword" name="confrimpassword" class="form-control" id="confrimpassword" placeholder="Confrim password">
+  </div>
+
+  <input type="submit" class="btn btn-primary" value="SignUp">
+</form>

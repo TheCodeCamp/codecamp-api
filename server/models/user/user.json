@@ -1,0 +1,114 @@
+<<<<<<< HEAD
+{
+    "username":{
+        "type":"string",
+        "unique":true,
+        "minlength":1,
+        "required":true
+
+    },
+    "email_id":{
+        "type":"string",
+        "unique":true,
+        "minlength":4,
+        "required":true
+    },
+    "password":{
+        "type":"string",
+        "minlength":8,
+        "required":true
+    },
+    "college":{
+        "type":"string",
+        "required":true
+    },
+    "dob":{
+        "type":"date"
+    },
+    "name":{
+        "first_name":{
+            "type":"string",
+            "required":true
+        },
+        "middle_name":{
+            "type":"string",
+            "default":""
+        },
+        "last_name":{
+        "type":"string",
+        "default":""
+        }
+    },
+    "gender":{
+        "type":"string",
+        "default":""
+    },
+    "city":{
+        "type":"string",
+        "default":""
+    },
+    "joinedOn":{
+        "type":"date"
+    },
+    "bio":{
+        "type":"string",
+        "default":""
+    },
+    "isAdmin":{
+        "type":"boolean",
+        "default":false
+    }
+
+
+
+=======
+{
+    "username":{
+        "type":"string",
+        "unique":true,
+        "minlength":1,
+        "required":true
+
+    },
+    "email_id":{
+        "type":"string",
+        "unique":true,
+        "minlength":4,
+        "required":true
+    },
+    "password":{
+        "type":"string",
+        "minlength":8,
+        "required":true
+    },
+    "college":{
+        "type":"string",
+        "required":true
+    },
+    "dob":{
+        "type":"date"
+    },
+    "name":{
+        "type":"string",
+        "default":""
+    },
+    "gender":{
+        "type":"string",
+        "default":""
+    },
+    "city":{
+        "type":"string",
+        "default":""
+    },
+    "joinedOn":{
+        "type":"date"
+    },
+    "bio":{
+        "type":"string",
+        "default":""
+    }
+
+
+
+>>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
+}

@@ -1,0 +1,26 @@
+const mongoose = require('mongoose');
+const {Problem} = require('./problem/problem')
+
+var contestSchema = new mongoose.Schema({
+    'name':{
+        type:String,
+        required:true
+    },
+    'startTime':{
+        type:Date,
+        required:true,
+    },
+    'endTime':{
+        type:Date,
+        required:true
+    },
+    'description':{
+        type:String
+    },
+    'questions':[{
+        type: mongoose.Schema.Types.Object,
+        ref:Problem
+    }]
+})
+
+module.exports = mongoose.model('Contest',contestSchema)

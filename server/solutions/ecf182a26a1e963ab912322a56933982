@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+unsigned long long sum=0;
+for(long i=0;i<100000000;i++)
+	{
+		for(long j=0;j<100;j+)
+		{
+		sum+=j;
+		}
+ 	
+ 	}
+ 	cout<<sum<<"\n";
+ 		
+}
