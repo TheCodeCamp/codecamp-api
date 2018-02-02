@@ -1,3 +1,39 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+{
+    "id":{
+        "type":"string",
+        "unique":true
+    },
+    "code":{
+        "type":"string"
+    },
+    "username":{
+        "type":"string"
+    },
+    "submitted_on":{
+        "type":"date"
+    },
+    "language":{
+        "type":"string"
+    },
+    "result":{
+        "type":"string"
+    },
+    "score":{
+        "type":"number",
+        "default":0
+    },
+    "status":{
+        "type":"string",
+        "default":""
+    },
+    "description":{
+        "type":"string"
+    }
+=======
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
 {
     "id":{
         "type":"string"
@@ -25,4 +61,8 @@
     "description":{
         "type":"string"
     }
+<<<<<<< HEAD
+=======
+>>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
 }

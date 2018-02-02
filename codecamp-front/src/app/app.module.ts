@@ -19,10 +19,13 @@ import { AboutComponent } from './components/about/about.component';
 import { AuthService } from './services/auth.service';
 import { ValidateService } from './services/validate.service';
 import { HttpModule } from '@angular/http';
+<<<<<<< HEAD
 import { SubmissionComponent } from './components/submission/submission.component';
 import { SolutionComponent } from './components/solution/solution.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { IdeComponent } from './components/ide/ide.component';
+=======
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
 
 
 @NgModule({
@@ -36,11 +39,15 @@ import { IdeComponent } from './components/ide/ide.component';
     PracticeComponent,
     DiscussComponent,
     ContestComponent,
+<<<<<<< HEAD
     AboutComponent,
     SubmissionComponent,
     SolutionComponent,
     RanklistComponent,
     IdeComponent
+=======
+    AboutComponent
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
   ],
   imports: [
     BrowserModule,

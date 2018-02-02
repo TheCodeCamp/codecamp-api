@@ -44,7 +44,11 @@ export class AuthService {
   }
 
   loadToken(){
+<<<<<<< HEAD
     const token = localStorage.getItem('id_token');
+=======
+    const token=localStorage.getItem('id_token');
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
     this.authToken = token;
   }
 
@@ -56,6 +60,10 @@ export class AuthService {
   }
 
   loggedIn() {
+<<<<<<< HEAD
+=======
+    console.log( tokenNotExpired('id_token') );
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
     return tokenNotExpired('id_token');
   }
 

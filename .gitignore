@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules
 a.out
 judge/practice
@@ -8,3 +9,6 @@ judge/solution.c
 judge/test.c
 judge/test.out
 solutions
+=======
+node_modules/
+>>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
