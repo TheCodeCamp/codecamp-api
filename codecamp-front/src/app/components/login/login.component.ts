@@ -24,12 +24,13 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
     this.authService.authenticateUser( user ).subscribe(data => {
-      if(data.success){
-          this.authService.storeUserData(data.token, data.user)
+      if (data.success) {
+          this.authService.storeUserData(data.token, data.user);
+          alert('login success');
           this.router.navigate(['']);
         } else {
         this.router.navigate(['/login']);
       }
-    })
+    } )
     }
 }

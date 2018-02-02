@@ -27,27 +27,20 @@ export class AuthService {
       .map(res => res.json());
   }
 
-  
-  
   getProfile(){
     const headers = new Headers();
     this.loadToken();
     headers.append('Authorizaton', this.authToken );
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/users/profile',{headers: headers})
+    return this.http.get('http://localhost:3000/users/profile', { headers: headers })
       .map(res => res.json());
   }
 
-
-  storeUserData(token, user){
+  storeUserData(token, user) {
     localStorage.setItem(' id_token', token);
-    localStorage.setItem('user', JSON.stringify(user));  
+    localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
-    this.user =user;
-  }
-  
-  loggedIn(){
-    return tokenNotExpired();
+    this.user = user;
   }
 
   loadToken(){
@@ -59,5 +52,12 @@ export class AuthService {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
+
   }
+
+  loggedIn() {
+    console.log( tokenNotExpired('id_token') );
+    return tokenNotExpired('id_token');
+  }
+
 }
