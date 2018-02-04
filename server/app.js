@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 const cookieParser = require('cookie-parser');
-const session = require('cookie-session')
+const session = require('cookie-session');
 
 app.use(morgan('dev'));
 var expiryDate = new Date(Date.now() + 60 * 60 * 1000)

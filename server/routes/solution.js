@@ -7,14 +7,13 @@ const app= require('./../../server/app')
 const mongoose = require('mongoose')
 const request = require('request')
 const multer = require('multer')
+const encode = require('./../utils/encoding');
 const db = require('./../utils/db/db');
 const Solution = require('./../models/solution/solution');
 const router = express.Router();
 
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
-var judge = 0; 
-//const noOfJudge =2; //number of judge working
 router.post('/',upload.single(originalname),async (req,res)=>{
     if (req.file) {
       var count =await Solution.getObjcount(req.body.username,req.body.code);
@@ -32,12 +31,13 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           agentOptions.maxSockets = 5;
           agentOptions.maxFreeSockets = 5;
           const httpAgent = new http.Agent(agentOptions);
-          var opt ={uri:`http://localhost:300${judge}/${sol.id}`,
+          var opt ={uri:`http://localhost:3002/${sol.id}`,
           agent:httpAgent,
           json:true
           };
-         // judge=(judge+1)%noOfJudge;
           rp(opt).then((body)=>{
+            console.log(body)
+            judge=3;
             res.send(body)
           }).catch((e)=>{
             console.log(e);

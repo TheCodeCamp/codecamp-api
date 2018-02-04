@@ -1,9 +1,5 @@
 {
     "id":{
-        "type":"string",
-        "unique":true
-    },
-    "code":{
         "type":"string"
     },
     "username":{

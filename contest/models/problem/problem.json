@@ -49,8 +49,5 @@
     },
     "author":{
         "type":"string"
-    },
-    "contest":{
-        "type":"string"
     }
 } 
