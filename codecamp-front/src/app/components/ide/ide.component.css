@@ -1,6 +1,11 @@
-input[type=file] {
-    padding:5px; 
-    border:none;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+
+.file-upload{
+    padding: 10px;
+    background: red; 
+    display: table;
+    color: #fff;
+}
+
+input[type="file"] {
+   display: none;
 }

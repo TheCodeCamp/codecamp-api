@@ -22,26 +22,15 @@
     "bcryptjs": "*",
     "body-parser": "*",
     "connect-flash": "*",
-<<<<<<< HEAD
-    "cookie-parser": "*",
-    "cors": "^2.8.4",
-=======
     "connect-mongo": "^2.0.1",
-    "cookie-parser": "*",
-<<<<<<< HEAD
+    "cookie-parser": "^1.4.3",
     "cookie-session": "^2.0.0-beta.3",
-=======
     "cors": "^2.8.4",
->>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
->>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
     "express": "^4.16.2",
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-<<<<<<< HEAD
-=======
     "helmet": "^3.9.0",
->>>>>>> 73a9b1d0a1fabb223c70b50431b009c32cb343a5
     "iconv": "^2.3.0",
     "jsonwebtoken": "^8.1.0",
     "lodash": "^4.17.4",
