@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 const express= require('express');
 const morgan = require('morgan');
@@ -6,11 +5,13 @@ const passport = require('passport');
 const helmet = require('helmet')
 const contest = require('./../contest/models/contest')
 const flash = require('connect-flash')
+const cors = require('cors')
 const app = express();
 
 
 
 const bodyParser = require('body-parser');
+app.use(cors())
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     
     extended: true
@@ -27,7 +28,7 @@ app.use(session({
     cookie: {
       secure: true,
       httpOnly: true,
-      domain: 'localhost:3003',
+      domain: 'localhost:3000',
       expires: expiryDate
     }
   }))
@@ -45,57 +46,8 @@ app.use('/users', users);
 app.use('/solution',solutions)
 
 
-const port = process.env.PORT || 3003;
-app.listen(port);
-console.log('magic is started at ' + port)
-
-=======
-
-const express= require('express');
-const morgan = require('morgan');
-const passport = require('passport');
-const flash = require('connect-flash')
-const cors = require('cors');
-const app = express();
-
-app.use(cors({
-    origin:true,
-    credentials:true
-}));
-const bodyParser = require('body-parser');
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({     
-    extended: true
-}));
-
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(session({
-    secret: "Shh, its a secret!",
-    proxy: true,
-    resave: true,
-    saveUninitialized: true
-}))
-
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash());
-//Routes
-const problems = require('./routes/problems');
-const users = require('./routes/users');
-const solutions = require('./routes/solution');
-app.use('/problem', problems);
-app.use('/users', users);
-app.use('/solution',solutions)
-
-var judge=2;
-
 const port = process.env.PORT || 3000;
 app.listen(port);
 console.log('magic is started at ' + port)
 
->>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
 module.exports={app}

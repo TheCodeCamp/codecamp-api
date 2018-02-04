@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const mongoose = require('mongoose')     
 const SolutionJson = require('./solution.json')
 
@@ -18,10 +17,3 @@ SolutionSchema.statics.getObjcount =async function(username,code){
 }
 
 module.exports= mongoose.model('Solution',SolutionSchema)
-=======
-const mongoose = require('mongoose')     
-const SolutionJson = require('./solution.json')
-
-const SolutionSchema = new mongoose.Schema(SolutionJson);
-module.exports= mongoose.model('Solution',SolutionSchema)
->>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d

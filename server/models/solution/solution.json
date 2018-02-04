@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "id":{
         "type":"string",
@@ -30,33 +29,4 @@
     "description":{
         "type":"string"
     }
-=======
-{
-    "id":{
-        "type":"string"
-    },
-    "username":{
-        "type":"string"
-    },
-    "submitted_on":{
-        "type":"date"
-    },
-    "language":{
-        "type":"string"
-    },
-    "result":{
-        "type":"string"
-    },
-    "score":{
-        "type":"number",
-        "default":0
-    },
-    "status":{
-        "type":"string",
-        "default":""
-    },
-    "description":{
-        "type":"string"
-    }
->>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
 }

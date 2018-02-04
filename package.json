@@ -24,11 +24,8 @@
     "connect-flash": "*",
     "connect-mongo": "^2.0.1",
     "cookie-parser": "*",
-<<<<<<< HEAD
     "cookie-session": "^2.0.0-beta.3",
-=======
     "cors": "^2.8.4",
->>>>>>> aae61357893efc5840f7327a2cce64f575d50d4d
     "express": "^4.16.2",
     "express-messages": "*",
     "express-session": "*",
