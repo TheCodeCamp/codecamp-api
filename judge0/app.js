@@ -53,7 +53,7 @@ if (cluster.isMaster) {
     const solutions = require('./routes/solution');
     app.use('/',solutions)
 
-    const port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3001;
     app.listen(port);
     console.log('magic is started at ' + port +'****worker :- ' +cluster.worker.id)
 

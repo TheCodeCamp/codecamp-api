@@ -16,14 +16,15 @@ var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
 router.post('/',upload.single(originalname),async (req,res)=>{
     if (req.file) {
-      var count =await Solution.getObjcount(req.body.username,req.body.code);
+      var count =await Solution.getObjCount(req.body.username,req.body.code)+1;
+      console.log(count)
       var solution = new Solution({ 
           code:req.body.code,
           username:req.body.username,
           id:req.body.code+req.body.username+count,
           language:req.body.language.toLowerCase(),
           description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
-          submitted_on:new Date()
+          submitted_on:new Date() 
         });
         solution.save().then((sol) => {
           const agentOptions = new Object();
@@ -31,21 +32,28 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           agentOptions.maxSockets = 5;
           agentOptions.maxFreeSockets = 5;
           const httpAgent = new http.Agent(agentOptions);
-          var opt ={uri:`http://localhost:3002/${sol.id}`,
+          var opt ={uri:`http://localhost:3001/${sol.id}`,
           agent:httpAgent,
           json:true
           };
           rp(opt).then((body)=>{
             console.log(body)
             judge=3;
-            res.send(body)
+            res.json({
+              "success":true,
+              "msg":body
+            })
           }).catch((e)=>{
             console.log(e);
-            res.send(e)
+            res.json({
+              "success":false
+            })
           })
       }).catch((e)=>{
           //console.log(e);
-          res.send(e)
+          res.json({
+            "success":false
+          })
       })
     }
 })
