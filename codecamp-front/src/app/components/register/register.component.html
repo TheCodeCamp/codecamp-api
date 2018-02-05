@@ -1,51 +1,83 @@
-<h2 class="page-header">
+<h2 class="display-4">
   Register
 </h2>
-<form (submit)="onRegisterSubmit()">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text"  name="name" [(ngModel)]="name" class="form-control" id="name" placeholder="Enter name(XYZ)">
-  </div>
+  <div class="container">
+  <form [formGroup]="form" (submit)="onSignupSubmit()">
+    <div class="form-group">  
+      <label for="name">Name</label>
+      <input type="text" 
+      name="name" 
+      formControlName="name" 
+      class="form-control" 
+      placeholder="Enter Name" 
+      autocomplete="off"
+      [ngClass]="{'is-invalid': (form.controls.name.errors && form.controls.name.dirty) , 'is-valid': !form.controls.name.errors}">
+    </div>
 
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" [(ngModel)]="username" name="username"  class="form-control" id="username" placeholder="Enter username(XYZ)">
-  </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text"
+       name="username" 
+       formControlName="username" 
+       class="form-control" 
+       placeholder="Enter username(XYZ)" 
+       autocomplete="off"
+       [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) , 'is-valid': !form.controls.username.errors}">
+    </div>
 
+    <!-- Email Input -->
   <div class="form-group">
-    <label for="email_id">Email</label>
-    <input type="email" [(ngModel)]="email_id" name="email_id" class="form-control" id="email_id" placeholder="Enter email-id(xyz@abc.com)">
+    <label for="email">Email</label>
+      <input type="text" 
+      name="email" 
+      class="form-control" 
+      [ngClass]="{'is-invalid': (form.controls.email.errors && form.controls.email.dirty) , 'is-valid': !form.controls.email.errors}"
+      autocomplete="off" 
+      placeholder="*Email" 
+      formControlName="email" 
+      (blur)="checkEmail()">
+      <!-- Validation -->
+      <div *ngIf="form.controls.email.errors?.required && form.controls.email.dirty" class="invalid-feedback">This Field is required</div>
+      <div class="invalid-feedback" *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30</div>
+      <div class="invalid-feedback" *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail</div>
   </div>
-  
-  <div class="form-group">
-    <label for="college">College</label>
-    <input type="text" [(ngModel)]="college" name="college" class="form-control" id="college" placeholder="Enter college name">
-  </div>
+    
+    <div class="form-group">
+      <label for="college">College</label>
+      <input type="text" 
+      name="college" 
+      formControlName="college" 
+      class="form-control" 
+      placeholder="Enter college name" 
+      autocomplete="off"
+      [ngClass]="{'is-invalid': (form.controls.college.errors && form.controls.college.dirty) , 'is-valid': !form.controls.college.errors}">
+    </div>
 
-  <div class="form-group">
-    <label for="city">City</label>
-    <input type="text" [(ngModel)]="city" name="city" class="form-control" id="city" placeholder="Enter city"> 
-  </div>
-  
-  <div class="form-group">
-    <label for="dob">Date Of Birth</label>
-    <input type="date" [(ngModel)]="dob" name="dob" class="form-control" id="dob">
-  </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" formControlName="city" class="form-control" placeholder="Enter city" autocomplete="off"> 
+    </div>
+    
+    <div class="form-group">
+      <label for="dob">Date Of Birth</label>
+      <input type="date" name="dob" formControlName="dob" class="form-control" autocomplete="off">
+    </div>
 
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <input type="text" [(ngModel)]="gender" name="gender" class="form-control" id="gender" placeholder="Male/Female">
-  </div>
+    <div class="form-group">
+      <label for="gender">Gender</label>
+      <input type="text" name="gender" formControlName="gender" class="form-control" placeholder="Male/Female" autocomplete="off">
+    </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder="Enter password">
-  </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" name="password" formControlName="password" class="form-control" placeholder="Enter password" autocomplete="off">
+    </div>
 
-  <div class="form-group">
-    <label for="confirmpassword">Confirm Password</label>
-    <input type="password" [(ngModel)]="confirmpassword" name="confrimpassword" class="form-control" id="confrimpassword" placeholder="Confrim password">
-  </div>
+    <div class="form-group">
+      <label for="confirmpassword">Confirm Password</label>
+      <input type="password" name="confirm" formControlName="confirm" class="form-control" placeholder="Confrim password" autocomplete="off">
+    </div>
 
-  <input type="submit" class="btn btn-primary" value="SignUp">
-</form>
+    <input type="submit" class="btn btn-primary" value="Sign up">
+  </form>
+</div>

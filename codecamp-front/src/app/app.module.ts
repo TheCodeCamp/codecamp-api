@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {FormControl, FormGroup} from '@angular/forms';
 
@@ -36,8 +36,8 @@ import { HttpModule } from '@angular/http';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
+    ReactiveFormsModule,
     AppRoutingModule
   ],
   providers: [ValidateService, AuthService],

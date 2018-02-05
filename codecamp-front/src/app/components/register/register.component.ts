@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -10,64 +11,52 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  name: string;
-  username: string;
-  email_id: string;
-  college: string;
-  password: string;
-  dob: string;
-  city: string;
-  joinedOn: string;
-  gender: string;
-  confirmpassword: string;
-
+  form: FormGroup;
+  
   constructor(
     private validateService: ValidateService,
     private authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
+  }
 
   ngOnInit() {
   }
-  onRegisterSubmit() {
-    const user = {
-      name: this.name,
-      username: this.username,
-      email_id: this.email_id,
-      college: this.college,
-      password: this.password,
-      joinedOn: '12/10/15',
-      dob: this.dob,
-      city: this.city,
-      gender: this.gender,
-      confirmpassword: this.confirmpassword
-    }
 
-    //Required Fields
-    if(!this.validateService.validateRegister(user)){
-        console.log('Please fill in all fields');
-        return false;
-    }
+  createForm() {
+    this.form = this.formBuilder.group({
+      name: '',
+      email: ['', Validators.compose([
+        Validators.required, // Field is required
+        Validators.minLength(5), // Minimum length is 5 characters
+        Validators.maxLength(30), // Maximum length is 30 characters
+        this.validateEmail // Custom validation
+      ])],
+      password: ['', Validators.required],
+      username: ['', Validators.required],
+      confirm: ['', Validators.required],
+      college: ['', Validators.required],
+      gender: '',
+      dob: ['', Validators.required],
+      city: ['', Validators.required]
+    });
+  }
 
-    if(!this.validateService.validateEmail(user.email_id)){
-      console.log('Please use a valid email');
-        return false;
+  validateEmail(controls) {
+    // Create a regular expression
+    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    // Test email against regular expression
+    if (regExp.test(controls.value)) {
+      return null; // Return as valid email
+    } else {
+      return { 'validateEmail': true } // Return as invalid email
     }
-    if(!this.validateService.validatePassword(user.password,user.confirmpassword)){
-      console.log('password mismatch');
-      return false;
-    }
-    
-    //Register User
-      this.authService.registerUser(user).subscribe(data => {
-        if(data.success){
-          console.log('User Registered');
-          this.router.navigate(['/login']);
-        } else{
-          console.log('Something wents wrong');
-          this.router.navigate(['/register']);
-        }
-      });
+  }
+
+  
+  onSignupSubmit() {
 
   }
 
