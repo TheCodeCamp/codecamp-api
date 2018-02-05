@@ -5,11 +5,13 @@ const passport = require('passport');
 const helmet = require('helmet')
 const contest = require('./../contest/models/contest')
 const flash = require('connect-flash')
+const cors = require('cors')
 const app = express();
 
 
 
 const bodyParser = require('body-parser');
+app.use(cors())
 app.use( bodyParser.json() );
 app.use(bodyParser.urlencoded({     
     extended: true
@@ -26,7 +28,7 @@ app.use(session({
     cookie: {
       secure: true,
       httpOnly: true,
-      domain: 'localhost:3003',
+      domain: 'localhost:3000',
       expires: expiryDate
     }
   }))
@@ -44,6 +46,8 @@ app.use('/users', users);
 app.use('/solution',solutions)
 
 
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3000;
 app.listen(port);
 console.log('magic is started at ' + port)
+
+module.exports={app}

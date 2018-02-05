@@ -13,7 +13,7 @@ router.post('/signup',(req,res)=>{
     User.findOne({'username':body.username},function(err,user){
         if(err){
             res.status(404).send(err)
-        }else if(user){
+        rs}else if(user){
             res.status(404).send('User with Username Exists')
         }else{
             var user = new User(body);
@@ -50,7 +50,7 @@ router.post('/login',(req,res)=>{
         }else if(!user){
             res.status(404).send('User Not Found')
         }else if(user){
-            var token = jwt.sign({ email_id: user.email_id },'secret', {
+            var token = jwt.sign({ username: user.username },'secret', {
                 expiresIn: 86400 // expires in 24 hours
               });
             res.send(user)
