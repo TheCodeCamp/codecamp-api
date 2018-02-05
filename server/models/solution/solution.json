@@ -2,6 +2,9 @@
     "id":{
         "type":"string"
     },
+    "code":{
+        "type":"string"
+    },
     "username":{
         "type":"string"
     },
