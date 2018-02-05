@@ -48,6 +48,7 @@
         <a class="nav-link" 
         routerLink="/login" 
         routerLinkActive="active"
+        *ngIf="!authService.loggedIn()"
         >Login</a>
       </li>
 
@@ -55,6 +56,7 @@
           <a class="nav-link"
           routerLink="/profile" 
           routerLinkActive="active"
+          *ngIf="authService.loggedIn()"
           >My Profile</a>
         </li>
 
@@ -62,12 +64,13 @@
           <a class="nav-link"
           routerLink="/register" 
           routerLinkActive="active"
+          *ngIf="!authService.loggedIn()"
           >Register</a>
         </li>
         <li class="nav-item" >
           <a class="nav-link"
           (click)="onLogoutClick()" 
-          
+          *ngIf="authService.loggedIn()"
           >Logout</a>
         </li>
     </ul>

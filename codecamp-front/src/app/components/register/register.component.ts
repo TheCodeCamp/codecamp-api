@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
-  message;
-  messageClass;
+  // message;
+  // messageClass;
 
   constructor(
     private authService: AuthService,
@@ -47,6 +47,8 @@ export class RegisterComponent implements OnInit {
     }, { validator: this.matchingPasswords('password', 'confirm')});
   }
 
+
+
   validateEmail(controls) {
     // Create a regular expression
     const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -69,6 +71,7 @@ export class RegisterComponent implements OnInit {
     };
   }
   onSignupSubmit() {
+
     const user = {
       username: this.form.get('username').value,
       email_id: this.form.get('email_id').value,
@@ -80,8 +83,10 @@ export class RegisterComponent implements OnInit {
       gender: this.form.get('gender').value
     };
     this.authService.registerUser(user).subscribe(data => {
-      console.log(data);
+      if (!data.success) {
+      } else {
+        this.router.navigate(['/login']);
+      }
     });
-    this.router.navigate(['/login']);
   }
 }

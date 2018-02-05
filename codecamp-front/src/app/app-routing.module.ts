@@ -25,7 +25,7 @@ const appRoutes: Routes = [
     {path: 'contest' , component: ContestComponent},
     {path: 'discuss' , component: DiscussComponent},
     {path: 'profile' , component: ProfileComponent},
-    {path: 'ide', component: IdeComponent}
+    {path: 'ide', component: IdeComponent},
 ];
 
 @NgModule({

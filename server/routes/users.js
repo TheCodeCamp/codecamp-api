@@ -24,15 +24,11 @@ router.post('/signup',(req,res)=>{
                 var token = jwt.sign({ username: user.username},'secret', {
                     expiresIn: 86400 // expires in 24 hours
                   });
-<<<<<<< HEAD
-                  res.json({ success: true, message: 'Acount registered!' });
-=======
                   res.status(200).json({
                     'success':true,
                     'msg':'Registration successful , Now you can Login',    
                     'token':token
                 })
->>>>>>> 08e47d897437c805e78a5f0730556facf6bb31a6
               }, (e) => {
                 res.status(400).json({
                     'success':false,
@@ -95,7 +91,11 @@ router.post('/signin',(req,res)=>{
               });
             res.json({
                 'success':true,
-                'msg':'User with Username Exists'
+                'msg':'Successfully logged In',
+                'token': token,
+                'user': {
+                    username: user.username
+                  }
             })
         }
     })
