@@ -1,0 +1,36 @@
+<div class="container">
+        <div class="row show-hide-message">
+          <div [ngClass]="messageClass">
+            {{ message }}
+          </div>
+        </div>
+      
+        <form [formGroup]="form" (submit)="onSignupSubmit()">      
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text"
+             name="username" 
+             formControlName="username" 
+             class="form-control" 
+             placeholder="Enter username(XYZ)" 
+             autocomplete="off"
+             [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) , 'is-valid': !form.controls.username.errors}">
+          </div>
+      
+          <!-- Email Input -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" 
+            name="password" 
+            formControlName="password" 
+            class="form-control" 
+            placeholder="Enter password" 
+            autocomplete="off"
+            [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty) , 'is-valid': !form.controls.password.errors}">
+          </div>
+      
+          <input 
+          [disabled]="!form.valid"
+          type="submit" class="btn btn-primary" value="Sign up">
+        </form>
+      </div>

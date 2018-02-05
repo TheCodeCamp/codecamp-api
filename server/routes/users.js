@@ -21,7 +21,7 @@ router.post('/signup',(req,res)=>{
                 var token = jwt.sign({ username: user.username},'secret', {
                     expiresIn: 86400 // expires in 24 hours
                   });
-                  res.status(200).send({ auth: true, token: token });
+                  res.json({ success: true, message: 'Acount registered!' });
               }, (e) => {
                 res.status(400).send(e)
               })

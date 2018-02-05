@@ -17,8 +17,8 @@ import { ContestComponent } from './components/contest/contest.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { AuthService } from './services/auth.service';
-import { ValidateService } from './services/validate.service';
 import { HttpModule } from '@angular/http';
+import { IdeComponent } from './components/ide/ide.component';
 
 
 @NgModule({
@@ -32,7 +32,8 @@ import { HttpModule } from '@angular/http';
     PracticeComponent,
     DiscussComponent,
     ContestComponent,
-    AboutComponent
+    AboutComponent,
+    IdeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,7 @@ import { HttpModule } from '@angular/http';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
