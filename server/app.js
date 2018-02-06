@@ -3,7 +3,6 @@ const express= require('express');
 const morgan = require('morgan');
 const passport = require('passport');
 const helmet = require('helmet')
-const contest = require('./../contest/models/contest')
 const flash = require('connect-flash')
 const cors = require('cors')
 const app = express();
@@ -38,10 +37,10 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 app.use(helmet());
 //Routes
-const problems = require('./routes/problems');
+const contest = require('./routes/contest');
 const users = require('./routes/users');
 const solutions = require('./routes/solution');
-app.use('/problem', problems);
+app.use('/contest', contest);
 app.use('/users', users);
 app.use('/solution',solutions)
 
