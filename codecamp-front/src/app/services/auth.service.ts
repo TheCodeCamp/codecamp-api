@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   loadToken() {
-    this.authToken = localStorage.getItem('token'); 
+    this.authToken = localStorage.getItem('token');
     console.log(this.authToken); // Get token and asssign to variable to be used elsewhere
   }
   registerUser(user) {
@@ -58,5 +58,8 @@ export class AuthService {
     this.authToken = null; // Set token to null
     this.user = null; // Set user to null
     localStorage.clear(); // Clear local storage
+  }
+  getprofile() {
+    return this.http.get(this.domain + '/users/profile').map(res => res.json());
   }
 }
