@@ -1,10 +1,4 @@
 <div class="container">
-  <div class="row show-hide-message">
-    <div [ngClass]="messageClass">
-      {{ message }}
-    </div>
-  </div>
-
   <form [formGroup]="form" (submit)="onSignupSubmit()">
     <div class="form-group">  
       <label for="name">Name</label>
@@ -109,7 +103,7 @@
     </div>
 
     <input 
-    [disabled]="!form.valid|| processing "
+    [disabled]="!form.valid|| processing  "
     type="submit" class="btn btn-primary" value="Sign up">
   </form>
 </div>

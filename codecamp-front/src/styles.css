@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    font-family: arial;
+    background: #f5f5f5;
+}
+
+html, body, ul, ol, li, form, fieldset, legend {
+    margin: 0;
+    padding: 0;
+}
+  
+h1, h2, h3, h4, h5, h6, p {
+  margin-top: 0;
+}
+  
+fieldset, img {
+    border: 0;
+}
+
+.container-fluid{
+    padding: 0;
+}

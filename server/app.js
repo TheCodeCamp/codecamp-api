@@ -45,7 +45,6 @@ app.use('/problem', problems);
 app.use('/users', users);
 app.use('/solution',solutions)
 
-
 const port = process.env.PORT || 3000;
 app.listen(port);
 console.log('magic is started at ' + port)

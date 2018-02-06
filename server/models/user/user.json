@@ -42,6 +42,10 @@
     "bio":{
         "type":"string",
         "default":""
+    },
+    "isAdmin":{
+        "type":"boolean",
+        "default":false
     }
 
 
