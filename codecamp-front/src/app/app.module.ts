@@ -19,6 +19,7 @@ import { AboutComponent } from './components/about/about.component';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { IdeComponent } from './components/ide/ide.component';
+import { ProblemsComponent } from './components/problems/problems.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { IdeComponent } from './components/ide/ide.component';
     DiscussComponent,
     ContestComponent,
     AboutComponent,
-    IdeComponent
+    IdeComponent,
+    ProblemsComponent
   ],
   imports: [
     BrowserModule,

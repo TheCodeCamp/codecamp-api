@@ -11,6 +11,7 @@ export class AuthService {
   user: any;
   domain = 'http://localhost:3000';
   options;
+  isAdmin;
 
   constructor(
   private http: Http
@@ -28,8 +29,7 @@ export class AuthService {
   }
 
   loadToken() {
-    this.authToken = localStorage.getItem('token'); 
-    console.log(this.authToken); // Get token and asssign to variable to be used elsewhere
+    this.authToken = localStorage.getItem('token'); // Get token and asssign to variable to be used elsewhere
   }
   registerUser(user) {
     return this.http.post(this.domain + '/users/signup', user)
@@ -37,17 +37,25 @@ export class AuthService {
   }
 
   loginUser(user) {
-    this.createAuthenticationHeaders();
-    return this.http.post(this.domain + '/users/signin', user, this.options)
+    return this.http.post(this.domain + '/users/signin', user)
     .map(res => res.json());
   }
 
-  storeUserData(token, user) {
+  storeUserData(token, user, isAdmin) {
 
     localStorage.setItem('token', token); // Set token in local storage
     localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
     this.authToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
+    this.isAdmin = isAdmin;
+  }
+
+  checkisAdmin() {
+    if (this.isAdmin) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   loggedIn() {

@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder
-  ) { 
+  ) {
     this.createForm();
   }
 
@@ -38,12 +38,11 @@ export class LoginComponent implements OnInit {
       username: this.form.get('username').value, // Username input field
       password: this.form.get('password').value // Password input field
     };
+    console.log(user);
     this.authService.loginUser(user).subscribe(data => {
-      this.authService.storeUserData(data.token, data.user);
+      this.authService.storeUserData(data.token, data.user, data.isAdmin);
         // After 2 seconds, redirect to dashboard page
-        setTimeout(() => {
-            this.router.navigate(['/']); // Navigate to dashboard view
-          }, 2000);
+          this.router.navigate(['/']); // Navigate to dashboard view
       });
   }
 }
