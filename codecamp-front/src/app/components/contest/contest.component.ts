@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contest',
@@ -8,11 +9,20 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ContestComponent implements OnInit {
 
+
   constructor(
-    private authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+
   }
 
+  onAddContest() {
+    this.router.navigate(['/contest/add-contest']);
+  }
+  onEditContest() {
+    this.router.navigate(['/contest/edit-contest']);
+  }
 }

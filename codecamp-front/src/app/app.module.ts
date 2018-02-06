@@ -20,6 +20,11 @@ import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { IdeComponent } from './components/ide/ide.component';
 import { ProblemsComponent } from './components/problems/problems.component';
+import { AddContestComponent } from './components/add-contest/add-contest.component';
+import { EditContestComponent } from './components/edit-contest/edit-contest.component';
+import { SubmissionComponent } from './components/submission/submission.component';
+import { RanklistComponent } from './components/ranklist/ranklist.component';
+import { SolutionComponent } from './components/solution/solution.component';
 
 
 @NgModule({
@@ -35,7 +40,12 @@ import { ProblemsComponent } from './components/problems/problems.component';
     ContestComponent,
     AboutComponent,
     IdeComponent,
-    ProblemsComponent
+    ProblemsComponent,
+    AddContestComponent,
+    EditContestComponent,
+    SubmissionComponent,
+    RanklistComponent,
+    SolutionComponent
   ],
   imports: [
     BrowserModule,

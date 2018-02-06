@@ -14,6 +14,8 @@ import { ContestComponent } from './components/contest/contest.component';
 import { AboutComponent } from './components/about/about.component';
 import { IdeComponent } from './components/ide/ide.component';
 import { ProblemsComponent } from './components/problems/problems.component';
+import { AddContestComponent } from './components/add-contest/add-contest.component';
+import { EditContestComponent } from './components/edit-contest/edit-contest.component';
 
 
 
@@ -27,7 +29,9 @@ const appRoutes: Routes = [
     {path: 'discuss' , component: DiscussComponent},
     {path: 'profile' , component: ProfileComponent},
     {path: 'ide', component: IdeComponent},
-    {path: 'problems/:problem', component: ProblemsComponent}
+    {path: 'problems/:problem', component: ProblemsComponent},
+    {path: 'contest/add-contest', component: AddContestComponent},
+    {path: 'contest/edit-contest', component: EditContestComponent}
 ];
 
 @NgModule({

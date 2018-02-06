@@ -7,17 +7,16 @@ import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthService {
-  authToken: any;
-  user: any;
-  domain = 'http://localhost:3000';
-  options;
-  isAdmin;
+  public authToken: any;
+  public user: any;
+  public domain = '';
+  public options;
 
   constructor(
   private http: Http
   ) { }
 
-  createAuthenticationHeaders() {
+  public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
     this.options = new RequestOptions({
@@ -28,43 +27,45 @@ export class AuthService {
     });
   }
 
-  loadToken() {
+  public loadToken() {
     this.authToken = localStorage.getItem('token'); // Get token and asssign to variable to be used elsewhere
   }
-  registerUser(user) {
+  public registerUser(user) {
     return this.http.post(this.domain + '/users/signup', user)
       .map(res => res.json());
   }
 
-  loginUser(user) {
+  public loginUser(user) {
     return this.http.post(this.domain + '/users/signin', user)
     .map(res => res.json());
   }
 
-  storeUserData(token, user, isAdmin) {
+  public storeUserData(token, user) {
 
     localStorage.setItem('token', token); // Set token in local storage
-    localStorage.setItem('user', JSON.stringify(user)); // Set user in local storage as string
+    localStorage.setItem('user', JSON.stringify(user));
+   // Set user in local storage as string
     this.authToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
-    this.isAdmin = isAdmin;
+    // this.user.isAdmin = user.isAdmin;
   }
 
-  checkisAdmin() {
-    if (this.isAdmin) {
+  public checkisAdmin() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user.isAdmin === true) {
       return true;
     } else {
       return false;
     }
   }
 
-  loggedIn() {
+  public loggedIn() {
     return tokenNotExpired();
   }
 
-  logout() {
+  public logout() {
     this.authToken = null; // Set token to null
-    this.user = null; // Set user to null
+    this.user = null;
     localStorage.clear(); // Clear local storage
   }
 }
