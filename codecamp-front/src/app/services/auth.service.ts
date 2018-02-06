@@ -29,12 +29,8 @@ export class AuthService {
   }
 
   loadToken() {
-<<<<<<< HEAD
     this.authToken = localStorage.getItem('token');
     console.log(this.authToken); // Get token and asssign to variable to be used elsewhere
-=======
-    this.authToken = localStorage.getItem('token'); // Get token and asssign to variable to be used elsewhere
->>>>>>> 284547cb710a93fde32823f40edc4d4f83454bdd
   }
   registerUser(user) {
     return this.http.post(this.domain + '/users/signup', user)
@@ -73,6 +69,7 @@ export class AuthService {
     localStorage.clear(); // Clear local storage
   }
   getprofile() {
-    return this.http.get(this.domain + '/users/profile').map(res => res.json());
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + '/users/profile', this.options).map(res => res.json());
   }
 }
