@@ -1,3 +1,7 @@
-<p>
-  contest works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-warning" *ngIf="authService.checkisAdmin() === true">Add Contest</button>
+    </div>
+  </div>
+</div>

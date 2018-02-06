@@ -85,8 +85,8 @@ router.post('/signin',(req,res)=>{
                 'success':false,
                 'msg':'User not found'
             })
-        }else if(user){
-            var token = jwt.sign({ username: user.username },'secret', {
+        }else if(user.isAdmin===true){
+            let token = jwt.sign({ username: user.username },'secret', {
                 expiresIn: 86400 // expires in 24 hours
               });
             res.json({
@@ -95,7 +95,22 @@ router.post('/signin',(req,res)=>{
                 'token': token,
                 'user': {
                     username: user.username
-                  }
+                  },
+                  'isAdmin': true
+            }) 
+            }
+        else if(user){
+            let token = jwt.sign({ username: user.username },'secret', {
+                expiresIn: 86400 // expires in 24 hours
+              });
+            res.json({
+                'success':true,
+                'msg':'Successfully logged In',
+                'token': token,
+                'user': {
+                    username: user.username
+                  },
+                  'isAdmin': false
             })
         }
     })
