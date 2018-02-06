@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/signup',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
             res.status(404).send(err)

@@ -9,7 +9,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class AuthService {
   public authToken: any;
   public user: any;
-  public domain = '';
+  public domain = 'http://localhost:3000';
   public options;
 
   constructor(
@@ -67,5 +67,9 @@ export class AuthService {
     this.authToken = null; // Set token to null
     this.user = null;
     localStorage.clear(); // Clear local storage
+  }
+  getProfile() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + '/users/profile', this.options).map(res => res.json());
   }
 }

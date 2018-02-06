@@ -5,7 +5,7 @@
     <form [formGroup]="form" (submit)="onAddContestSubmit()">
       <div class="form-group">  
         <label for="name">Contest Name</label>
-        <input type="text" 
+        <input type="text"  
         name="name" 
         formControlName="name" 
         class="form-control" 
@@ -28,25 +28,25 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="startDate">Start Time</label>
-            <input type="datetime-local" 
-            name="startdate" 
-            formControlName="startdate" 
+            <input type="date" 
+            name="startTime" 
+            formControlName="startTime" 
             class="form-control" 
             placeholder="Start Time" 
             autocomplete="off"
-            [ngClass]="{'is-invalid': (form.controls.startdate.errors && form.controls.startdate.dirty) , 'is-valid': !form.controls.startdate.errors}">
+            [ngClass]="{'is-invalid': (form.controls.startTime.errors && form.controls.startTime.dirty) , 'is-valid': !form.controls.startTime.errors}">
           </div>
           </div>
           <div class="col-md-6">
           <div class="form-group">
               <label for="EndDate">End Time</label>
-              <input type="datetime-local" 
-              name="enddate" 
-              formControlName="enddate" 
+              <input type="date" 
+              name="endTime" 
+              formControlName="endTime" 
               class="form-control" 
               placeholder="End Time" 
               autocomplete="off"
-              [ngClass]="{'is-invalid': (form.controls.enddate.errors && form.controls.enddate.dirty) , 'is-valid': !form.controls.enddate.errors}">
+              [ngClass]="{'is-invalid': (form.controls.endTime.errors && form.controls.endTime.dirty) , 'is-valid': !form.controls.endTime.errors}">
             </div>
           </div>
         </div>

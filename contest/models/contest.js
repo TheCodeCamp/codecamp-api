@@ -6,9 +6,14 @@ var contestSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    'id':{
+        type:String,
+        required:true,
+        unique:true
+    },
     'startTime':{
         type:Date,
-        required:true,
+        required:true
     },
     'endTime':{
         type:Date,

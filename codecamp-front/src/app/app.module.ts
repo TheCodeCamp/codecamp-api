@@ -17,6 +17,8 @@ import { ContestComponent } from './components/contest/contest.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { AuthService } from './services/auth.service';
+import { ContestService } from './services/contest.service';
+
 import { HttpModule } from '@angular/http';
 import { IdeComponent } from './components/ide/ide.component';
 import { ProblemsComponent } from './components/problems/problems.component';
@@ -53,7 +55,7 @@ import { SolutionComponent } from './components/solution/solution.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [ AuthService],
+  providers: [ AuthService, ContestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
