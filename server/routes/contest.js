@@ -27,7 +27,13 @@ router.post('/',(req,res)=>{
 
 router.get('/:id',(req,res)=>{
     const id = req.params.id;
-    Contest.findOne({'id':id},(err,contest)=>{
+    var Projection={
+        _id:false,
+        'questions.name':true,
+        'questions.code':true
+
+    }
+    Contest.findOne({'id':id},Projection,(err,contest)=>{
         if(err){
             return res.status(400).json({
                     'success':false,
@@ -108,7 +114,7 @@ router.get('/:id',(req,res)=>{
 // problem routes
 
 
-router.post('/:id/question' , (req,res)=>{
+router.post('/:id' , (req,res)=>{
     const id = req.params.id;
     var body = _.pick(req.body,['code','name','successfulSubmission','level','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
     var problem = new Problem(body);
