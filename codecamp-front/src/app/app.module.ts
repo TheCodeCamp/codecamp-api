@@ -27,6 +27,8 @@ import { EditContestComponent } from './components/edit-contest/edit-contest.com
 import { SubmissionComponent } from './components/submission/submission.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { SolutionComponent } from './components/solution/solution.component';
+import { ProblemComponent } from './components/problem/problem.component';
+import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import { SolutionComponent } from './components/solution/solution.component';
     EditContestComponent,
     SubmissionComponent,
     RanklistComponent,
-    SolutionComponent
+    SolutionComponent,
+    ProblemComponent,
+    AddProblemComponent
   ],
   imports: [
     BrowserModule,

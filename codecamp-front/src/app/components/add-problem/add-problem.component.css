@@ -1,15 +1,14 @@
-
-.file-upload{
+.file-input, .file-output{
     padding: 10px;
     background: red; 
     display: table;
     color: #fff;
 }
 
-input[type="file"] {
-   display: none;
+.file-output{
+    background: green;
 }
 
-textarea{
-    overflow-x: hidden;
+input[type="file"] {
+   display: none;
 }

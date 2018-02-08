@@ -1,3 +1,37 @@
-<p>
-  problems works!
-</p>
+<div class="container" *ngIf="authService.checkisAdmin() === true" >
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-warning" (click)="onAddProblem()">Add Problems</button>
+      <button class="btn btn-danger" (click)="onDeleteProblem()">Delete Problems</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1 class="display-4">{{contest}}</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <a
+        class="nav-link"
+        *ngFor="let i of problems"
+        (click)="onSelectProblem(i.code)">
+          <div class="row">
+            <div class="col-md-8">
+              {{i.name}}
+            </div>
+            <div class="col-md-4">
+              {{i.code}}
+            </div>
+          </div>
+    
+          <hr>
+        </a>
+    </div>
+  </div>
+</div>

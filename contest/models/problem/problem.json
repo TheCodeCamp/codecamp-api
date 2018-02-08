@@ -1,12 +1,10 @@
 {
     "code":{
         "type":"string",
-        "required":true,
         "unique":true
    },
     "name":{
-        "type":"string",
-        "required":true
+        "type":"string"
     },
     "level":{
         "type":"string"

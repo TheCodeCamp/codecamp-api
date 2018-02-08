@@ -59,7 +59,8 @@ router.get('/:id',(req,res)=>{
 router.get('/',(req,res)=>{
     var projection ={
         _id    : false,
-        name   : true
+        name   : true,
+        id : true
     }
     Contest.find({},projection,(err,contest)=>{
         if(err){
@@ -85,32 +86,6 @@ router.get('/',(req,res)=>{
 })
 
 
-router.get('/:id',(req,res)=>{
-    const id = req.params.id;
-    Contest.findOne({'id':id},(err,contest)=>{
-        if(err){
-            return res.status(400).json({
-                    'success':false,
-                    'msg':'Wrong Request'
-                })
-        }else if(!contest){
-            return res 
-                    .status(404)
-                    .json({
-                        'success':false,
-                        'msg':'Can\'t find any contest with given id'
-                    })
-        }
-        res 
-            .status(200)
-            .json({
-                'success':true,
-                'msg':contest
-            })
-    })
-})
-
-
 // problem routes
 
 
@@ -121,7 +96,11 @@ router.post('/:id' , (req,res)=>{
    problem.save().then((pro) => {
         Contest.findOneAndUpdate({"id":id},{ "$push": { "questions": problem } },(err,con)=>{
             con.questions.push(body)
-            res.send(con)
+            res.status(200)
+            .json({
+                'success':true,
+                'problem':problem
+            })
         })
 
    })
