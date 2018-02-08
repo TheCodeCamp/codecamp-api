@@ -39,9 +39,11 @@ export class LoginComponent implements OnInit {
       password: this.form.get('password').value // Password input field
     };
     this.authService.loginUser(user).subscribe(data => {
-      this.authService.storeUserData(data.token, data.user, data.isAdmin);
+      this.authService.storeUserData(data.token, data.user);
         // After 2 seconds, redirect to dashboard page
-          this.router.navigate(['/']); // Navigate to dashboard view
+        console.log(data);
+          this.router.navigate(['/']);
+          // Navigate to dashboard view
       });
   }
 }

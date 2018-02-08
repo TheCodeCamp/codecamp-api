@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/signup',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
             res.status(404).send(err)
@@ -86,7 +87,7 @@ router.post('/signin',(req,res)=>{
                 'msg':'User not found'
             })
         }else if(user.isAdmin===true){
-            let token = jwt.sign({ username: user.username },'secret', {
+            let token = jwt.sign({ username: user.username, isAdmin: user.isAdmin },'secret', {
                 expiresIn: 86400 // expires in 24 hours
               });
             res.json({
@@ -94,9 +95,9 @@ router.post('/signin',(req,res)=>{
                 'msg':'Successfully logged In',
                 'token': token,
                 'user': {
-                    username: user.username
-                  },
-                  'isAdmin': true
+                    username: user.username,
+                    isAdmin:user.isAdmin
+                  }
             }) 
             }
         else if(user){
@@ -108,9 +109,9 @@ router.post('/signin',(req,res)=>{
                 'msg':'Successfully logged In',
                 'token': token,
                 'user': {
-                    username: user.username
-                  },
-                  'isAdmin': false
+                    username: user.username,
+                    isAdmin: user.isAdmin
+                  }
             })
         }
     })

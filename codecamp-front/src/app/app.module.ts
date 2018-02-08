@@ -17,9 +17,18 @@ import { ContestComponent } from './components/contest/contest.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { AuthService } from './services/auth.service';
+import { ContestService } from './services/contest.service';
+
 import { HttpModule } from '@angular/http';
 import { IdeComponent } from './components/ide/ide.component';
 import { ProblemsComponent } from './components/problems/problems.component';
+import { AddContestComponent } from './components/add-contest/add-contest.component';
+import { EditContestComponent } from './components/edit-contest/edit-contest.component';
+import { SubmissionComponent } from './components/submission/submission.component';
+import { RanklistComponent } from './components/ranklist/ranklist.component';
+import { SolutionComponent } from './components/solution/solution.component';
+import { ProblemComponent } from './components/problem/problem.component';
+import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
 
 @NgModule({
@@ -35,7 +44,14 @@ import { ProblemsComponent } from './components/problems/problems.component';
     ContestComponent,
     AboutComponent,
     IdeComponent,
-    ProblemsComponent
+    ProblemsComponent,
+    AddContestComponent,
+    EditContestComponent,
+    SubmissionComponent,
+    RanklistComponent,
+    SolutionComponent,
+    ProblemComponent,
+    AddProblemComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +60,7 @@ import { ProblemsComponent } from './components/problems/problems.component';
     AppRoutingModule,
     AceEditorModule
   ],
-  providers: [ AuthService],
+  providers: [ AuthService, ContestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

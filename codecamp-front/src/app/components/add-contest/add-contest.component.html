@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+    <div class="display-4">Add Contest</div>
+    <form [formGroup]="form" (submit)="onAddContestSubmit()">
+      <div class="form-group">  
+        <label for="name">Contest Name</label>
+        <input type="text"  
+        name="name" 
+        formControlName="name" 
+        class="form-control" 
+        placeholder="Enter Name" 
+        autocomplete="off"
+        [ngClass]="{'is-invalid': (form.controls.name.errors && form.controls.name.dirty) , 'is-valid': !form.controls.name.errors}">
+      </div>
+  
+      <div class="form-group">
+        <label for="id">Contest ID</label>
+        <input type="text"
+         name="id" 
+         formControlName="id" 
+         class="form-control" 
+         placeholder="Enter contest ID" 
+         autocomplete="off"
+         [ngClass]="{'is-invalid': (form.controls.id.errors && form.controls.id.dirty) , 'is-valid': !form.controls.id.errors}">
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="startDate">Start Time</label>
+            <input type="date" 
+            name="startTime" 
+            formControlName="startTime" 
+            class="form-control" 
+            placeholder="Start Time" 
+            autocomplete="off"
+            [ngClass]="{'is-invalid': (form.controls.startTime.errors && form.controls.startTime.dirty) , 'is-valid': !form.controls.startTime.errors}">
+          </div>
+          </div>
+          <div class="col-md-6">
+          <div class="form-group">
+              <label for="EndDate">End Time</label>
+              <input type="date" 
+              name="endTime" 
+              formControlName="endTime" 
+              class="form-control" 
+              placeholder="End Time" 
+              autocomplete="off"
+              [ngClass]="{'is-invalid': (form.controls.endTime.errors && form.controls.endTime.dirty) , 'is-valid': !form.controls.endTime.errors}">
+            </div>
+          </div>
+        </div>
+      
+      <div class="form-group">
+        <label for="city">Description</label>
+        <textarea 
+        name="description" 
+        formControlName="description" 
+        class="form-control" placeholder="Enter Description" autocomplete="off" rows="10"> 
+        </textarea>
+      </div>
+      
+      <input 
+      [disabled]="!form.valid "
+      type="submit" class="btn btn-primary" value="Add Contest">
+    </form>
+  </div>
+  </div>
+</div>

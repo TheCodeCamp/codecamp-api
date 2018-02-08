@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-     this.user = authService.getprofile().subscribe(profile => {
+     this.user = authService.getProfile().subscribe(profile => {
        this.user = profile.msg;
         //console.log(JSON.stringify(this.user));
      });

@@ -1,7 +1,35 @@
-<div class="container">
+<div class="container" *ngIf="authService.checkisAdmin() === true" >
   <div class="row">
     <div class="col-md-12">
-      <button class="btn btn-warning" *ngIf="authService.checkisAdmin() === true">Add Contest</button>
+      <button class="btn btn-warning" (click)="onAddContest()">Add Contest</button>
     </div>
   </div>
 </div>
+
+<br>
+
+<div class="container">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-8">
+        Contest
+      </div>
+      <div class="col-md-4">
+        Contest Code
+      </div>
+    </div>
+        <a
+    class="nav-link contest"
+    *ngFor="let i of contest"
+    (click)="onSelectContest(i.id)">
+      <div class="row">  
+      <div class="col-md-8">
+          {{i.name}}
+        </div>
+        <div class="col-md-4">
+          {{i.id}}
+        </div>
+      </div>
+      </a>    
+</div>
+  </div>
