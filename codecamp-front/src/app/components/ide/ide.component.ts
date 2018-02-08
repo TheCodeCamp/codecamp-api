@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ide',
@@ -7,7 +7,51 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IdeComponent implements OnInit {
 
-  constructor() { }
+
+  selectedLanguage: String  =  'c_cpp';
+  content: string;
+  selectLanguage(event: any) {
+    this.selectedLanguage = event.target.value;
+    if(this.selectedLanguage === 'c_cpp') { this.content =
+`#include<stdio.h>
+
+int main()
+{
+
+   printf("Welcome To CodeCamp");
+
+}
+`} else if(this.selectedLanguage === 'java'){this.content =
+`import java.util.*;
+
+public class CodeCamp {
+
+   public static void main(String[] args) {
+
+       System.out.println("Welcome To Code Camp");
+
+   }
+
+}
+`
+      } else {
+      this.content = `print("Welcome To CodeCamp")`
+      }
+
+  }
+
+  constructor() {
+    this.content =
+`#include<stdio.h>
+
+int main()
+{
+
+  printf("Welcome To CodeCamp");
+
+}
+`
+   }
 
   ngOnInit() {
   }

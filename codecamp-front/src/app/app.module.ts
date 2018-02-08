@@ -4,7 +4,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import {FormControl, FormGroup} from '@angular/forms';
-
+import {AceEditorModule} from 'ng2-ace-editor';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -41,7 +41,8 @@ import { ProblemsComponent } from './components/problems/problems.component';
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AceEditorModule
   ],
   providers: [ AuthService],
   bootstrap: [AppComponent]
