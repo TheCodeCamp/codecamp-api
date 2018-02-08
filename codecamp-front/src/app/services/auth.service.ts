@@ -30,7 +30,7 @@ export class AuthService {
 
   loadToken() {
     this.authToken = localStorage.getItem('token');
-    console.log(this.authToken); // Get token and asssign to variable to be used elsewhere
+    //console.log(this.authToken); // Get token and asssign to variable to be used elsewhere
   }
   registerUser(user) {
     return this.http.post(this.domain + '/users/signup', user)

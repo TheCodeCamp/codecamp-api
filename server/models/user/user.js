@@ -17,7 +17,7 @@ UserSchema.pre('save',function(next) {
 UserSchema.methods.toJSON = function() {
     var user = this ;
     var userObject = user.toObject();
-    return _.pick(userObject,['email_id','_id','college','name','bio','joinedOn','username','city','gender'])
+    return _.pick(userObject,['email_id','_id','college','name','dob','bio','joinedOn','username','city','gender'])
 }
 
 UserSchema.statics.findByUsername=function(username,password,done){
