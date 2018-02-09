@@ -47,5 +47,12 @@
     },
     "author":{
         "type":"string"
+    },
+    "testCaseInput":{
+        "type":"string",
+        "default":""
+    },
+    "testCaseOutput":{
+        "type":"string"
     }
 } 

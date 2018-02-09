@@ -12,9 +12,15 @@ router.get('/:id',(req,res)=>{
        }else if(!solution){
           res.send('null')
        }else if(solution){
-      var description=solution.description;
-      var language= solution.language;
-      judge.compileAndRunProblem(language,description).then((result)=>{        
+        const sol2 = Object.assign({}, solution);
+        const contest = sol2._doc.contest;
+        const problem = solution._doc.problem;
+        const description=solution._doc.description;
+        const id = solution._doc.id;
+        const language= solution._doc.language;
+
+       // console.log(sol2._doc.contest);
+        judge.compileAndRunProblem(contest,problem,id,language ,description).then((result)=>{        
           res.send(result + '***' + req.params.id);
         }).catch((e)=>{
          /* var compileError = /(g[/++/]|gcc|javac)/;
@@ -40,8 +46,12 @@ router.get('/:id',(req,res)=>{
           }
       })
     }
+
  })
+
+
   
 })
+
 
 module.exports=router;
