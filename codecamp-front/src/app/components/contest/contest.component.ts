@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ContestService } from '../../services/contest.service';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-contest',
@@ -10,7 +12,6 @@ import { ContestService } from '../../services/contest.service';
 })
 export class ContestComponent implements OnInit {
   contest;
-
   constructor(
     public authService: AuthService,
     private router: Router,

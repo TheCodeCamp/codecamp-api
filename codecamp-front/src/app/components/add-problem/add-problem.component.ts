@@ -26,19 +26,19 @@ export class AddProblemComponent implements OnInit {
     this.form = this.formBuilder.group({
       code: ['', Validators.required],
       name: ['', Validators.required],
-      level: [''],
-      description: [''],
-      input_format: [''],
-      output_format: [''],
-      constraints: [''],
-      input_example: [''],
-      output_example: [''],
-      explanation_example: [''],
-      timelimit: [''],
-      sourcelimit: [''],
-      author: [''],
-      Input: [''],
-      Output: ['']
+      level: ['', Validators.required],
+      description: ['', Validators.required],
+      input_format: ['', Validators.required],
+      output_format: ['', Validators.required],
+      constraints: ['', Validators.required],
+      input_example: ['', Validators.required],
+      output_example: ['', Validators.required],
+      explanation_example: ['', Validators.required],
+      timelimit: ['', Validators.required],
+      sourcelimit: ['', Validators.required],
+      author: ['', Validators.required],
+      Input: ['', Validators.required],
+      Output: ['', Validators.required]
     });
   }
 

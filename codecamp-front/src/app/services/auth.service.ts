@@ -51,11 +51,12 @@ export class AuthService {
   }
 
   public checkisAdmin() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user.isAdmin === true) {
-      return true;
-    } else {
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user.isAdmin);
+    if (user === undefined || user === null) {
       return false;
+    } else if (user.isAdmin === true) {
+      return true;
     }
   }
 

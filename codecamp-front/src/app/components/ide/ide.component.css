@@ -13,3 +13,11 @@ input[type="file"] {
 textarea{
     overflow-x: hidden;
 }
+
+.select {
+    margin: 2% 1%;
+}
+
+.options{
+    margin-left: 2%; 
+}

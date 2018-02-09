@@ -19,23 +19,73 @@ import { EditContestComponent } from './components/edit-contest/edit-contest.com
 import { ProblemComponent } from './components/problem/problem.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/not-auth.guard';
 
 
 const appRoutes: Routes = [
-    {path: '',  component: HomeComponent },
-    {path: 'about', component: AboutComponent},
-    {path: 'register' , component: RegisterComponent},
-    {path: 'login' , component: LoginComponent},
-    {path: 'practice' , component: PracticeComponent},
-    {path: 'contest' , component: ContestComponent},
-    {path: 'discuss' , component: DiscussComponent},
-    {path: 'profile' , component: ProfileComponent},
-    {path: 'ide', component: IdeComponent},
-    {path: 'contest/add-contest', component: AddContestComponent},
-    {path: 'contest/:contest', component: ProblemsComponent},
-    {path: 'contest/:contest/addproblem', component: AddProblemComponent},
-    {path: 'contest/:contest/:problem', component: ProblemComponent},
-    {path: 'contest/edit/:edit-contest', component: EditContestComponent},
+    {
+      path: '',
+      component: HomeComponent
+    },
+    {
+      path: 'about',
+      component: AboutComponent
+    },
+    {
+      path: 'register',
+      component: RegisterComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent
+    },
+    {
+      path: 'practice',
+      component: PracticeComponent
+    },
+    {
+      path: 'contest',
+      component: ContestComponent
+    },
+    {
+      path: 'discuss',
+      component: DiscussComponent
+    },
+    {
+      path: 'profile',
+      component: ProfileComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'ide',
+      component: IdeComponent
+    },
+    {
+      path: 'contest/add-contest',
+      component: AddContestComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'contest/:contest',
+      component: ProblemsComponent,
+      canActivate: [NotAuthGuard]
+    },
+    {
+      path: 'contest/:contest/addproblem',
+      component: AddProblemComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path: 'contest/:contest/:problem',
+      component: ProblemComponent,
+      canActivate: [NotAuthGuard]
+    },
+    {
+      path: 'contest/edit/:edit-contest',
+      component: EditContestComponent,
+      canActivate: [AuthGuard]
+    }
 ];
 
 @NgModule({

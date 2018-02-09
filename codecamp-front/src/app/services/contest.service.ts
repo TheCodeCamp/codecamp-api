@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ContestService {
@@ -14,6 +15,8 @@ export class ContestService {
   public domain = 'http://localhost:3000';
   public options;
 
+
+  public activeContest = new Subject();
   constructor(
     private http: Http
   ) { }
