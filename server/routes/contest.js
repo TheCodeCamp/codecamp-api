@@ -1,7 +1,10 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const _ = require('lodash');
 const Contest = require('./../../contest/models/contest');
-const Problem = require('./../../contest/models/problem/problem')
+const Problem = require('./../../contest/models/problem/problem');
+const problemRoute = require('./problems')
 
 const router = express.Router();
 
@@ -11,19 +14,37 @@ router.post('/',(req,res)=>{
     contest
         .save()
         .then((contest)=>{
+            fs.mkdir(__dirname+'/../../judge/result/input/'+contest.id,(err)=>{
+                if(err){
+                    return res.status(400).json({
+                        'success':false,
+                        'msg':'Error Occured While input Creating Folder'
+                    })
+                }
+            })
+            fs.mkdir(__dirname+'/../../judge/result/output/'+contest.id,(err)=>{
+                if(err){
+                    return res.status(400).json({
+                        'success':false,
+                        'msg':'Error Occured While output Creating Folder'
+                    })
+                }
+            })
             res.status(200).json({
                 'success':true,
-                'msg':'contest added Now You can add problems'
+                'msg':'contest added ,Now You can add problems'
             })
         })
         .catch((err)=>{
             res.status(400).json({
                 'success':false,
-                'msg':'Error Occured While Adding contest ! please Try Again'
+                'msg':err
             })
         })
 
 });
+
+router.use('/:id/problems',problemRoute)
 
 router.get('/:id',(req,res)=>{
     const id = req.params.id;
@@ -91,9 +112,28 @@ router.get('/',(req,res)=>{
 
 router.post('/:id' , (req,res)=>{
     const id = req.params.id;
-    var body = _.pick(req.body,['code','name','successfulSubmission','level','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
+    var body = _.pick(req.body,['code','name','successfulSubmission','level','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
     var problem = new Problem(body);
    problem.save().then((pro) => {
+       fs.writeFile(__dirname+'/../../judge/result/input/'+id+'/'+pro.code+'.txt',pro.testCaseInput,(err)=>{
+           if(err){
+                return res
+                    .json({
+                        'success':false,
+                        'msg':'Error Occured While writing Input test Cases'
+                    })
+            }
+        })
+
+       fs.writeFile(__dirname+'/../../judge/result/output/'+id+'/'+pro.code+'.txt',pro.testCaseOutput,(err)=>{
+            if(err){
+                return res
+                    .json({
+                        'success':false,
+                        'msg':'Error Occured While writing Output test Cases'
+                    })
+            }
+        })
         Contest.findOneAndUpdate({"id":id},{ "$push": { "questions": problem } },(err,con)=>{
             con.questions.push(body)
             res.status(200)

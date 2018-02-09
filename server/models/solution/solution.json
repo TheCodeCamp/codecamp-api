@@ -2,9 +2,6 @@
     "id":{
         "type":"string"
     },
-    "code":{
-        "type":"string"
-    },
     "username":{
         "type":"string"
     },
@@ -26,6 +23,12 @@
         "default":""
     },
     "description":{
+        "type":"string"
+    },
+    "contest":{
+        "type":"string"
+    },
+    "problem":{
         "type":"string"
     }
 }

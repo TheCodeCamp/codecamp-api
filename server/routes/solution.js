@@ -15,17 +15,33 @@ const router = express.Router();
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
 router.post('/',upload.single(originalname),async (req,res)=>{
-    if (req.file) {
-      var count =await Solution.getObjCount(req.body.username,req.body.code)+1;
-      console.log(count)
-      var solution = new Solution({ 
-          code:req.body.code,
+    var solution;
+   
+    if (!req.file) {
+      var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
+      solution = new Solution({ 
+          problem:req.body.problem,
+          contest:req.body.contest,
           username:req.body.username,
-          id:req.body.code+req.body.username+count,
+          id:req.body.contest+req.body.problem+req.body.username+count,
           language:req.body.language.toLowerCase(),
-          description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
+          description:req.body.description.toString('base64'),
           submitted_on:new Date() 
         });
+    }
+    else if(req.file){
+      var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
+      solution = new Solution({ 
+        problem:req.body.problem,
+        contest:req.body.contest,
+        username:req.body.username,
+        id:req.body.contest+req.body.problem+req.body.username+count,
+        language:req.body.language.toLowerCase(),
+        description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
+        submitted_on:new Date() 
+      });
+    }
+
         solution.save().then((sol) => {
           const agentOptions = new Object();
           agentOptions.keepAliveMsecs = 6000;
@@ -37,8 +53,6 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           json:true
           };
           rp(opt).then((body)=>{
-            console.log(body)
-            judge=3;
             res.json({
               "success":true,
               "msg":body
@@ -46,17 +60,18 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           }).catch((e)=>{
             console.log(e);
             res.json({
-              "success":false
+              "success":false,
+              "msg":e
             })
           })
       }).catch((e)=>{
-          //console.log(e);
           res.json({
-            "success":false
+            "success":false,
+            "msg":e
           })
       })
     }
-})
+)
 
 
 module.exports = router;
