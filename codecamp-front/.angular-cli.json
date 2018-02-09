@@ -26,7 +26,11 @@
 
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/jquery/dist/jquery.min.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.min.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/ace-builds/src-min/ace.js",
+        "../node_modules/ace-builds/src-min/mode-c_cpp.js",
+        "../node_modules/ace-builds/src-min/mode-python.js",
+        "../node_modules/ace-builds/src-min/mode-java.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

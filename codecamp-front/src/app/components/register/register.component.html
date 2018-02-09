@@ -1,12 +1,12 @@
 <div class="container">
   <form [formGroup]="form" (submit)="onSignupSubmit()">
-    <div class="form-group">  
+    <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" 
-      name="name" 
-      formControlName="name" 
-      class="form-control" 
-      placeholder="Enter Name" 
+      <input type="text"
+      name="name"
+      formControlName="name"
+      class="form-control"
+      placeholder="Enter Name"
       autocomplete="off"
       [ngClass]="{'is-invalid': (form.controls.name.errors && form.controls.name.dirty) , 'is-valid': !form.controls.name.errors}">
     </div>
@@ -14,10 +14,10 @@
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text"
-       name="username" 
-       formControlName="username" 
-       class="form-control" 
-       placeholder="Enter username(XYZ)" 
+       name="username"
+       formControlName="username"
+       class="form-control"
+       placeholder="Enter username(XYZ)"
        autocomplete="off"
        [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) , 'is-valid': !form.controls.username.errors}">
     </div>
@@ -25,44 +25,44 @@
     <!-- Email Input -->
   <div class="form-group">
     <label for="email">Email</label>
-      <input type="text" 
-      name="email_id" 
-      class="form-control" 
+      <input type="text"
+      name="email_id"
+      class="form-control"
       [ngClass]="{'is-invalid': (form.controls.email_id.errors && form.controls.email_id.dirty) , 'is-valid': !form.controls.email_id.errors}"
-      autocomplete="off" 
-      placeholder="*email" 
+      autocomplete="off"
+      placeholder="*email"
       formControlName="email_id">
       <!-- Validation -->
       <div *ngIf="form.controls.email_id.errors?.required && form.controls.email_id.dirty" class="invalid-feedback">This Field is required</div>
       <div class="invalid-feedback" *ngIf="(form.controls.email_id.errors?.minlength && form.controls.email_id.dirty || form.controls.email_id.errors?.maxlength && form.controls.email_id.dirty ) && form.controls.email_id.dirty">Minimum characters: 5, Maximum characters: 30</div>
       <div class="invalid-feedback" *ngIf="form.controls.email_id.errors?.validateemail && form.controls.email_id.dirty">This must be a valid e-mail</div>
   </div>
-    
+
     <div class="form-group">
       <label for="college">College</label>
-      <input type="text" 
-      name="college" 
-      formControlName="college" 
-      class="form-control" 
-      placeholder="Enter college name" 
+      <input type="text"
+      name="college"
+      formControlName="college"
+      class="form-control"
+      placeholder="Enter college name"
       autocomplete="off"
       [ngClass]="{'is-invalid': (form.controls.college.errors && form.controls.college.dirty) , 'is-valid': !form.controls.college.errors}">
     </div>
 
     <div class="form-group">
       <label for="city">City</label>
-      <input type="text" 
-      name="city" 
-      formControlName="city" 
-      class="form-control" placeholder="Enter city" autocomplete="off"> 
+      <input type="text"
+      name="city"
+      formControlName="city"
+      class="form-control" placeholder="Enter city" autocomplete="off">
     </div>
-    
+
     <div class="form-group">
       <label for="dob">Date Of Birth</label>
       <input type="date"
-       name="dob" 
-       formControlName="dob" 
-       class="form-control" 
+       name="dob"
+       formControlName="dob"
+       class="form-control"
        autocomplete="off"
        [ngClass]="{'is-invalid': (form.controls.dob.errors && form.controls.dob.dirty) , 'is-valid': !form.controls.dob.errors}">
     </div>
@@ -80,30 +80,30 @@
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" 
-      name="password" 
-      formControlName="password" 
-      class="form-control" 
-      placeholder="Enter password" 
+      <input type="password"
+      name="password"
+      formControlName="password"
+      class="form-control"
+      placeholder="Enter password"
       autocomplete="off"
       [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty) , 'is-valid': !form.controls.password.errors}">
     </div>
 
     <div class="form-group">
       <label for="confirmpassword">Confirm Password</label>
-      <input type="password" 
-      name="confirm" 
-      formControlName="confirm" 
-      class="form-control" 
-      placeholder="Confrim password" 
+      <input type="password"
+      name="confirm"
+      formControlName="confirm"
+      class="form-control"
+      placeholder="Confrim password"
       autocomplete="off"
       [ngClass]="{'is-invalid':  (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty) , 'is-valid': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
       <div *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty"
       class="invalid-feedback">Password do not match</div>
-      
+
     </div>
 
-    <input 
+    <input
     [disabled]="!form.valid "
     type="submit" class="btn btn-primary" value="Sign up">
   </form>

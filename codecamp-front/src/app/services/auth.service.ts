@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   public loadToken() {
-    this.authToken = localStorage.getItem('token'); // Get token and asssign to variable to be used elsewhere
+    this.authToken = localStorage.getItem('token'); // Get tokens and asssign to variable to be used elsewhere
   }
   public registerUser(user) {
     return this.http.post(this.domain + '/users/signup', user)

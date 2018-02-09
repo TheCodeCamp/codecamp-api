@@ -2,7 +2,23 @@
     <div class="row">
         <div class="col-md-12">
             <h1 class="display-4">Online IDE</h1>
-            <textarea name="" id="" cols="105" rows="28" ></textarea>  
+            <article>
+              <h5>Select language</h5>
+              <select (change)="selectLanguage($event)">
+                <option value="c_cpp">C</option>
+                <option value="c_cpp">C++</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+              </select>
+            </article>
+
+            <div ace-editor id="" cols="105" rows="28"
+                 [text]="content"
+                 class="aceEditorDirective"
+                 mode="{{selectedLanguage}}"
+                 style="height:500px;"></div>
+
+
             <div class="row">
             <div class="col-md-8">
                 <label class="file-upload">Upload File
@@ -12,7 +28,14 @@
             <div class="col-md-4">
                 <div class="form-check mr-auto">
                     <button class="btn btn-dark">Compile</button>
-                    
+                    <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                            <label class="form-check-label" for="gridCheck">
+                              Check me out
+                            </label>
+                          </div>
+
+
                 </div>
             </div>
             </div>
