@@ -2,7 +2,7 @@ const express = require('express');
 const _ = require('lodash')
 const db = require('./../utils/db/db');
 const Problem = require('./../../contest/models/problem/problem');
-const Contest = require('./../../contest/models/contest')
+const Contest = require('./../../contest/models/contest/contest')
 const router = express.Router({mergeParams: true})
 
 router.get('/:code',(req,res)=>{

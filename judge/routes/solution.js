@@ -14,12 +14,11 @@ router.get('/:id',(req,res)=>{
        }else if(solution){
         const sol2 = Object.assign({}, solution);
         const contest = sol2._doc.contest;
-        const problem = solution._doc.problem;
-        const description=solution._doc.description;
-        const id = solution._doc.id;
-        const language= solution._doc.language;
+        const problem = sol2._doc.problem;
+        const description=sol2._doc.description;
+        const id = sol2._doc.id;
+        const language= sol2._doc.language;
 
-       // console.log(sol2._doc.contest);
         judge.compileAndRunProblem(contest,problem,id,language ,description).then((result)=>{        
           res.send(result + '***' + req.params.id);
         }).catch((e)=>{

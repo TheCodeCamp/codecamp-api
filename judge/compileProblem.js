@@ -112,11 +112,9 @@ const base64tofile = async (base64,lang)=>{
 async function compileAndRunProblem(contest,problem,id,lang ,description){
     const filename= await base64tofile(description,lang);
     const file = await compileProblem(lang,filename);
-    console.log(contest,problem)
     const result= await runCompiled(lang,file,contest,problem);
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
-    console.log(Result)
     return Result;
   
 }
