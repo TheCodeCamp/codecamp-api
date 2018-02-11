@@ -115,6 +115,7 @@ router.post('/:id' , (req,res)=>{
     var body = _.pick(req.body,['code','name','successfulSubmission','level','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
     var problem = new Problem(body);
    problem.save().then((pro) => {
+
        fs.writeFile(__dirname+'/../../judge/result/input/'+id+'/'+pro.code+'.txt',pro.testCaseInput,(err)=>{
            if(err){
                 return res

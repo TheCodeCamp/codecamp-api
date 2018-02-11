@@ -21,6 +21,7 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
+import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
 
 
 const appRoutes: Routes = [
@@ -62,14 +63,17 @@ const appRoutes: Routes = [
       component: IdeComponent
     },
     {
+      path: ':contest/submit/:code',
+      component: SolultionSubmitComponent
+    },
+    {
       path: 'contest/add-contest',
       component: AddContestComponent,
       canActivate: [AuthGuard]
     },
     {
       path: 'contest/:contest',
-      component: ProblemsComponent,
-      canActivate: [NotAuthGuard]
+      component: ProblemsComponent
     },
     {
       path: 'contest/:contest/addproblem',
@@ -78,8 +82,7 @@ const appRoutes: Routes = [
     },
     {
       path: 'contest/:contest/:problem',
-      component: ProblemComponent,
-      canActivate: [NotAuthGuard]
+      component: ProblemComponent
     },
     {
       path: 'contest/edit/:edit-contest',

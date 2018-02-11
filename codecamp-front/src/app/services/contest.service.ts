@@ -56,4 +56,17 @@ export class ContestService {
     return this.http.get(this.domain + '/contest/' + contest)
         .map(res => res.json());
   }
+
+  public getProblem(code, contest) {
+    return this.http.get(this.domain + '/contest/' + contest + '/problems/' + code)
+      .map((res) =>{
+         return res.json();
+      });
+  }
+
+  public addSolution(solution) {
+    console.log(solution.description);
+    return this.http.post(this.domain + '/solution', solution)
+      .map(res => res.json());
+  }
 }

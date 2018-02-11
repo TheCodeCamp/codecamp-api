@@ -33,6 +33,7 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
+import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { NotAuthGuard } from './guards/not-auth.guard';
     RanklistComponent,
     SolutionComponent,
     ProblemComponent,
-    AddProblemComponent
+    AddProblemComponent,
+    SolultionSubmitComponent
   ],
   imports: [
     BrowserModule,

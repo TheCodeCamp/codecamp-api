@@ -25,12 +25,11 @@ export class ProblemsComponent implements OnInit {
     this.contestService.getProblems(this.contest).subscribe(contest => {
       this.problems = contest.msg.questions;
     });
-
   }
   onAddProblem() {
     this.router.navigate(['/contest', this.contest, 'addproblem']);
   }
   onSelectProblem(code) {
-    this.router.navigate(['/contest',this.contest, code]);
+        this.router.navigate(['/contest', this.contest, code]);
   }
 }

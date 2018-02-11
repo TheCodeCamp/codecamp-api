@@ -36,14 +36,15 @@ router.get('/:id',(req,res)=>{
             res.send(e.cmd)
           }
           */
-          var compileError = /(g[/++/]|gcc|javac)/;
-          if(e.cmd.toString().match(compileError)){
-            res.status(200).send('ce'+ '***' + req.params.id);
-          }else if(e.killed){
-            res.status(200).send('TLE'+ '***' + req.params.id);
-          }else{
-            res.status(200).send('RE'+ '***' + req.params.id);
-          }
+          res.status(200).send(e + '***' + req.params.id)
+          // var compileError = /(g[/++/]|gcc|javac)/;
+          // if(e.cmd.toString().match(compileError)){
+          //   res.status(200).send('ce'+ '***' + req.params.id);
+          // }else if(e.killed){
+          //   res.status(200).send('TLE'+ '***' + req.params.id);
+          // }else{
+          //   res.status(200).send('RE'+ '***' + req.params.id);
+          // }
       })
     }
 

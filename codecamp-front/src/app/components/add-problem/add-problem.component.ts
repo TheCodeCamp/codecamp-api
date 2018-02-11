@@ -57,8 +57,8 @@ export class AddProblemComponent implements OnInit {
       timelimit: this.form.get('timelimit').value,
       sourcelimit: this.form.get('sourcelimit').value,
       author: this.form.get('author').value,
-      Input: this.form.get('Input').value,
-      Output: this.form.get('Output').value,
+      testCaseInput: this.form.get('Input').value,
+      testCaseOutput: this.form.get('Output').value
     };
 
     this.contestService.addProblem(problem, this.contest).subscribe(data => {
