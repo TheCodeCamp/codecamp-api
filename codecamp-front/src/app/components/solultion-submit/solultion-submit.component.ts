@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-import { FileUploadService } from '../../services/file-upload.service';
+import { Component, OnInit, ViewChild, Output} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ContestService } from '../../services/contest.service';
-declare var jquery:any;
-declare var $ :any;
+import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-solultion-submit',
@@ -12,20 +13,21 @@ declare var $ :any;
   styleUrls: ['./solultion-submit.component.css']
 })
 export class SolultionSubmitComponent implements OnInit {
-  selectedLanguage =  'c_cpp';
-  content: string;
+  selectedLanguage = 'c_cpp';
+  content;
   problem;
   contest;
   username;
+  solution;
   language: string;
-  formData;
   currentFileUpload;
   value;
   @ViewChild('userFile') user_file;
   constructor(
     private contestService: ContestService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.content = `#include<stdio.h>
 
@@ -44,8 +46,9 @@ export class SolultionSubmitComponent implements OnInit {
     });
   }
 
-  selectLanguage(event: any) {
+  selectLanguage(event) {
     this.selectedLanguage = event.target.value;
+    
     if (this.selectedLanguage === 'c_cpp') { 
       this.content =
       `#include<stdio.h>
@@ -60,11 +63,11 @@ export class SolultionSubmitComponent implements OnInit {
       this.content =
         `import java.util.*;
 
-        public class CodeCamp {
+        public class Solution {
 
           public static void main(String[] args) {
 
-              System.out.println("Welcome To Code Camp");
+              System.out.print("Welcome To CodeCamp");
 
           }
 
@@ -84,12 +87,16 @@ export class SolultionSubmitComponent implements OnInit {
         };
       }
     }
+
   onClickSubmit() {
     const lang = $('#select').val();
+
+    this.content = document.getElementsByClassName('ace_content');
+    const p = this.content[0].innerText;
     if (this.value) {
       this.currentFileUpload = this.value;
     } else {
-      this.currentFileUpload = btoa(this.content);
+      this.currentFileUpload = btoa(p);
     }
     const solution = {
       problem : this.problem,
@@ -99,11 +106,8 @@ export class SolultionSubmitComponent implements OnInit {
       description: this.currentFileUpload
     };
     this.contestService.addSolution(solution).subscribe(data => {
-      if (!data.success) {
-        console.log(data.msg);
-      } else {
-        console.log(data.msg);
-      }
+      this.contestService.setSolution(data.msg);
+      this.router.navigate(['/submit/complete']);
     });
   }
 }

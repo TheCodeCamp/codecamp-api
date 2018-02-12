@@ -17,17 +17,17 @@ const compileProblem= async (lang , filename)=>{
     switch(lang){
         case "c":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+ path.join(__dirname,"result/source") && "gcc -o " +path.join(__dirname,"result/binary/") +file + " " + filename;
-            break;
+            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename;
+            break
         case "c++":
         case "cpp":
             file = path.basename(filename,'.cpp')+".out";
             console.log(file)
-            cmd="cd "+ path.join(__dirname,"result/source") + " && g++ -o " + path.join(__dirname,"result/binary/")+file + " " +filename;
+            cmd="cd "+"\""+ path.join(__dirname,"result/source") +"\""+ " && g++ -o \"" + path.join(__dirname,"result/binary/")+ "\""+file + " " +filename;
             break;
         case "java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+ path.join(__dirname,"result/source") + " && javac -d " + path.join(__dirname,"result/binary/") +" " +filename;
+            cmd ="cd "+"\""+ path.join(__dirname,"result/source") + "\" && javac -d \"" + path.join(__dirname,"result/binary/") +"\" " +filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -47,14 +47,14 @@ async function runCompiled(lang,file,contest,problem){
     var cmd;
     switch(lang){
         case "c":
-            cmd= "cd "+ path.join(__dirname,"result/binary") + " && ./" + file +  " <"+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt";
+            cmd= "cd \""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd "+ path.join(__dirname,"result/binary") + " && ./" + file +" <"+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt";
+            cmd = "cd \""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd "+ path.join(__dirname,"result") + " && java " + file +" <"+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt";
+            cmd =  "cd \""+ path.join(__dirname,"result/binary") + "\" && java " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
     }
     
     return new Promise((resolve,reject)=>{
@@ -64,7 +64,6 @@ async function runCompiled(lang,file,contest,problem){
               reject(error);
         }
         var res=stdout;
-       console.log(res)
         resolve(res);
       });
     })
@@ -112,7 +111,6 @@ const base64tofile = async (base64,lang)=>{
 async function compileAndRunProblem(contest,problem,id,lang ,description){
     const filename= await base64tofile(description,lang);
     const file = await compileProblem(lang,filename);
-    console.log(contest,problem)
     const result= await runCompiled(lang,file,contest,problem);
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);

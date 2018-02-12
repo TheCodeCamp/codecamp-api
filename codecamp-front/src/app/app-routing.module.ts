@@ -22,6 +22,7 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
 import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
+import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 
 
 const appRoutes: Routes = [
@@ -65,6 +66,10 @@ const appRoutes: Routes = [
     {
       path: ':contest/submit/:code',
       component: SolultionSubmitComponent
+    },
+    {
+      path: 'submit/complete',
+      component: SolutionComponent
     },
     {
       path: 'contest/add-contest',

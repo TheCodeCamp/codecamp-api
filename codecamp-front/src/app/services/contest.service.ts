@@ -14,7 +14,7 @@ export class ContestService {
   public contest: any;
   public domain = 'http://localhost:3000';
   public options;
-
+  public sol;
 
   public activeContest = new Subject();
   constructor(
@@ -65,8 +65,13 @@ export class ContestService {
   }
 
   public addSolution(solution) {
-    console.log(solution.description);
     return this.http.post(this.domain + '/solution', solution)
       .map(res => res.json());
+  }
+  public setSolution(sol){
+    this.sol = sol;
+  }
+  public getSolution() {
+    return this.sol;
   }
 }

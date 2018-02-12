@@ -1,7 +1,7 @@
 #include<stdio.h>
-
     int main()
     {
-      printf("Welcome To CodeCamp");
+     int a,b;
+    scanf("%d%d",&a,&b);
+    printf("%d\n",a+b);
     }
-    

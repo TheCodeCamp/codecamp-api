@@ -1,9 +1,8 @@
-#include<iostream>
-using namespace std;
+#include<stdio.h>
 
-int main(){
-	string sum;
-	cin>>sum;
- 	cout<<sum<<"\n";
- 		
-}
+      int main()
+      {
+
+        printf("Welcome To CodeCamp");
+
+      }

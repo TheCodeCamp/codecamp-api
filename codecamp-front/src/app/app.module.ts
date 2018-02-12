@@ -18,7 +18,6 @@ import { AboutComponent } from './components/about/about.component';
 
 import { AuthService } from './services/auth.service';
 import { ContestService } from './services/contest.service';
-import { FileUploadService } from './services/file-upload.service';
 
 import { HttpModule } from '@angular/http';
 import { IdeComponent } from './components/ide/ide.component';
@@ -27,7 +26,7 @@ import { AddContestComponent } from './components/add-contest/add-contest.compon
 import { EditContestComponent } from './components/edit-contest/edit-contest.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
-import { SolutionComponent } from './components/solution/solution.component';
+import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
@@ -65,7 +64,7 @@ import { SolultionSubmitComponent } from './components/solultion-submit/solultio
     AppRoutingModule,
     AceEditorModule
   ],
-  providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService, FileUploadService],
+  providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
