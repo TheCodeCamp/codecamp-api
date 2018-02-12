@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {Problem} = require('./problem/problem')
+const {Problem} = require('./../problem/problem')
 
 var contestSchema = new mongoose.Schema({
     'name':{

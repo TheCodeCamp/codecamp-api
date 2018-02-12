@@ -12,19 +12,50 @@ const db = require('./../utils/db/db');
 const Solution = require('./../models/solution/solution');
 const router = express.Router();
 
+<<<<<<< HEAD
 //var upload  = multer({dest:'solutions/'})
 //var originalname = 'solution';
 router.post('/',async (req,res)=>{
       var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
      var solution = new Solution({ 
+=======
+var upload  = multer({dest:'solutions/'})
+var originalname = 'solution';
+router.post('/',upload.single(originalname),async (req,res)=>{
+    var solution;
+     if(req.file){
+      var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
+      solution = new Solution({ 
+        problem:req.body.problem,
+        contest:req.body.contest,
+        username:req.body.username,
+        id:req.body.contest+req.body.problem+req.body.username+count,
+        language:req.body.language.toLowerCase(),
+        description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
+        submitted_on:new Date() 
+      });
+    }
+       
+    else if (!req.file) {
+      var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
+      solution = new Solution({ 
+>>>>>>> 5b116472edb8e59b201766368eae67301e945e2b
           problem:req.body.problem,
           contest:req.body.contest,
           username:req.body.username,
           id:req.body.contest+req.body.problem+req.body.username+count,
           language:req.body.language.toLowerCase(),
+<<<<<<< HEAD
           description:req.body.description,
           submitted_on:new Date() 
         });
+=======
+          description:req.body.description.toString('base64'),
+          submitted_on:new Date() 
+        });
+    }
+
+>>>>>>> 5b116472edb8e59b201766368eae67301e945e2b
         solution.save().then((sol) => {
           const agentOptions = new Object();
           agentOptions.keepAliveMsecs = 6000;
