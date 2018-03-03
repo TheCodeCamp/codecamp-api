@@ -59,13 +59,18 @@ export class AuthService {
     }
   }
 
+  public getUsername() {
+    let user = JSON.parse(localStorage.getItem('user'));
+    return user;
+  }
+
   public loggedIn() {
     return tokenNotExpired();
   }
 
   public logout() {
     this.authToken = null; // Set token to null
-    this.user = null;
+    this.user = '';
     localStorage.clear(); // Clear local storage
   }
   getProfile() {

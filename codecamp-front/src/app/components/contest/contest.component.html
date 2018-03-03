@@ -9,27 +9,35 @@
 <br>
 
 <div class="container">
-  <div class="col-md-12">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-6 head">
         Contest
       </div>
-      <div class="col-md-4">
+      <div class="col-md-2 head">
         Contest Code
       </div>
+      <div class="col-md-2 head">
+          Start Time
+      </div>
+      <div class="col-md-2 head">
+        End Time
+      </div>
     </div>
-        <a
+    <a
     class="nav-link contest"
     *ngFor="let i of contest"
-    (click)="onSelectContest(i.id)">
+    (click)="onSelectContest(i)">
       <div class="row">  
-      <div class="col-md-8">
-          {{i.name}}
-        </div>
-        <div class="col-md-4">
-          {{i.id}}
-        </div>
+      <div class="col-md-6">
+        {{i.name}}
       </div>
-      </a>    
+      <div class="col-md-2">
+        {{i.id}}
+      </div>
+      <div class="col-md-2" [innerHTML]="replaceTZ(i.startTime)">
+      </div>
+      <div class="col-md-2" [innerHTML]="replaceTZ(i.endTime)">
+      </div>
+    </div>
+  </a>    
 </div>
-  </div>

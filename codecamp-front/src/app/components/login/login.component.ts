@@ -40,8 +40,6 @@ export class LoginComponent implements OnInit {
     };
     this.authService.loginUser(user).subscribe(data => {
       this.authService.storeUserData(data.token, data.user);
-        // After 2 seconds, redirect to dashboard page
-        console.log(data);
           this.router.navigate(['/']);
           // Navigate to dashboard view
       });

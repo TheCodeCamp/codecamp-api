@@ -12,6 +12,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ContestComponent implements OnInit {
   contest;
+  contestname;
+  
   constructor(
     public authService: AuthService,
     private router: Router,
@@ -19,13 +21,20 @@ export class ContestComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.contestService.getContest().subscribe(contest => {
-      this.contest = contest.contests;
+    this.contestService.getContest().subscribe(
+      contest => {
+      this.contest = contest.contests; 
     });
+    this.contestService.currentContest.subscribe(contest => this.contestname=contest);
   }
 
+  replaceTZ(time) {
+    return time && time.replace(/[TZ]|.000/g,'<br>');
+  }
   onSelectContest(i) {
-    this.router.navigate(['/contest', i]);
+    this.contestname = i.name;
+    this.contestService.changeContest(this.contestname);
+    this.router.navigate(['/contest', i.id]);
   }
 
   onAddContest() {

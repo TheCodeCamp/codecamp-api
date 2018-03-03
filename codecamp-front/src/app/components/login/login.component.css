@@ -1,0 +1,29 @@
+.card-body{
+    padding: 3%;
+}
+.card {
+    margin: 3% 10%;
+    box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+}
+
+.form-control{
+    border-radius: 1.5rem;
+}
+
+label{
+    padding-top: 6px;
+}
+
+.sub{
+    margin-left: 13.7rem; 
+}
+.form-control:focus{
+    border-color: none;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background: #2ca8ff;
+    border-color: #2ca8ff;
+    border-radius: 0;
+}

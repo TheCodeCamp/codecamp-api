@@ -1,7 +1,33 @@
 .problem{
     background: white;
     border-bottom: 1px solid rgba(39,39,39,.1);
-    padding: 1% 1%;
+    padding: 1% 0.5%;
     box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
     cursor: pointer;
+}
+
+.breadcrumb{
+    background-color: inherit;
+    padding-top: 3%;
+    margin: 0;
+}
+
+.head {
+    padding: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    background: #111;
+    color: #fff;
+}
+.row{
+    margin: 0;
+}
+
+
+.col-md-3 {
+    text-align: center;
+}
+
+.display-4{
+    padding-left: 1%; 
 }

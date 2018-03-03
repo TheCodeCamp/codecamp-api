@@ -23,6 +23,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
 import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
 import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
+import { RanklistComponent } from './components/ranklist/ranklist.component';
 
 
 const appRoutes: Routes = [
@@ -88,6 +89,10 @@ const appRoutes: Routes = [
     {
       path: 'contest/:contest/:problem',
       component: ProblemComponent
+    },
+    {
+      path: 'contest/:contest/ranklist',
+      component: RanklistComponent
     },
     {
       path: 'contest/edit/:edit-contest',

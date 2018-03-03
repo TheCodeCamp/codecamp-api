@@ -4,4 +4,22 @@
     padding: 1% 1%;
     box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
     cursor: pointer;
+    font-size: 14px;
+}
+
+.head {
+    padding: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    background: #111;
+    color: #fff;
+}
+.row{
+    margin: 0;
+}
+.nav-link {
+    padding: 0.5% 2%;
+}
+.col-md-2 {
+    text-align: center;
 }

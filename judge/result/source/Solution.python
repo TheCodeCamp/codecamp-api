@@ -1,0 +1,28 @@
+import math
+t=int(input())
+def fun(a,b,y):
+	x=ord(a[-1])-ord('0')
+	res=x**y
+	print(res%10)
+	'''m=math.ceil(math.log10(res))
+	print(m)
+	res=res%(10**m)
+	print(res)'''
+	
+for _ in range(t):
+	a,b=map(str,input().split())
+	if len(b)==1 and int(b)==0:
+		print(1)
+		continue
+	if len(b)<=1:
+		x=int(b)
+	else:
+		l=len(b)
+		x=(ord(b[-1])-ord('0'))+10*(ord(b[-2])-ord('0'))
+	
+	if x%4==0:
+		fun(a,x,4)
+	else:
+		fun(a,x,x%4)
+		
+		

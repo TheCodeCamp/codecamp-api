@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { HttpModule } from '@angular/http';
 
+
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject'
 
 @Injectable()
 export class ContestService {
@@ -15,6 +18,13 @@ export class ContestService {
   public domain = 'http://localhost:3000';
   public options;
   public sol;
+  public toggler: boolean;
+
+  private contestSource = new BehaviorSubject<string>("default contest");
+  currentContest = this.contestSource.asObservable();
+
+  private Toggler = new BehaviorSubject<boolean>(true);
+  toggle = this.Toggler.asObservable();
 
   public activeContest = new Subject();
   constructor(
@@ -42,36 +52,48 @@ export class ContestService {
         .map(res => res.json());
   }
 
-  public getContest() {
+  public getContest(): Observable<any> {
     return this.http.get(this.domain + '/contest')
         .map(res => res.json());
   }
 
-  public addProblem(problem, contest) {
+  public addProblem(problem, contest): Observable<any> {
     return this.http.post(this.domain + '/contest/' + contest, problem)
       .map(res => res.json());
   }
 
-  public getProblems(contest) {
+  public getProblems(contest): Observable<any> {
     return this.http.get(this.domain + '/contest/' + contest)
         .map(res => res.json());
   }
 
-  public getProblem(code, contest) {
+  public getProblem(code, contest): Observable<any> {
     return this.http.get(this.domain + '/contest/' + contest + '/problems/' + code)
       .map((res) =>{
          return res.json();
       });
   }
 
-  public addSolution(solution) {
+  public addSolution(solution): Observable<any> {
     return this.http.post(this.domain + '/solution', solution)
       .map(res => res.json());
   }
+  public deleteContest(contest) {
+    return this.http.delete(this.domain + '/contest/' + contest, this.options)
+      .map(res => res.json());
+  }
   public setSolution(sol){
-    this.sol = sol;
+    this.sol = sol; 
   }
   public getSolution() {
     return this.sol;
+  }
+
+  changeContest(contest: string) {
+    this.contestSource.next(contest)
+  }
+
+  ontoggle(value: boolean){
+    this.Toggler.next(value);
   }
 }
