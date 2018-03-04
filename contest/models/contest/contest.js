@@ -23,7 +23,7 @@ var contestSchema = new mongoose.Schema({
         type:String
     },
     'questions':[{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.String,
         ref:'Problem'
     }]
 })

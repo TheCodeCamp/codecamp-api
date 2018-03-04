@@ -8,12 +8,11 @@ const {compare} = require('./../utils/compare');
 router.get('/:id',(req,res)=>{
     //console.log(id);
     const id = req.params.id;
-    console.log(id);
     Contest.findOne({'name':id},(err,contest)=>{
         const startTime = contest.startTime;
         User.find({'contest':{"$elemMatch":{'name':id}}},(err,users)=>{
 
-            //console.log(users);
+           // console.log(users);
             /*var participant = {
                 'username',
                 problemSolved,
@@ -43,7 +42,6 @@ router.get('/:id',(req,res)=>{
                     return {name:x.username,score:x.contest[index].count*100,time:time};
                 }
             });
-           console.log(userTry.sort(compare));
             res.send(users)
         });
 
