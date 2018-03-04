@@ -18,7 +18,12 @@
     margin: 0;
 }
 .nav-link {
-    padding: 0.5% 2%;
+    padding: 0.5%;
+}
+
+.main {
+    background: white;
+    padding: 2%;
 }
 .col-md-2 {
     text-align: center;

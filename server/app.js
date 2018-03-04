@@ -7,7 +7,10 @@ const flash = require('connect-flash')
 const cors = require('cors')
 const app = express();
 
+const mongoose = require('mongoose')
 
+mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/OnlineJudge')
 
 const bodyParser = require('body-parser');
 app.use(cors())
@@ -40,9 +43,11 @@ app.use(helmet());
 const contest = require('./routes/contest');
 const users = require('./routes/users');
 const solutions = require('./routes/solution');
+const rankings = require('./routes/ranking');
 app.use('/contest', contest);
 app.use('/users', users);
-app.use('/solution',solutions)
+app.use('/solution',solutions);
+app.use('/rankings',rankings);
 
 const port = process.env.PORT || 3000;
 app.listen(port);

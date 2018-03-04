@@ -6,7 +6,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container main">
   <div class="row">
     <div class="col-md-12">
         <nav aria-label="breadcrumb">
@@ -18,34 +18,39 @@
       <h1 class="display-4">{{contestname}}</h1>
     </div>
   </div>
-</div>
-
-<div class="container">  
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-6 head">
-          Problem
-        </div>
-        <div class="col-md-3 head">
-          Problem Code
-        </div>
-        <div class="col-md-3 head">
-          Successful Submission
-        </div>
-          
-      </div>
-      <a
-      class="nav-link problem"
-      *ngFor="let i of problems"
-      (click)="onSelectProblem(i.code)">
+  <div class="row">
+    <div class="col-md-9">
         <div class="row">
-          <div class="col-md-6">
-            {{i.name}}
+            <div class="col-md-6 head">
+              Problem
+            </div>
+            <div class="col-md-3 head">
+              Problem Code
+            </div>
+            <div class="col-md-3 head">
+              Successful Submission
+            </div>
+              
           </div>
-          <div class="col-md-3">
-            {{i.code}}
-          </div>
-        </div>
-      </a>
+          <a
+          class="nav-link problem"
+          *ngFor="let i of problems"
+          (click)="onSelectProblem(i.code)">
+            <div class="row">
+              <div class="col-md-6">
+                {{i.name}}
+              </div>
+              <div class="col-md-3">
+                {{i.code}}
+              </div>
+            </div>
+          </a>
     </div>
+    <div class="col-md-3">
+      <div class="timer">
+        <p>Time to start</p>
+      </div>
+      
+    </div>
+  </div>
   </div>

@@ -3,8 +3,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const _ = require('lodash');
 const VerifyToken = require('./../utils/auth/verifyToken');
-const jwt = require('jsonwebtoken')
-const db = require('./../utils/db/db');
+const jwt = require('jsonwebtoken');
 const User = require('./../models/user/user');
 const router = express.Router();
 
@@ -57,20 +56,6 @@ router.get('/profile', VerifyToken, function(req, res) {
 });
 
 
-router.get('/profile/me', VerifyToken, function(req, res) {
-    
-    User.findOne({username:req.username}, function (err, user) {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(404).send("No user found.");
-        res.status(200).json({
-            'success':true,
-            'msg':user,
-            'abd':'gdhd'
-        });
-      });
-     
-});
-
 router.post('/signin',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','password']);
     console.log(`***${body.password} *** ${body.username}`);
@@ -115,6 +100,24 @@ router.post('/signin',(req,res)=>{
             })
         }
     })
+})
+
+router.patch('/:username/edit',(req,res)=>{
+    const username = req.params.username;
+    console.log(username)
+    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    User.findOneAndUpdate({'username':username},{$set: body}).then((user)=>{
+        res.json({
+            'success':true,
+            'msg':'Profile updated Successfully!'
+        })
+    }).catch((err)=>{
+        res.json({
+            'success':false,
+            'msg':err
+        })
+    })
+
 })
 
 

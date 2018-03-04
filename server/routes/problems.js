@@ -1,6 +1,6 @@
 const express = require('express');
 const _ = require('lodash')
-const db = require('./../utils/db/db');
+//const db = require('./../utils/db/db');
 const Problem = require('./../../contest/models/problem/problem');
 const Contest = require('./../../contest/models/contest/contest')
 const router = express.Router({mergeParams: true})
@@ -31,4 +31,36 @@ router.get('/',(req,res)=>{
 })
 
 
+router.patch('/:code/edit',(req,res)=>{
+    const code = req.params.code;
+   // console.log(username);
+    var body = _.pick(req.body,['code','name','successfulSubmission','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
+    Problem.findOneAndUpdate({'code':code},{$set: body}).then((problem)=>{
+        res.json({
+            'success':true,
+            'msg':'Problem updated Successfully!'
+        })
+    }).catch((err)=>{
+        res.json({
+            'success':false,
+            'msg':err
+        })
+    })
+
+})
+
+router.delete('/:code',(req,res)=>{
+    const code = req.params.code;
+    Problem.findOneAndRemove({'code':code}).then(()=>{
+        res.json({
+            'success':true,
+            'msg':'Problem deleted Successfully!'
+        })
+    }).catch((err)=>{
+        res.json({
+            'success':false,
+            'msg':'Error Occurred Please try Again'
+        })
+    })
+})
 module.exports = router;
