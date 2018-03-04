@@ -1,10 +1,11 @@
-<aside class="left-sidebar bg-danger" style="overflow: visible;" *ngIf="panelVisible" [@panelInOut]>
+<aside class="left-sidebar" style="overflow: visible;" *ngIf="panelVisible" [@panelInOut]>
   <!-- Sidebar scroll-->
       <!-- User profile -->
       
       <!-- End User profile text-->
       <!-- Sidebar navigation-->
-      <nav class="sidebar-nav ">
+      <div class="nav">
+      <nav class="sidebar-nav">
           <div class="navbar-brand">
               <img src="../assets/home-icon.png" alt="" class="imageHomeIcon">    
               Codecamp
@@ -96,6 +97,9 @@
               </li>
           </ul>
       </nav>
+      </div>
       <!-- End Sidebar navigation -->
   <!-- End Sidebar scroll-->
+  <div class="background" style="
+      background: url(../assets/sidebar.jpg);"></div>
 </aside>

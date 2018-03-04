@@ -70,7 +70,8 @@ const appRoutes: Routes = [
     },
     {
       path: 'submit/complete',
-      component: SolutionComponent
+      component: SolutionComponent,
+      canActivate: [AuthGuard]
     },
     {
       path: 'contest/add-contest',

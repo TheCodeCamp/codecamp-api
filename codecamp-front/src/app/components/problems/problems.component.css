@@ -8,7 +8,7 @@
 
 .breadcrumb{
     background-color: inherit;
-    padding-top: 3%;
+    padding-top: 2%;
     margin: 0;
 }
 
@@ -30,4 +30,10 @@
 
 .display-4{
     padding-left: 1%; 
+}
+.main {
+    margin-top: 1%;
+    background: white;
+    padding: 2%;
+    border: 4px;
 }

@@ -8,36 +8,39 @@
 
 <br>
 
-<div class="container">
-    <div class="row">
+<div class="container main">
+        
+    <h5>Present Contest</h5>
+  <div class="row">  
       <div class="col-md-6 head">
-        Contest
+          Contest
+        </div>
+        <div class="col-md-2 head">
+          Contest Code
+        </div>
+        <div class="col-md-2 head">
+            Start Time
+        </div>
+        <div class="col-md-2 head">
+          End Time
+        </div>
       </div>
-      <div class="col-md-2 head">
-        Contest Code
+      <a
+      class="nav-link contest"
+      *ngFor="let i of contest"
+      (click)="onSelectContest(i)">
+        <div class="row">  
+        <div class="col-md-6">
+          {{i.name}}
+        </div>
+        <div class="col-md-2">
+          {{i.id}}
+        </div>
+        <div class="col-md-2" [innerHTML]="replaceTZ(i.startTime)">
+        </div>
+        <div class="col-md-2" [innerHTML]="replaceTZ(i.endTime)">
+        </div>
       </div>
-      <div class="col-md-2 head">
-          Start Time
-      </div>
-      <div class="col-md-2 head">
-        End Time
-      </div>
-    </div>
-    <a
-    class="nav-link contest"
-    *ngFor="let i of contest"
-    (click)="onSelectContest(i)">
-      <div class="row">  
-      <div class="col-md-6">
-        {{i.name}}
-      </div>
-      <div class="col-md-2">
-        {{i.id}}
-      </div>
-      <div class="col-md-2" [innerHTML]="replaceTZ(i.startTime)">
-      </div>
-      <div class="col-md-2" [innerHTML]="replaceTZ(i.endTime)">
-      </div>
-    </div>
-  </a>    
+    </a>    
 </div>
+
