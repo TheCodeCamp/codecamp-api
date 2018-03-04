@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/',(req,res)=>{
     const body = _.pick(req.body,['name','startTime','endTime','id','description']);
+    console.log(body.endTime);
     const contest = new Contest(body);
     contest
         .save()
@@ -83,16 +84,19 @@ router.get('/:id',(req,res)=>{
                     'msg':question
                 })
         })
-    })
-        
-        
-
+})
+    
+router.delete('/:id', (req,res) => {
+    res.send(req.body);
+})
 
 router.get('/',(req,res)=>{
     var projection ={
         _id    : false,
         name   : true,
-        id : true
+        id : true,
+        startTime: true,
+        endTime: true
     }
     Contest.find({},projection,(err,contest)=>{
         if(err){

@@ -50,6 +50,7 @@ export class AddContestComponent implements OnInit {
       if (!data.success) {
         console.log(data.msg);
       } else {
+        console.log(contest.endTime)
         this.router.navigate(['/contest']);
       }
     });

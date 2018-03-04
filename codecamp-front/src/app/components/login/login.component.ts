@@ -10,8 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
-  message;
+  message = false;
   messageClass;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -39,11 +40,14 @@ export class LoginComponent implements OnInit {
       password: this.form.get('password').value // Password input field
     };
     this.authService.loginUser(user).subscribe(data => {
-      this.authService.storeUserData(data.token, data.user);
-        // After 2 seconds, redirect to dashboard page
-        console.log(data);
-          this.router.navigate(['/']);
-          // Navigate to dashboard view
+      if(!data.success){
+        this.message = data.msg;
+      }
+      else{
+        this.authService.storeUserData(data.token, data.user);
+            this.router.navigate(['/']);
+            this.message = false;
+           }     // Navigate to dashboard view
       });
   }
 }

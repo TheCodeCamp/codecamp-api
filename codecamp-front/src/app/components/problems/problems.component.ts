@@ -13,6 +13,7 @@ export class ProblemsComponent implements OnInit {
 
   contest;
   problems;
+  contestname;
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -25,11 +26,17 @@ export class ProblemsComponent implements OnInit {
     this.contestService.getProblems(this.contest).subscribe(contest => {
       this.problems = contest.msg.questions;
     });
+    this.contestService.currentContest.subscribe(contest => this.contestname=contest);
   }
   onAddProblem() {
     this.router.navigate(['/contest', this.contest, 'addproblem']);
   }
   onSelectProblem(code) {
         this.router.navigate(['/contest', this.contest, code]);
+  }
+  onDeleteContest() {
+    this.contestService.deleteContest(this.contest).subscribe(contest =>{
+      this.router.navigate(['/contest']);
+    })
   }
 }
