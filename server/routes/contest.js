@@ -87,7 +87,10 @@ router.get('/:id',(req,res)=>{
 })
     
 router.delete('/:id', (req,res) => {
-    res.send(req.body);
+    res.json({
+        'success':true,
+        'msg': 'Deleted Successfully'
+    })
 })
 
 router.get('/',(req,res)=>{

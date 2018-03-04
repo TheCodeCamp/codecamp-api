@@ -17,14 +17,15 @@ export class ProblemsComponent implements OnInit {
   constructor(
     private contestService: ContestService,
     private router: Router,
-    private authService: AuthService,
+    public authService: AuthService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblems(this.contest).subscribe(contest => {
-      this.problems = contest.msg.questions;
+      this.problems = contest.msg[0].questions;
+      console.log(contest.msg);
     });
     this.contestService.currentContest.subscribe(contest => this.contestname=contest);
   }
@@ -38,5 +39,9 @@ export class ProblemsComponent implements OnInit {
     this.contestService.deleteContest(this.contest).subscribe(contest =>{
       this.router.navigate(['/contest']);
     })
+  }
+
+  onClickRanking() {
+    this.router.navigate(['/contest',this.contest,'ranking']);
   }
 }

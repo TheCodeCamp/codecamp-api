@@ -6,9 +6,10 @@ const Contest = require('./../../contest/models/contest/contest');
 const {compare} = require('./../utils/compare');
 
 router.get('/:id',(req,res)=>{
-    //console.log(id);
+  
     const id = req.params.id;
-    Contest.findOne({'name':id},(err,contest)=>{
+    Contest.findOne({'id':id},(err,contest)=>{
+    
         const startTime = contest.startTime;
         User.find({'contest':{"$elemMatch":{'name':id}}},(err,users)=>{
 
@@ -42,7 +43,7 @@ router.get('/:id',(req,res)=>{
                     return {name:x.username,score:x.contest[index].count*100,time:time};
                 }
             });
-            res.send(users)
+            res.json({'success': true, 'msg': userTry.sort(compare)})
         });
 
     })

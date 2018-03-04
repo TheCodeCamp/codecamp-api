@@ -39,6 +39,8 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
 app.use(helmet());
+
+app.use(express.static(__dirname+'/public'))
 //Routes
 const contest = require('./routes/contest');
 const users = require('./routes/users');
@@ -49,7 +51,7 @@ app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
 app.get('/',(req,res)=>{
-  res.send('Hello')
+  res.send()
 })
 
 const port = process.env.PORT || 3000;

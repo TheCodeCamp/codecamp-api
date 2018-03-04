@@ -16,14 +16,30 @@ export class SolutionComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.contestService.getSolution();
-    if(this.data[0]==='C')
-    this.condition = 'green';
-    else if(this.data[0] === 'w')
-    this.condition = 'red';
+    if(this.data === true)
+    {
+      this.data = "Correct Answer";
+      this.condition = 'green';
+    }
+    else if(this.data === false)
+    {
+      this.data = "Worng Answer";
+      this.condition = 'red';
+    }
+    else if(this.data === 'RE')
+    {
+      this.data = "Runtime Error";
+      this.condition = 'red';
+    }
+    else if(this.data === 'TLE')
+    {
+      this.data = "Time Limit Exceed";
+      this.condition = 'blue';
+    }
     else
     {
-        this.data = "Compile Time Error";
-      this.condition = 'blue';
+      this.data = "Compile Time Error";
+      this.condition = 'red';
     }
   }
 

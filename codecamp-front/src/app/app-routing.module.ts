@@ -88,6 +88,10 @@ const appRoutes: Routes = [
       canActivate: [AuthGuard]
     },
     {
+      path: 'contest/:contest/ranking',
+      component: RanklistComponent
+    },
+    {
       path: 'contest/:contest/:problem',
       component: ProblemComponent
     },
