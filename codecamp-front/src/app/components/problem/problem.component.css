@@ -1,7 +1,7 @@
 .main {
-    background: white;    
+    background: white;
     box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
-    padding-top: 30px; 
+    padding-top: 30px;
 }
 
 hr{
@@ -14,4 +14,8 @@ hr{
 
 h5{
     font-weight: bold;
+}
+
+button{
+ margin-left: 3.5%;
 }

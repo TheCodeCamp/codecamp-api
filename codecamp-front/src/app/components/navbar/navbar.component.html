@@ -15,7 +15,7 @@
         <i class="fa fa-th-list" aria-hidden="true"></i>
       </li>
     </ul>
-    <ul class="navbar-nav my-lg-0">
+    <ul class="navbar-nav my-lg-0 ml-auto">
 
       <div class="dropdown show mr-4" *ngIf="authService.loggedIn()">
         <a class="btn btn-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -51,22 +51,22 @@
     </div>
     <div class="col-md-11">
       <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-          <i class="fa fa-bars"></i>    
+          <i class="fa fa-bars"></i>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item" > 
-              <a 
-              class="nav-link" 
-              routerLink="/" 
+            <li class="nav-item" >
+              <a
+              class="nav-link"
+              routerLink="/"
               [routerLinkActiveOptions]="{exact: true}"
               routerLinkActive="active"
               >Home</a>
             </li>
             <li class="nav-item" >
-              <a 
+              <a
               class="nav-link"
               routerLink="/about"
               routerLinkActive="active"
@@ -75,56 +75,56 @@
             </li>
             <li class="nav-item">
               <a class="nav-link"
-              routerLink="/practice" 
+              routerLink="/practice"
               routerLinkActive="active"
               >Practice</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
-              routerLink="/discuss" 
+              routerLink="/discuss"
               routerLinkActive="active"
               >Discuss</a>
             </li>
           <li class="nav-item" >
               <a class="nav-link"
-              routerLink="/contest" 
+              routerLink="/contest"
               routerLinkActive="active"
               >Contest</a>
             </li>
             <li class="nav-item" >
                 <a class="nav-link"
-                routerLink="/ide" 
+                routerLink="/ide"
                 routerLinkActive="active"
                 >Online IDE</a>
               </li>
           </ul>
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" 
-              routerLink="/login" 
+              <a class="nav-link"
+              routerLink="/login"
               routerLinkActive="active"
               *ngIf="!authService.loggedIn()"
               >Login</a>
             </li>
-      
+
             <li class="nav-item">
                 <a class="nav-link"
-                routerLink="/profile" 
+                routerLink="/profile"
                 routerLinkActive="active"
                 *ngIf="authService.loggedIn()"
                 >My Profile</a>
               </li>
-      
+
             <li class="nav-item">
                 <a class="nav-link"
-                routerLink="/register" 
+                routerLink="/register"
                 routerLinkActive="active"
                 *ngIf="!authService.loggedIn()"
                 >Register</a>
               </li>
               <li class="nav-item" >
                 <a class="nav-link"
-                (click)="onLogoutClick()" 
+                (click)="onLogoutClick()"
                 *ngIf="authService.loggedIn()"
                 >Logout</a>
               </li>

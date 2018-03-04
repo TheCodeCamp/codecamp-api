@@ -33,7 +33,9 @@ export class SolultionSubmitComponent implements OnInit {
 
     int main()
     {
+
       printf("Welcome To CodeCamp");
+
     }
     `;
   }
@@ -48,8 +50,8 @@ export class SolultionSubmitComponent implements OnInit {
 
   selectLanguage(event) {
     this.selectedLanguage = event.target.value;
-    
-    if (this.selectedLanguage == 'c_cpp') { 
+
+    if (this.selectedLanguage == 'c_cpp') {
       this.content =
       `#include<stdio.h>
 
