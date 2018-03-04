@@ -48,6 +48,9 @@ app.use('/contest', contest);
 app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
+app.get('/',(req,res)=>{
+  res.send('Hello')
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port);

@@ -49,34 +49,43 @@ router.use('/:id/problems',problemRoute)
 
 router.get('/:id',(req,res)=>{
     const id = req.params.id;
-    var Projection={
-        _id:false,
-        'questions.name':true,
-        'questions.code':true
+    // var Projection={
+    //     _id:false,
+    //     'questions.name':true,
+    //     'questions.code':true
 
-    }
-    Contest.findOne({'id':id},Projection,(err,contest)=>{
-        if(err){
-            return res.status(400).json({
-                    'success':false,
-                    'msg':'Wrong Request'
-                })
-        }else if(!contest){
-            return res 
-                    .status(404)
-                    .json({
+    // }
+    Contest.find({'id':id}).
+        populate({
+            path: 'questions',
+            select:['name','code'],
+            model: 'Problem'
+        }).
+        exec(function(err,question){
+            console.log(err)
+            if(err){
+                return res.status(400).json({
                         'success':false,
-                        'msg':'Can\'t find any contest with given id'
+                        'msg':'Wrong Request'
                     })
-        }
-        res 
-            .status(200)
-            .json({
-                'success':true,
-                'msg':contest
-            })
-    })
+            }else if(!question){
+                return res 
+                        .status(404)
+                        .json({
+                            'success':false,
+                            'msg':'Can\'t find any contest with given id'
+                        })
+            }
+            
+            res 
+                .status(200)
+                .json({
+                    'success':true,
+                    'msg':question
+                })
+        })
 })
+    
 router.delete('/:id', (req,res) => {
     res.send(req.body);
 })
@@ -144,7 +153,7 @@ router.post('/:id' , (req,res)=>{
         })
         
         Contest.findOneAndUpdate({"id":id},{ "$push": { "questions": problem._id } },(err,con)=>{
-            //console.log(err)
+           //console.log(con) 
             //con.questions.push(body)
             res.status(200)
             .json({
