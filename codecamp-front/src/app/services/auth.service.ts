@@ -40,7 +40,7 @@ export class AuthService {
     .map(res => res.json());
   }
 
-  public storeUserData(token, user) {
+  public storeUserData(token, user) { 
 
     localStorage.setItem('token', token); // Set token in local storage
     localStorage.setItem('user', JSON.stringify(user));
@@ -51,11 +51,11 @@ export class AuthService {
   }
 
   public checkisAdmin() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user.isAdmin === true) {
-      return true;
-    } else {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user === undefined || user === null) {
       return false;
+    } else if (user.isAdmin === true) {
+      return true;
     }
   }
 

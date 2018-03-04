@@ -1,0 +1,47 @@
+<div class="container">
+  <h1 class="display-4">Submit a Solution: {{problem}}</h1>
+  <hr>
+  
+  <div class="row select">
+      <h5>Select language</h5>
+      <select (change)="selectLanguage($event)" class="options">
+          <option value="c_cpp">C</option>
+          <option value="c_cpp">C++</option>
+          <option value="java">Java</option>
+          <option value="python">Python</option>
+      </select>
+  </div>
+
+  <div ace-editor id="description" cols="105" rows="28"
+        [text]="content"
+        class="aceEditorDirective"
+        theme="sqlserver"
+        mode="{{selectedLanguage}}"
+        style="height:500px;"    
+        >
+  </div>
+  <br>
+  <select id="select" class="form-control col-lg-4">
+    <option value="C">C</option>
+    <option value="C++">C++</option>
+    <option value="Python">Python</option>
+    <option value="Java">Java</option>
+  </select>
+
+  <div class="row">
+    <div class="col-md-12">
+        <p>OR Choose a File</p>
+    </div>
+    <div class="col-md-12">
+    
+        <label class="file-upload">Upload File
+          <input type="file" class="form-control-file" placeholder="Upload file" #userFile (change)="onFileChange($event)">
+        </label>
+    </div>
+        <div class="col-md-12">
+    
+        <button class="btn btn-success"
+        (click)="onClickSubmit()">Submit</button>
+      </div>
+  </div>
+</div>

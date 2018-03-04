@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 #include<bits/stdc++.h>
 using namespace std;
@@ -12,3 +13,13 @@ int main(){
 		cout<<sum<<"\n";
  	return 0;
 }
+=======
+#include<stdio.h>
+
+      int main()
+      {
+
+        printf("Welcome To CodeCamp");
+
+      }
+>>>>>>> 919467b4979028359348c66d8bdf04c06bc03be5

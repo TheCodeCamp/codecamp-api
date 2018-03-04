@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ContestService } from '../../services/contest.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -30,6 +30,6 @@ export class ProblemsComponent implements OnInit {
     this.router.navigate(['/contest', this.contest, 'addproblem']);
   }
   onSelectProblem(code) {
-    
+        this.router.navigate(['/contest', this.contest, code]);
   }
 }

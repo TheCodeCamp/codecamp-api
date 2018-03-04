@@ -143,20 +143,32 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label class="file-input">Input File
-                    <input type="file" class="form-control-file">
-                </label>
-              </div>
-              </div>
-              <div class="col-md-6">
+                  <label for="Input TestCase">Input File</label>
+                  <textarea 
+                  name="Input" 
+                  formControlName="Input" 
+                  class="form-control" 
+                  placeholder="Input TestCase" 
+                  autocomplete="off"
+                  [ngClass]="{'is-invalid': (form.controls.Input.errors && form.controls.Input.dirty) , 'is-valid': !form.controls.Input.errors}">
+                  </textarea>
+                </div>
+                </div>
+                <div class="col-md-6">
                 <div class="form-group">
-                  <label class="file-output">Output File
-                    <input type="file" class="form-control-file">
-                </label>
-              </div>
-                
-              </div>
+                    <label for="output_example">Output File</label>
+                    <textarea
+                    name="Output"
+                    formControlName="Output" 
+                    class="form-control" 
+                    placeholder="Output Test case" 
+                    autocomplete="off"
+                    [ngClass]="{'is-invalid': (form.controls.Output.errors && form.controls.Output.dirty) , 'is-valid': !form.controls.Output.errors}">
+                  </textarea>
+                  </div>
+                </div>
             </div>
+            
         <div class="form-group">
             <label for="Explanation Example">Explanation Example</label>
             <textarea 
@@ -167,7 +179,7 @@
           </div>
 
         <input 
-        [disabled]="!form.valid"
+        
         type="submit" class="btn btn-primary" value="Add Problem">
       </form>
     </div>

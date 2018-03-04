@@ -8,21 +8,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 export class IdeComponent implements OnInit {
 
 
-  selectedLanguage: String  =  'c_cpp';
+  selectedLanguage: String  =  'c';
   content: string;
   selectLanguage(event: any) {
     this.selectedLanguage = event.target.value;
-    if(this.selectedLanguage === 'c_cpp') { this.content =
-`#include<stdio.h>
+    if (this.selectedLanguage === 'c') {
+      this.content =
+    `#include<stdio.h>
 
-int main()
-{
+    int main()
+    {
 
-   printf("Welcome To CodeCamp");
+      printf("Welcome To CodeCamp");
 
-}
-`} else if(this.selectedLanguage === 'java'){this.content =
-`import java.util.*;
+    }`;
+  } else if (this.selectedLanguage === 'java') {
+    this.content = `import java.util.*;
 
 public class CodeCamp {
 
@@ -35,7 +36,7 @@ public class CodeCamp {
 }
 `
       } else {
-      this.content = `print("Welcome To CodeCamp")`
+      this.content = `print("Welcome To CodeCamp")`;
       }
 
   }

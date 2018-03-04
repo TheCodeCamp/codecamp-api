@@ -223,7 +223,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
             })
 
               }
-              else if(body===false){
+              else if(!body){
                 User.findOne({'username':solution.username},(err,user)=>{
                   if(err){
                     res.json({

@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class ContestService {
@@ -13,7 +14,9 @@ export class ContestService {
   public contest: any;
   public domain = 'http://localhost:3000';
   public options;
+  public sol;
 
+  public activeContest = new Subject();
   constructor(
     private http: Http
   ) { }
@@ -52,5 +55,23 @@ export class ContestService {
   public getProblems(contest) {
     return this.http.get(this.domain + '/contest/' + contest)
         .map(res => res.json());
+  }
+
+  public getProblem(code, contest) {
+    return this.http.get(this.domain + '/contest/' + contest + '/problems/' + code)
+      .map((res) =>{
+         return res.json();
+      });
+  }
+
+  public addSolution(solution) {
+    return this.http.post(this.domain + '/solution', solution)
+      .map(res => res.json());
+  }
+  public setSolution(sol){
+    this.sol = sol;
+  }
+  public getSolution() {
+    return this.sol;
   }
 }

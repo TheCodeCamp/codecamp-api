@@ -26,10 +26,13 @@ import { AddContestComponent } from './components/add-contest/add-contest.compon
 import { EditContestComponent } from './components/edit-contest/edit-contest.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
-import { SolutionComponent } from './components/solution/solution.component';
+import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/not-auth.guard';
+import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
     RanklistComponent,
     SolutionComponent,
     ProblemComponent,
-    AddProblemComponent
+    AddProblemComponent,
+    SolultionSubmitComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,7 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
     AppRoutingModule,
     AceEditorModule
   ],
-  providers: [ AuthService, ContestService],
+  providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
