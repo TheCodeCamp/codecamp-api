@@ -4,11 +4,6 @@ const path = require('path');
 const fs = require('fs')
 const buffer = require('buffer')
 
-async function lsExample() {
-  const { stdout, stderr } = await exec('ls');
-  console.log('stdout:', stdout);
-  console.log('stderr:', stderr);
-}
 
 //Compile program and check for error if okay the run it
 
@@ -17,12 +12,11 @@ const compileProblem= async (lang , filename)=>{
     switch(lang){
         case "c":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+ path.join(__dirname,"result/source") && "gcc -o " +path.join(__dirname,"result/binary/") +file + " " + filename;
+            cmd="cd "+ path.join(__dirname,"result/source").toString() +" && gcc -o " +path.join(__dirname,"result/binary/") +file + " " + filename;
             break;
         case "c++":
         case "cpp":
             file = path.basename(filename,'.cpp')+".out";
-            console.log(file)
             cmd="cd "+ path.join(__dirname,"result/source") + " && g++ -o " + path.join(__dirname,"result/binary/")+file + " " +filename;
             break;
         case "java":
@@ -42,7 +36,7 @@ const compileProblem= async (lang , filename)=>{
 
 //Run Compiled if okay the check result
 
-async function runCompiled(lang,file,contest,problem){
+async function runCompiled(lang,file,contest,problem,option){
 
     var cmd;
     switch(lang){
@@ -58,13 +52,13 @@ async function runCompiled(lang,file,contest,problem){
     }
     
     return new Promise((resolve,reject)=>{
-    exec(cmd, {timeout:100000,maxBuffer:2147483647,encoding:'utf8'},(error, stdout, stderr) => { 
+    exec(cmd,option,(error, stdout, stderr) => { 
         if (error) {      
             //console.log(error)       
               reject(error);
         }
         var res=stdout;
-       console.log(res)
+        
         resolve(res);
       });
     })
@@ -76,9 +70,9 @@ const checkResult=async (UserResult,serverResult)=>{
    // UserResult = fs.readFileSync(UserResult,'utf16le')
     return new Promise((resolve,reject)=>{
         if(UserResult===serverResult){
-            resolve('Correct answer')
+            resolve(true)
         }else{
-            resolve('wrong answer')
+            resolve(false)
         }
     })
 }
@@ -109,10 +103,10 @@ const base64tofile = async (base64,lang)=>{
     })
 }
 
-async function compileAndRunProblem(contest,problem,id,lang ,description){
+async function compileAndRunProblem(contest,problem,id,lang ,description,option){
     const filename= await base64tofile(description,lang);
     const file = await compileProblem(lang,filename);
-    const result= await runCompiled(lang,file,contest,problem);
+    const result= await runCompiled(lang,file,contest,problem,option);
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
     return Result;

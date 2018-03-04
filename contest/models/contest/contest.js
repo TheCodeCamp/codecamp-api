@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const {Problem} = require('./../problem/problem')
+const Problem = require('./../problem/problem')
 
 var contestSchema = new mongoose.Schema({
     'name':{
         type:String,
-        required:true
+        required:true,
     },
     'id':{
         type:String,
@@ -23,8 +23,8 @@ var contestSchema = new mongoose.Schema({
         type:String
     },
     'questions':[{
-        type: mongoose.Schema.Types.Object,
-        ref:Problem
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Problem'
     }]
 })
 
