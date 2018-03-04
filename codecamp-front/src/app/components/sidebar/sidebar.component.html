@@ -1,0 +1,105 @@
+<aside class="left-sidebar" style="overflow: visible;" *ngIf="panelVisible" [@panelInOut]>
+  <!-- Sidebar scroll-->
+      <!-- User profile -->
+
+      <!-- End User profile text-->
+      <!-- Sidebar navigation-->
+      <div class="nav">
+      <nav class="sidebar-nav">
+          <div class="navbar-brand">
+              <img src="../assets/home-icon.png" alt="" class="imageHomeIcon">
+              Codecamp
+          </div>
+            <div class="user-profile"
+            *ngIf="authService.loggedIn()">
+                <!-- User profile image -->
+                <div class="profile-img">
+                    <img src="../assets/undefined.jpg" class="circle img-fluid" alt="user">
+                    <!-- this is blinking heartbit -->
+                    <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
+                </div>
+                <!-- User profile text -->
+                <div class="profile-text">
+                    <h5>{{profile?.username}}</h5>
+                    <div class="dropdown-menu animated flipInY">
+                        <!-- text-->
+                        <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
+                        <!-- text-->
+                        <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
+                        <!-- text---->
+                        <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
+                        <!-- text---->
+                        <div class="dropdown-divider"></div>
+                        <!-- text---->
+                        <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                        <!-- text---->
+                        <div class="dropdown-divider"></div>
+                        <!-- text---->
+                        <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <!-- text---->
+                    </div>
+                </div>
+            </div>
+        <ul id="sidebarnav" class="in">
+              <li class="nav-item">
+                  <a class="nav-link"
+                  routerLink="/"
+                  routerLinkActive="active"
+                  [routerLinkActiveOptions]="{ exact: true }"
+                  >
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span class="navtabs ml-2">Home</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link"
+                  routerLink="/about"
+                  routerLinkActive="active">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span class="navtabs ml-2">About</span>
+                  </a>
+              </li>
+              <li class="nav-item">
+                <a class="btn btn-default" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <span class="navtabs">Practice</span>
+                  <i class="fa fa-caret-down m" aria-hidden="true"></i>
+
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <a href="#">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span class="navtabs ml-2">Easy</span>
+                      </a>
+                    <a href="#">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span class="navtabs ml-2">Medium</span>
+                      </a>
+                    <a href="#">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span class="navtabs ml-2">Hard</span>
+                      </a>
+                  </div>
+              </li>
+              <li class="nav-link">
+                  <a class="nav-link"
+                  routerLink="/contest"
+                    routerLinkActive="active">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span class="navtabs ml-2">Contest</span>
+                  </a>
+              </li>
+              <li class="nav-link">
+                  <a href="#">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <span class="navtabs ml-2">Online IDE</span>
+                  </a>
+              </li>
+          </ul>
+      </nav>
+      </div>
+      <!-- End Sidebar navigation -->
+  <!-- End Sidebar scroll-->
+  <div class="background" style="
+      background: url(../assets/sidebar.jpg);"></div>
+</aside>

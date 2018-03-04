@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output} from '@angular/core';
+  import { Component, OnInit, ViewChild, Output} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ContestService } from '../../services/contest.service';
@@ -49,7 +49,7 @@ export class SolultionSubmitComponent implements OnInit {
   selectLanguage(event) {
     this.selectedLanguage = event.target.value;
     
-    if (this.selectedLanguage === 'c_cpp') { 
+    if (this.selectedLanguage == 'c_cpp') { 
       this.content =
       `#include<stdio.h>
 
@@ -59,7 +59,7 @@ export class SolultionSubmitComponent implements OnInit {
         printf("Welcome To CodeCamp");
 
       }`;
-    } else if (this.selectedLanguage === 'java') {
+    } else if (this.selectedLanguage == 'java') {
       this.content =
         `import java.util.*;
 
@@ -73,7 +73,7 @@ export class SolultionSubmitComponent implements OnInit {
 
         }
         `;
-      } else if (this.selectedLanguage === 'python') {
+      } else if (this.selectedLanguage == 'python') {
       this.content = `print("Welcome To CodeCamp")`;
       }
   }
@@ -105,6 +105,7 @@ export class SolultionSubmitComponent implements OnInit {
       language: lang,
       description: this.currentFileUpload
     };
+    console.log(p);
     this.contestService.addSolution(solution).subscribe(data => {
       this.contestService.setSolution(data.msg);
       this.router.navigate(['/submit/complete']);

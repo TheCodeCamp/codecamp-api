@@ -1,2 +1,16 @@
+<ng-progress
+    [positionUsing]="'marginLeft'"
+    [direction]="'leftToRightIncreased'"
+    [color]="'red'"
+    [showSpinner]="false"
+    [trickleSpeed]="500" 
+    [thick]="true" 
+    [ease]="'easeInSine'"
+></ng-progress>
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <app-sidebar></app-sidebar>
+    <div class="wrapper" [@panelInOut]="panelVisible">
+        <router-outlet></router-outlet>
+    </div>
+</div>

@@ -1,4 +1,17 @@
 .main {
     background: white;    
     box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+    padding-top: 30px; 
+}
+
+hr{
+    border: 1px solid #111;
+}
+
+.problem{
+    padding: 3%;
+}
+
+h5{
+    font-weight: bold;
 }
