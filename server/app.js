@@ -10,7 +10,7 @@ const app = express();
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/OnlineJudge')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27018/OnlineJudge')
 
 const bodyParser = require('body-parser');
 app.use(cors())
@@ -54,8 +54,8 @@ app.get('/',(req,res)=>{
   res.send()
 })
 
-const port = process.env.PORT || 3000;
-app.listen(port);
+const port = process.env.PORT || 80;
+app.listen(port,'0.0.0.0');
 console.log('magic is started at ' + port)
 
 module.exports={app}

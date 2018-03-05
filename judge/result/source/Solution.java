@@ -1,7 +1,6 @@
-import java.util.*;
-        public class Solution {
-          public static void main(String[] args) {
-              System.out.print("hii");
-          }
-        }
-        
+#include<stdio.h>
+    int main()
+    {
+      printf("Welcome To CodeCamp");
+    }
+    

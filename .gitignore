@@ -1,4 +1,5 @@
 node_modules/
 server/solutions/
-judge0/result/
+judge/result/
 solutions/
+codecamp-front/node_modules/

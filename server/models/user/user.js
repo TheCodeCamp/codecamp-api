@@ -108,13 +108,14 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.pre('save',function(next) {
     var user =this;
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
-         user.password=hash
-         next();
-      });
+    bcrypt.hash(user.password, 10).then(function(hash) {
+        user.password=hash;
+        next();
+    }).catch((e)=>{
+        next(err);
     });
-  })
+});
+  
 
 UserSchema.methods.toJSON = function() {
     var user = this ;
@@ -130,14 +131,14 @@ UserSchema.statics.findByUsername=function(username,password,done){
         }else if(!user){
             return done(null,null);
         }else{
-            bcrypt.compare(password, user.password, function(err , res){
-                if(err){
-                    return done(err);
-                }else if(!res){
-                    return done(err)
-                } else if(res){
-                    return done(null,user)
+            bcrypt.compare(password, user.password).then((res)=>{
+                if(!res){
+                    return done('WP',user);
+                }else if(res){
+                    return done(null,user);
                 }
+            }).catch((err)=>{
+                return done(err);
             })
         }
     })

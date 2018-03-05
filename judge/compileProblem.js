@@ -17,7 +17,6 @@ const compileProblem= async (lang , filename)=>{
         case "c++":
         case "cpp":
             file = path.basename(filename,'.cpp')+".out";
-            console.log(file)
             cmd="cd "+"\""+ path.join(__dirname,"result/source") +"\""+ " && g++ -o \"" + path.join(__dirname,"result/binary/")+ "\""+file + " " +filename;
             break;
         case "java":
@@ -37,29 +36,32 @@ const compileProblem= async (lang , filename)=>{
 
 //Run Compiled if okay the check result
 
-async function runCompiled(lang,file,contest,problem,option){
+async function runCompiled(lang,file,contest,problem,option,t0){
 
     var cmd;
     switch(lang){
         case "c":
-            cmd= "cd \""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd= "cd "+ "\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd \""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd = "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd \""+ path.join(__dirname,"result/binary") + "\" && java " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
     }
     
     return new Promise((resolve,reject)=>{
     exec(cmd,option,(error, stdout, stderr) => { 
         if (error) {      
-            //console.log(error)       
-              reject(error);
+            //console.log(error) 
+            let timelimit =0; 
+            const t1 = process.hrtime();
+            timelimit = (t1[0]-t0[0]);
+            console.log(timelimit);
+            reject({error,timelimit});
         }
         var res=stdout;
-        
         resolve(res);
       });
     })
@@ -107,10 +109,11 @@ const base64tofile = async (base64,lang)=>{
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
     const filename= await base64tofile(description,lang);
     const file = await compileProblem(lang,filename);
-    const result= await runCompiled(lang,file,contest,problem,option);
+    const t0 = process.hrtime();
+    const result= await runCompiled(lang,file,contest,problem,option,t0);
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
-    console.log(Result);
+    //console.log(Result);
     return Result;
   
 }

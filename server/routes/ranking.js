@@ -12,8 +12,6 @@ router.get('/:id',(req,res)=>{
     
         const startTime = contest.startTime;
         User.find({'contest':{"$elemMatch":{'name':id}}},(err,users)=>{
-
-           // console.log(users);
             /*var participant = {
                 'username',
                 problemSolved,

@@ -63,6 +63,11 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                     "success":false,
                     "msg":e
                   })
+                }else if(!user){
+                  return res.json({
+                    "success":false,
+                    "msg":'Please Login before Submission'
+                  })
                 }else if(user){
                   var index = user.contest.findIndex(x => x.name===solution.contest);
                   if(index>=0){
