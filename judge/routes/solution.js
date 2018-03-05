@@ -31,11 +31,9 @@ router.get('/:id',(req,res)=>{
               maxBuffer:pro.sourcelimit,
               encoding:'utf8'
             }
-        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{    
-          console.log(result)  
+        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{      
           res.send(result);
         }).catch((e)=>{
-          console.log(e)
           var compileError = /(g[/++/]|gcc|javac)/;
           if(e.toString().match(compileError)){
             res.status(200).send('CE');

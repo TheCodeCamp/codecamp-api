@@ -12,13 +12,8 @@ router.post('/signup',(req,res)=>{
     body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
-<<<<<<< HEAD
-            res.status(404).send(err)
-        }else if(user){
-=======
             res.send(err)
-        rs}else if(user){
->>>>>>> 2cc704141c7f90f47465c9318ad6508d35a021e3
+        }else if(user){
             res.json({
                 'success':false,
                 'msg':'User with Username Exists'
@@ -67,6 +62,7 @@ router.post('/signin',(req,res)=>{
     
     User.findByUsername(body.username,body.password,(err,user)=>{
         if(err){
+            console.log(err)
             res.json({
                 'success':false,
                 'msg':err
@@ -89,7 +85,7 @@ router.post('/signin',(req,res)=>{
                     isAdmin:user.isAdmin
                   }
             }) 
-            }
+        }
         else if(user){
             let token = jwt.sign({ username: user.username },'secret', {
                 expiresIn: 86400 // expires in 24 hours

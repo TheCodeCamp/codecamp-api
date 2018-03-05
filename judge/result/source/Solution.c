@@ -1,6 +1,9 @@
 #include<stdio.h>
     int main()
     {
-      printf("Welcome To CodeCamp");
+    int n;
+    scanf("%d",&n);
+    while(n--)
+      printf("Hello World\n");
     }
     
