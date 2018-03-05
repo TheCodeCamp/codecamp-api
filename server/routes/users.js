@@ -12,8 +12,13 @@ router.post('/signup',(req,res)=>{
     body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
+<<<<<<< HEAD
             res.status(404).send(err)
         }else if(user){
+=======
+            res.send(err)
+        rs}else if(user){
+>>>>>>> 2cc704141c7f90f47465c9318ad6508d35a021e3
             res.json({
                 'success':false,
                 'msg':'User with Username Exists'
@@ -30,7 +35,7 @@ router.post('/signup',(req,res)=>{
                     'token':token
                 })
               }, (e) => {
-                res.status(400).json({
+                res.json({
                     'success':false,
                     'msg':e
                 })
@@ -62,7 +67,7 @@ router.post('/signin',(req,res)=>{
     
     User.findByUsername(body.username,body.password,(err,user)=>{
         if(err){
-            res.status(404).json({
+            res.json({
                 'success':false,
                 'msg':err
             })

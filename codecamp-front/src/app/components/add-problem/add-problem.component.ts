@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContestService } from '../../services/contest.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-add-problem',
   templateUrl: './add-problem.component.html',
@@ -14,7 +15,8 @@ export class AddProblemComponent implements OnInit {
     private contestService: ContestService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _flashMessagesService: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -63,8 +65,9 @@ export class AddProblemComponent implements OnInit {
 
     this.contestService.addProblem(problem, this.contest).subscribe(data => {
       if (!data.success) {
-        console.log(data.msg);
+        this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger' } );
       } else {
+        this._flashMessagesService.show(data.msg, { cssClass: 'alert-success' } );
         this.router.navigate(['/contest', this.contest]);
       }
     });

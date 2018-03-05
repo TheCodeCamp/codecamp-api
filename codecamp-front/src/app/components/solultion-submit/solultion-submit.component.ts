@@ -105,7 +105,6 @@ export class SolultionSubmitComponent implements OnInit {
       language: lang,
       description: this.currentFileUpload
     };
-    console.log(p);
     this.contestService.addSolution(solution).subscribe(data => {
       this.contestService.setSolution(data.msg);
       this.router.navigate(['/submit/complete']);

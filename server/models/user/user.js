@@ -134,9 +134,15 @@ UserSchema.statics.findByUsername=function(username,password,done){
                 if(err){
                     return done(err);
                 }else if(!res){
+<<<<<<< HEAD
                     return done(err);
                 }else if(res){
                     return done(null,user);
+=======
+                    return done(err)
+                } else if(res){
+                    return done(null,user)
+>>>>>>> 2cc704141c7f90f47465c9318ad6508d35a021e3
                 }
             })
         }

@@ -25,7 +25,6 @@ export class ProblemsComponent implements OnInit {
     this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblems(this.contest).subscribe(contest => {
       this.problems = contest.msg[0].questions;
-      console.log(contest.msg);
     });
     this.contestService.currentContest.subscribe(contest => this.contestname=contest);
   }

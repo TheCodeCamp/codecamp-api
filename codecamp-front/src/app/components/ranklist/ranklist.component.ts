@@ -23,7 +23,6 @@ export class RanklistComponent implements OnInit {
     this.contest = this.route.snapshot.params['contest'];
     this.contestService.getRankings(this.contest).subscribe(contest => {
       this.problems = contest.msg;
-      console.log(this.problems);
     });
   }
 

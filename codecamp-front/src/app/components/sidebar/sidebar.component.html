@@ -10,6 +10,7 @@
               <img src="../assets/home-icon.png" alt="" class="imageHomeIcon">
               Codecamp
           </div>
+          <hr>
             <div class="user-profile"
             *ngIf="authService.loggedIn()">
                 <!-- User profile image -->
@@ -59,7 +60,7 @@
                     <span class="navtabs ml-2">About</span>
                   </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item" >
                 <a class="btn btn-default" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                   <i class="fa fa-home" aria-hidden="true"></i>
                   <span class="navtabs">Practice</span>
@@ -89,12 +90,14 @@
                     <span class="navtabs ml-2">Contest</span>
                   </a>
               </li>
+              <!--
               <li class="nav-link">
                   <a href="#">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="navtabs ml-2">Online IDE</span>
                   </a>
               </li>
+            --> 
           </ul>
       </nav>
       </div>

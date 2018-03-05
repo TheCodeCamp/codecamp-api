@@ -4,12 +4,14 @@ import { HttpModule } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
+import 'rxjs/add/operator/toPromise';
+
 
 @Injectable()
 export class AuthService {
   public authToken: any;
   public user: any;
-  //public domain = 'http://localhost:80/';
+  //public domain = 'http://localhost:3000/';
   public options;
 
   constructor(

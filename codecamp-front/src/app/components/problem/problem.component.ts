@@ -24,7 +24,6 @@ export class ProblemComponent implements OnInit {
     this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblem(this.code, this.contest).subscribe(data => {
       this.problem = data.problem;
-      console.log(this.problem);
     });
   }
 
