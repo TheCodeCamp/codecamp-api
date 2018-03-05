@@ -1,47 +1,55 @@
 <div class="container main">
     <div class="col-md-12">
-        <h1 class="display-4">{{ problem?.name }}</h1>
-        
-        <h4>Problem Code: {{ problem?.code }}</h4>
-        
-        <hr>
+        <h5 class="display-4">{{ problem?.name }}</h5>
+        <div class="row">
+        <div class="col-md-9">
+        <h5>Problem Code: {{ problem?.code }}</h5>
       </div>
+
+    <div class="col-md-3">
+    <button class="btn btn-success"
+    (click)="onSelectSubmit()">Submit</button>
+  </div>
+</div>
+</div>
+        <hr>
+
       <div class="row problem">
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-12">
+            <h6>Problem Statement:</h6>
             <p>{{ problem?.description}}</p>
           </div>
           <div class="col-md-12">
-            <h5>Input</h5>
+            <h6>Input</h6>
             <p>{{ problem?.input_format}}</p>
           </div>
           <div class="col-md-12">
-              <h5>Output</h5>
+              <h6>Output</h6>
               <p>{{ problem?.output_format }}</p>
             </div>
           <div class="col-md-12">
-            <h5>Constraints</h5>
+            <h6>Constraints</h6>
           </div>
           <div class="col-md-12">
-            <h5>Input Testcase</h5>
+            <h6>Input Testcase</h6>
             <p [innerText]="problem?.input_example"></p>
           </div>
           <div class="col-md-12">
-              <h5>Output Testcase</h5>
+              <h6>Output Testcase</h6>
               <p [innerText]="problem?.output_example"></p>
             </div>
           <div class="col-md-12">
-            <h5>Explanations</h5>
+            <h6>Explanations</h6>
             <p [innerText]="problem?.explanation_example"></p>
           </div>
-          </div> 
+          </div>
     </div>
 
     <div class="col-md-4">
       <app-submission></app-submission>
   </div>
   </div>
-  <button class="btn btn-success"
-         (click)="onSelectSubmit()">Submit</button>
+
 </div>

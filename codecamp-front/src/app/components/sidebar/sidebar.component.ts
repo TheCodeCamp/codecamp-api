@@ -23,16 +23,19 @@ export class SidebarComponent implements OnInit {
 
   profile;
   panelVisible;
-  constructor(private authService: AuthService,
-  private contestService: ContestService) { 
+  constructor(public authService: AuthService,
+  private contestService: ContestService) {
 
   }
 
   ngOnInit() {
-    
+
 
     this.contestService.toggle.subscribe(toggle => this.panelVisible = toggle);
    }
 
-
+   onClick() {
+    // Do something relevant with the object...
+    return false;
+}
 }

@@ -1,12 +1,11 @@
 <div class="container">
-  <h1 class="display-4">Submit a Solution: {{problem}}</h1>
+  <h4>Submit a Solution: {{problem}}</h4>
   <hr>
 <div class="insingleblock">
   <div class="row select">
       <div>Select language</div>
       <select (change)="selectLanguage($event)" class="options">
-          <option value="c_cpp">C</option>
-          <option value="c_cpp">C++</option>
+          <option value="c_cpp">C/C++</option>
           <option value="java">Java</option>
           <option value="python">Python</option>
       </select>
@@ -21,7 +20,7 @@
   </div>
 </div>
   <br>
-  <div><b>**Choose the language</b>
+  <div><b>Choose the language</b>
   </div>
   <select id="select" class="form-control col-lg-4">
     <option value="C">C</option>

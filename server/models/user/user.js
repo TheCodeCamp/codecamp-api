@@ -133,7 +133,9 @@ UserSchema.statics.findByUsername=function(username,password,done){
             bcrypt.compare(password, user.password, function(err , res){
                 if(err){
                     return done(err);
-                }else if(res){
+                }else if(!res){
+                    return done(err)
+                } else if(res){
                     return done(null,user)
                 }
             })

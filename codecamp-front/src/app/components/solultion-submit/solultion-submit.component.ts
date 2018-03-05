@@ -30,14 +30,16 @@ export class SolultionSubmitComponent implements OnInit {
     private router: Router
   ) {
     this.content = `#include<stdio.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+int main()
+{
 
-    int main()
-    {
+    printf("Welcome To CodeCamp");
+    return 0;
 
-      printf("Welcome To CodeCamp");
-
-    }
-    `;
+}
+`;
   }
 
   ngOnInit() {
@@ -51,31 +53,32 @@ export class SolultionSubmitComponent implements OnInit {
   selectLanguage(event) {
     this.selectedLanguage = event.target.value;
 
-    if (this.selectedLanguage == 'c_cpp') {
+    if (this.selectedLanguage === 'c_cpp') {
       this.content =
       `#include<stdio.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+int main()
+{
 
-      int main()
-      {
-
-        printf("Welcome To CodeCamp");
-
-      }`;
-    } else if (this.selectedLanguage == 'java') {
+    printf("Welcome To CodeCamp");
+    return 0;
+}`;
+    } else if (this.selectedLanguage === 'java') {
       this.content =
         `import java.util.*;
 
-        public class Solution {
+public class Solution {
 
-          public static void main(String[] args) {
+    public static void main(String[] args) {
 
-              System.out.print("Welcome To CodeCamp");
+        System.out.print("Welcome To CodeCamp");
 
-          }
+    }
 
-        }
+}
         `;
-      } else if (this.selectedLanguage == 'python') {
+      } else if (this.selectedLanguage === 'python') {
       this.content = `print("Welcome To CodeCamp")`;
       }
   }
@@ -107,7 +110,6 @@ export class SolultionSubmitComponent implements OnInit {
       language: lang,
       description: this.currentFileUpload
     };
-    console.log(p);
     this.contestService.addSolution(solution).subscribe(data => {
       this.contestService.setSolution(data.msg);
       this.router.navigate(['/submit/complete']);

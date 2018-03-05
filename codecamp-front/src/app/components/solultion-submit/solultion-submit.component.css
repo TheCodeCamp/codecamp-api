@@ -14,7 +14,7 @@ textarea{
     overflow-x: hidden;
 }
 
-.select {
+.row.select {
     margin-left: 1%;
 }
 
@@ -30,4 +30,7 @@ textarea{
 
 #description{
   margin: 2%;
+}
+#select{
+  border: 1.5px solid red;
 }

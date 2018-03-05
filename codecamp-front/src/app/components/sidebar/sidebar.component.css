@@ -30,6 +30,8 @@
     overflow: auto;
 }
 
+.sidebar-nav {}
+
 .background:after{
     width: 100%;
     height: 100%;
@@ -59,8 +61,9 @@
     margin-right: 2px;
 }
 
-
-
+.btn-is-disabled {
+  pointer-events: none;
+}
 .sidebar-nav ul li a:hover {
     background-color: hsla(0,0%,100%,.1);
     color: #fff;
@@ -94,12 +97,20 @@
      margin-left: 25%;
 }
 
-
-.navbar-brand img{
-    width: 30px;
+.navbar-brand {
+    padding-bottom: 0;
+    margin: .7rem;
 }
 
-.imageHomeIcon
-{
+.navbar-brand img{
+    width: 40px;
+}
+
+.imageHomeIcon{
     padding-left : 10px;
+}
+
+hr{
+    border-top: 0.3px solid white;
+    margin: 1rem 2rem;
 }

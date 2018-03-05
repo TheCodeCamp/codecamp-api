@@ -29,7 +29,7 @@ export class ContestComponent implements OnInit {
   }
 
   replaceTZ(time) {
-    return time && time.replace(/[TZ]|.000/g,'<br>');
+    return time && time.replace(/[TZ]|.000/g, '<br>');
   }
   onSelectContest(i) {
     this.contestname = i.name;

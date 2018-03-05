@@ -38,11 +38,13 @@ const appRoutes: Routes = [
     },
     {
       path: 'register',
-      component: RegisterComponent
+      component: RegisterComponent,
+      canActivate: [NotAuthGuard]
     },
     {
       path: 'login',
-      component: LoginComponent
+      component: LoginComponent,
+      canActivate: [NotAuthGuard]
     },
     {
       path: 'practice',
@@ -71,7 +73,8 @@ const appRoutes: Routes = [
     },
     {
       path: ':contest/submit/:code',
-      component: SolultionSubmitComponent
+      component: SolultionSubmitComponent,
+      canActivate: [AuthGuard]
     },
     {
       path: 'submit/complete',
@@ -93,6 +96,10 @@ const appRoutes: Routes = [
       canActivate: [AuthGuard]
     },
     {
+      path: 'contest/:contest/ranking',
+      component: RanklistComponent
+    },
+    {
       path: 'contest/:contest/:problem',
       component: ProblemComponent
     },
@@ -104,11 +111,12 @@ const appRoutes: Routes = [
       path: 'contest/edit/:edit-contest',
       component: EditContestComponent,
       canActivate: [AuthGuard]
-    }
+    },
+      { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
+  imports: [RouterModule.forRoot(appRoutes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule  {

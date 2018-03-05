@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private _flashMessagesService: FlashMessagesService
   ) {
     this.createForm();
   }
@@ -85,8 +87,13 @@ export class RegisterComponent implements OnInit {
     };
     this.authService.registerUser(user).subscribe(data => {
       if (!data.success) {
-        console.log(data.msg);
+        if(data.msg.errmsg.match(/(username|dup)/)) {
+          this._flashMessagesService.show('Username already exists', { cssClass: 'alert-danger', timeout: 5000});
+        } else if(data.msg.errmsg.match(/(email)/)) {
+          this._flashMessagesService.show('Email Id already exists', { cssClass: 'alert-danger', timeout: 5000});
+        }
       } else {
+        this._flashMessagesService.show('Registered Successfully', { cssClass: 'success', timeout: 5000});
         this.router.navigate(['/login']);
       }
     });

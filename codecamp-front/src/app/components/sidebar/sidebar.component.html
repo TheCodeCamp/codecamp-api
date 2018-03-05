@@ -10,6 +10,7 @@
               <img src="../assets/home-icon.png" alt="" class="imageHomeIcon">
               Codecamp
           </div>
+          <hr>
             <div class="user-profile"
             *ngIf="authService.loggedIn()">
                 <!-- User profile image -->
@@ -59,8 +60,9 @@
                     <span class="navtabs ml-2">About</span>
                   </a>
               </li>
-              <li class="nav-item">
-                <a class="btn btn-default" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <li class="nav-item" >
+                <a class="btn btn-is-disabled" data-toggle="collapse" href="#collapseExample"
+    role="button" aria-expanded="false" aria-controls="collapseExample">
                   <i class="fa fa-home" aria-hidden="true"></i>
                   <span class="navtabs">Practice</span>
                   <i class="fa fa-caret-down m" aria-hidden="true"></i>
@@ -89,20 +91,19 @@
                     <span class="navtabs ml-2">Contest</span>
                   </a>
               </li>
+              <!--
               <li class="nav-link">
                   <a href="#">
                     <i class="fa fa-home" aria-hidden="true"></i>
                     <span class="navtabs ml-2">Online IDE</span>
                   </a>
               </li>
+            -->
           </ul>
       </nav>
       </div>
       <!-- End Sidebar navigation -->
   <!-- End Sidebar scroll-->
-<<<<<<< HEAD
-=======
   <div class="background" style="
       background: url(../assets/sidebar.jpg);"></div>
->>>>>>> c4e2535092f743e8105bd39eb4418534f142cf6f
 </aside>

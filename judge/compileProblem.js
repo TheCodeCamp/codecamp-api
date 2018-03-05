@@ -110,6 +110,7 @@ async function compileAndRunProblem(contest,problem,id,lang ,description,option)
     const result= await runCompiled(lang,file,contest,problem,option);
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
+    console.log(Result);
     return Result;
   
 }

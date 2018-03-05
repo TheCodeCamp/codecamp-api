@@ -12,10 +12,13 @@ hr{
     padding: 3%;
 }
 
-h5{
+h6{
     font-weight: bold;
 }
 
 button{
  margin-left: 3.5%;
+}
+p{
+  font-size: 15px;
 }

@@ -30,8 +30,10 @@
         "../node_modules/ace-builds/src-min/ace.js",
         "../node_modules/ace-builds/src-min/theme-sqlserver.js",
         "../node_modules/ace-builds/src-min/mode-python.js",
-        "../node_modules/ace-builds/src-min/mode-java.js"
+        "../node_modules/ace-builds/src-min/mode-java.js",
+        "../node_modules/ace-builds/src-min/mode-c_cpp.js"
       ],
+
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

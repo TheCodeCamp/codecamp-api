@@ -31,12 +31,13 @@ router.get('/:id',(req,res)=>{
               maxBuffer:pro.sourcelimit,
               encoding:'utf8'
             }
-        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{       
+        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{      
+          console.log(result); 
           res.send(result);
         }).catch((e)=>{
           var compileError = /(g[/++/]|gcc|javac)/;
           if(e.cmd.toString().match(compileError)){
-            res.status(200).send('CE');
+            res.status(200).send('CE' + e);
           }else if(e.killed){
             res.status(200).send('TLE');
           }else{

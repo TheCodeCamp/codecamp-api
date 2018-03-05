@@ -1,6 +1,8 @@
 #include<stdio.h>
-    int main()
-    {
-      printf("hiii");
-    }
-    
+//#include<bits/stdc++.h>
+//using namespace std;
+int main()
+{
+    printf("Welcome To CodeCamp");
+    return 0;
+}
