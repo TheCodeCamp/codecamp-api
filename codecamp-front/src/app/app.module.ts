@@ -38,6 +38,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -71,10 +72,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     AceEditorModule,
     NgProgressModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
-    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}],
+    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
