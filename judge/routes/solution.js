@@ -31,14 +31,15 @@ router.get('/:id',(req,res)=>{
               maxBuffer:pro.sourcelimit,
               encoding:'utf8'
             }
-        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{      
-          console.log(result); 
+        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{    
+          console.log(result)  
           res.send(result);
         }).catch((e)=>{
+          console.log(e)
           var compileError = /(g[/++/]|gcc|javac)/;
-          if(e.cmd.toString().match(compileError)){
-            res.status(200).send('CE' + e);
-          }else if(e.killed){
+          if(e.toString().match(compileError)){
+            res.status(200).send('CE');
+          }else if(e.timelimit*1000>=option.timeout){
             res.status(200).send('TLE');
           }else{
             res.status(200).send('RE');

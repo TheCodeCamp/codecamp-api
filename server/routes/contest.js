@@ -10,7 +10,6 @@ const router = express.Router();
 
 router.post('/',(req,res)=>{
     const body = _.pick(req.body,['name','startTime','endTime','id','description']);
-    console.log(body.endTime);
     const contest = new Contest(body);
     contest
         .save()
@@ -62,7 +61,6 @@ router.get('/:id',(req,res)=>{
             model: 'Problem'
         }).
         exec(function(err,question){
-            console.log(err)
             if(err){
                 return res.status(400).json({
                         'success':false,

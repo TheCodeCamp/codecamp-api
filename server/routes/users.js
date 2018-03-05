@@ -13,8 +13,8 @@ router.post('/signup',(req,res)=>{
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
             res.status(404).send(err)
-        rs}else if(user){
-            res.status(404).json({
+        }else if(user){
+            res.json({
                 'success':false,
                 'msg':'User with Username Exists'
             })
@@ -67,7 +67,7 @@ router.post('/signin',(req,res)=>{
                 'msg':err
             })
         }else if(!user){
-            res.status(404).json({
+            res.json({
                 'success':false,
                 'msg':'User not found'
             })
@@ -99,6 +99,7 @@ router.post('/signin',(req,res)=>{
                   }
             })
         }
+
     })
 })
 
