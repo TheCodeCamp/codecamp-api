@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.component.html',
+  styleUrls: ['./edit-profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class EditProfileComponent implements OnInit {
 
   user;
   constructor(
@@ -20,11 +22,7 @@ export class ProfileComponent implements OnInit {
      });
       //console.log(this.user);
   }
-
   ngOnInit() {
+  }
 
-    }
-    onSubmitSel() {
-      this.router.navigate([this.user.username, 'edit-profile']);
-    }
 }

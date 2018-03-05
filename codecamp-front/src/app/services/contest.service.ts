@@ -20,6 +20,9 @@ export class ContestService {
   public sol;
   public toggler: boolean;
 
+  private timer = new BehaviorSubject<String>('0d 0h 0m 0s');
+  time = this.timer.asObservable();
+
   private contestSource = new BehaviorSubject<string>("default contest");
   currentContest = this.contestSource.asObservable();
 
@@ -83,7 +86,7 @@ export class ContestService {
       .map(res => res.json());
   }
   public setSolution(sol){
-    this.sol = sol; 
+    this.sol = sol;
   }
   public getSolution() {
     return this.sol;
@@ -95,5 +98,9 @@ export class ContestService {
 
   ontoggle(value: boolean){
     this.Toggler.next(value);
+  }
+
+  onTimeSave(value) {
+    this.timer.next(value);
   }
 }

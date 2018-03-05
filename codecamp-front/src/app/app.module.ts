@@ -15,6 +15,7 @@ import { PracticeComponent } from './components/practice/practice.component';
 import { DiscussComponent } from './components/discuss/discuss.component';
 import { ContestComponent } from './components/contest/contest.component';
 import { AboutComponent } from './components/about/about.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 import { AuthService } from './services/auth.service';
 import { ContestService } from './services/contest.service';
@@ -29,6 +30,8 @@ import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
+import { TimerComponent } from './components/timer/timer.component'
+
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
@@ -62,7 +65,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddProblemComponent,
     SolultionSubmitComponent,
     PreloaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    EditProfileComponent,
+    TimerComponent
   ],
   imports: [
     BrowserModule,

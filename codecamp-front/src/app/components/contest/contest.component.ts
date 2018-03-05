@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 export class ContestComponent implements OnInit {
   contest;
   contestname;
-  
+
   constructor(
     public authService: AuthService,
     private router: Router,
@@ -23,9 +23,9 @@ export class ContestComponent implements OnInit {
   ngOnInit() {
     this.contestService.getContest().subscribe(
       contest => {
-      this.contest = contest.contests; 
+      this.contest = contest.contests;
     });
-    this.contestService.currentContest.subscribe(contest => this.contestname=contest);
+    this.contestService.currentContest.subscribe(contest => this.contestname = contest);
   }
 
   replaceTZ(time) {
