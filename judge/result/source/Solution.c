@@ -1,9 +1,8 @@
 #include<stdio.h>
-    int main()
-    {
-    int n;
-    scanf("%d",&n);
-    while(n--)
-      printf("Hello World\n");
-    }
-    
+//#include<bits/stdc++.h>
+//using namespace std;
+int main()
+{
+    printf("Welcome To CodeCamp");
+    return 404;
+}

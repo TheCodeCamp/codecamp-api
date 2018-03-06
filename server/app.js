@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27018/OnlineJudge')
-
+app.use(express.static(__dirname+'/public/'));
 const bodyParser = require('body-parser');
 app.use(cors())
 app.use( bodyParser.json() );
