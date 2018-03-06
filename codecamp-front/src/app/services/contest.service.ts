@@ -15,13 +15,12 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  public domain = 'http://localhost:3000/';
+  public domain = 'http://localhost:80/';
   public options;
   public sol;
   public toggler: boolean;
 
-  private timer = new BehaviorSubject<String>('0d 0h 0m 0s');
-  time = this.timer.asObservable();
+
 
   private contestSource = new BehaviorSubject<string>("default contest");
   currentContest = this.contestSource.asObservable();
@@ -33,7 +32,7 @@ export class ContestService {
   constructor(
     private http: Http
   ) { }
-
+  public time: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
@@ -102,7 +101,4 @@ export class ContestService {
     this.Toggler.next(value);
   }
 
-  onTimeSave(value) {
-    this.timer.next(value);
-  }
 }

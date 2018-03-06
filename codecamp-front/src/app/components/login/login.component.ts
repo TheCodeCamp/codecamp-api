@@ -42,13 +42,12 @@ export class LoginComponent implements OnInit {
       password: this.form.get('password').value // Password input field
     };
     this.authService.loginUser(user).subscribe(data => {
-      if(!data.success){
+      if (!data.success) {
         this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 2000});
-      }
-      else{
+      } else {
         this.authService.storeUserData(data.token, data.user);
+            this.authService.name.next(data.user);
             this.router.navigate(['/']);
-            this.message = false;
            }     // Navigate to dashboard view
       });
   }

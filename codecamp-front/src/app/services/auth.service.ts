@@ -5,19 +5,20 @@ import { HttpModule } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
 export class AuthService {
   public authToken: any;
   public user: any;
-  public domain = 'http://localhost:3000/';
+  public domain = 'http://localhost:80/';
   public options;
 
   constructor(
   private http: Http
   ) { }
-
+  public name: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
