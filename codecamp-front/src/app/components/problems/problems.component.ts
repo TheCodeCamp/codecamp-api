@@ -3,6 +3,11 @@
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { async } from '@angular/core/testing';
+import { Observable } from 'rxjs/Observable';
+import { take, map } from 'rxjs/operators';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-problems',
@@ -22,51 +27,83 @@ export class ProblemsComponent implements OnInit {
   now;
   end;
   distance;
-  days;
+  days= 0;
   hours;
   minutes;
   seconds;
   times;
+  start;
   x;
-
-
+  ticks= 0;
   constructor(
     private contestService: ContestService,
     private router: Router,
     public authService: AuthService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+
+   }
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
-    this.contestService.getProblems(this.contest).subscribe(contest => {
-     // console.log(contest);
-      this.problems = contest.msg[0].questions;
-      // this.now = contest.msg[0].startTime;
-      //  this.end = contest.msg[0].endTime;
+    this.contestService.getProblems(this.contest).subscribe((contest) => {
+        this.problems = contest.msg[0].questions;
+        this.start = new Date(contest.msg[0].startTime);
+        this.end = new Date(contest.msg[0].endTime);
+        var timer;
+        if (this.start > new Date())
+          var compareDate = this.start;
+        else
+        var compareDate = this.end;
+        //compareDate.setDate(this.end.getDate()); //just for this demo today + 7 days
+
+        //console.log(compareDate);
+        timer = setInterval(function() {
+          timeBetweenDates(compareDate);
+        }, 1000);
+        function timeBetweenDates(compareDate){
+          var dateEntered = compareDate;
+          var now = new Date();
+          var difference = dateEntered.getTime() - now.getTime();
+
+          if (difference <= 0) {
+
+            // Timer done
+            clearInterval(timer);
+
+          } else {
+
+            var second = Math.floor(difference / 1000);
+            var minute = Math.floor(second / 60);
+            var hour = Math.floor(minute / 60);
+            var day = Math.floor(hour / 24);
+
+            hour %= 24;
+            minute %= 60;
+            second %= 60;
+            //console.log(day,hour,minute,second);
+              /*this.days = day;
+              this.hours = hour;
+              this.minutes = minute;
+              this.seconds = second;
+              $("#day").text(day);
+              $("#hour").text(hour);
+              $("#minute").text(minute);
+              $("#second").text(second);
+              var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
+              ////this.contestService.time.next(temp);
+              //this.contestService.time.subscribe(value => this.times = value);*/
+
+          }
+        }
+
     });
-    this.contestService.time.subscribe(time => this.time = time);
-    this.contestService.currentContest.subscribe(contest => this.contestname=contest);
-    /*this.x = function() {
+    this.contestService.currentContest.subscribe(contest => this.contestname = contest);
 
-      // Get todays date and time
-        this.countDownDate = this.end - this.now;
 
-        // Find the distance between now an the count down date
-        this.distance = this.countDownDate;
-        console.log(this.distance);
-
-        // Time calculations for days, hours, minutes and seconds
-        this.days = Math.floor(this.distance / (1000 * 60 * 60 * 24));
-        this.hours = Math.floor((this.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        this.minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
-        this.seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        this.times = this.days + 'd ' + this.hours + 'h ' + this.minutes + 'm ' + this.seconds + 's ';
-        return this.times;
-    };
-    console.log(this.x());*/
+  }
+  tickerFunc(tick){
+    this.ticks = tick;
   }
   onAddProblem() {
     this.router.navigate(['/contest', this.contest, 'addproblem']);
@@ -83,5 +120,9 @@ export class ProblemsComponent implements OnInit {
 
   onClickRanking() {
     this.router.navigate(['/contest', this.contest, 'ranking']);
+  }
+
+  onRefresh() {
+    this.router.navigate(['/contest', this.contest]);
   }
 }

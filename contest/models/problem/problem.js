@@ -70,6 +70,9 @@ const ProblemSchema = new mongoose.Schema({
     testCaseOutput:{
         type:String,
     },
+    image: {
+        type: String
+    },
     contest:{
         type:mongoose.Schema.Types.String,
         refs:'Contest'
