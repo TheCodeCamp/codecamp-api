@@ -15,14 +15,14 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  public domain = 'http://localhost:80/';
+  // public domain = 'http://localhost:80/';
   public options;
   public sol;
   public toggler: boolean;
 
 
 
-  private contestSource = new BehaviorSubject<string>("default contest");
+  private contestSource = new BehaviorSubject<string>(' default contest ');
   currentContest = this.contestSource.asObservable();
 
   private Toggler = new BehaviorSubject<boolean>(true);
@@ -50,39 +50,39 @@ export class ContestService {
 
   public addContest(contest) {
     return this.http
-      .post( this.domain + 'contest', contest)
+      .post( /*this.domain + */ 'contest', contest)
         .map(res => res.json());
   }
 
   public getContest(): Observable<any> {
-    return this.http.get( this.domain + 'contest')
+    return this.http.get( /*this.domain + */ 'contest')
         .map(res => res.json());
   }
 
   public addProblem(problem, contest): Observable<any> {
-    return this.http.post(this.domain + 'contest/' + contest, problem)
+    return this.http.post(/*this.domain + */ 'contest/' + contest, problem)
       .map(res => res.json());
   }
 
   public getProblems(contest): Observable<any> {
-    return this.http.get( this.domain + 'contest/' + contest)
+    return this.http.get( /*this.domain + */'contest/' + contest)
         .map(res => res.json());
   }
 
   public getProblem(code, contest): Observable<any> {
-    return this.http.get(this.domain + 'contest/' + contest + '/problems/' + code)
-      .map(res =>res.json());
+    return this.http.get(/*this.domain + */ 'contest/' + contest + '/problems/' + code)
+      .map(res => res.json());
   }
 
   public addSolution(solution): Observable<any> {
-    return this.http.post(this.domain + 'solution', solution)
+    return this.http.post(/*this.domain + */'solution', solution)
       .map(res => res.json());
   }
   public deleteContest(contest) {
-    return this.http.delete(this.domain + 'contest/' + contest)
+    return this.http.delete(/*this.domain + */ 'contest/' + contest)
       .map(res => res.json());
   }
-  public setSolution(sol){
+  public setSolution(sol) {
     this.sol = sol;
   }
   public getSolution() {
@@ -90,14 +90,14 @@ export class ContestService {
   }
 
   changeContest(contest: string) {
-    this.contestSource.next(contest)
+    this.contestSource.next(contest);
   }
 
   getRankings(contest) {
-    return this.http.get(this.domain + 'rankings/' + contest)
+    return this.http.get(/*this.domain + */'rankings/' + contest)
       .map(res => res.json());
   }
-  ontoggle(value: boolean){
+  ontoggle(value: boolean) {
     this.Toggler.next(value);
   }
 

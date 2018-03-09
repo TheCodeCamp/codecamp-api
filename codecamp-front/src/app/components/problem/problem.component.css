@@ -22,3 +22,8 @@ button{
 p{
   font-size: 15px;
 }
+.box{
+  border: 1px solid #111;
+  padding: 5%;
+  background-color: rgb(201, 252, 235);
+}

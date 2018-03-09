@@ -15,13 +15,15 @@ export class ProblemComponent implements OnInit {
   code;
   contest;
   problem;
-  private base64Image;
+  base64Image;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private contestService: ContestService,
     private domSanitizer: DomSanitizer
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.code = this.route.snapshot.params['problem'];

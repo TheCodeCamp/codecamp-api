@@ -1,9 +1,10 @@
-  import { Component, OnInit, ViewChild, Output} from '@angular/core';
+import { Component, OnInit, ViewChild, Output} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ContestService } from '../../services/contest.service';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { AceEditorModule } from 'ng2-ace-editor';
 declare var jquery: any;
 declare var $: any;
 
@@ -19,6 +20,7 @@ export class SolultionSubmitComponent implements OnInit {
   contest;
   username;
   solution;
+  ace;
   language: string;
   currentFileUpload;
   value;
@@ -82,10 +84,10 @@ public class Solution {
       this.content = `print("Welcome To CodeCamp")`;
       }
   }
-  onFileChange(event){
-  let reader = new FileReader();
-    if(event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
+  onFileChange(event) {
+  const reader = new FileReader();
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
          this.value = reader.result.split(',')[1];
@@ -95,9 +97,10 @@ public class Solution {
 
   onClickSubmit() {
     const lang = $('#select').val();
-
-    this.content = document.getElementsByClassName('ace_content');
-    const p = this.content[0].innerText;
+    // const editor = ace.edit('description');
+    // this.content = $('#description').text();
+    // editor.getValue('description');
+    const p = this.content;
     if (this.value) {
       this.currentFileUpload = this.value;
     } else {
