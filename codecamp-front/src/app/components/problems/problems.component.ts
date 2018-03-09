@@ -21,13 +21,13 @@ export class ProblemsComponent implements OnInit {
   contestname;
   time;
 
-   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  //Add 'implements OnInit' to the class.
+  // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  // Add 'implements OnInit' to the class.
   countDownDate;
   now;
   end;
   distance;
-  days= 0;
+  days = 0;
   hours;
   minutes;
   seconds;
@@ -77,7 +77,7 @@ export class ProblemsComponent implements OnInit {
             var minute = Math.floor(second / 60);
             var hour = Math.floor(minute / 60);
             var day = Math.floor(hour / 24);
-
+            this.days = day;
             hour %= 24;
             minute %= 60;
             second %= 60;
