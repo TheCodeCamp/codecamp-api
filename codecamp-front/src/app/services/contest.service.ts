@@ -15,7 +15,7 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  //public domain = 'http://localhost:80/';
+  public domain = 'http://localhost:80/';
   public options;
   public sol;
   public toggler: boolean;
@@ -50,12 +50,12 @@ export class ContestService {
 
   public addContest(contest) {
     return this.http
-      .post('contest', contest)
+      .post( this.domain +  'contest', contest)
         .map(res => res.json());
   }
 
   public getContest(): Observable<any> {
-    return this.http.get('contest')
+    return this.http.get( this.domain +  'contest')
         .map(res => res.json());
   }
 
@@ -70,7 +70,7 @@ export class ContestService {
   }
 
   public getProblem(code, contest): Observable<any> {
-    return this.http.get('contest/' + contest + '/problems/' + code)
+    return this.http.get(this.domain +  'contest/' + contest + '/problems/' + code)
       .map(res => res.json());
   }
 
@@ -79,7 +79,7 @@ export class ContestService {
       .map(res => res.json());
   }
   public deleteContest(contest) {
-    return this.http.delete('contest/' + contest)
+    return this.http.delete(this.domain +  'contest/' + contest)
       .map(res => res.json());
   }
   public setSolution(sol) {

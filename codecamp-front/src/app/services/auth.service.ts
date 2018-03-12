@@ -12,7 +12,7 @@ import { Subject } from 'rxjs/Subject';
 export class AuthService {
   public authToken: any;
   public user: any;
-  //public domain = 'http://localhost:3000/';
+  public domain = 'http://localhost:80/';
   public options;
 
   constructor(
@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   public checkisAdmin() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined || user === null) {
       return false;
     } else if (user.isAdmin === true) {

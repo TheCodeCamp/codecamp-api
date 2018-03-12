@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const _ = require('lodash');
+const bcrypt = require('bcryptjs')
 const VerifyToken = require('./../utils/auth/verifyToken');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/user/user');
@@ -20,21 +21,30 @@ router.post('/signup',(req,res)=>{
             })
         }else{
             var user = new User(body);
-            user.save().then((user) => {
-                var token = jwt.sign({ username: user.username},'secret', {
-                    expiresIn: 86400 // expires in 24 hours
-                  });
-                  res.status(200).json({
-                    'success':true,
-                    'msg':'Registration successful , Now you can Login',    
-                    'token':token
-                })
-              }, (e) => {
+            bcrypt.hash(user.password, 10).then(function(hash) {
+                user.password=hash;
+                user.save().then((user) => {
+                    var token = jwt.sign({ username: user.username},'secret', {
+                        expiresIn: 86400 // expires in 24 hours
+                      });
+                      res.status(200).json({
+                        'success':true,
+                        'msg':'Registration successful , Now you can Login',    
+                        'token':token
+                    })
+                  }, (e) => {
+                    res.json({
+                        'success':false,
+                        'msg':e
+                    })
+                  })
+                
+            }).catch((e)=>{
                 res.json({
                     'success':false,
                     'msg':e
                 })
-              })
+            });
         }
     })
     
