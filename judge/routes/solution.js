@@ -86,6 +86,7 @@ router.get('/ide',(req,res)=>{
        }else if(e.timelimit*1000>=option.timeout){
          res.status(200).send('TLE');
        }else{
+         console.log(e);
          res.status(200).send('RE');
        }
    })

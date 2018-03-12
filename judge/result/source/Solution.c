@@ -1,16 +1,26 @@
-#include<stdio.h>
-//#include<bits/stdc++.h>
-//using namespace std;
+#include <stdio.h>
+#include <string.h>
 int main()
 {
-<<<<<<< HEAD
-    printf("Welcome To CodeCamp");
-    return 404;
-=======
-    int n;
-    scanf("%d",&n);
-    while(n--){
-        printf("amar\n");
+    char S[100002];
+    long int T;
+    int i,t1,t2,l;
+    scanf("%ld",&T);
+    while(T)
+    {
+        T--;
+        t1=t2=0;
+       scanf("%s",S);
+       l=strlen(S);
+       for(i=0;i<l;i++){
+        if(S[i]=='a'|| S[i]=='e'||S[i]=='i'||S[i]=='o'||S[i]=='u'||S[i]=='A'||S[i]=='E'||S[i]=='I'||S[i]=='O'||S[i]=='U')
+            t1++;
+        else t2++;
+       }
+       if(t1>=t2)
+        printf("GOOD\n");
+       else
+        printf("BAD\n");
     }
->>>>>>> e7e94b10d07609752ce6af9b761eca210a8fedd0
+    return 0;
 }

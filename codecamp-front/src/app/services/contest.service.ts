@@ -15,14 +15,14 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  //public domain = 'http://localhost:3000/';
+  //public domain = 'http://localhost:80/';
   public options;
   public sol;
   public toggler: boolean;
 
 
 
-  private contestSource = new BehaviorSubject<string>("default contest");
+  private contestSource = new BehaviorSubject<string>('default contest');
   currentContest = this.contestSource.asObservable();
 
   private Toggler = new BehaviorSubject<boolean>(true);
@@ -97,7 +97,7 @@ export class ContestService {
     return this.http.get('rankings/' + contest)
       .map(res => res.json());
   }
-  ontoggle(value: boolean){
+  ontoggle(value: boolean) {
     this.Toggler.next(value);
   }
 

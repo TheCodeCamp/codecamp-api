@@ -15,7 +15,7 @@ export class ProblemComponent implements OnInit {
   code;
   contest;
   problem;
-  private base64Image;
+  public base64Image;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
