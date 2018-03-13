@@ -151,27 +151,13 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="Input File">Input File</label>
-                  <textarea 
-                  name="Input" 
-                  formControlName="Input" 
-                  class="form-control" 
-                  placeholder="Input TestCase" 
-                  autocomplete="off"
-                  [ngClass]="{'is-invalid': (form.controls.Input.errors && form.controls.Input.dirty) , 'is-valid': !form.controls.Input.errors}">
-                  </textarea>
+                  <input type="file" class="form-control-file" placeholder="Upload file" #inputFile (change)="onFileChange1($event)">
                 </div>
                 </div>
                 <div class="col-md-6">
                 <div class="form-group">
                     <label for="output File">Output File</label>
-                    <textarea
-                    name="Output" 
-                    formControlName="Output" 
-                    class="form-control" 
-                    placeholder="Output Test case" 
-                    autocomplete="off"
-                    [ngClass]="{'is-invalid': (form.controls.Output.errors && form.controls.Output.dirty) , 'is-valid': !form.controls.Output.errors}">
-                  </textarea>
+                     <input type="file" class="form-control-file" placeholder="Upload file" #outputFile (change)="onFileChange2($event)">
                   </div>
                 </div>
             </div>

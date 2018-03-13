@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContestService } from '../../services/contest.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -11,6 +11,8 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 export class AddProblemComponent implements OnInit {
   form: FormGroup;
   contest;
+  Input;
+   Output;
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -43,6 +45,26 @@ export class AddProblemComponent implements OnInit {
       Output: ['', Validators.required]
     });
   }
+  onFileChange1(event) {
+    let reader = new FileReader();
+      if(event.target.files && event.target.files.length > 0) {
+        let file = event.target.files[0];
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+           this.Input = reader.result.split(',')[1];
+          };
+        }
+      }
+  onFileChange2(event) {
+    let reader = new FileReader();
+      if(event.target.files && event.target.files.length > 0) {
+        let file = event.target.files[0];
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.Output = reader.result.split(',')[1];
+          };
+        }
+      }
 
   onAddProblemSubmit() {
     const problem = {
@@ -59,9 +81,11 @@ export class AddProblemComponent implements OnInit {
       timelimit: this.form.get('timelimit').value,
       sourcelimit: this.form.get('sourcelimit').value,
       author: this.form.get('author').value,
-      testCaseInput: this.form.get('Input').value,
-      testCaseOutput: this.form.get('Output').value
+      testCaseInput: this.Input,
+      testCaseOutput: this.Output
     };
+
+    
 
     this.contestService.addProblem(problem, this.contest).subscribe(data => {
       if (!data.success) {

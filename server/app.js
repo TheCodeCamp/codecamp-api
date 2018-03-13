@@ -55,7 +55,7 @@ app.get('/',(req,res)=>{
 })
 
 const port = process.env.PORT || 80;
-app.listen(port,'0.0.0.0');
+app.listen(8080);
 console.log('magic is started at ' + port)
 
 module.exports={app}

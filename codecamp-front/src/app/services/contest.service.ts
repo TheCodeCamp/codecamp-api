@@ -15,7 +15,7 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  public domain = 'http://localhost:3000/';
+  public domain = 'http://localhost:8080/';
   public options;
   public sol;
   public toggler: boolean;

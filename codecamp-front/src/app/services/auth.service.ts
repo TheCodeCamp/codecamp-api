@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import { HttpModule } from '@angular/http';
 
-import 'rxjs/add/operator/map';
-import { tokenNotExpired } from 'angular2-jwt';
+  import 'rxjs/add/operator/map';
+  import { tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/toPromise';
 
 
@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
   public authToken: any;
   public user: any;
-  public domain = 'http://localhost:3000/';
+  public domain = 'http://localhost:8080/';
   public options;
 
   constructor(
