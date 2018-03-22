@@ -38,7 +38,7 @@
           </div>
           <a
           class="nav-link problem"
-          *ngFor="let i of problems"
+          *ngFor="let i of (conditionToShowProblem ? problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
               <div class="col-md-6">
@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-3">
       <div class="timer">
-        <p>Time to start</p>
+        <p>{{typeOfNow}}</p>
         <div id="timer">
           <!--<span>{{days}}</span>days
           <span>{{hours}}</span>hours

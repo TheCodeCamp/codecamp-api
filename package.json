@@ -30,6 +30,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "gridfs-stream": "^1.1.1",
     "helmet": "^3.9.0",
     "iconv": "^2.3.0",
     "jsonwebtoken": "^8.1.0",

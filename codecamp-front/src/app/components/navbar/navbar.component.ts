@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, transition, animate, style,state } from '@angular/core';
+import { Component, OnInit, trigger, transition, animate, style, state } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ContestService } from '../../services/contest.service';
@@ -21,7 +21,7 @@ import { ContestService } from '../../services/contest.service';
     ])
   ]
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
 
   user: any;
   users;
@@ -36,9 +36,9 @@ export class NavbarComponent implements OnInit{
     });*/
     this.users = authService.getProfile().subscribe(profile => {
       this.user = profile.msg.username;
-      //console.log(this.user);
+      // console.log(this.user);
   });
-  //console.log(this.user);
+  // console.log(this.user);
 }
 
   ngOnInit() {
@@ -52,8 +52,8 @@ export class NavbarComponent implements OnInit{
   undefined() {
 
   }
-  onToggle(){
-    this.toggle = this.toggle? false:true;
+  onToggle() {
+    this.toggle = this.toggle ? false : true;
     this.contestService.ontoggle(this.toggle);
   }
 
