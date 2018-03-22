@@ -18,6 +18,7 @@ export class ContestService {
   public domain = 'http://localhost:80/';
   public options;
   public sol;
+  public test;
   public toggler: boolean;
 
 
@@ -50,12 +51,12 @@ export class ContestService {
 
   public addContest(contest) {
     return this.http
-      .post( this.domain + 'contest', contest)
+      .post( this.domain +  'contest', contest)
         .map(res => res.json());
   }
 
   public getContest(): Observable<any> {
-    return this.http.get(this.domain +  'contest')
+    return this.http.get( this.domain +  'contest')
         .map(res => res.json());
   }
 
@@ -70,16 +71,16 @@ export class ContestService {
   }
 
   public getProblem(code, contest): Observable<any> {
-    return this.http.get(this.domain + /*this.domain + */ 'contest/' + contest + '/problems/' + code)
+    return this.http.get(this.domain +  'contest/' + contest + '/problems/' + code)
       .map(res => res.json());
   }
 
   public addSolution(solution): Observable<any> {
-    return this.http.post(this.domain + /*this.domain + */'solution', solution)
+    return this.http.post(this.domain + 'solution', solution)
       .map(res => res.json());
   }
   public deleteContest(contest) {
-    return this.http.delete(/*this.domain + */this.domain +  'contest/' + contest)
+    return this.http.delete(this.domain +  'contest/' + contest)
       .map(res => res.json());
   }
   public setSolution(sol) {
@@ -88,13 +89,22 @@ export class ContestService {
   public getSolution() {
     return this.sol;
   }
-
+  public getTest() {
+    return this.test;
+  }
+  public setTest(test) {
+    this.test = test;
+  }
+  public addTest(test): Observable<any> {
+    return this.http.post(this.domain + 'ide', test)
+      .map(res => res.json());
+  }
   changeContest(contest: string) {
     this.contestSource.next(contest);
   }
 
   getRankings(contest) {
-    return this.http.get(/*this.domain + */this.domain + 'rankings/' + contest)
+    return this.http.get(this.domain + 'rankings/' + contest)
       .map(res => res.json());
   }
   ontoggle(value: boolean) {

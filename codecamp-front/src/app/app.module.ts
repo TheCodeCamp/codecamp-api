@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { RouterModule, Routes} from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +42,7 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     SolultionSubmitComponent,
     PreloaderComponent,
     SidebarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     AceEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
     {provide: BrowserXhr, useClass: NgProgressBrowserXhr}, ],

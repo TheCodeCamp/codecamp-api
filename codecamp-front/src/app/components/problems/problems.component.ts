@@ -32,6 +32,10 @@ export class ProblemsComponent implements OnInit {
   minutes;
   seconds;
   times;
+  times_day;
+  times_hour;
+  times_minute;
+  times_second;
   start;
   x;
   ticks= 0;
@@ -58,11 +62,11 @@ export class ProblemsComponent implements OnInit {
         //compareDate.setDate(this.end.getDate()); //just for this demo today + 7 days
 
         //console.log(compareDate);
-        timer = setInterval(function() {
+       /* timer = setInterval(function() {
           timeBetweenDates(compareDate);
-        }, 1000);
-        function timeBetweenDates(compareDate){
-          var dateEntered = compareDate;
+        }, 1000);*/
+          setInterval((()=>{
+            var dateEntered = compareDate;
           var now = new Date();
           var difference = dateEntered.getTime() - now.getTime();
 
@@ -81,21 +85,26 @@ export class ProblemsComponent implements OnInit {
             hour %= 24;
             minute %= 60;
             second %= 60;
-            //console.log(day,hour,minute,second);
-              /*this.days = day;
-              this.hours = hour;
-              this.minutes = minute;
-              this.seconds = second;
-              $("#day").text(day);
+              // console.log(day,hour,minute,second);
+              // this.days = day;
+              // this.hours = hour;
+              // this.minutes = minute;
+              // this.seconds = second;
+              /*$("#day").text(day);
               $("#hour").text(hour);
               $("#minute").text(minute);
               $("#second").text(second);
               var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
               ////this.contestService.time.next(temp);
               //this.contestService.time.subscribe(value => this.times = value);*/
-
+              this.times = String(day) + '    ' + String(hour) + ' ' +String(minute) + '   ' +String(second) + '  ';
+              this.times_day = day;
+              this.times_hour = String(hour);
+              this.times_minute = String(minute);
+              this.times_second = String(second);
           }
-        }
+        }),1000);
+
 
     });
     this.contestService.currentContest.subscribe(contest => this.contestname = contest);

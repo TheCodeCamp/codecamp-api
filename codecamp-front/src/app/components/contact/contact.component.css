@@ -1,0 +1,25 @@
+img{
+  height:260px;
+  width: 100% !important;
+  margin-bottom: 30px;
+}
+input.form-control{
+  margin-bottom: 20px;
+  padding: 10px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+textarea{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  paddin: 10px;
+  margin-bottom: 20px;
+}
+p{
+  font-size: 17px;
+}
+.disp{
+  font-size: 35px;
+}
+button{
+  margin-top: 10px;
+  background: rgb(10, 241, 238);
+}

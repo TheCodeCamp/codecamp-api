@@ -1,5 +1,5 @@
-<!-- div class="container">
-  <h4>Submit a Solution: {{problem}}</h4>
+<div class="container">
+  <h4>Online IDE</h4>
   <hr>
 <div class="insingleblock">
   <div class="row select">
@@ -18,8 +18,6 @@
         style="height:500px;"
         >
   </div>
-</div>
-  <br>
   <div><b>Choose the language</b>
   </div>
   <select id="select" class="form-control col-lg-4">
@@ -28,22 +26,32 @@
     <option value="Python">Python</option>
     <option value="Java">Java</option>
   </select>
-
+</div>
+<br>
+<br>
   <div class="row">
-    <div class="col-md-12">
-      <br>
-        <p>OR Choose a File</p>
-    </div>
     <div class="col-md-9">
 
-        <label class="file-upload">Upload File
-          <input type="file" class="form-control-file" placeholder="Upload file" #userFile (change)="onFileChange($event)">
-    </label>
+        <strong>Input Case</strong>
+      <input type="checkbox" id="myCheck"  (click)="myFunction()">
+
+        <p id="text" style="display:none">
+            <br>
+        <textarea id="myTextarea">
+        </textarea>
+        </p>
     </div>
-    <div class="col-md-3">
-        <button class="btn btn-success ml-auto"
-        (click)="onRun()">Submit</button>
+
+    <div class="col-md-3" id="submit">
+        <button class="btn-lg btn-success mr-auto"
+        (click)="onRun()">Compile and Run</button>
 
       </div>
   </div>
-</div -->
+
+        <strong>Output</strong>
+        <br>
+        <textarea id="text" disabled>{{output}}
+        </textarea>
+</div>
+

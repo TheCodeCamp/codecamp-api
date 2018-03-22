@@ -12,17 +12,19 @@ import { ActivatedRoute } from '@angular/router';
 export class RanklistComponent implements OnInit {
 
   contest;
-  problems;
+  ranks;
+
   constructor(
     private contestService: ContestService,
     private router: Router,
     private authService: AuthService,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute
+   ) { }
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
     this.contestService.getRankings(this.contest).subscribe(contest => {
-      this.problems = contest.msg;
+      this.ranks = contest.msg;
     });
   }
 

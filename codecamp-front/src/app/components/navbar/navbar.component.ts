@@ -24,7 +24,7 @@ import { ContestService } from '../../services/contest.service';
 export class NavbarComponent implements OnInit{
 
   user: any;
-  usern;
+  users;
   toggle = true;
   constructor(
     public authService: AuthService,
@@ -32,14 +32,14 @@ export class NavbarComponent implements OnInit{
     private contestService: ContestService
   ) {
     /*this.authService.name.subscribe(value => {
-      this.user = value;
-
+      this.user = value ;
     });*/
-    this.user = authService.getProfile().subscribe(profile => {
-      this.usern = profile.msg;
-       //console.log(JSON.stringify(this.user));
-    });
-  }
+    this.users = authService.getProfile().subscribe(profile => {
+      this.user = profile.msg.username;
+      //console.log(this.user);
+  });
+  //console.log(this.user);
+}
 
   ngOnInit() {
     this.contestService.toggle.subscribe(toggle => this.toggle = toggle);
@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit{
     this.authService.logout(); // Logout user
     this.router.navigate(['/']); // Navigate back to home page
   }
-  onUndefined() {
+  undefined() {
 
   }
   onToggle() {
