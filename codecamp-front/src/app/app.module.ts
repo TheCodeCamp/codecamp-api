@@ -41,7 +41,7 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
-
+//import { CountDown } from 'ng2-date-countdown';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     SolultionSubmitComponent,
     PreloaderComponent,
     SidebarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    //CountDown
   ],
   imports: [
     BrowserModule,

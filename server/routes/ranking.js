@@ -6,6 +6,11 @@ const Contest = require('./../../contest/models/contest/contest');
 const {compare} = require('./../utils/compare');
 
 router.get('/:id',(req,res)=>{
+
+    // res.json({
+    //     'success':true,
+    //     'msg':'Ranklist has been freezed '
+    // })
   
     const id = req.params.id;
     Contest.findOne({'id':id},(err,contest)=>{

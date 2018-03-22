@@ -34,9 +34,14 @@ router.get('/',(req,res)=>{
 router.patch('/:code/edit',(req,res)=>{
     const code = req.params.code;
    // console.log(username);
+<<<<<<< HEAD
     var body = _.pick(req.body,['code','name','successfulSubmission','image','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
     Problem.findOneAndUpdate({'code':code},{$set: body})
     .then((problem)=>{
+=======
+    var body = _.pick(req.body,['code','name','successfulSubmission','level',,'image','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
+    Problem.findOneAndUpdate({'code':code},{$set: body}).then((problem)=>{
+>>>>>>> 997d61e6d6b49a8027293089340fa282717bad63
         res.json({
             'success':true,
             'msg':'Problem updated Successfully!'
