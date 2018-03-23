@@ -13,7 +13,7 @@ export class RanklistComponent implements OnInit {
 
   contest;
   ranks;
-
+  problems;
   constructor(
     private contestService: ContestService,
     private router: Router,

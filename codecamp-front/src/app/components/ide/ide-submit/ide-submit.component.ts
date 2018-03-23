@@ -17,7 +17,7 @@ export class IdeSubmitComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.data = this.contestService.getTest();
+    //this.data = this.contestService.getTest();
     this.status = this.data.status;
     this.output = this.data.output;
   }
