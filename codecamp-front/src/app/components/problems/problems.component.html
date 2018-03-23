@@ -38,7 +38,7 @@
           </div>
           <a
           class="nav-link problem"
-          *ngFor="let i of problems"
+          *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() ) ? problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
               <div class="col-md-6">
@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-3">
       <div class="timer">
-        <p>Time to start</p>
+        <p>{{typeOfNow}}</p>
         <div id="timer">
 
           <!--<span>{{days}}</span>days
@@ -63,7 +63,7 @@
           <span id="hour"></span>hours
           <span id="minute"></span>minutes
           <span id="second"></span>seconds-->
-          <b>{{times_day}}</b><b>{{times_hour}}</b><b>{{times_minute}}</b><b>{{times_second}}</b>
+          {{times}}
         </div>
         <div id="timer1">
         <b >Day</b><b>Hr</b><b>Min</b><b>Sec</b>

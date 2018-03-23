@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -43,6 +44,8 @@ import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ContactComponent } from './components/contact/contact.component';
+import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -70,11 +73,14 @@ import { ContactComponent } from './components/contact/contact.component';
     PreloaderComponent,
     SidebarComponent,
     EditProfileComponent,
-    ContactComponent
+    ContactComponent,
+    IdeSubmitComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AceEditorModule,

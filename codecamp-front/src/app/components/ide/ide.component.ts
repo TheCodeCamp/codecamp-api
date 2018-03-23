@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,NgModule } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { FormsModule } from '@angular/forms';
+import { ContestService } from '../../services/contest.service';
 declare var jquery: any;
 declare var $: any;
 
@@ -14,14 +16,20 @@ export class IdeComponent implements OnInit {
 
   selectedLanguage = 'c_cpp';
   content: string;
+  test;
   currentFileUpload;
+  status;
   value;
   ace;
   output;
   input;
   description;
   language: string;
-  constructor() {
+  constructor(
+    private contestService: ContestService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.content =
 `#include<stdio.h>
 
@@ -72,7 +80,7 @@ public class Solution {
 
     myFunction() {
       const checkBox = <any> document.getElementById('myCheck');
-      const text = document.getElementById('text');
+      const text = document.getElementById('input');
       if (checkBox.checked === true) {
         text.style.display = 'block';
       } else {
@@ -81,17 +89,22 @@ public class Solution {
     }
 
     onRun() {
-     /* const lang = $('#select').val();
-      const editor = this.ace.edit('description');
-      this.content = editor.getValue('description');
+      const lang = $('#select').val();
       const p = this.content;
-      const inp = ((document.getElementById('myTextArea') as HTMLInputElement).value);
+      this.test = (document.getElementById('myTextarea') as HTMLInputElement).value;
+      console.log(this.test);
       this.currentFileUpload = btoa(p);
-      const test = {
-        input: inp,
+      const test1 = {
+        input: this.test,
         language : lang,
         description: this.currentFileUpload
-      }*/
+      }
+      this.contestService.addTest(test1).subscribe(data => {
+        this.contestService.setTest(data.msg);
+      });
+
+      const text = document.getElementById('myOutputArea');
+        text.style.display = 'block';
 }
 }
 
