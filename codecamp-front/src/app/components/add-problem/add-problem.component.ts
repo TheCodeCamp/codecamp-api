@@ -12,7 +12,8 @@ export class AddProblemComponent implements OnInit {
   form: FormGroup;
   contest;
   Input;
-   Output;
+  Output;
+  image;
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -66,6 +67,17 @@ export class AddProblemComponent implements OnInit {
         }
       }
 
+  onFileChange3(event) {
+    let reader = new FileReader();
+      if(event.target.files && event.target.files.length > 0) {
+        let file = event.target.files[0];
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.image = reader.result.split(',')[1];
+          };
+        }
+      }
+
   onAddProblemSubmit() {
     const problem = {
       code: this.form.get('code').value,
@@ -82,10 +94,10 @@ export class AddProblemComponent implements OnInit {
       sourcelimit: this.form.get('sourcelimit').value,
       author: this.form.get('author').value,
       testCaseInput: this.Input,
-      testCaseOutput: this.Output
+      testCaseOutput: this.Output,
+      image: this.image
     };
 
-    
 
     this.contestService.addProblem(problem, this.contest).subscribe(data => {
       if (!data.success) {

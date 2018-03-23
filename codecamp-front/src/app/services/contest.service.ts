@@ -20,20 +20,19 @@ export class ContestService {
   public sol;
   public toggler: boolean;
 
-  private timer = new BehaviorSubject<String>('0d 0h 0m 0s');
-  time = this.timer.asObservable();
 
-  private contestSource = new BehaviorSubject<string>("default contest");
+
+  private contestSource = new BehaviorSubject<string>('INFINITY WAR');
   currentContest = this.contestSource.asObservable();
 
-  private Toggler = new BehaviorSubject<boolean>(true);
+  private Toggler = new BehaviorSubject<boolean>(true); 
   toggle = this.Toggler.asObservable();
 
   public activeContest = new Subject();
   constructor(
     private http: Http
   ) { }
-
+  public time: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
@@ -51,39 +50,39 @@ export class ContestService {
 
   public addContest(contest) {
     return this.http
-      .post( this.domain + 'contest', contest)
+      .post( this.domain +  'contest', contest)
         .map(res => res.json());
   }
 
   public getContest(): Observable<any> {
-    return this.http.get( this.domain + 'contest')
+    return this.http.get( this.domain +  'contest')
         .map(res => res.json());
   }
 
   public addProblem(problem, contest): Observable<any> {
-    return this.http.post(this.domain + 'contest/' + contest, problem)
+    return this.http.post('contest/' + contest, problem)
       .map(res => res.json());
   }
 
   public getProblems(contest): Observable<any> {
-    return this.http.get( this.domain + 'contest/' + contest)
+    return this.http.get( 'contest/' + contest)
         .map(res => res.json());
   }
 
   public getProblem(code, contest): Observable<any> {
-    return this.http.get(this.domain + 'contest/' + contest + '/problems/' + code)
-      .map(res =>res.json());
+    return this.http.get(this.domain +  'contest/' + contest + '/problems/' + code)
+      .map(res => res.json());
   }
 
   public addSolution(solution): Observable<any> {
-    return this.http.post(this.domain + 'solution', solution)
+    return this.http.post('solution', solution)
       .map(res => res.json());
   }
   public deleteContest(contest) {
-    return this.http.delete(this.domain + 'contest/' + contest)
+    return this.http.delete(this.domain +  'contest/' + contest)
       .map(res => res.json());
   }
-  public setSolution(sol){
+  public setSolution(sol) {
     this.sol = sol;
   }
   public getSolution() {
@@ -91,18 +90,15 @@ export class ContestService {
   }
 
   changeContest(contest: string) {
-    this.contestSource.next(contest)
+    this.contestSource.next(contest);
   }
 
   getRankings(contest) {
-    return this.http.get(this.domain + 'rankings/' + contest)
+    return this.http.get('rankings/' + contest)
       .map(res => res.json());
   }
-  ontoggle(value: boolean){
+  ontoggle(value: boolean) {
     this.Toggler.next(value);
   }
 
-  onTimeSave(value) {
-    this.timer.next(value);
-  }
 }

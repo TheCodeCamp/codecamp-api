@@ -105,16 +105,6 @@ var UserSchema = new mongoose.Schema({
     }]
 });
 
-
-UserSchema.pre('save',function(next) {
-    var user =this;
-    bcrypt.hash(user.password, 10).then(function(hash) {
-        user.password=hash;
-        next();
-    }).catch((e)=>{
-        next(err);
-    });
-});
   
 
 UserSchema.methods.toJSON = function() {

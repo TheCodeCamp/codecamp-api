@@ -97,7 +97,8 @@ router.get('/',(req,res)=>{
         name   : true,
         id : true,
         startTime: true,
-        endTime: true
+        endTime: true,
+        description: true
     }
     Contest.find({},projection,(err,contest)=>{
         if(err){
@@ -128,7 +129,7 @@ router.get('/',(req,res)=>{
 
 router.post('/:id' , (req,res)=>{
     const id = req.params.id;
-    var body = _.pick(req.body,['code','name','successfulSubmission','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','image','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
+    var body = _.pick(req.body,['code','name','successfulSubmission','image','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
 
     var problem = new Problem(body);
    problem.save().then((pro) => {

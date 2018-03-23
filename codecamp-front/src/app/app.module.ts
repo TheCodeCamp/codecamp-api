@@ -41,6 +41,9 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { IwedgeComponent } from './components/iwedge/iwedge.component';
+import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
+//import { CountDown } from 'ng2-date-countdown';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     SolultionSubmitComponent,
     PreloaderComponent,
     SidebarComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    IwedgeComponent,
+    ContestiwComponent,
+    //CountDown
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     FlashMessagesModule.forRoot()
   ],
   providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
-    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}, ],
+    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

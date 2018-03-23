@@ -24,26 +24,34 @@ import { ContestService } from '../../services/contest.service';
 export class NavbarComponent implements OnInit{
 
   user: any;
-  toggle: boolean = true;
+  users;
+  toggle = true;
   constructor(
     public authService: AuthService,
     private router: Router,
     private contestService: ContestService
   ) {
-  }
+    /*this.authService.name.subscribe(value => {
+      this.user = value ;
+    });*/
+    this.users = authService.getProfile().subscribe(profile => {
+      this.user = profile.msg.username;
+      //console.log(this.user);
+  });
+  //console.log(this.user);
+}
 
   ngOnInit() {
     this.contestService.toggle.subscribe(toggle => this.toggle = toggle);
-    this.user = this.authService.getProfile().subscribe(profile => {
-      this.user = profile.msg;
-    });
   }
 
   onLogoutClick() {
     this.authService.logout(); // Logout user
     this.router.navigate(['/']); // Navigate back to home page
   }
+  undefined() {
 
+  }
   onToggle(){
     this.toggle = this.toggle? false:true;
     this.contestService.ontoggle(this.toggle);

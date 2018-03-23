@@ -57,6 +57,9 @@ const ProblemSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.String,
         refs:'User'
     }],
+    image:{
+        type:String
+    },
     author:{
         type:String
     },
@@ -66,6 +69,9 @@ const ProblemSchema = new mongoose.Schema({
     },
     testCaseOutput:{
         type:String,
+    },
+    image: {
+        type: String
     },
     contest:{
         type:mongoose.Schema.Types.String,

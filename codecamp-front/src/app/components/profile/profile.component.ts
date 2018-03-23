@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    console.log(this.user);
     }
     onSubmitSel() {
       this.router.navigate([this.user.username, 'edit-profile']);

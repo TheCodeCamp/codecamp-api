@@ -15,7 +15,12 @@
               <li class="breadcrumb-item active" aria-current="page">{{contestname}}</li>
             </ol>
           </nav>
-      <h1 class="display-4">{{contestname}}</h1>
+          <div class="row">
+            <div class="col-md-7"><h1 class="display-4">{{contestname}}</h1></div>
+
+          </div>
+
+
     </div>
   </div>
   <div class="row">
@@ -49,10 +54,15 @@
       <div class="timer">
         <p>Time to start</p>
         <div id="timer">
-          <span id="days"></span>days
-          <span id="hours"></span>hours
-          <span id="minutes"></span>minutes
-          <span id="seconds"></span>seconds
+          <!--<span>{{days}}</span>days
+          <span>{{hours}}</span>hours
+          <span>{{minutes}}</span>minutes
+          <span>{{seconds}}</span>seconds
+          <span id="day"></span>days
+          <span id="hour"></span>hours
+          <span id="minute"></span>minutes
+          <span id="second"></span>seconds-->
+          {{times}}
         </div>
       </div>
       <div class="ranking">

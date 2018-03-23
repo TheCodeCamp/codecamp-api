@@ -25,6 +25,8 @@ import { SolultionSubmitComponent } from './components/solultion-submit/solultio
 import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { IwedgeComponent } from './components/iwedge/iwedge.component';
+import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
 
 
 const appRoutes: Routes = [
@@ -49,6 +51,15 @@ const appRoutes: Routes = [
     {
       path: 'practice',
       component: PracticeComponent
+    },
+    {
+      path: 'iwedge',
+      component: IwedgeComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path:'iwedge/contest',
+      component: ContestiwComponent
     },
     {
       path: 'contest',

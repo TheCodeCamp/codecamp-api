@@ -11,11 +11,12 @@ const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27018/OnlineJudge')
-
+app.use(express.static(__dirname+'/public/'));
 const bodyParser = require('body-parser');
 app.use(cors())
-app.use( bodyParser.json() );
-app.use(bodyParser.urlencoded({     
+app.use( bodyParser.json({limit:'100mb'}) );
+app.use(bodyParser.urlencoded({   
+    limit:'100mb'  ,
     extended: true
 }));
 
@@ -30,7 +31,7 @@ app.use(session({
     cookie: {
       secure: true,
       httpOnly: true,
-      domain: 'localhost:3000',
+      domain: 'localhost:8080',
       expires: expiryDate
     }
   }))
@@ -54,8 +55,8 @@ app.get('/',(req,res)=>{
   res.send()
 })
 
-const port = process.env.PORT || 80;
-app.listen(8080);
+const port = process.env.PORT || 8080;
+app.listen(port);
 console.log('magic is started at ' + port)
 
 module.exports={app}

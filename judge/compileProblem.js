@@ -12,7 +12,7 @@ const compileProblem= async (lang , filename)=>{
     switch(lang){
         case "c":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename;
+            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
@@ -26,7 +26,7 @@ const compileProblem= async (lang , filename)=>{
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
         if (error) {
-          //console.error(`${error}`);
+          console.error(`${error}`);
           reject(error);
         }
         resolve(file)

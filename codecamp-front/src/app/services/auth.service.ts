@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
   import 'rxjs/add/operator/map';
   import { tokenNotExpired } from 'angular2-jwt';
 import 'rxjs/add/operator/toPromise';
+import { Subject } from 'rxjs/Subject';
 
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AuthService {
   constructor(
   private http: Http
   ) { }
-
+  public name: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
@@ -49,11 +50,11 @@ export class AuthService {
    // Set user in local storage as string
     this.authToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
-    // this.user.isAdmin = user.isAdmin;
+     this.user.isAdmin = user.isAdmin;
   }
 
   public checkisAdmin() {
-    const user = JSON.parse(localStorage.getItem('user'));
+    let user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined || user === null) {
       return false;
     } else if (user.isAdmin === true) {
@@ -62,7 +63,7 @@ export class AuthService {
   }
 
   public getUsername() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     return user;
   }
 
