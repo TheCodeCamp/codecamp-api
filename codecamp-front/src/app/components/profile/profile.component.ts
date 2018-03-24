@@ -16,13 +16,10 @@ export class ProfileComponent implements OnInit {
   ) {
      this.user = authService.getProfile().subscribe(profile => {
        this.user = profile.msg;
-        //console.log(JSON.stringify(this.user));
      });
-      //console.log(this.user);
   }
 
   ngOnInit() {
-    console.log(this.user);
     }
     onSubmitSel() {
       this.router.navigate([this.user.username, 'edit-profile']);

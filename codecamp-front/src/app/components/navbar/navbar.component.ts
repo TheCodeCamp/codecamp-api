@@ -52,7 +52,7 @@ export class NavbarComponent implements OnInit{
   undefined() {
 
   }
-  onToggle(){
+  onToggle() {
     this.toggle = this.toggle? false:true;
     this.contestService.ontoggle(this.toggle);
   }

@@ -1,7 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,NgModule } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AceEditorModule } from 'ng2-ace-editor';
+import { FormsModule } from '@angular/forms';
+import { ContestService } from '../../services/contest.service';
 declare var jquery: any;
 declare var $: any;
 
@@ -11,13 +13,23 @@ declare var $: any;
   styleUrls: ['./ide.component.css']
 })
 export class IdeComponent implements OnInit {
-/*
+
   selectedLanguage = 'c_cpp';
   content: string;
+  test;
   currentFileUpload;
+  status;
   value;
   ace;
-  constructor() {
+  output;
+  input;
+  description;
+  language: string;
+  constructor(
+    private contestService: ContestService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.content =
 `#include<stdio.h>
 
@@ -28,11 +40,11 @@ int main()
 
 } `;
    }
-*/
+
    ngOnInit() {
 
   }
-/*
+
   selectLanguage(event) {
     this.selectedLanguage = event.target.value;
 
@@ -65,87 +77,35 @@ public class Solution {
       this.content = `print("Welcome To CodeCamp")`;
       }
   }
-onRun() {
-  const lang = $('#select').val();
-  const editor = this.ace.edit('description');
-    this.content = editor.getValue('description');
-    const p = this.content;
-    this.currentFileUpload = btoa(p);
-}
-*/
-}
 
-
-
-
-
-/*
-
-import { Component, OnInit, ViewChild, Output} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { ContestService } from '../../services/contest.service';
-import { EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import { AceEditorModule } from 'ng2-ace-editor';
-declare var jquery: any;
-declare var $: any;
-
-@Component({
-  selector: 'app-solultion-submit',
-  templateUrl: './solultion-submit.component.html',
-  styleUrls: ['./solultion-submit.component.css']
-})
-export class SolultionSubmitComponent implements OnInit {
-  selectedLanguage = 'c_cpp';
-  content;
-  problem;
-  contest;
-  username;
-  solution;
-  language: string;
-  currentFileUpload;
-  value;
-  @ViewChild('userFile') user_file;
-  constructor(
-    private contestService: ContestService,
-    private route: ActivatedRoute,
-    private authService: AuthService,
-
-
-
-  onFileChange(event){
-  let reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      let file = event.target.files[0];
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-         this.value = reader.result.split(',')[1];
-        };
+    myFunction() {
+      const checkBox = <any> document.getElementById('myCheck');
+      const text = document.getElementById('input');
+      if (checkBox.checked === true) {
+        text.style.display = 'block';
+      } else {
+        text.style.display = 'none';
       }
     }
 
-  onClickSubmit() {
-    const lang = $('#select').val();
-    const editor =ace.edit('description');
-    this.content = editor.getValue('description');
-    const p = this.content;
-    if (this.value) {
-      this.currentFileUpload = this.value;
-    } else {
+    onRun() {
+      const lang = $('#select').val();
+      const p = this.content;
+      this.test = (document.getElementById('myTextarea') as HTMLInputElement).value;
+      console.log(this.test);
       this.currentFileUpload = btoa(p);
-    }
-    const solution = {
-      problem : this.problem,
-      contest: this.contest,
-      username: this.username,
-      language: lang,
-      description: this.currentFileUpload
-    };
-    this.contestService.addSolution(solution).subscribe(data => {
-      this.contestService.setSolution(data.msg);
-      this.router.navigate(['/submit/complete']);
-    });
-  }
+      const test1 = {
+        input: this.test,
+        language : lang,
+        description: this.currentFileUpload
+      }
+      this.contestService.addTest(test1).subscribe(data => {
+        this.contestService.setTest(data.msg);
+      });
+
+      const text = document.getElementById('myOutputArea');
+        text.style.display = 'block';
 }
-*/
+}
+
+

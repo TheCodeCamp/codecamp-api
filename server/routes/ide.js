@@ -6,36 +6,41 @@ const router = express.Router();
 
 router.post('/',(req,res)=>{
     
-    const postData ={
-        'Hello':'World'
+    let data = {
+      language:req.body.language,
+      description:req.body.description,
+      input:req.body.input
     }
 
-    const ss = querystring.stringify(postData);
+    const dataString = querystring.stringify(data);
       
       const options = {
-        port: 80,
-        path: '/',
+        port: 3001,
+        path: '/ide',
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(ss)
+          'Content-Length': Buffer.byteLength(dataString)
         }
       };
       
       const reqtojudge = http.request(options, (resfromjudge) => {
         resfromjudge.setEncoding('utf8');
         resfromjudge.on('data', (chunk) => {
-          res.send(chunk);
+          res.json({
+            msg:'Yahoo!'
+            output:chunk
+          })
         });
       });
       
       reqtojudge.on('error', (e) => {
-        res.send('google');
+        res.send(e);
       });
       
       // write data to request body
-      reqtojudge.write(ss);
-      reqtojudge.end();
+      reqtojudge.write(dataString);
+      // reqtojudge.end();
 
 })
 

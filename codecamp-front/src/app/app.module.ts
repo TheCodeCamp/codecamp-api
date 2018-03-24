@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +43,14 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+<<<<<<< HEAD
 //import { CountDown } from 'ng2-date-countdown';
+=======
+import { ContactComponent } from './components/contact/contact.component';
+import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
+import { FooterComponent } from './components/footer/footer.component';
+
+>>>>>>> 39258bddc8cd2dda961e5f01e517300f3f496433
 
 @NgModule({
   declarations: [
@@ -68,17 +77,21 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     PreloaderComponent,
     SidebarComponent,
     EditProfileComponent,
-    //CountDown
+    ContactComponent,
+    IdeSubmitComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AceEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
     {provide: BrowserXhr, useClass: NgProgressBrowserXhr}, ],

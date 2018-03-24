@@ -25,6 +25,7 @@ import { SolultionSubmitComponent } from './components/solultion-submit/solultio
 import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 const appRoutes: Routes = [
@@ -66,6 +67,10 @@ const appRoutes: Routes = [
     {
       path: 'ide',
       component: IdeComponent
+    },
+    {
+      path: 'contact',
+      component: ContactComponent
     },
     {
       path: ':username/edit-profile',

@@ -1,6 +1,6 @@
 .main {
     background: white;
-    box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     padding-top: 30px;
 }
 
@@ -26,4 +26,5 @@ p{
   border: 1px solid #111;
   padding: 5%;
   background-color: rgb(201, 252, 235);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }

@@ -1,28 +1,47 @@
 
 <div class="row" *ngIf="user" >
-<div class="col col-md-4">
+  <div class="col col-md-4">
     <i class="fas fa-cloud-upload-alt"></i>
     <div class="profile-img">
         <img src="../assets/undefined.jpg" class="circle img-fluid" alt="user">
     </div>
-</div>
-<div class="col col-md-8">
-   <div class="bold"><b>{{user.name}}</b> ( {{user.username}})
-    <button class="btn btn-success"
-         (click)="onSubmitSel()">Edit</button>
   </div>
-  <div class="college">
-    {{user.college}}
-
+  <div class="col-md-6">
+     <div class="bold"><b>{{user.name}}</b>
+     </div>
   </div>
-
-  <br>
-  <ul class="list-group">
-      <li class="list-group-item">Email: {{user.email_id}}</li>
-      <li class="list-group-item">Date Of Birth: {{ user.dob }}</li>
-      <li class="list-group-item">City: {{ user.city }}</li>
-      <li class="list-group-item">Gender: {{ user.gender }}</li>
-      <li class="list-group-item">JoinedOn: {{ user.joinedOn }}</li>
-  </ul>
+  <div class="col-md-2">
+      <i class="fa fa-edit fa-lg" (click)="onSubmitSel()"></i>
+  </div>
 </div>
+
+<hr>
+
+<div class="container1">
+  <div class="row">
+    <div class="col-md-7">
+       <ul class="list-group">
+          <li class="list-group-item">Name:</li>
+          <li class="list-group-item">UserName:</li>
+          <li class="list-group-item">College:</li>
+          <li class="list-group-item">Email:</li>
+          <li class="list-group-item">Date Of Birth:</li>
+          <li class="list-group-item">City:</li>
+          <li class="list-group-item">Gender:</li>
+          <li class="list-group-item">JoinedOn:</li>
+       </ul>
+    </div>
+    <div class="col-md-5">
+      <ul class="list-group">
+          <li class="list-group-item">{{user.name}}</li>
+          <li class="list-group-item">{{user.username}}</li>
+          <li class="list-group-item">{{user.college}}</li>
+          <li class="list-group-item">{{user.email_id}}</li>
+          <li class="list-group-item">{{user.dob}}</li>
+          <li class="list-group-item">{{ user.city }}</li>
+          <li class="list-group-item">{{ user.gender }}</li>
+          <li class="list-group-item">{{ user.joinedOn }}</li>
+      </ul>
+    </div>
+  </div>
 </div>

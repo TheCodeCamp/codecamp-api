@@ -2,7 +2,7 @@
     background: white;
     border-bottom: 1px solid rgba(39,39,39,.1);
     padding: 1% 0.5%;
-    box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     cursor: pointer;
 }
 
@@ -29,11 +29,20 @@
 }
 
 .display-4{
-    padding-left: 1%; 
+    padding-left: 1%;
 }
 .main {
     margin-top: 1%;
     background: white;
     padding: 2%;
     border: 4px;
+}
+#timer1  b{
+  color: aquamarine;
+  margin-right: 7px;
+}
+
+#timer  b{
+  color: red;
+  margin-right: 13px;
 }
