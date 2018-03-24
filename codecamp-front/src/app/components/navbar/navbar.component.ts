@@ -56,5 +56,7 @@ export class NavbarComponent implements OnInit{
     this.toggle = this.toggle? false:true;
     this.contestService.ontoggle(this.toggle);
   }
-
+  onNotify() {
+    alert('I was clicked');
+  }
 }

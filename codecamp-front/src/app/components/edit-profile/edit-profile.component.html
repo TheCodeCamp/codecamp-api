@@ -1,3 +1,51 @@
+<app-navbar></app-navbar>
 <p>
     Edit-profile works
   </p>
+<div class="container">
+  <form>
+      <div class="form-group row">
+          <label for="name" class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="name" placeholder="Password" value={{user.name}}>
+          </div>
+        </div>
+       <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
+        <div class="col-sm-10">
+          <input type="text" readonly class="form-control-plaintext" id="staticName" value={{user.username}}>
+        </div>
+      </div>
+      <div class="form-group row">
+          <label for="college" class="col-sm-2 col-form-label">College</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="college" value={{user.college}}>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="dob" class="col-sm-2 col-form-label">Date Of Birth</label>
+          <div class="col-sm-10">
+            <input type="date"  id="dob" value={{user.dob}}/>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="city" class="col-sm-2 col-form-label">City</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="city" value={{user.city}}>
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+          <div class="col-sm-10">
+              <select class="form-control col-lg-4"
+              name="gender"
+              formControlName="gender"
+              value= {{user.gender}}
+              >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+      </div>
+    </form>
+  </div>

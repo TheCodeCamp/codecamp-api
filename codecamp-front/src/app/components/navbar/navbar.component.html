@@ -7,14 +7,16 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
+   <!--
     <ul class="navbar-nav mt-md-0">
       <li class="nav-item pl-2">
-        <i class="fa fa-bell" aria-hidden="true"></i>
+          <i class="fa fa-bell" id="bell" (click) = "onNotify()"></i>
       </li>
       <li class="nav-item pl-2">
         <i class="fa fa-th-list" aria-hidden="true"></i>
       </li>
     </ul>
+  -->
     <ul class="navbar-nav my-lg-0 ml-auto">
 
       <div class="dropdown show mr-4" *ngIf="authService.loggedIn()">

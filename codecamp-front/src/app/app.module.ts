@@ -46,6 +46,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ContactComponent } from './components/contact/contact.component';
 import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { FooterComponent } from './components/footer/footer.component';
     EditProfileComponent,
     ContactComponent,
     IdeSubmitComponent,
-    FooterComponent
+    FooterComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
