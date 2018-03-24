@@ -12,7 +12,7 @@ const compileProblem= async (lang , filename)=>{
     switch(lang){
         case "c":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename;
+            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
@@ -26,7 +26,7 @@ const compileProblem= async (lang , filename)=>{
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
         if (error) {
-          //console.error(`${error}`);
+         // console.error(`${error}`);
           reject(error);
         }
         resolve(file)
@@ -88,9 +88,14 @@ const serverResult = async (contest,problem)=>{
     })
 }
 
-const base64tofile = async (base64,lang)=>{
+const base64tofile = async (base64,lang,ide)=>{
     const fileout=new Buffer(base64,'base64').toString('ascii');
-    let filename = 'Solution.';
+    let filename;
+    if(ide){
+        filename = 'Main.';
+    }else{
+        filename = 'Solution.';
+    }
     if(lang=='C++'|| lang == 'c++'){
         filename+='cpp';
     }else{
@@ -107,7 +112,7 @@ const base64tofile = async (base64,lang)=>{
 }
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
-    const filename= await base64tofile(description,lang);
+    const filename= await base64tofile(description,lang,0);
     const file = await compileProblem(lang,filename);
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
