@@ -4,12 +4,19 @@
   background: aliceblue;
   box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
 }
+.row{
+  margin: 2%;
+}
 option[disabled] { display: none; }
 
 .form-control{
   border-radius: 1.5rem;
 }
+input{
+  padding: 6px;
+  box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
 
+}
 label{
   padding-top: 6px;
 }
@@ -29,4 +36,8 @@ label{
 }
 input, select, label{
   font-size: 22px;
+}
+#save{
+  padding:10px;
+  margin-left: 50%;
 }

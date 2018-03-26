@@ -90,6 +90,7 @@ export class ContestService {
     return this.sol;
   }
   public getTest() {
+    //console.log(this.test);
     return this.test;
   }
   public setTest(test) {
@@ -98,6 +99,7 @@ export class ContestService {
   public addTest(test): Observable<any> {
     return this.http.post(  this.domain +  'ide', test)
       .map(res => {
+        this.test = res.json();
         res.json();
       });
   }

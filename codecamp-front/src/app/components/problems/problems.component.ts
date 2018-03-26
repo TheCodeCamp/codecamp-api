@@ -70,40 +70,41 @@ export class ProblemsComponent implements OnInit {
           timeBetweenDates(compareDate);
         }, 1000);*/
           setInterval((() => {
-         const dateEntered = compareDate;
-          var now = new Date();
-          var difference = dateEntered.getTime() - now.getTime();
+          if(compareDate){
+              const dateEntered = new Date(compareDate);
+              var now = new Date();
+              var difference = dateEntered.getTime() - now.getTime();
 
-          if (difference <= 0) {
+               if (difference <= 0) {
+                  // Timer done
+                    clearInterval(timer);
+                     this.times = '';
+                } else {
 
-            // Timer done
-            clearInterval(timer);
-            this.times = '';
-          } else {
+                    var second = Math.floor(difference / 1000);
+                    var minute = Math.floor(second / 60);
+                    var hour = Math.floor(minute / 60);
+                    var day = Math.floor(hour / 24);
 
-            var second = Math.floor(difference / 1000);
-            var minute = Math.floor(second / 60);
-            var hour = Math.floor(minute / 60);
-            var day = Math.floor(hour / 24);
+                    hour %= 24;
+                    minute %= 60;
+                    second %= 60;
+                    // console.log(day,hour,minute,second);
+                      // this.days = day;
+                      // this.hours = hour;
+                      // this.minutes = minute;
+                      // this.seconds = second;
+                      /*$("#day").text(day);
+                      $("#hour").text(hour);
+                      $("#minute").text(minute);
+                      $("#second").text(second);
+                      var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
+                      ////this.contestService.time.next(temp);
+                      //this.contestService.time.subscribe(value => this.times = value);*/
+                      this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
 
-            hour %= 24;
-            minute %= 60;
-            second %= 60;
-            // console.log(day,hour,minute,second);
-              // this.days = day;
-              // this.hours = hour;
-              // this.minutes = minute;
-              // this.seconds = second;
-              /*$("#day").text(day);
-              $("#hour").text(hour);
-              $("#minute").text(minute);
-              $("#second").text(second);
-              var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
-              ////this.contestService.time.next(temp);
-              //this.contestService.time.subscribe(value => this.times = value);*/
-              this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
-
-          }
+                  }
+            }
         }), 1000);
 
     });

@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit {
   ) {
      this.user = authService.getProfile().subscribe(profile => {
        this.user = profile.msg;
+       this.user.dob = this.replaceTZ(this.user.dob);
+       this.user.joinedOn = this.replaceTZ(this.user.joinedOn);
      });
   }
 
@@ -23,5 +25,12 @@ export class ProfileComponent implements OnInit {
     }
     onSubmitSel() {
       this.router.navigate([this.user.username, 'edit-profile']);
+    }
+    replaceTZ(time) {
+      if(time !== undefined ){
+      let t1 = time.replace(/[TZ]|.000/g , ' ');
+      t1 = t1.split(' ');
+      return t1[0];
+      }
     }
 }

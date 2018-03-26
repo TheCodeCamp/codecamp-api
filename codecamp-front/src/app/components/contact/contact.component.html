@@ -4,19 +4,43 @@
   <div class="row">
     <div class="col-md-7">
 
-          <div class="form-group">
-              <div class="disp">Get In Touch !</div>
-              <p>Please fillout the quick formand we will be in touch with lightening speed</p>
+       <div class="form-group">
+          <div class="disp">Get In Touch !</div>
+            <p>Please fillout the quick form and we will be in touch with lightening speed</p>
+            <div class="col-md-8">
+            <hr class="my-4">
+            <form [formGroup]="form" (submit)="onSend()">
+                    <input type="text"
+                    name="name"
+                    formControlName="name"
+                    class="form-control"
+                    placeholder="Enter Name"
+                    >
+                    <input type="text"
+                    name="email_id"
+                    formControlName="email_id"
+                    class="form-control"
+                    placeholder="Email Id"
+                    >
+                      <textarea type="text"
+                      name="message"
+                      formControlName="message"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter Message"
+                      ></textarea>
+                      <input
+                        type="submit" class="btn-lg btn-primary"
+                        value="Send">
 
-              <div class="col-md-8">
-                <hr class="my-4">
-                <input type=text class="form-control" id="name" placeholder="Name">
-                <input type="email" class="form-control" id="emailId" placeholder="Email Id">
-                <textarea class="form-control" id="message" rows="3" placeholder="Message"></textarea>
-                <button class="btn btn-lg btn-success">Send</button>
+            </form>
               </div>
           </div>
       </div>
+
+
+
+
       <div class="col-md-1"></div>
       <div class="col-md-4">
         <div class="container" id="ques">

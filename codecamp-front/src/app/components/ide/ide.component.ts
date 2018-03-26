@@ -63,7 +63,7 @@ int main()
       this.content =
         `import java.util.*;
 
-public class Solution {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -101,12 +101,14 @@ public class Solution {
       };
       console.log(test1);
       this.contestService.addTest(test1).subscribe(data => {
-       //console.log(data);
-      });
 
+      this.output = this.contestService.getTest();
+      console.log(this.output);
+      });
       const text = document.getElementById('myOutputArea');
         text.style.display = 'block';
 }
+
 }
 
 

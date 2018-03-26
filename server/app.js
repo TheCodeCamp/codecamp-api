@@ -54,10 +54,12 @@ app.use('/contest', contest);
 app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
-app.post('/',(req,res)=>{
-  console.log(req.body.Hello);
-  res.send('hdfdhfh');
-})
+
+
+// app.post('/',(req,res)=>{
+//   console.log(req.body.Hello);
+//   res.send('hdfdhfh');
+// })
 
 const port = process.env.PORT || 80;
 app.listen(port,'0.0.0.0');

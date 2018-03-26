@@ -5,14 +5,14 @@ const querystring = require('querystring');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
-  console.log(req.body)
+ // console.log(req.body)
     
     let data = {
-      language:req.body.language,
+      language:(req.body.language).toLowerCase(),
       description:req.body.description,
       input:req.body.input
     }
-
+    
     const dataString = querystring.stringify(data);
       
       const options = {
@@ -26,23 +26,23 @@ router.post('/',(req,res)=>{
       };
       
       const reqtojudge = http.request(options, (resfromjudge) => {
-        resfromjudge.setEncoding('utf8');
-        let body;
-        body+= chunk; 
-        resfromjudge.on('data',(chunk) => {
-          body.push(chunk);
-        })
-        resfromjudge.on('end', () => {
-          res.send({
-            msg:'Yahoo!',
-            output:body
-          })
+        resfromjudge.setEncoding('utf8');   
+        let body = '';     
+        resfromjudge.on('data', (chunk) => {
+          body+=chunk;
         });
+        resfromjudge.on('end', () => {
+          console.log(JSON.parse(body));
+          res.send(JSON.parse(body));
+        });
+        
       });
+
+      reqtojudge.on('error',(e)=>{
+        console.error(`problem with request: ${e.message}`);
+      })
       
-      reqtojudge.on('error', (e) => {
-        res.send(e);
-      });
+      
       
       // write data to request body
       reqtojudge.write(dataString);
