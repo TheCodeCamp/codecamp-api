@@ -43,14 +43,11 @@ import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
-<<<<<<< HEAD
-//import { CountDown } from 'ng2-date-countdown';
-=======
 import { ContactComponent } from './components/contact/contact.component';
 import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
->>>>>>> 39258bddc8cd2dda961e5f01e517300f3f496433
 
 @NgModule({
   declarations: [
@@ -79,7 +76,8 @@ import { FooterComponent } from './components/footer/footer.component';
     EditProfileComponent,
     ContactComponent,
     IdeSubmitComponent,
-    FooterComponent
+    FooterComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
