@@ -13,21 +13,44 @@ router.post('/',(req,res)=>{
     };
     IR.IdeSolution(option)
         .then((result)=>{
-            console.log(result)
-            res.send(result);
+           // console.log(result)
+        //    let size = sizeOf((result.res.toString()).le
+            let obj = {
+                output:result.res,
+                time:result.time,
+                msg:'sucess',
+            }
+            obj = JSON.stringify(obj);
+            res.send(obj);
         })
         .catch((err)=>{
-            var compileError = /(g[/++/]|gcc|javac)/;
+            console.log(err)
+            var compileError = /(g[/++/]|gcc|javac|CE)/;
             if(err.toString().match(compileError)){
                 let error = err.toString();
                 error = error.substring(error.indexOf("\n") + 1);
-                res.send(error);
+                let obj = {
+                    output:error,
+                    time:"0",
+                    msg:'Compilation Error',
+                }
+                res.send(obj);
             }else if(err.timelimit*1000>=option.timeout){
-                res.status(200).send('Time Limit Exceed');
+                let obj = {
+                    output:'',
+                    time:option.timeout,
+                    msg:'Time Limit Exceed',
+                }
+                res.status(200).send(obj);
             }else{
                 let error = (err.error).toString();
+                let obj = {
+                    output:error,
+                    time:err.timelimit,
+                    msg:'Run Time Error',
+                }
                 error = error.substring(error.indexOf("\n") + 1);
-                res.send(error);
+                res.send(obj);
             }
         })
 

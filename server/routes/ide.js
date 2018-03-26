@@ -7,11 +7,11 @@ const router = express.Router();
 router.post('/',(req,res)=>{
     
     let data = {
-      language:req.body.language,
+      language:(req.body.language).toLowerCase(),
       description:req.body.description,
       input:req.body.input
     }
-
+    
     const dataString = querystring.stringify(data);
       
       const options = {
@@ -25,22 +25,26 @@ router.post('/',(req,res)=>{
       };
       
       const reqtojudge = http.request(options, (resfromjudge) => {
-        resfromjudge.setEncoding('utf8');
+        resfromjudge.setEncoding('utf8');   
+        let body = '';     
         resfromjudge.on('data', (chunk) => {
-          res.json({
-            msg:'Yahoo!'
-            output:chunk
-          })
+          body+=chunk;
         });
+        resfromjudge.on('end', () => {
+          res.send(JSON.parse(body));
+        });
+        
       });
+
+      reqtojudge.on('error',(e)=>{
+        console.error(`problem with request: ${e.message}`);
+      })
       
-      reqtojudge.on('error', (e) => {
-        res.send(e);
-      });
+      
       
       // write data to request body
       reqtojudge.write(dataString);
-      // reqtojudge.end();
+      reqtojudge.end();
 
 })
 

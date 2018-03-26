@@ -7,7 +7,7 @@ const buffer = require('buffer')
 
 //Compile program and check for error if okay the run it
 
-const compileProblem= async (lang , filename)=>{
+const compileProblem= async (lang , filename,checkFile)=>{
     var cmd,file;
     switch(lang){
         case "c":
@@ -28,6 +28,20 @@ const compileProblem= async (lang , filename)=>{
         if (error) {
          // console.error(`${error}`);
           reject(error);
+        }
+        if(checkFile){
+            if(file.match(/Main/)){
+                resolve(file);
+            }else{
+                reject("CE \n Class name must be Public Main");
+            }
+
+        }else{
+            if(file.match(/Solution/)){
+                resolve(file);
+            }else{
+                reject("CE \n Class name must be Public Solution");
+            }
         }
         resolve(file)
       }); 
@@ -104,6 +118,7 @@ const base64tofile = async (base64,lang,ide)=>{
     return new Promise((resolve,reject)=>{
         fs.writeFile(path.join(__dirname ,'result/source/'+filename),fileout, function(err) {
             if(err) {
+                console.log(path.join(__dirname ,'result/source/'+filename));
                 reject('Can not write file');
             }
             resolve(filename);
@@ -113,7 +128,7 @@ const base64tofile = async (base64,lang,ide)=>{
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
     const filename= await base64tofile(description,lang,0);
-    const file = await compileProblem(lang,filename);
+    const file = await compileProblem(lang,filename,0);
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
     const serverRes= await serverResult(contest,problem);
