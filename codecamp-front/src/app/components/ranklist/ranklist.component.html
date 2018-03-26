@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let rank of ranks; let i=index;">
+        <tr *ngFor="let rank of ranks; let i=index;" id="tbl">
           <th scope="row">{{i}}</th>
           <td>{{rank.name}}</td>
           <td>{{rank.score}}</td>

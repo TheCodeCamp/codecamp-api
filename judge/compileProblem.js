@@ -8,18 +8,25 @@ const buffer = require('buffer')
 //Compile program and check for error if okay the run it
 
 const compileProblem= async (lang , filename)=>{
+    console.log(lang)
     var cmd,file;
     switch(lang){
         case "c":
+        case "C":
             file = path.basename(filename,'.c') +".out ";
             cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
+        case "C++":
+        case "CPP":
+        case "Cpp":
             file = path.basename(filename,'.cpp')+".out";
             cmd="cd "+"\""+ path.join(__dirname,"result/source") +"\""+ " && g++ -o \"" + path.join(__dirname,"result/binary/")+ "\""+file + " " +filename;
             break;
         case "java":
+        case "JAVA":
+        case "Java":
             file = path.basename(filename,'.java')
             cmd ="cd "+"\""+ path.join(__dirname,"result/source") + "\" && javac -d \"" + path.join(__dirname,"result/binary/") +"\" " +filename;
     }        

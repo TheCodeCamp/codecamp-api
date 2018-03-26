@@ -24,5 +24,11 @@ export class EditProfileComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  replaceTZ(time) {
+    if(time !== undefined ){
+    let t1 = time.replace(/[TZ]|.000/g , ' ');
+    t1 = t1.split(' ');
+    return t1[0];
+    }
+  }
 }

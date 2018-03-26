@@ -70,7 +70,7 @@ export class ProblemsComponent implements OnInit {
           timeBetweenDates(compareDate);
         }, 1000);*/
           setInterval((() => {
-          var dateEntered = compareDate;
+         const dateEntered = compareDate;
           var now = new Date();
           var difference = dateEntered.getTime() - now.getTime();
 
@@ -109,6 +109,12 @@ export class ProblemsComponent implements OnInit {
     });
     this.contestService.currentContest.subscribe(contest => this.contestname = contest);
 
+
+  }
+
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
 
   }
   tickerFunc(tick) {

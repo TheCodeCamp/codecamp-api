@@ -5,7 +5,7 @@ const router = express.Router();
 router.post('/',(req,res)=>{
 
     const body = req.body;
-    console.log(body);
+    // console.log(body);
     const option = {
         language:body.language,
         description:body.description,
@@ -17,6 +17,7 @@ router.post('/',(req,res)=>{
             res.send(result);
         })
         .catch((err)=>{
+            console.log(err)
             var compileError = /(g[/++/]|gcc|javac)/;
             if(err.toString().match(compileError)){
                 let error = err.toString();

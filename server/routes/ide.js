@@ -5,6 +5,7 @@ const querystring = require('querystring');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
+  console.log(req.body)
     
     let data = {
       language:req.body.language,
@@ -26,10 +27,15 @@ router.post('/',(req,res)=>{
       
       const reqtojudge = http.request(options, (resfromjudge) => {
         resfromjudge.setEncoding('utf8');
-        resfromjudge.on('data', (chunk) => {
-          res.json({
+        let body;
+        body+= chunk; 
+        resfromjudge.on('data',(chunk) => {
+          body.push(chunk);
+        })
+        resfromjudge.on('end', () => {
+          res.send({
             msg:'Yahoo!',
-            output:chunk
+            output:body
           })
         });
       });
@@ -40,7 +46,7 @@ router.post('/',(req,res)=>{
       
       // write data to request body
       reqtojudge.write(dataString);
-      // reqtojudge.end();
+      reqtojudge.end();
 
 })
 
