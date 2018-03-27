@@ -63,6 +63,9 @@ async function runCompiled(lang,file,contest,problem,option,t0){
             break;
         case "java":
             cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            break;
+        case "python":
+            cmd = "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
     }
     
     return new Promise((resolve,reject)=>{
@@ -112,6 +115,8 @@ const base64tofile = async (base64,lang,ide)=>{
     }
     if(lang=='C++'|| lang == 'c++'){
         filename+='cpp';
+    }else if(lang==='python'){
+        filename+='.py';
     }else{
         filename+=lang;
     }
@@ -127,8 +132,11 @@ const base64tofile = async (base64,lang,ide)=>{
 }
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
+    console.log(contest)
     const filename= await base64tofile(description,lang,0);
-    const file = await compileProblem(lang,filename,0);
+    if(lang!=='python'){
+        const file = await compileProblem(lang,filename,0);
+    }
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
     const serverRes= await serverResult(contest,problem);
