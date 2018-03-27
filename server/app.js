@@ -44,16 +44,22 @@ app.use(helmet());
 app.use(express.static(__dirname+'/public'))
 //Routes
 const contest = require('./routes/contest');
+const ide = require('./routes/ide');
 const users = require('./routes/users');
 const solutions = require('./routes/solution');
 const rankings = require('./routes/ranking');
+
+app.use('/ide',ide);
 app.use('/contest', contest);
 app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
-app.get('/',(req,res)=>{
-  res.send()
-})
+
+
+// app.post('/',(req,res)=>{
+//   console.log(req.body.Hello);
+//   res.send('hdfdhfh');
+// })
 
 const port = process.env.PORT || 80;
 app.listen(port, '0.0.0.0');

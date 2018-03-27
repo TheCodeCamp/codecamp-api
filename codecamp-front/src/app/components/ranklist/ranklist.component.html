@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-     <!-- <p *ngIf="problems?.length===0">No Successful Solutions Submitted Yet.</p> -->
+      <p *ngIf="ranks===undefined">No Successful Solutions Submitted Yet.</p>
 
       <!--
       <nav aria-label="Page navigation example">
@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let rank of ranks; let i=index;">
+        <tr *ngFor="let rank of ranks; let i=index;" id="tbl">
           <th scope="row">{{i}}</th>
           <td>{{rank.name}}</td>
           <td>{{rank.score}}</td>

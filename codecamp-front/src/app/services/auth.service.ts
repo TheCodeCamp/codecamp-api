@@ -42,6 +42,11 @@ export class AuthService {
     .map(res => res.json());
   }
 
+
+  public editUser(user) {
+    return this.http.patch(this.domain + 'users/:' + user.username + '/edit', user)
+    .map(res => res.json());
+  }
   public storeUserData(token, user) {
 
     localStorage.setItem('token', token); // Set token in local storage

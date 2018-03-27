@@ -37,7 +37,7 @@ export class SolutionSubmitComponent implements OnInit {
 int main()
 {
 
-    printf("Welcome To CodeCamp");
+    printf("Welcome To HackerCamp");
     return 0;
 
 }
@@ -63,7 +63,7 @@ int main()
 int main()
 {
 
-    printf("Welcome To CodeCamp");
+    printf("Welcome To HackerCamp");
     return 0;
 }`;
     } else if (this.selectedLanguage === 'java') {
@@ -74,14 +74,14 @@ public class Solution {
 
     public static void main(String[] args) {
 
-        System.out.print("Welcome To CodeCamp");
+        System.out.print("Welcome To HackerCamp");
 
     }
 
 }
         `;
       } else if (this.selectedLanguage === 'python') {
-      this.content = `print("Welcome To CodeCamp")`;
+      this.content = `print("Welcome To HackerCamp")`;
       }
   }
   onFileChange(event) {

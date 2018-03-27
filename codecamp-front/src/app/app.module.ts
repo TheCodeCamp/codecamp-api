@@ -47,8 +47,9 @@ import { IwedgeComponent } from './components/iwedge/iwedge.component';
 import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
 //import { CountDown } from 'ng2-date-countdown';
 import { ContactComponent } from './components/contact/contact.component';
-import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NotificationComponent } from './components/notification/notification.component';
+
 
 @NgModule({
   declarations: [
@@ -79,8 +80,8 @@ import { FooterComponent } from './components/footer/footer.component';
     ContestiwComponent,
     //CountDown
     ContactComponent,
-    IdeSubmitComponent,
-    FooterComponent
+    FooterComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

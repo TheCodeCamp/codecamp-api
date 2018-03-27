@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 #include <stdio.h>
 #include <string.h>
 int main()
@@ -26,7 +24,6 @@ int main()
     }
     return 0;
 }
-=======
 import java.util.*;
 import java.lang.Math;
 class ordteams
@@ -120,6 +117,8 @@ class ordteams
 } 
 >>>>>>> 6b9a84523259144e34994839aeeb1470ef83ebe7
 =======
+=======
+>>>>>>> a72eb96552fd5bdfa8b6e869294ca26d813213f1
 #include<stdio.h>
 //#include<bits/stdc++.h>
 //using namespace std;
@@ -130,4 +129,7 @@ int main()
     return 0;
 
 }
+<<<<<<< HEAD
 >>>>>>> 39258bddc8cd2dda961e5f01e517300f3f496433
+=======
+>>>>>>> a72eb96552fd5bdfa8b6e869294ca26d813213f1

@@ -46,6 +46,17 @@ export class AddContestComponent implements OnInit {
       endTime: this.form.get('endTime').value,
       description: this.form.get('description').value
     };
+    // console.log(typeof contest.startTime);
+    let time = contest.startTime;
+    time = new Date(time);
+    time = new Date(time.getTime() + 1000 * 60 * 60 * 5.5);
+    time = time.toISOString();
+    contest.startTime = time;
+    time = contest.endTime;
+    time = new Date(time);
+    time = new Date(time.getTime() + 1000 * 60 * 60 * 5.5);
+    time = time.toISOString();
+    contest.endTime = time;
     this.contestService.addContest(contest).subscribe(data => {
       if (!data.success) {
         console.log(data.msg);

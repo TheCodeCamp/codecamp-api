@@ -1,3 +1,4 @@
+
 <div class="container">
   <h4 class="display-4">Online IDE</h4>
   <hr>
@@ -11,7 +12,7 @@
       </select>
   </div>
   <div ace-editor id="description" cols="105" rows="28"
-        [text]="content"
+        [(text)]="content"
         class="aceEditorDirective"
         theme="sqlserver"
         mode="{{selectedLanguage}}"
@@ -48,8 +49,22 @@
 
       </div>
   </div>
-        <div id="myOutputArea" style="display:none">
-          <app-ide-submit></app-ide-submit>
-        </div>
+        <div id="myOutputArea" style="display:none" >
+            <div *ngIf="output !== undefined">
+              <strong>Status:</strong>{{output.msg}}
+              <strong>Time:</strong>{{output.time}}
+              <br>
+              <div id="text" class="alert alert-success submissionResult" role="alert">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>   
+                          <strong>{{output.output}}</strong>
+                        </span>            
+                    </div>
+                </div>
+            </div>
+            </div>
+          </div>
+
 </div>
 

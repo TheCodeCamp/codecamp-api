@@ -16,7 +16,7 @@ router.post('/',(req,res)=>{
         .then((contest)=>{
             fs.mkdir(__dirname+'/../../judge/result/input/'+contest.id,(err)=>{
                 if(err){
-                    return res.status(400).json({
+                    res.status(400).json({
                         'success':false,
                         'msg':'Error Occured While input Creating Folder'
                     })
@@ -24,13 +24,13 @@ router.post('/',(req,res)=>{
             })
             fs.mkdir(__dirname+'/../../judge/result/output/'+contest.id,(err)=>{
                 if(err){
-                    return res.status(400).json({
+                    res.status(400).json({
                         'success':false,
                         'msg':'Error Occured While output Creating Folder'
                     })
                 }
             })
-            return res.status(200).json({
+            res.status(200).json({
                 'success':true,
                 'msg':'contest added ,Now You can add problems'
             })
@@ -163,8 +163,6 @@ router.post('/:id' , (req,res)=>{
                 'problem':problem
             })
         })
-
    })
-    
 })
 module.exports = router;

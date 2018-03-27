@@ -90,14 +90,18 @@ export class ContestService {
     return this.sol;
   }
   public getTest() {
+    //console.log(this.test);
     return this.test;
   }
   public setTest(test) {
     this.test = test;
   }
   public addTest(test): Observable<any> {
-    return this.http.post(this.domain + 'ide', test)
-      .map(res => res.json());
+    return this.http.post(  this.domain +  'ide', test)
+      .map(res => {
+        this.test = res.json();
+        res.json();
+      });
   }
   changeContest(contest: string) {
     this.contestSource.next(contest);
