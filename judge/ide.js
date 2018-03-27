@@ -8,17 +8,19 @@ async function runCompiled(lang,file,input,t0){
 
     var cmd;
     
-    fs.writeFileSync(path.join(__dirname,"result/binary/ideInput1.txt"),input);
+    fs.writeFileSync(path.join(__dirname,"result/binary/ideInput.txt"),input);
     switch(lang){
         case "c":
-            cmd= "cd "+ "\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " < ideInput1.txt";
+            cmd= "cd "+ "\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " < ideInput.txt";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" < ideInput1.txt";
+            cmd = "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" < ideInput.txt";
             break;
         case "java":
-            cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" < ideInput1.txt"; 
+            cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" < ideInput.txt";
+        case "java":
+            cmd =  "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" < ideInput.txt";  
     }
    
     
@@ -44,8 +46,9 @@ async function runCompiled(lang,file,input,t0){
 
 async function IdeSolution(option) {
     const filename = await cp.base64tofile(option.description,option.language,1);
-    const file = await cp.compileProblem(option.language,filename,1);
-    console.log(file)
+    if(option.language!=='python'){
+        const file = await cp.compileProblem(option.language,filename,1);
+    }
     const t0 = process.hrtime();
     const result = await runCompiled(option.language,file,option.input,t0);
     return result; 
