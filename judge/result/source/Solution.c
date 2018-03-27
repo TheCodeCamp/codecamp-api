@@ -4,7 +4,7 @@
 int main()
 {
 
-    printf("Welcome To CodeCamp");
+    printf("Welcome To HackerCamp");
     return 0;
 
 }
