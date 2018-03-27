@@ -7,6 +7,7 @@ const VerifyToken = require('./../utils/auth/verifyToken');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/user/user');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 
 router.post('/signup',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
@@ -46,7 +47,7 @@ router.post('/signup',(req,res)=>{
                 })
             });
         }
-    })
+    }); 
     
 });
 
@@ -111,8 +112,9 @@ router.post('/signin',(req,res)=>{
             })
         }
 
+    });
+    
     })
-})
 
 router.patch('/:username/edit',(req,res)=>{
     let username = req.params.username;
@@ -137,8 +139,29 @@ router.patch('/:username/edit',(req,res)=>{
             'msg':'User Not Found :('
         })
     });
-})
+});
 
-
+router.post('/forget',(req,res) => {
+    const email = req.body.email;
+    //console.log(email);
+    User.findOne({email_id:email}).then((user)=>{
+        //console.log(user.username);
+        const password=(require('./../utils/auth/resetPassword.js')).mailTo(user.email_id,user.username);
+        bcrypt.hash(password, 10).then(function(hash) {
+            user.password=hash;
+            user.save()
+        });
+        res.send({
+            'success':true,
+            'msg': 'Email Sent'
+        });
+    }).catch((err) => {
+        console.log(err)
+        res.json({
+            'success':false,
+            'msg':'User Not Found :('
+        });
+    });
+});
 
 module.exports = router; 
