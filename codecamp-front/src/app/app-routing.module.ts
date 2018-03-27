@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
@@ -28,6 +28,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { IwedgeComponent } from './components/iwedge/iwedge.component';
 import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 const appRoutes: Routes = [
@@ -74,6 +75,10 @@ const appRoutes: Routes = [
       path: 'profile',
       component: ProfileComponent,
       canActivate: [AuthGuard]
+    },
+    {
+      path: 'forgot-password',
+      component: ForgotPasswordComponent
     },
     {
       path: 'ide',

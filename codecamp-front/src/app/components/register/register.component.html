@@ -136,7 +136,7 @@
                             <label for="password">Password</label>
                         </div>
                         <div class="col-md-9">
-                          <input type="password"
+                          <input type={{text}}
                           name="password"
                           formControlName="password"
                           class="form-control"
@@ -152,13 +152,14 @@
                             <label for="confirmpassword">Confirm Password</label>
                         </div>
                         <div class="col-md-9">
-                          <input type="password"
+                          <input type={{text}}
                           name="confirm"
                           formControlName="confirm"
                           class="form-control"
                           placeholder="Confrim password"
                           autocomplete="off"
                           [ngClass]="{'is-invalid':  (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty) , 'is-valid': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
+                          <span class="fa {{iconOfHide}} errspan" (click)="onClick()"></span>
                           <div *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty"
                           class="invalid-feedback">Password do not match</div>
                         </div>

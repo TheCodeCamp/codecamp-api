@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   // message;
   // messageClass;
-
+  showPassword = false;
+  text = 'password';
+  iconOfHide = 'fa-eye-slash';
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -97,5 +99,17 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  onClick() {
+    this.showPassword = !this.showPassword;
+    // console.log(this.showPassword);
+    if ( this.showPassword ) {
+    this.text = 'text';
+    this.iconOfHide = 'fa-eye';
+    } else {
+    this.text = 'password';
+    this.iconOfHide = 'fa-eye-slash';
+    }
   }
 }

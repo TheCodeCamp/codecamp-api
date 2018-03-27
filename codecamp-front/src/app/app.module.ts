@@ -49,6 +49,7 @@ import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.comp
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { NotificationComponent } from './components/notification/notification.co
     //CountDown
     ContactComponent,
     FooterComponent,
-    NotificationComponent
+    NotificationComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

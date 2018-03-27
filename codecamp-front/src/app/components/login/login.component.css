@@ -27,3 +27,11 @@ label{
     border-color: #2ca8ff;
     border-radius: 0;
 }
+.fa {
+    float: right;
+    margin-right: 15px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+    color: black;
+}
