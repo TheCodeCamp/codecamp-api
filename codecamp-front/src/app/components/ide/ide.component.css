@@ -16,7 +16,7 @@ input[type="file"] {
 textarea{
     overflow-x: hidden;
     padding: 5px;
-    height:100px;
+    height:200px;
     width:400px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
@@ -32,5 +32,15 @@ textarea{
   margin-top: 50px;
 }
 #text{
-  width:600px;
+  width:100%;
 }
+
+#myOutputArea{
+  border: 1px solid black;
+  padding-top: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  font-size: 18px;
+}
+

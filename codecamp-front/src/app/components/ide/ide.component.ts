@@ -99,11 +99,11 @@ public class Main {
         language : lang,
         description: this.currentFileUpload
       };
-      console.log(test1);
+      //console.log(test1);
       this.contestService.addTest(test1).subscribe(data => {
 
       this.output = this.contestService.getTest();
-      console.log(this.output);
+     //console.log(this.output);
       });
       const text = document.getElementById('myOutputArea');
         text.style.display = 'block';

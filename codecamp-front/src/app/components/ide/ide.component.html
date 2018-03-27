@@ -48,11 +48,13 @@
 
       </div>
   </div>
+  <br>
         <div id="myOutputArea" style="display:none" >
             <div *ngIf="output !== undefined">
               <strong>Status:</strong>{{output.msg}}
               <strong>Time:</strong>{{output.time}}
               <br>
+
               <textarea id="text" disabled>
                   {{output.output}}
               </textarea>
