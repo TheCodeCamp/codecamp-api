@@ -56,6 +56,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           json:true
           };
           rp(opt).then((body)=>{
+            console.log(body)
             if(body===true){
               User.findOne({'username':solution.username},(err,user)=>{
                 if(err){
@@ -69,6 +70,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                     "msg":'Please Login before Submission'
                   })
                 }else if(user){
+                  solution.status = "Accepted";
+                  solution.save();
                   var index = user.contest.findIndex(x => x.name===solution.contest);
                   if(index>=0){
                     var problemIndex = user.contest[index].problemSolved.findIndex(x=>x.name ===solution.problem);
@@ -114,6 +117,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   
                     })
               }else if(body==='CE'){
+                solution.status= "CE"
+                solution.save();
                 res.json({
                   "success":true,
                   "msg":body
@@ -127,6 +132,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                       "msg":e
                     })
                   }else if(user){
+                    solution.status="TLE";
+                    solution.save();
                     var index = user.contest.findIndex(x => x.name===solution.contest);
                     if(index>=0){
                       var problemIndex = user.contest[index].problemSolved.findIndex(x=>x.name ===solution.problem);
@@ -140,7 +147,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                        });
                       
                       }else if(!user.contest[index].problemSolved[problemIndex].submissionTime){
-                        console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
+                       // console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
                         var length = user.contest[index].problemSolved[problemIndex].TLE.length;
                         user.contest[index].problemSolved[problemIndex].TLE.push({
                           count:length+1,
@@ -181,6 +188,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                       "msg":e
                     })
                   }else if(user){
+                    solution.status="RE";
+                    solution.save();
                     var index = user.contest.findIndex(x => x.name===solution.contest);
                     if(index>=0){
                       var problemIndex = user.contest[index].problemSolved.findIndex(x=>x.name ===solution.problem);
@@ -194,7 +203,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                        });
                       
                       }else if(!user.contest[index].problemSolved[problemIndex].submissionTime){
-                        console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
+                       // console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
                         var length = user.contest[index].problemSolved[problemIndex].RE.length;
                         user.contest[index].problemSolved[problemIndex].RE.push({
                           count:length+1,
@@ -236,6 +245,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                       "msg":e
                     })
                   }else if(user){
+                    solution.status= "WA";
+                    solution.save();
                     var index = user.contest.findIndex(x => x.name===solution.contest);
                     if(index>=0){
                       var problemIndex = user.contest[index].problemSolved.findIndex(x=>x.name ===solution.problem);
@@ -249,7 +260,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                        });
                       
                       }else if(!user.contest[index].problemSolved[problemIndex].submissionTime){
-                        console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
+                       // console.log(user.contest[index].problemSolved[problemIndex].submissionTime)
                         var length = user.contest[index].problemSolved[problemIndex].WA.length;
                         user.contest[index].problemSolved[problemIndex].WA.push({
                           count:length+1,

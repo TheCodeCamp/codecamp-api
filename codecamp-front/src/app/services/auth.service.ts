@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
-import 'rxjs/add/operator/toPromise';
+
 import { Subject } from 'rxjs/Subject';
 
 
@@ -18,7 +18,6 @@ export class AuthService {
   constructor(
   private http: Http
   ) { }
-  public name: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
@@ -34,12 +33,12 @@ export class AuthService {
     this.authToken = localStorage.getItem('token'); // Get tokens and asssign to variable to be used elsewhere
   }
   public registerUser(user) {
-    return this.http.post(  this.domain +  'users/signup', user)
+    return this.http.post(this.domain + 'users/signup', user)
       .map(res => res.json());
   }
 
   public loginUser(user) {
-    return this.http.post(  this.domain +  'users/signin', user)
+    return this.http.post( this.domain +  'users/signin', user)
     .map(res => res.json());
   }
 
@@ -55,7 +54,7 @@ export class AuthService {
    // Set user in local storage as string
     this.authToken = token; // Assign token to be used elsewhere
     this.user = user; // Set user to be used elsewhere
-    // this.user.isAdmin = user.isAdmin;
+     this.user.isAdmin = user.isAdmin;
   }
 
   public checkisAdmin() {
@@ -83,6 +82,6 @@ export class AuthService {
   }
   getProfile() {
     this.createAuthenticationHeaders();
-    return this.http.get(  this.domain +  'users/profile', this.options).map(res => res.json());
+    return this.http.get(this.domain + 'users/profile', this.options).map(res => res.json());
   }
 }

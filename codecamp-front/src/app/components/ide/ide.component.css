@@ -4,33 +4,45 @@
   border-radius: 4px;
   background-color: white;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  padding: 5px;
 }
 
-#select{
-  border: 2px solid red;
-}
-input[type="file"] {
-   display: none;
-}
+
 
 textarea{
     overflow-x: hidden;
     padding: 5px;
     height:100px;
-    width:400px;
+    width:100%;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .select {
     margin: 2% 1%;
 }
-
+.choose{
+  margin: 2%;
+}
 .options{
     margin-left: 2%;
 }
-#submit{
-  margin-top: 50px;
-}
 #text{
-  width:600px;
+  width:100%;
+}
+
+.sub{
+  margin-bottom: 2%;
+}
+#myOutputArea{
+  border: 1px solid black;
+  background:aliceblue;
+  padding-top: 2%;
+  padding-left: 3%;
+  padding-right: 3%;
+  padding-bottom: 3%;
+  font-size: 18px;
+}
+
+.output{
+  background: blue;
 }

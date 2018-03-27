@@ -19,6 +19,7 @@ router.get('/:id',(req,res)=>{
         const description=sol2._doc.description;
         const id = sol2._doc.id;
         const language= sol2._doc.language;
+        //console.log(language);
 
         Problem.findOne({'code':problem},function(err,pro){
           if(err){
@@ -31,9 +32,17 @@ router.get('/:id',(req,res)=>{
               maxBuffer:pro.sourcelimit,
               encoding:'utf8'
             }
-        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{      
+            if(language==='java'){
+                pro.timeout = pro.timeout*3;
+            }else if(language==='python'){
+              pro.timeout = pro.timeout*5;
+            }
+        judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{  
+          // console.log()    
+          
           res.send(result);
         }).catch((e)=>{
+          console.log(e)
           var compileError = /(g[/++/]|gcc|javac|CE)/;
           if(e.toString().match(compileError)){
             res.status(200).send('CE');

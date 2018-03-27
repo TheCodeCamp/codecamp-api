@@ -1,0 +1,51 @@
+
+.sample-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-image: url(../../../assets/infinitywars.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+  }
+  .sample-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.3;
+  }
+  .sample-header-section {
+    position: relative;
+    padding: 15% 0 10%;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+  }
+  h1 {
+    font-weight: 500;
+  }
+  h2 {
+    font-weight: 400;
+  }
+  .sample-section-wrap {
+    position: relative;
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: 0 12%;  
+    border-radius: 5px;
+}
+  .sample-section {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px;
+  }
+  
+  
+  
+
+

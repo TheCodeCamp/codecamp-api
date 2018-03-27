@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
@@ -46,7 +47,7 @@ export class LoginComponent implements OnInit {
         this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 2000});
       } else {
         this.authService.storeUserData(data.token, data.user);
-            this.authService.name.next(data.user);
+            NavbarComponent.updateName.next(true); // here!
             this.router.navigate(['/']);
            }     // Navigate to dashboard view
       });

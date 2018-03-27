@@ -5,6 +5,7 @@ const _ = require('lodash');
 const Contest = require('./../../contest/models/contest/contest');
 const Problem = require('./../../contest/models/problem/problem');
 const problemRoute = require('./problems')
+const practice = require('./practice');
 
 const router = express.Router();
 
@@ -45,6 +46,7 @@ router.post('/',(req,res)=>{
 });
 
 router.use('/:id/problems',problemRoute)
+router.use('/practice',practice);
 
 router.get('/:id',(req,res)=>{
     const id = req.params.id;
@@ -97,9 +99,11 @@ router.get('/',(req,res)=>{
         name   : true,
         id : true,
         startTime: true,
-        endTime: true
+        endTime: true,
+        description: true
     }
-    Contest.find({},projection,(err,contest)=>{
+    let time = Date();
+    Contest.find({endTime:{$gt:time}},projection,(err,contest)=>{
         if(err){
             return res.status(400).json({
                     'success':false,
@@ -128,12 +132,13 @@ router.get('/',(req,res)=>{
 
 router.post('/:id' , (req,res)=>{
     const id = req.params.id;
-    var body = _.pick(req.body,['code','name','successfulSubmission','image','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author','testCaseInput','testCaseOutput']);
-
+    let body = _.pick(req.body,['code','name','successfulSubmission','image','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
+    let testCaseInput = req.body.testCaseInput;
+    let testCaseOutput = req.body.testCaseOutput;
     var problem = new Problem(body);
    problem.save().then((pro) => {
 
-       fs.writeFile(__dirname+'/../../judge/result/input/'+id+'/'+pro.code+'.txt',pro.testCaseInput,(err)=>{
+       fs.writeFile(__dirname+'/../../judge/result/input/'+id+'/'+pro.code+'.txt',testCaseInput,(err)=>{
            if(err){
                 return res
                     .json({
@@ -143,7 +148,7 @@ router.post('/:id' , (req,res)=>{
             }
         })
 
-       fs.writeFile(__dirname+'/../../judge/result/output/'+id+'/'+pro.code+'.txt',pro.testCaseOutput,(err)=>{
+       fs.writeFile(__dirname+'/../../judge/result/output/'+id+'/'+pro.code+'.txt',testCaseOutput,(err)=>{
             if(err){
                 return res
                     .json({

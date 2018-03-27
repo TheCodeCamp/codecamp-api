@@ -9,11 +9,11 @@ declare var jquery: any;
 declare var $: any;
 
 @Component({
-  selector: 'app-solultion-submit',
-  templateUrl: './solultion-submit.component.html',
-  styleUrls: ['./solultion-submit.component.css']
+  selector: 'app-solution-submit',
+  templateUrl: './solution-submit.component.html',
+  styleUrls: ['./solution-submit.component.css']
 })
-export class SolultionSubmitComponent implements OnInit {
+export class SolutionSubmitComponent implements OnInit {
   selectedLanguage = 'c_cpp';
   content;
   problem;
