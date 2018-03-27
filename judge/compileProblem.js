@@ -7,27 +7,47 @@ const buffer = require('buffer')
 
 //Compile program and check for error if okay the run it
 
-const compileProblem= async (lang , filename)=>{
+const compileProblem= async (lang , filename,checkFile)=>{
     var cmd,file;
     switch(lang){
         case "c":
+        case "C":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename;
+            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
+        case "C++":
+        case "CPP":
+        case "Cpp":
             file = path.basename(filename,'.cpp')+".out";
             cmd="cd "+"\""+ path.join(__dirname,"result/source") +"\""+ " && g++ -o \"" + path.join(__dirname,"result/binary/")+ "\""+file + " " +filename;
             break;
         case "java":
+        case "JAVA":
+        case "Java":
             file = path.basename(filename,'.java')
             cmd ="cd "+"\""+ path.join(__dirname,"result/source") + "\" && javac -d \"" + path.join(__dirname,"result/binary/") +"\" " +filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
         if (error) {
-          //console.error(`${error}`);
+         // console.error(`${error}`);
           reject(error);
+        }
+        if(checkFile){
+            if(file.match(/Main/)){
+                resolve(file);
+            }else{
+                reject("CE \n Class name must be Public Main");
+            }
+
+        }else{
+            if(file.match(/Solution/)){
+                resolve(file);
+            }else{
+                reject("CE \n Class name must be Public Solution");
+            }
         }
         resolve(file)
       }); 
@@ -88,9 +108,14 @@ const serverResult = async (contest,problem)=>{
     })
 }
 
-const base64tofile = async (base64,lang)=>{
+const base64tofile = async (base64,lang,ide)=>{
     const fileout=new Buffer(base64,'base64').toString('ascii');
-    let filename = 'Solution.';
+    let filename;
+    if(ide){
+        filename = 'Main.';
+    }else{
+        filename = 'Solution.';
+    }
     if(lang=='C++'|| lang == 'c++'){
         filename+='cpp';
     }else{
@@ -99,6 +124,7 @@ const base64tofile = async (base64,lang)=>{
     return new Promise((resolve,reject)=>{
         fs.writeFile(path.join(__dirname ,'result/source/'+filename),fileout, function(err) {
             if(err) {
+                console.log(path.join(__dirname ,'result/source/'+filename));
                 reject('Can not write file');
             }
             resolve(filename);
@@ -107,8 +133,8 @@ const base64tofile = async (base64,lang)=>{
 }
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
-    const filename= await base64tofile(description,lang);
-    const file = await compileProblem(lang,filename);
+    const filename= await base64tofile(description,lang,0);
+    const file = await compileProblem(lang,filename,0);
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
     const serverRes= await serverResult(contest,problem);

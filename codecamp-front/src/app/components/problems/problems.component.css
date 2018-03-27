@@ -37,12 +37,11 @@
     padding: 2%;
     border: 4px;
 }
-#timer1  b{
-  color: aquamarine;
-  margin-right: 7px;
-}
 
-#timer  b{
+#timer{
   color: red;
   margin-right: 13px;
+}
+button.btn.btn-info{
+  margin-top:4%;
 }

@@ -57,7 +57,9 @@ if (cluster.isMaster) {
     app.use(flash());
     //Routes
     const solutions = require('./routes/solution');
-    app.use('/',solutions)
+    const ide = require('./routes/ide');
+    app.use('/',solutions);
+    app.use('/ide',ide);
 
     const port = process.env.PORT || 3001;
     app.listen(port);

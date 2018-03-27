@@ -34,7 +34,7 @@ router.get('/:id',(req,res)=>{
         judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{      
           res.send(result);
         }).catch((e)=>{
-          var compileError = /(g[/++/]|gcc|javac)/;
+          var compileError = /(g[/++/]|gcc|javac|CE)/;
           if(e.toString().match(compileError)){
             res.status(200).send('CE');
           }else if(e.timelimit*1000>=option.timeout){
@@ -48,11 +48,11 @@ router.get('/:id',(req,res)=>{
         }});
     }
 
- })
-
-
-  
+  }) 
 })
+
+
+
 
 
 module.exports=router;

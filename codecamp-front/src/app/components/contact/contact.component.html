@@ -1,37 +1,62 @@
-
+<app-navbar></app-navbar>
 <img  src="../../../assets/contact.png" alt="Card image cap">
 <div class="container">
   <div class="row">
     <div class="col-md-7">
 
-          <div class="form-group">
-              <div class="disp">Get In Touch !</div>
-              <p>Please fillout the quick formand we will be in touch with lightening speed</p>
+       <div class="form-group">
+          <div class="disp">Get In Touch !</div>
+            <p>Please fillout the quick form and we will be in touch with lightening speed</p>
+            <div class="col-md-8">
+            <hr class="my-4">
+            <form [formGroup]="form" (submit)="onSend()">
+                    <input type="text"
+                    name="name"
+                    formControlName="name"
+                    class="form-control"
+                    placeholder="Enter Name"
+                    >
+                    <input type="text"
+                    name="email_id"
+                    formControlName="email_id"
+                    class="form-control"
+                    placeholder="Email Id"
+                    >
+                      <textarea type="text"
+                      name="message"
+                      formControlName="message"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Enter Message"
+                      ></textarea>
+                      <input
+                        type="submit" class="btn-lg btn-primary"
+                        value="Send">
 
-              <div class="col-md-8">
-                <hr class="my-4">
-                <input type=text class="form-control" id="name" placeholder="Name">
-                <input type="email" class="form-control" id="emailId" placeholder="Email Id">
-                <textarea class="form-control" id="message" rows="3" placeholder="Message"></textarea>
-                <button class="btn btn-lg btn-success">Send</button>
+            </form>
               </div>
           </div>
       </div>
+
+
+
+
       <div class="col-md-1"></div>
       <div class="col-md-4">
         <div class="container" id="ques">
           <p class="disp">Connect With Us:</p>
           <p id="pas">For any questions:</p>
           <p id="pa">Email us at
-            <a href="mailto:codecamp_devcage@gmail.com?Subject=Hello%20again" target="_top">codecamp_devcage@gmail.com</a></p>
+            <a href="mailto:hackercamp_devcage@gmail.com?Subject=Hello%20again" target="_top">hackercamp_devcage@gmail.com</a></p>
           <p id="pas">Or</p>
           <p id="pas">Contact Details:</p>
-          <p id="pa">Saquib +91</p>
-          <p id="pa">Shiv +91</p>
-          <p id="pa">Sanjeev +91</p>
-          <p id="pa">Amar +91</p>
+          <p id="pa">Saquib +91-9804887223</p>
+          <p id="pa">Shiv +91-8820315476</p>
+          <p id="pa">Sanjeev +91-8282935441</p>
+          <p id="pa">Amar +91-8820549897</p>
         </div>
       </div>
     </div>
   </div>
 
+  <app-footer></app-footer>

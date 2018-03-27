@@ -114,6 +114,12 @@ export class ProblemsComponent implements OnInit {
 
 
   }
+
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+
+  }
   tickerFunc(tick) {
     this.ticks = tick;
   }
