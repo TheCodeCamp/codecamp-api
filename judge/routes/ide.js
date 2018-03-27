@@ -18,7 +18,7 @@ router.post('/',(req,res)=>{
             let obj = {
                 output:result.res,
                 time:result.time,
-                msg:'sucess',
+                msg:'Successfully Executed',
             }
             obj = JSON.stringify(obj);
             res.send(obj);

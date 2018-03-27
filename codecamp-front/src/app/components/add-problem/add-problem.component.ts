@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ContestService } from '../../services/contest.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -93,8 +93,8 @@ export class AddProblemComponent implements OnInit {
       timelimit: this.form.get('timelimit').value,
       sourcelimit: this.form.get('sourcelimit').value,
       author: this.form.get('author').value,
-      testCaseInput: this.Input,
-      testCaseOutput: this.Output,
+      testCaseInput: atob(this.Input),
+      testCaseOutput: atob(this.Output),
       image: this.image
     };
 

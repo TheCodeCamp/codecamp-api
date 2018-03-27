@@ -1,6 +1,6 @@
 
 <div class="container">
-  <h4>Online IDE</h4>
+  <h4 class="display-4">Online IDE</h4>
   <hr>
 <div class="insingleblock">
   <div class="row select">
@@ -19,22 +19,23 @@
         style="height:500px;"
         >
   </div>
-  <div><b>Choose the language</b>
+  <div class="choose"><b>Choose the language</b>
+    <select id="select" class="form-control col-lg-4">
+      <option value="C">C</option>
+      <option value="C++">C++</option>
+      <option value="Python">Python</option>
+      <option value="Java">Java</option>
+    </select>
   </div>
-  <select id="select" class="form-control col-lg-4">
-    <option value="C">C</option>
-    <option value="C++">C++</option>
-    <option value="Python">Python</option>
-    <option value="Java">Java</option>
-  </select>
+
 </div>
 <br>
 <br>
-  <div class="row">
+  <div class="row sub">
     <div class="col-md-9">
 
       <strong>Input Case</strong>
-      <input type="checkbox" id="myCheck"  (click)="myFunction()">
+      <input type="checkbox" id="myCheck" (click)="myFunction()">
 
         <p id="input" style="display:none">
             <br>
@@ -54,10 +55,15 @@
               <strong>Status:</strong>{{output.msg}}
               <strong>Time:</strong>{{output.time}}
               <br>
-
-              <textarea id="text" disabled>
-                  {{output.output}}
-              </textarea>
+              <div id="text" class="alert alert-success submissionResult" role="alert">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span>
+                          {{output.output}}
+                        </span>
+                    </div>
+                </div>
+            </div>
             </div>
           </div>
 

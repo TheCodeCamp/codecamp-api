@@ -93,7 +93,7 @@ export class RegisterComponent implements OnInit {
           this._flashMessagesService.show('Email Id already exists', { cssClass: 'alert-danger', timeout: 5000});
         }
       } else {
-        this._flashMessagesService.show('Registered Successfully', { cssClass: 'success', timeout: 5000});
+        this._flashMessagesService.show('Registered Successfully', { cssClass: 'alert-success', timeout: 5000});
         this.router.navigate(['/login']);
       }
     });

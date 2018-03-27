@@ -30,7 +30,6 @@
     overflow: auto;
 }
 
-.sidebar-nav {}
 
 .background:after{
     width: 100%;
@@ -100,9 +99,6 @@
 .navbar-brand {
     padding-bottom: 0;
     margin: .7rem;
-    font-size: 150%;
-    color: white;
-    font-family: 'Courier New', Courier, monospace;
 
 }
 

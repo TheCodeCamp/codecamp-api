@@ -31,7 +31,7 @@ app.use(session({
     cookie: {
       secure: true,
       httpOnly: true,
-      domain: 'localhost:3000',
+      domain: 'localhost:8080',
       expires: expiryDate
     }
   }))
@@ -62,7 +62,7 @@ app.use('/rankings',rankings);
 // })
 
 const port = process.env.PORT || 80;
-app.listen(port,'0.0.0.0');
+app.listen(port, '0.0.0.0');
 console.log('magic is started at ' + port)
 
 module.exports={app}

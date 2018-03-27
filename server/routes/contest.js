@@ -97,7 +97,8 @@ router.get('/',(req,res)=>{
         name   : true,
         id : true,
         startTime: true,
-        endTime: true
+        endTime: true,
+        description: true
     }
     Contest.find({},projection,(err,contest)=>{
         if(err){

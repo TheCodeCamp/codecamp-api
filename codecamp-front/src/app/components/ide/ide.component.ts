@@ -18,7 +18,6 @@ export class IdeComponent implements OnInit {
   content: string;
   test;
   currentFileUpload;
-  status;
   value;
   ace;
   output;
@@ -92,22 +91,18 @@ public class Main {
       const lang = $('#select').val();
       const p = this.content;
       this.test = (document.getElementById('myTextarea') as HTMLInputElement).value;
-      console.log(this.test);
       this.currentFileUpload = btoa(p);
       const test1 = {
         input: this.test,
         language : lang,
         description: this.currentFileUpload
       };
-      //console.log(test1);
       this.contestService.addTest(test1).subscribe(data => {
-
-      this.output = this.contestService.getTest();
-     //console.log(this.output);
+        this.output = this.contestService.getTest();
       });
       const text = document.getElementById('myOutputArea');
         text.style.display = 'block';
-}
+  }
 
 }
 
