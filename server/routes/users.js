@@ -148,9 +148,9 @@ router.patch('/:username/edit',(req,res)=>{
 });
 
 router.post('/forget',(req,res) => {
-    const email = req.body.email;
-    //console.log(email);
-    User.findOne({email_id:email}).then((user)=>{
+    const email_id = req.body.email_id;
+     console.log(email_id);
+    User.findOne({email_id:email_id}).then((user)=>{
         //console.log(user.username);
         const password=(require('./../utils/auth/resetPassword.js')).mailTo(user.email_id,user.username);
         bcrypt.hash(password, 10).then(function(hash) {
