@@ -99,7 +99,8 @@ router.get('/',(req,res)=>{
         name   : true,
         id : true,
         startTime: true,
-        endTime: true
+        endTime: true,
+        description: true
     }
     let time = Date();
     Contest.find({endTime:{$gt:time}},projection,(err,contest)=>{

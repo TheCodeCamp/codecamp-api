@@ -21,10 +21,12 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
-import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
-import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
+import { SolutionSubmitComponent } from './components/solution-submit/solution-submit.component';
+import { SolutionComponent } from './components/solution-submit/solution/solution.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { IwedgeComponent } from './components/iwedge/iwedge.component';
+import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
 import { ContactComponent } from './components/contact/contact.component';
 
 
@@ -50,6 +52,15 @@ const appRoutes: Routes = [
     {
       path: 'practice',
       component: PracticeComponent
+    },
+    {
+      path: 'iwedge',
+      component: IwedgeComponent,
+      canActivate: [AuthGuard]
+    },
+    {
+      path:'iwedge/contest',
+      component: ContestiwComponent
     },
     {
       path: 'contest',
@@ -78,7 +89,7 @@ const appRoutes: Routes = [
     },
     {
       path: ':contest/submit/:code',
-      component: SolultionSubmitComponent,
+      component: SolutionSubmitComponent,
       canActivate: [AuthGuard]
     },
     {

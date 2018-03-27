@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SolultionSubmitComponent } from '../solultion-submit.component';
+import { SolutionSubmitComponent } from '../solution-submit.component';
 import { ContestService } from '../../../services/contest.service';
 
 @Component({
@@ -23,13 +23,13 @@ export class SolutionComponent implements OnInit {
     }
     else if(this.data === false)
     {
-      this.data = "Worng Answer";
+      this.data = "Wrong Answer";
       this.condition = 'red';
     }
     else if(this.data === 'RE')
     {
       this.data = "Runtime Error";
-      this.condition = 'red';
+      this.condition = 'blue';
     }
     else if(this.data === 'TLE')
     {
@@ -39,7 +39,7 @@ export class SolutionComponent implements OnInit {
     else
     {
       this.data = "Compile Time Error";
-      this.condition = 'red';
+      this.condition = 'blue';
     }
   }
 

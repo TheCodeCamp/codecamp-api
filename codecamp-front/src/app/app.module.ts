@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgxPaginationModule} from 'ngx-pagination';
+//import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes} from '@angular/router';
 import { ReactiveFormsModule} from '@angular/forms';
@@ -29,22 +29,24 @@ import { AddContestComponent } from './components/add-contest/add-contest.compon
 import { EditContestComponent } from './components/edit-contest/edit-contest.component';
 import { SubmissionComponent } from './components/submission/submission.component';
 import { RanklistComponent } from './components/ranklist/ranklist.component';
-import { SolutionComponent } from './components/solultion-submit/solution/solution.component';
+import { SolutionComponent } from './components/solution-submit/solution/solution.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { AddProblemComponent } from './components/add-problem/add-problem.component';
 
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
-import { SolultionSubmitComponent } from './components/solultion-submit/solultion-submit.component';
+import { SolutionSubmitComponent } from './components/solution-submit/solution-submit.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { BrowserXhr } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { IwedgeComponent } from './components/iwedge/iwedge.component';
+import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
+//import { CountDown } from 'ng2-date-countdown';
 import { ContactComponent } from './components/contact/contact.component';
-import { IdeSubmitComponent } from './components/ide/ide-submit/ide-submit.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationComponent } from './components/notification/notification.component';
 
@@ -70,12 +72,14 @@ import { NotificationComponent } from './components/notification/notification.co
     SolutionComponent,
     ProblemComponent,
     AddProblemComponent,
-    SolultionSubmitComponent,
+    SolutionSubmitComponent,
     PreloaderComponent,
     SidebarComponent,
     EditProfileComponent,
+    IwedgeComponent,
+    ContestiwComponent,
+    //CountDown
     ContactComponent,
-    IdeSubmitComponent,
     FooterComponent,
     NotificationComponent
   ],
@@ -88,11 +92,11 @@ import { NotificationComponent } from './components/notification/notification.co
     AceEditorModule,
     NgProgressModule,
     BrowserAnimationsModule,
-    FlashMessagesModule.forRoot(),
-    NgxPaginationModule
+    FlashMessagesModule.forRoot()
+    //NgxPaginationModule
   ],
   providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
-    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}, ],
+    {provide: BrowserXhr, useClass: NgProgressBrowserXhr}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
