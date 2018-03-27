@@ -32,13 +32,12 @@
   <div class="row">
     <div class="col-md-9">
 
-        <strong>Input Case</strong>
+      <strong>Input Case</strong>
       <input type="checkbox" id="myCheck"  (click)="myFunction()">
 
-        <p id="text" style="display:none">
+        <p id="input" style="display:none">
             <br>
-        <textarea id="myTextarea">
-        </textarea>
+        <textarea type="text" id="myTextarea" [(ngModel)]="test" ></textarea>
         </p>
     </div>
 

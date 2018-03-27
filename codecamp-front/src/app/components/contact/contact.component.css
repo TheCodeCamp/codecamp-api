@@ -10,7 +10,7 @@ input.form-control{
 }
 textarea{
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-  paddin: 10px;
+  padding: 10px;
   margin-bottom: 20px;
 }
 p{
@@ -21,5 +21,19 @@ p{
 }
 button{
   margin-top: 10px;
-  background: rgb(10, 241, 238);
+  background: rgb(2, 112, 79);
+  color:black;
+}
+#ques{
+  margin-top: 7px;
+}
+#pa{
+  font-size: 17px;
+}
+#pas{
+  font-size: 22px;
+  font-style: italic;
+}
+#sp{
+  color: rgb(65, 82, 235);
 }

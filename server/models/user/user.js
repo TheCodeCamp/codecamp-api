@@ -10,8 +10,8 @@ var UserSchema = new mongoose.Schema({
         type:String,
         unique:true,
         minlength:1,
-        required:true
-
+        required:true,
+        index: true
     },
     email_id:{
         type:String,
