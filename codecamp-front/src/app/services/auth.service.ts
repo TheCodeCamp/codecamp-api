@@ -42,6 +42,10 @@ export class AuthService {
     .map(res => res.json());
   }
 
+  public forgetPassword(user) {
+    return this.http.post( this.domain +  'users/forget', user)
+    .map(res => res.json());
+  }
 
   public editUser(user) {
     return this.http.patch(this.domain + 'users/:' + user.username + '/edit', user)
