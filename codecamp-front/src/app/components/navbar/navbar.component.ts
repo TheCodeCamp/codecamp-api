@@ -2,6 +2,7 @@ import { Component, OnInit, trigger, transition, animate, style,state } from '@a
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ContestService } from '../../services/contest.service';
+import { Subject } from 'rxjs/Subject';
 
 
 @Component({
@@ -23,9 +24,10 @@ import { ContestService } from '../../services/contest.service';
 })
 export class NavbarComponent implements OnInit{
 
-  user: any;
+  user: string;
   users;
   toggle = true;
+  public static updateName: Subject<boolean> = new Subject();
   constructor(
     public authService: AuthService,
     private router: Router,
@@ -34,14 +36,18 @@ export class NavbarComponent implements OnInit{
     /*this.authService.name.subscribe(value => {
       this.user = value ;
     });*/
-    this.users = authService.getProfile().subscribe(profile => {
+    NavbarComponent.updateName.subscribe(res => {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    })
+    /*this.users = authService.getProfile().subscribe(profile => {
       this.user = profile.msg.username;
       //console.log(this.user);
-  });
+  });*/
   //console.log(this.user);
 }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'))
     this.contestService.toggle.subscribe(toggle => this.toggle = toggle);
   }
 
@@ -49,10 +55,7 @@ export class NavbarComponent implements OnInit{
     this.authService.logout(); // Logout user
     this.router.navigate(['/']); // Navigate back to home page
   }
-  undefined() {
-
-  }
-  onToggle(){
+  onToggle() {
     this.toggle = this.toggle? false:true;
     this.contestService.ontoggle(this.toggle);
   }

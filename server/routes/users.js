@@ -55,8 +55,11 @@ router.post('/signup',(req,res)=>{
 router.get('/profile', VerifyToken, function(req, res) {
     
     User.findOne({username:req.username}, function (err, user) {
-        if (err) return res.status(500).send(err);
-        if (!user) return res.status(200).json({
+        if (err) return res.status(500).json({
+            'success': false,
+            'msg' : 'Authentication Error'
+        });
+        if (!user) return res.json({
             'success': false,
             'msg': 'User not found'
         });

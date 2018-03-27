@@ -10,19 +10,18 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
 
   user;
+  dob;
   constructor(
     private authService: AuthService,
     private router: Router
   ) {
      this.user = authService.getProfile().subscribe(profile => {
        this.user = profile.msg;
-        //console.log(JSON.stringify(this.user));
-     });
-      //console.log(this.user);
+       this.dob = profile.msg.dob && profile.msg.dob.replace(/[TZ]|.000/g, ' ');
+    });
   }
 
   ngOnInit() {
-    console.log(this.user);
     }
     onSubmitSel() {
       this.router.navigate([this.user.username, 'edit-profile']);

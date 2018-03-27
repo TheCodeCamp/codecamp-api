@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import { HttpModule } from '@angular/http';
 
-  import 'rxjs/add/operator/map';
-  import { tokenNotExpired } from 'angular2-jwt';
-import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
+
 import { Subject } from 'rxjs/Subject';
 
 
@@ -12,13 +12,12 @@ import { Subject } from 'rxjs/Subject';
 export class AuthService {
   public authToken: any;
   public user: any;
-  public domain = 'http://localhost:8080/';
+  public domain = 'http://localhost:80/';
   public options;
 
   constructor(
   private http: Http
   ) { }
-  public name: Subject<String> = new Subject<String>();
   public createAuthenticationHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers configuration options
@@ -39,7 +38,7 @@ export class AuthService {
   }
 
   public loginUser(user) {
-    return this.http.post(this.domain + 'users/signin', user)
+    return this.http.post( this.domain +  'users/signin', user)
     .map(res => res.json());
   }
 

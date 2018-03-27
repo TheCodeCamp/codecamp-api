@@ -1,23 +1,34 @@
 
-.file-upload{
-    padding: 10px;
-    background: red; 
-    display: table;
-    color: #fff;
+.insingleblock{
+  box-shadow: 0 1px 15px 1px rgba(14, 14, 14, 0.1);
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  padding: 5px;
 }
 
-input[type="file"] {
-   display: none;
-}
+
 
 textarea{
     overflow-x: hidden;
+    height:100px;
+    width:100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .select {
     margin: 2% 1%;
 }
-
+.choose{
+  margin: 2%;
+}
 .options{
-    margin-left: 2%; 
+    margin-left: 2%;
+}
+#text{
+  width:600px;
+}
+
+.sub{
+  margin-bottom: 2%;
 }

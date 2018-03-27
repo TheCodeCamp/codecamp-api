@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <stdio.h>
 #include <string.h>
 int main()
@@ -118,3 +119,15 @@ class ordteams
 	}
 } 
 >>>>>>> 6b9a84523259144e34994839aeeb1470ef83ebe7
+=======
+#include<stdio.h>
+//#include<bits/stdc++.h>
+//using namespace std;
+int main()
+{
+
+    printf("Welcome To CodeCamp");
+    return 0;
+
+}
+>>>>>>> 39258bddc8cd2dda961e5f01e517300f3f496433

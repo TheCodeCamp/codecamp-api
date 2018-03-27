@@ -93,8 +93,8 @@ export class AddProblemComponent implements OnInit {
       timelimit: this.form.get('timelimit').value,
       sourcelimit: this.form.get('sourcelimit').value,
       author: this.form.get('author').value,
-      testCaseInput: this.Input,
-      testCaseOutput: this.Output,
+      testCaseInput: atob(this.Input),
+      testCaseOutput: atob(this.Output),
       image: this.image
     };
 

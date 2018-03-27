@@ -21,20 +21,22 @@ export class ProblemsComponent implements OnInit {
   contestname;
   time;
 
-   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-  //Add 'implements OnInit' to the class.
+  // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+  // Add 'implements OnInit' to the class.
   countDownDate;
   now;
   end;
   distance;
-  days= 0;
+  days = 0;
   hours;
   minutes;
   seconds;
   times;
   start;
   x;
-  ticks= 0;
+  ticks = 0;
+  typeOfNow = 'Contest Will Start In';
+  conditionToShowProblem = false;
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -51,18 +53,24 @@ export class ProblemsComponent implements OnInit {
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
         var timer;
-        if (this.start > new Date())
-          var compareDate = this.start;
-        else
-        var compareDate = this.end;
-        //compareDate.setDate(this.end.getDate()); //just for this demo today + 7 days
 
-        //console.log(compareDate);
+        if (this.start > new Date()) {
+            var compareDate = this.start;
+        } else if (this.start <= new Date() && this.end >= new Date()) {
+          this.typeOfNow = 'Contest Will End In';
+          var compareDate = this.end;
+          this.conditionToShowProblem = true;
+        } else {
+          this.typeOfNow = 'Contest Ended';
+          this.conditionToShowProblem = true;
+        }
+        // compareDate.setDate(this.end.getDate()); //just for this demo today + 7 days
+        // console.log(compareDate);
        /* timer = setInterval(function() {
           timeBetweenDates(compareDate);
         }, 1000);*/
-          setInterval((()=>{
-            var dateEntered = compareDate;
+          setInterval((() => {
+          var dateEntered = compareDate;
           var now = new Date();
           var difference = dateEntered.getTime() - now.getTime();
 
@@ -70,7 +78,7 @@ export class ProblemsComponent implements OnInit {
 
             // Timer done
             clearInterval(timer);
-
+            this.times = '';
           } else {
 
             var second = Math.floor(difference / 1000);
@@ -81,7 +89,7 @@ export class ProblemsComponent implements OnInit {
             hour %= 24;
             minute %= 60;
             second %= 60;
-            //console.log(day,hour,minute,second);
+            // console.log(day,hour,minute,second);
               // this.days = day;
               // this.hours = hour;
               // this.minutes = minute;
@@ -93,18 +101,17 @@ export class ProblemsComponent implements OnInit {
               var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
               ////this.contestService.time.next(temp);
               //this.contestService.time.subscribe(value => this.times = value);*/
-              this.times = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
+              this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
 
           }
-        }),1000);
-        
+        }), 1000);
 
     });
     this.contestService.currentContest.subscribe(contest => this.contestname = contest);
 
 
   }
-  tickerFunc(tick){
+  tickerFunc(tick) {
     this.ticks = tick;
   }
   onAddProblem() {
