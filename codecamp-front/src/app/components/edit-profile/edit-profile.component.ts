@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 
 @Component({
@@ -17,12 +18,13 @@ export class EditProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _flashMessagesService: FlashMessagesService
   ) {
      this.user = authService.getProfile().subscribe(profile => {
        this.user = profile.msg;
 
-           //console.log(profile);
+          // console.log(profile);
      });
      this.createForm();
       // console.log(this.user);
@@ -40,7 +42,7 @@ export class EditProfileComponent implements OnInit {
         college: this.user.college,
         joinedOn: this.user.joinedOn
 
-    })
+    });
   }
   replaceTZ(time) {
     if(time !== undefined ){
@@ -51,7 +53,6 @@ export class EditProfileComponent implements OnInit {
   }
   onEdit(){
     const usr = {
-
       name: this.form.get('name').value ? this.form.get('name').value : this.user.name,
       username: this.form.get('username').value ? this.form.get('username').value : this.user.username,
       email_id: this.form.get('email_id').value ? this.form.get('email_id').value : this.user.email_id,
@@ -60,8 +61,12 @@ export class EditProfileComponent implements OnInit {
       dob: this.form.get('dob').value ? this.form.get('dob').value : this.user.dob,
       gender: this.form.get('gender').value ? this.form.get('gender').value : this.user.gender,
       joinedOn: this.form.get('joinedOn').value ? this.form.get('joinedOn').value : this.user.joinedOn
-    }
-    console.log(usr);
+    };
 
+    this.authService.editUser(usr).subscribe(data => {
+      // console.log(data);
+      this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 2000});
+      this.router.navigate(['/profile']);
+    });
   }
 }

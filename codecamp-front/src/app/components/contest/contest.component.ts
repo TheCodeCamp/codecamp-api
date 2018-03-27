@@ -29,6 +29,7 @@ export class ContestComponent implements OnInit {
   }
 
   replaceTZ(time) {
+    // console.log(time);
     return time && time.replace(/[TZ]|.000/g, '<br>');
   }
   onSelectContest(i) {

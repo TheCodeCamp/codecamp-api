@@ -52,6 +52,8 @@ export class ProblemsComponent implements OnInit {
         this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
+        console.log(this.start);
+        console.log(this.end);
         var timer;
 
         if (this.start > new Date()) {
@@ -70,41 +72,41 @@ export class ProblemsComponent implements OnInit {
           timeBetweenDates(compareDate);
         }, 1000);*/
           setInterval((() => {
-          if(compareDate){
-              const dateEntered = new Date(compareDate);
-              var now = new Date();
-              var difference = dateEntered.getTime() - now.getTime();
+          if (compareDate) {
+          var dateEntered = new Date(compareDate);
+          var now = new Date();
+          var difference = dateEntered.getTime() - now.getTime();
 
-               if (difference <= 0) {
-                  // Timer done
-                    clearInterval(timer);
-                     this.times = '';
-                } else {
+          if (difference <= 0) {
 
-                    var second = Math.floor(difference / 1000);
-                    var minute = Math.floor(second / 60);
-                    var hour = Math.floor(minute / 60);
-                    var day = Math.floor(hour / 24);
+            // Timer done
+            clearInterval(timer);
+            this.times = '';
+          } else {
 
-                    hour %= 24;
-                    minute %= 60;
-                    second %= 60;
-                    // console.log(day,hour,minute,second);
-                      // this.days = day;
-                      // this.hours = hour;
-                      // this.minutes = minute;
-                      // this.seconds = second;
-                      /*$("#day").text(day);
-                      $("#hour").text(hour);
-                      $("#minute").text(minute);
-                      $("#second").text(second);
-                      var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
-                      ////this.contestService.time.next(temp);
-                      //this.contestService.time.subscribe(value => this.times = value);*/
-                      this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
+            var second = Math.floor(difference / 1000);
+            var minute = Math.floor(second / 60);
+            var hour = Math.floor(minute / 60);
+            var day = Math.floor(hour / 24);
 
-                  }
-            }
+            hour %= 24;
+            minute %= 60;
+            second %= 60;
+            // console.log(day,hour,minute,second);
+              // this.days = day;
+              // this.hours = hour;
+              // this.minutes = minute;
+              // this.seconds = second;
+              /*$("#day").text(day);
+              $("#hour").text(hour);
+              $("#minute").text(minute);
+              $("#second").text(second);
+              var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
+              ////this.contestService.time.next(temp);
+              //this.contestService.time.subscribe(value => this.times = value);*/
+              this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
+          }
+          }
         }), 1000);
 
     });
