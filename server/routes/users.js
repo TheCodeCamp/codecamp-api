@@ -115,21 +115,28 @@ router.post('/signin',(req,res)=>{
 })
 
 router.patch('/:username/edit',(req,res)=>{
-    const username = req.params.username;
-    console.log(username)
-    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
-    User.findOneAndUpdate({'username':username},{$set: body}).then((user)=>{
+    let username = req.params.username;
+    username = username.substr(1);
+    // console.log(username);
+    // const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    const body = _.pick(req.body,['name','college','dob','gender','city','joinedOn']);
+    
+    User.findOne({'username':username}).then((model) => {
+       // console.log(model);
+        return Object.assign(model, body);
+    }).then((model) => {
+        return model.save();
+    }).then((updatedModel) => {
         res.json({
-            'success':true,
+            'success':true, 
             'msg':'Profile updated Successfully!'
         })
-    }).catch((err)=>{
+    }).catch((err) => {
         res.json({
             'success':false,
-            'msg':err
+            'msg':'User Not Found :('
         })
-    })
-
+    });
 })
 
 

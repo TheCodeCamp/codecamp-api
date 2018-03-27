@@ -36,7 +36,7 @@ export class IdeComponent implements OnInit {
 int main()
 {
 
-  printf("Welcome To CodeCamp");
+  printf("Welcome To HackerCamp");
 
 } `;
    }
@@ -56,25 +56,25 @@ int main()
 int main()
 {
 
-    printf("Welcome To CodeCamp");
+    printf("Welcome To HackerCamp");
     return 0;
 }`;
     } else if (this.selectedLanguage === 'java') {
       this.content =
         `import java.util.*;
 
-public class Solution {
+public class Main {
 
     public static void main(String[] args) {
 
-        System.out.print("Welcome To CodeCamp");
+        System.out.print("Welcome To HackerCamp");
 
     }
 
 }
         `;
       } else if (this.selectedLanguage === 'python') {
-      this.content = `print("Welcome To CodeCamp")`;
+      this.content = `print("Welcome To HackerCamp")`;
       }
   }
 
@@ -98,14 +98,17 @@ public class Solution {
         input: this.test,
         language : lang,
         description: this.currentFileUpload
-      }
+      };
+      console.log(test1);
       this.contestService.addTest(test1).subscribe(data => {
-        this.contestService.setTest(data.msg);
-      });
 
+      this.output = this.contestService.getTest();
+      console.log(this.output);
+      });
       const text = document.getElementById('myOutputArea');
         text.style.display = 'block';
 }
+
 }
 
 

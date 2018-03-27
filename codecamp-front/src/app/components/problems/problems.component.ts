@@ -52,6 +52,8 @@ export class ProblemsComponent implements OnInit {
         this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
+        console.log(this.start);
+        console.log(this.end);
         var timer;
 
         if (this.start > new Date()) {
@@ -70,7 +72,8 @@ export class ProblemsComponent implements OnInit {
           timeBetweenDates(compareDate);
         }, 1000);*/
           setInterval((() => {
-          var dateEntered = compareDate;
+          if (compareDate) {
+          var dateEntered = new Date(compareDate);
           var now = new Date();
           var difference = dateEntered.getTime() - now.getTime();
 
@@ -102,13 +105,19 @@ export class ProblemsComponent implements OnInit {
               ////this.contestService.time.next(temp);
               //this.contestService.time.subscribe(value => this.times = value);*/
               this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
-
+          }
           }
         }), 1000);
 
     });
     this.contestService.currentContest.subscribe(contest => this.contestname = contest);
 
+
+  }
+
+  ngOnDestroy() {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
 
   }
   tickerFunc(tick) {

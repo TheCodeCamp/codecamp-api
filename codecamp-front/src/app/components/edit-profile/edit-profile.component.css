@@ -1,0 +1,43 @@
+.container{
+  padding: 3%;
+  margin: 10%;
+  background: aliceblue;
+  box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+}
+.row{
+  margin: 2%;
+}
+option[disabled] { display: none; }
+
+.form-control{
+  border-radius: 1.5rem;
+}
+input{
+  padding: 6px;
+  box-shadow: 0 1px 15px 1px rgba(39,39,39,.1);
+
+}
+label{
+  padding-top: 6px;
+}
+
+.sub{
+  margin-left: 13.7rem;
+}
+.form-control:focus{
+  border-color: none;
+  box-shadow: none;
+}
+
+.btn-primary {
+  background: #2ca8ff;
+  border-color: #2ca8ff;
+  border-radius: 0;
+}
+input, select, label{
+  font-size: 22px;
+}
+#save{
+  padding:10px;
+  margin-left: 50%;
+}

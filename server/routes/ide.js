@@ -5,6 +5,7 @@ const querystring = require('querystring');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
+ // console.log(req.body)
     
     let data = {
       language:(req.body.language).toLowerCase(),
@@ -31,6 +32,7 @@ router.post('/',(req,res)=>{
           body+=chunk;
         });
         resfromjudge.on('end', () => {
+          console.log(JSON.parse(body));
           res.send(JSON.parse(body));
         });
         
