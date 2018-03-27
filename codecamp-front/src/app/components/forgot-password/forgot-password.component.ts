@@ -35,7 +35,7 @@ onForgot() {
   this.authService.forgetPassword(user).subscribe(data => {
     console.log(data)
   });
-  if (success !== true) {
+  if (success === false) {
     this._flashMessagesService.show('not Found', { cssClass: 'alert-danger', timeout: 2000});
   }
   console.log(user);
