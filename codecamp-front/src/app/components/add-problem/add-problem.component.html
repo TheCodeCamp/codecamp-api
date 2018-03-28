@@ -34,7 +34,7 @@
                 formControlName="level"
                 class="form-control"
                 placeholder="Problem Level"
-                autocomplete="off"
+ 
                 [ngClass]="{'is-invalid': (form.controls.level.errors && form.controls.level.dirty) , 'is-valid': !form.controls.level.errors}">
               </div>
               </div>
@@ -46,7 +46,7 @@
                   formControlName="author"
                   class="form-control"
                   placeholder="Author Name"
-                  autocomplete="off"
+   
                   [ngClass]="{'is-invalid': (form.controls.author.errors && form.controls.author.dirty) , 'is-valid': !form.controls.author.errors}">
                 </div>
               </div>
@@ -73,7 +73,7 @@
                 formControlName="output_format"
                 class="form-control"
                 placeholder="output_format"
-                autocomplete="off"
+ 
                 [ngClass]="{'is-invalid': (form.controls.output_format.errors && form.controls.output_format.dirty) , 'is-valid': !form.controls.output_format.errors}">
               </textarea>
               </div>
@@ -130,7 +130,7 @@
                   formControlName="input_example"
                   class="form-control"
                   placeholder="Input TestCase"
-                  autocomplete="off"
+   
                   [ngClass]="{'is-invalid': (form.controls.input_example.errors && form.controls.input_example.dirty) , 'is-valid': !form.controls.input_example.errors}">
                   </textarea>
                 </div>
@@ -143,7 +143,7 @@
                     formControlName="output_example"
                     class="form-control"
                     placeholder="Output Test case"
-                    autocomplete="off"
+     
                     [ngClass]="{'is-invalid': (form.controls.output_example.errors && form.controls.output_example.dirty) , 'is-valid': !form.controls.output_example.errors}">
                   </textarea>
                   </div>
@@ -175,8 +175,16 @@
             </textarea>
           </div>
 
+          <div class="form-group">
+              <label for="score">Score</label>
+              <input type="text"
+              name="score"
+              formControlName="score"
+              class="form-control"
+              placeholder="Enter Score"
+              [ngClass]="{'is-invalid': (form.controls.score.errors && form.controls.score.dirty) , 'is-valid': !form.controls.score.errors}">
+            </div>
         <input
-
         type="submit" class="btn btn-primary" value="Add Problem">
       </form>
     </div>

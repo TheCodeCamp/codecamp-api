@@ -48,7 +48,7 @@ async function IdeSolution(option) {
     const filename = await cp.base64tofile(option.description,option.language,1);
     let file ;
     if(option.language!=='python'){
-        const file = await cp.compileProblem(option.language,filename,1);
+         file = await cp.compileProblem(option.language,filename,1);
     }else if(option.language==='python'){
         file = await cp.isPython(filename);
     }

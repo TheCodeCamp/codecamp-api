@@ -119,5 +119,8 @@ export class ContestService {
     return this.http.get(this.domain + 'practice')
       .map(res=>res.json())
   }
-
+  getSubmission(submission): Observable<any>{
+    return this.http.post(this.domain + 'submission', submission)
+      .map(res=>res.json())
+  }
 }

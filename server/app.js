@@ -10,8 +10,8 @@ const app = express();
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27018/OnlineJudge')
-app.use(express.static(__dirname+'/public/'));
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/OnlineJudge')
+app.use(express.static(__dirname+'/public/'));  
 const bodyParser = require('body-parser')
 app.use(cors())
 app.use( bodyParser.json({limit:'100mb'}) );
@@ -49,11 +49,7 @@ const users = require('./routes/users');
 const solutions = require('./routes/solution');
 const rankings = require('./routes/ranking');
 const submission = require('./routes/submission');
-<<<<<<< HEAD
 const practice = require('./routes/practice');
-=======
-const practice = require('./routes/practice')
->>>>>>> d0c79399ab365dbe7259867743c830d3e31cee87
 
 app.use('/ide',ide);
 app.use('/contest', contest);
@@ -61,11 +57,7 @@ app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
 app.use('/submission',submission);
-<<<<<<< HEAD
 app.use('/practice', practice);
-=======
-app.use('/practice',practice);
->>>>>>> d0c79399ab365dbe7259867743c830d3e31cee87
 
 
 // app.post('/',(req,res)=>{

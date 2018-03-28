@@ -17,13 +17,15 @@ router.post('/',(req,res)=>{
     let contest = body.contest;
     let problem = body.problem;
     let id = contest+problem+user;
-    console.log(id)
     
-    Solution.find({'id':{'$regex':id}},'id username language submitted_on', (err,sub)=>{
+    Solution.find({'id':{'$regex':id}},'id username language submitted_on status', (err,sub)=>{
         if(!sub){
            return res.send('Not ')
         }
-        res.send(sub);
+        res.json({
+            'success':true,
+            'msg':sub
+        })
     })
 })
 

@@ -32,7 +32,6 @@ router.post('/',(req,res)=>{
           body+=chunk;
         });
         resfromjudge.on('end', () => {
-          console.log(JSON.parse(body));
           res.send(JSON.parse(body));
         });
         

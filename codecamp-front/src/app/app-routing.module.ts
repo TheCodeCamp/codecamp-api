@@ -55,6 +55,10 @@ const appRoutes: Routes = [
       component: PracticeComponent
     },
     {
+      path: 'practice/:problems',
+      component: ProblemComponent
+    },
+    {
       path: 'iwedge',
       component: IwedgeComponent,
       canActivate: [AuthGuard]

@@ -18,6 +18,7 @@ router.get('/',(req,res)=>{
         }).
         exec(function(err,question){
             if(err){
+                console.log(err)
                 return res.status(400).json({
                         'success':false,
                         'msg':'Wrong Request'
