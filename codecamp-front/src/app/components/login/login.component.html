@@ -4,8 +4,14 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">SIGN IN <a routerLink="/forgot-password"
-              style="margin-left:60%; font-size:16px;">Forgot Password ?</a></h2>
+            <div class="row">
+              <div class="col-md-9">
+                  <h2 class="card-title">SIGN IN</h2>
+              </div>
+              <div class="col-md-3">
+               <p class="card-title"> <a routerLink="/forgot-password">Forgot Password ?</a></p>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <form [formGroup]="form" (submit)="onSignInSubmit()">
