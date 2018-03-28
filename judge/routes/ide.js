@@ -44,12 +44,12 @@ router.post('/',(req,res)=>{
                 res.status(200).send(obj);
             }else{
                 let error = (err.error).toString();
+                error = error.substring(error.indexOf("\n") + 1);
                 let obj = {
                     output:error,
                     time:err.timelimit,
                     msg:'Run Time Error',
                 }
-                error = error.substring(error.indexOf("\n") + 1);
                 res.send(obj);
             }
         })
