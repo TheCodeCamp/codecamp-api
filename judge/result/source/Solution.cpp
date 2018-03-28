@@ -1,53 +1,33 @@
-
-
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
-
+#include<stdio.h>
 int main()
 {
-	std::ios_base::sync_with_stdio(false);
-
-	int t;
-	std::cin>>t;
-
+	int t,m,count=0,imt,i;
+	long long temp;
+	scanf("%d",&t);
+	//if((t>0)&&(t<6))
+	{
 	while(t--)
 	{
-		int n,c;
-		std::cin>>n>>c;
-
-		std::vector<int>stall(n);
-
-		for(int i=0; i<n; i++)
-			std::cin>>stall[i];
-
-		std::sort(stall.begin(),stall.end());
-
-		int min = 0,max = stall.back()-stall.front();
-
-		while(min < max)
+		scanf("%d",&m);
+		long long a[m];
+		for(i=0;i<m;i++)
 		{
-			int mid = (min+max)/2;
-
-			int pre = 0;
-
-			int done = 1;
-			for(int i=1; i<n ;i++)
-			{
-				if(stall[i] - stall[pre] >= mid)
-				{
-					done++;
-					pre = i;
-				}
-				if(done ==c)
-					break;
-			}
-			if(done==c)
-				min = mid+1;
-			else
-				max = mid;
+			scanf("%lld",&a[i]);
+			//if(i>0&&temp==1)
+		} 
+		count=0;
+		temp=a[0];
+		for(i=0;i<m-1;i++)
+		{
+			if((a[i]!=temp)||(a[i]!=a[i+1]))
+			count++;
+			temp=a[i];
 		}
-		std::cout<<min-1<<"\n";
+		if(a[i]!=temp)
+		count++;
+		printf("%d\n",count);
+		
 	}
 }
+	return 0;
+} 

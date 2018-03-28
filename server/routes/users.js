@@ -73,6 +73,7 @@ router.get('/profile', VerifyToken, function(req, res) {
 });
 
 
+
 router.post('/signin',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','password']);
     console.log(`*${body.password} * ${body.username}`);
