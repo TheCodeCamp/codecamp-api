@@ -19,7 +19,7 @@ router.post('/',(req,res)=>{
     let id = contest+problem+user;
     console.log(id)
     
-    Solution.find({'id':{'$regex':id}},'id username language submitted_on,status', (err,sub)=>{
+    Solution.find({'id':{'$regex':id}},'id username language submitted_on status -_id', (err,sub)=>{
         if(!sub){
             return res.json({
                 success:false,
