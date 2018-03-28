@@ -72,6 +72,7 @@ async function runCompiled(lang,file,contest,problem,option,t0){
             break;
         case "python":
             cmd = "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            break;
     }
     
     return new Promise((resolve,reject)=>{
@@ -137,7 +138,7 @@ const base64tofile = async (base64,lang,ide)=>{
     return new Promise((resolve,reject)=>{
         fs.writeFile(path.join(__dirname ,'result/source/'+filename),fileout, function(err) {
             if(err) {
-                console.log(path.join(__dirname ,'result/source/'+filename));
+                console.log(err);
                 reject('Can not write file');
             }
             resolve(filename);
@@ -146,7 +147,7 @@ const base64tofile = async (base64,lang,ide)=>{
 }
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
-    console.log(contest)
+    // console.log(contest)
     const filename= await base64tofile(description,lang,0);
     let file;
     if(lang!=='python'){
@@ -156,7 +157,7 @@ async function compileAndRunProblem(contest,problem,id,lang ,description,option)
     }
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
-    console.log(result)
+    // console.log(result)
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
     //console.log(Result);

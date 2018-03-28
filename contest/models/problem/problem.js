@@ -58,9 +58,6 @@ const ProblemSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.String,
         refs:'User'
     }],
-    image:{
-        type:String
-    },
     author:{
         type:String
     },

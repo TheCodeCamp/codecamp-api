@@ -3,8 +3,8 @@ import { ContestService } from '../../services/contest.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs";
-import { IntervalObservable } from "rxjs/observable/IntervalObservable";
+import { Observable } from 'rxjs';
+import { IntervalObservable } from 'rxjs/observable/IntervalObservable';
 
 @Component({
   selector: 'app-ranklist',
@@ -22,7 +22,7 @@ export class RanklistComponent implements OnInit, OnDestroy {
     private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute
-   ) { 
+   ) {
      this.alive = true;
    }
 

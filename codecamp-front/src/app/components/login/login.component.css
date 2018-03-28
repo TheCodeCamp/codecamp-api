@@ -15,7 +15,7 @@ label{
 }
 
 .sub{
-    margin-left: 13.7rem; 
+    margin-left: 13.7rem;
 }
 .form-control:focus{
     border-color: none;
@@ -34,4 +34,7 @@ label{
     position: relative;
     z-index: 2;
     color: black;
+}
+.col-md-3{
+  padding: 1%;
 }

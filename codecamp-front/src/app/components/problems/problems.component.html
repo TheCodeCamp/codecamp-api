@@ -53,9 +53,9 @@
     </div>
     <div class="col-md-3">
       <div class="timer">
-        <p>{{typeOfNow}}</p>
+        <b>{{typeOfNow}}</b>
         <div id="timer">
-
+          <br>
           <!--<span>{{days}}</span>days
           <span>{{hours}}</span>hours
           <span>{{minutes}}</span>minutes
@@ -64,10 +64,34 @@
           <span id="hour"></span>hours
           <span id="minute"></span>minutes
           <span id="second"></span>seconds-->
-          <b>{{times}}</b>
+        <div class="container" id="box">
+        <div class="row">
+            <div class="col-md-3" >
+                <b id="box-el">{{time_day}}</b>
+                <br><br>
+                <b>Day</b>
+            </div>
+            <div class="col-md-3">
+                <b id="box-el">{{time_hr}}</b>
+                <br><br>
+                 <b>Hr</b>
+              </div>
+            <div class="col-md-3">
+                <b id="box-el">{{time_min}}</b>
+                <br><br>
+                <b>Mnts</b>
+              </div>
+            <div class="col-md-3">
+                <b id="box-el"> {{time_sec}} </b>
+                <br><br>
+                <b>Secs</b>
+            </div>
+          </div>
         </div>
       </div>
+      </div>
       <div class="ranking">
+        <br>
         <button class="btn btn-info"  (click)="onClickRanking()">Contest Rankings</button>
       </div>
     </div>

@@ -39,17 +39,16 @@ router.get('/:id',(req,res)=>{
             }
         judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{  
           // console.log()    
-          
-          res.send(result);
+          res.send({result:result,score:pro.score});
         }).catch((e)=>{
-          console.log(e)
+          // console.log(e)
           var compileError = /(g[/++/]|gcc|javac|CE)/;
           if(e.toString().match(compileError)){
             res.status(200).send('CE');
           }else if(e.timelimit*1000>=option.timeout){
             res.status(200).send('TLE');
           }else{
-            console.log(e);
+            // console.log(e);
             res.status(200).send('RE');
           }
       })

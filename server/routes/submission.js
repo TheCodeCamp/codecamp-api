@@ -19,12 +19,20 @@ router.post('/',(req,res)=>{
     let id = contest+problem+user;
     console.log(id)
     
-    Solution.find({'id':{'$regex':id}},'id username language submitted_on', (err,sub)=>{
+    Solution.find({'id':{'$regex':id}},'id username language submitted_on status -_id', (err,sub)=>{
         if(!sub){
-           return res.send('Not ')
+            return res.json({
+                success:false,
+                msg:'You have Not Submiited Anything ! Please Solve a Problem'
+            });
         }
-        res.send(sub);
+        res.json({
+            success:true,
+            msg:sub
+        });
     })
 })
+
+
 
 module.exports = router;
