@@ -27,7 +27,7 @@
       <option value="Java">Java</option>
     </select>
   </div>
-  
+
 </div>
 <br>
 <br>
@@ -49,6 +49,7 @@
 
       </div>
   </div>
+  <br>
         <div id="myOutputArea" style="display:none" >
             <div *ngIf="output !== undefined">
               <strong>Status:</strong>{{output.msg}}
@@ -57,9 +58,9 @@
               <div id="text" class="alert alert-success submissionResult" role="alert">
                 <div class="row">
                     <div class="col-md-12">
-                        <span>   
-                          <strong>{{output.output}}</strong>
-                        </span>            
+                        <span>
+                          {{output.output}}
+                        </span>
                     </div>
                 </div>
             </div>

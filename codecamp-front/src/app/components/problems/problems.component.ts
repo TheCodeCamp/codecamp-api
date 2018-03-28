@@ -52,8 +52,8 @@ export class ProblemsComponent implements OnInit {
         this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
-        console.log(this.start);
-        console.log(this.end);
+        //console.log(this.start);
+        //console.log(this.end);
         var timer;
 
         if (this.start > new Date()) {

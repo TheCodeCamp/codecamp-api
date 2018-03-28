@@ -7,9 +7,10 @@ const VerifyToken = require('./../utils/auth/verifyToken');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/user/user');
 const router = express.Router();
+const nodemailer = require('nodemailer');
 
 router.post('/signup',(req,res)=>{
-    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio','contact_number']);
     body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
@@ -46,7 +47,7 @@ router.post('/signup',(req,res)=>{
                 })
             });
         }
-    })
+    }); 
     
 });
 
@@ -74,7 +75,7 @@ router.get('/profile', VerifyToken, function(req, res) {
 
 router.post('/signin',(req,res)=>{
     const body = _.pick(req.body,['username','email_id','password']);
-    console.log(`***${body.password} *** ${body.username}`);
+    console.log(`*${body.password} * ${body.username}`);
     
     User.findByUsername(body.username,body.password,(err,user)=>{
         if(err){
@@ -117,15 +118,16 @@ router.post('/signin',(req,res)=>{
             })
         }
 
+    });
+    
     })
-})
 
 router.patch('/:username/edit',(req,res)=>{
     let username = req.params.username;
     username = username.substr(1);
     // console.log(username);
     // const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
-    const body = _.pick(req.body,['name','college','dob','gender','city','joinedOn']);
+    const body = _.pick(req.body,['name','college','dob','gender','city','joinedOn','contact_number']);
     
     User.findOne({'username':username}).then((model) => {
        // console.log(model);
@@ -143,8 +145,29 @@ router.patch('/:username/edit',(req,res)=>{
             'msg':'User Not Found :('
         })
     });
-})
+});
 
+router.post('/forget',(req,res) => {
+    const email_id = req.body.email_id;
+     //console.log(email_id);
+    User.findOne({email_id:email_id}).then((user)=>{
+        //console.log(user.username);
+        const password=(require('./../utils/auth/resetPassword.js')).mailTo(user.email_id,user.username);
+        bcrypt.hash(password, 10).then(function(hash) {
+            user.password=hash;
+            user.save()
+        });
+        res.send({
+            'success':true,
+            'msg': 'Email Sent'
+        });
+    }).catch((err) => {
+        console.log(err)
+        res.json({
+            'success':false,
+            'msg':'User Not Found :('
+        });
+    });
+});
 
-
-module.exports = router; 
+module.exports = router;

@@ -4,7 +4,8 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h2 class="card-title">SIGN IN</h2>
+            <h2 class="card-title">SIGN IN <a routerLink="/forgot-password"
+              style="margin-left:70%; font-size:16px;">Forgot Password ?</a></h2>
           </div>
           <div class="card-body">
             <form [formGroup]="form" (submit)="onSignInSubmit()">
@@ -31,13 +32,15 @@
                         <label for="password">Password</label>
                     </div>
                     <div class="col-md-9">
-                        <input type="password"
+                        <input type={{text}}
                         name="password"
                         formControlName="password"
-                        class="form-control"
+                        class="form-control "
                         placeholder="Enter password"
                         autocomplete="off"
-                        [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty) , 'is-valid': !form.controls.password.errors}">
+                        [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty) , 'is-valid': !form.controls.password.errors}"
+                        >
+                        <span class="fa {{iconOfHide}} errspan" (click)="onClick()"></span>
                     </div>
                   </div>
                 </div>
@@ -49,10 +52,12 @@
                         type="submit" class="btn btn-primary"
                         value="Sign In">
                       </div>
+
                       <div class="col-md-10 mt-2">
                           <p>Don't Have an account? <a
                             routerLink="/register" >Sign up</a></p>
                       </div>
+
 
                     </div>
                   </div>

@@ -32,10 +32,11 @@
     font-weight: 400;
   }
   .sample-section-wrap {
+    margin-top: 20rem!important;
     position: relative;
     background-color: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    margin: 0 12%;  
+    margin: 0 12%;
     border-radius: 5px;
 }
   .sample-section {
@@ -44,8 +45,8 @@
     margin-right: auto;
     padding: 40px;
   }
-  
-  
-  
+
+
+
 
 
