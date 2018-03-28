@@ -19,7 +19,7 @@ async function runCompiled(lang,file,input,t0){
             break;
         case "java":
             cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" < ideInput.txt";
-        case "java":
+        case "python":
             cmd =  "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" < ideInput.txt";  
     }
    
