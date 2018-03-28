@@ -6,7 +6,8 @@ const ProblemSchema = new mongoose.Schema({
     code:{
         type:String,
         required:true,
-        unique:true
+        unique:true,
+        index: true
    },
     name:{
         type:String
@@ -73,7 +74,13 @@ const ProblemSchema = new mongoose.Schema({
     contest:{
         type:mongoose.Schema.Types.String,
         refs:'Contest'
-    }
+    },
+    comments: [
+        {
+            comment: String,
+            username: String
+        }
+    ]
 } )
 
 module.exports=mongoose.model('Problem',ProblemSchema)

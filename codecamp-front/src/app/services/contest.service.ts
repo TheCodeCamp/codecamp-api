@@ -127,4 +127,13 @@ export class ContestService {
     return this.http.post(this.domain + 'viewsolution', id)
       .map(res=>res.json()) 
   }
+  getComments(code, contest) {
+    return this.http.get(this.domain + 'contest/' + contest + '/problems/' + code + '/comment')
+    .map(comment => comment.json());
+  }
+
+  postComments(code, contest, comment, username) {
+    return this.http.post(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', {comment, username})
+    .map(comments => comments.json());
+  }
 }
