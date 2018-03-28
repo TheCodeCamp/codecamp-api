@@ -26,6 +26,7 @@
 
 .col-md-3 {
     text-align: center;
+    padding-right:0% !important;
 }
 
 .display-4{
@@ -38,10 +39,14 @@
     border: 4px;
 }
 
-#timer{
-  color: red;
-  margin-right: 13px;
-}
+
 button.btn.btn-info{
   margin-top:4%;
+}
+
+#box-el{
+  padding:0.5rem!important;
+  color: rgb(15, 15, 15);
+  background: rgb(231, 240, 55);
+
 }
