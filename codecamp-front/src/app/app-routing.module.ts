@@ -29,6 +29,7 @@ import { IwedgeComponent } from './components/iwedge/iwedge.component';
 import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ViewSolComponent } from './components/view-sol/view-sol.component';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,10 @@ const appRoutes: Routes = [
       path: 'practice/:problems',
       component: ProblemComponent
     },
+    {
+      path: 'solution/:user/:id',
+      component: ViewSolComponent
+    }
     {
       path: 'iwedge',
       component: IwedgeComponent,

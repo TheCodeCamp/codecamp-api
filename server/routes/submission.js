@@ -18,11 +18,12 @@ router.post('/',(req,res)=>{
     let problem = body.problem;
     let id = contest+problem+user;
     
-    Solution.find({'id':{'$regex':id}},'id username language submitted_on,status', (err,sub)=>{
+    Solution.find({'id':{'$regex':id}},'id username language submitted_on status', (err,sub)=>{
         if(!sub){
             return res.json({
-                success:false,
-                msg:'You have Not Submiited Anything ! Please Solve a Problem'
+                
+                'success':false,
+                'msg':'You have Not Submiited Anything ! Please Solve a Problem'
             });
         }
         res.json({

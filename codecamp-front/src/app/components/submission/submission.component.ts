@@ -12,6 +12,7 @@ export class SubmissionComponent implements OnInit {
 
   submission;
   submit;
+  glyph;
   constructor(
     private contestService: ContestService,
     private route: ActivatedRoute,
@@ -24,13 +25,16 @@ export class SubmissionComponent implements OnInit {
       problem : this.route.snapshot.params['problem'],
       contest : this.route.snapshot.params['contest']
     }
-    console.log(this.submission);
     this.contestService.getSubmission(this.submission).subscribe((data)=>{
       this.submit = data.msg;
-      console.log(this.submit);
     })
   }
-
+  replaceTZ(time) {
+    return time && time.replace(/[TZ]|.000/g, '<br>');
+  }
+  onClickView(id){
+    this.router.navigate(['/solution',this.submission.user,id])
+  }
 }
 
 

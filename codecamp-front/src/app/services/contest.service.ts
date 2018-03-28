@@ -123,4 +123,8 @@ export class ContestService {
     return this.http.post(this.domain + 'submission', submission)
       .map(res=>res.json())
   }
+  getSoln(id): Observable<any>{
+    return this.http.post(this.domain + 'viewsolution', id)
+      .map(res=>res.json())
+  }
 }
