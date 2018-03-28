@@ -26,8 +26,8 @@ export class ProblemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.code = this.route.snapshot.params['problem'];
-    this.contest = this.route.snapshot.params['contest'];
+      this.code = this.route.snapshot.params['problem'];
+      this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblem(this.code, this.contest).subscribe(data => {
       this.problem = data.problem;
       console.log(this.problem)

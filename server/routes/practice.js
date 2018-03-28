@@ -13,7 +13,7 @@ router.get('/',(req,res)=>{
         // })
         .populate({
             path: 'questions',
-            select:['name','code'],
+            select:['name','code','contest'],
             model: 'Problem'
         }).
         exec(function(err,question){

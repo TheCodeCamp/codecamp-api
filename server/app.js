@@ -50,6 +50,7 @@ const solutions = require('./routes/solution');
 const rankings = require('./routes/ranking');
 const submission = require('./routes/submission');
 const practice = require('./routes/practice');
+const viewSolution = require('./routes/viewsolution');
 
 app.use('/ide',ide);
 app.use('/contest', contest);
@@ -57,7 +58,8 @@ app.use('/users', users);
 app.use('/solution',solutions);
 app.use('/rankings',rankings);
 app.use('/submission',submission);
-app.use('/practice', practice);
+app.use('/practice',practice);
+app.use('/viewsolution',viewSolution);
 
 
 // app.post('/',(req,res)=>{

@@ -12,27 +12,18 @@ const problemRoute = require('./problems');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
-    body = req.body;
-    let user = body.user;
-    let contest = body.contest;
-    let problem = body.problem;
-    let id = contest+problem+user;
-    
-    Solution.find({'id':{'$regex':id}},'id username language submitted_on status -_id', (err,sub)=>{
-        if(!sub){
-            return res.json({
-                
+    Solution.find({'id':req.body.id},'description -_id',(err,solution)=>{
+        if(err){
+            res.json({
                 'success':false,
-                'msg':'You have Not Submiited Anything ! Please Solve a Problem'
-            });
+                'msg':"Error Occured Please Try Again!"
+            })
         }
         res.json({
             'success':true,
-            'msg':sub
-        });
-    })
+            'msg':solution
+        })
+    });
 })
-
-
 
 module.exports = router;

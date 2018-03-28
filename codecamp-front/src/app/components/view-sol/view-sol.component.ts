@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ViewSolComponent implements OnInit {
 
-  id;
+  id1;
   soln;
   constructor(
     private contestService: ContestService,
@@ -18,9 +18,11 @@ export class ViewSolComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.contestService.getSoln(this.id).subscribe((data)=>{
-      this.soln = data.msg;
+    this.id1 = {
+      id: this.route.snapshot.params['id']
+    }
+    this.contestService.getSoln(this.id1).subscribe((data)=>{
+      this.soln = atob(data.msg[0].description);
     })
   }
 }

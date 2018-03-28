@@ -13,7 +13,7 @@
             <a
             class="nav-link problem"
             *ngFor="let i of problems"
-            (click)="onSelectProblem(i.code)">
+            (click)="onSelectProblem(i.contest,i.code)">
               <div class="row">
                 <div class="col-md-6">
                   {{i.name}}

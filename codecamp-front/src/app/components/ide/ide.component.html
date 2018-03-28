@@ -54,11 +54,24 @@
               <strong>Status:</strong>{{output.msg}}
               <strong>Time:</strong>{{output.time}}
               <br>
-              <div id="text" class="alert alert-success submissionResult" role="alert">
-                  <span
-                  [innerText]="output.output">
-                  </span>
+              <div id="text" *ngIf="output.msg === 'Successfully Executed' " class="alert alert-success submissionResult" role="alert">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span [innerText]="output.output">
+                        </span>
+                    </div>
+                </div>
             </div>
+
+            <div id="text" *ngIf="output.msg !== 'Successfully Executed' " class="alert alert-danger submissionResult" role="alert">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span [innerText]="output.output">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             </div>
           </div>
 

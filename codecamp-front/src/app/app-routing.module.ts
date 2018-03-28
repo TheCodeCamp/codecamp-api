@@ -56,13 +56,13 @@ const appRoutes: Routes = [
       component: PracticeComponent
     },
     {
-      path: 'practice/:problems',
+      path: 'practice/:contest/:problem',
       component: ProblemComponent
     },
     {
       path: 'solution/:user/:id',
       component: ViewSolComponent
-    }
+    },
     {
       path: 'iwedge',
       component: IwedgeComponent,

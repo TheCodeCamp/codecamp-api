@@ -125,6 +125,6 @@ export class ContestService {
   }
   getSoln(id): Observable<any>{
     return this.http.post(this.domain + 'viewsolution', id)
-      .map(res=>res.json())
+      .map(res=>res.json()) 
   }
 }
