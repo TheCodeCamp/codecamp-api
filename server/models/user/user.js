@@ -43,6 +43,10 @@ var UserSchema = new mongoose.Schema({
         type:String,
         default:""
     },
+    contact_number:{
+        type:String,
+        default:""
+    },
     joinedOn:{
         type:Date,
         default:(new Date())
@@ -110,7 +114,7 @@ var UserSchema = new mongoose.Schema({
 UserSchema.methods.toJSON = function() {
     var user = this ;
     var userObject = user.toObject();
-    return _.pick(userObject,['email_id','_id','college','name','bio','dob','joinedOn','username','city','gender'])
+    return _.pick(userObject,['email_id','_id','college','name','bio','dob','joinedOn','username','city','gender','contact_number'])
 }
 
 UserSchema.statics.findByUsername=function(username,password,done){

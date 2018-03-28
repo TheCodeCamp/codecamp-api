@@ -33,14 +33,14 @@ module.exports.mailTo = function(email,username) {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: 'bathwal.amar1995@gmail.com', // generated ethereal user
-                pass: 'Kashiramka@123' // generated ethereal password
+                user: 'hackercamp.kavalier@gmail.com', // generated ethereal user
+                pass: 'shiv7250' // generated ethereal password
             }
         });
     
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"HackerCamp" <bathwal.amar1995@gmail.com>', // sender address
+            from: '"HackerCamp" <hackercamp.kavalier@gmail.com>', // sender address
             to: email,
             subject: 'Forgot Password', // Subject line
             text: 'Forgot Password', // plain text body
@@ -50,11 +50,11 @@ module.exports.mailTo = function(email,username) {
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                //return console.log(error);
             }
-            console.log('Message sent: %s', info.messageId);
+           // console.log('Message sent: %s', info.messageId);
             // Preview only available when sending through an Ethereal account
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+           // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

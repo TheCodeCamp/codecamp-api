@@ -12,8 +12,13 @@
 textarea{
     overflow-x: hidden;
     padding: 5px;
+<<<<<<< HEAD
+    height:200px;
+    width:400px;
+=======
     height:100px;
     width:100%;
+>>>>>>> 636810b29482e8ac4d741dd95e039bc36785428e
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 

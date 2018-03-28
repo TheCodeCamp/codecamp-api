@@ -8,7 +8,9 @@ const router = express.Router({mergeParams: true})
 
 router.get('/:code',(req,res)=>{
     var code= req.params.code;
-    Problem.findOne({'code':code}).then((problem)=>{
+    Problem.findOne({'code':code})
+    .select('name id description -_id')
+    .then((problem)=>{
         res.json({
             "success":true,
             "problem":problem

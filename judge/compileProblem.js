@@ -111,6 +111,14 @@ const serverResult = async (contest,problem)=>{
     })
 }
 
+const isPython = async (file)=>{
+    return new Promise((resolve,reject)=>{
+        resolve(file);
+    }).catch((e)=>{
+        console.log(e);
+    })
+}
+
 const base64tofile = async (base64,lang,ide)=>{
     const fileout=new Buffer(base64,'base64').toString('ascii');
     let filename;
@@ -122,7 +130,7 @@ const base64tofile = async (base64,lang,ide)=>{
     if(lang=='C++'|| lang == 'c++'){
         filename+='cpp';
     }else if(lang==='python'){
-        filename+='.py';
+        filename+='py';
     }else{
         filename+=lang;
     }
@@ -140,15 +148,19 @@ const base64tofile = async (base64,lang,ide)=>{
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
     console.log(contest)
     const filename= await base64tofile(description,lang,0);
+    let file;
     if(lang!=='python'){
-        const file = await compileProblem(lang,filename,0);
+        file = await compileProblem(lang,filename,0);
+    }else if(lang==='python'){
+        file = await isPython(filename);
     }
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
+    console.log(result)
     const serverRes= await serverResult(contest,problem);
     const Result = await checkResult(result,serverRes);
     //console.log(Result);
     return Result;
   
 }
-module.exports = {compileAndRunProblem,compileProblem,runCompiled,base64tofile,serverResult,checkResult}
+module.exports = {compileAndRunProblem,compileProblem,runCompiled,base64tofile,serverResult,checkResult,isPython}

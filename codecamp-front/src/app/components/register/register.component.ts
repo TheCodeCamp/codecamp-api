@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
       confirm: ['', Validators.required],
       college: ['', Validators.required],
       gender: ['', Validators.required],
+      contact_number: ['', Validators.required],
       dob: ['', Validators.required],
       city: ['', Validators.required]
     }, { validator: this.matchingPasswords('password', 'confirm')});
@@ -85,7 +86,8 @@ export class RegisterComponent implements OnInit {
       dob: this.form.get('dob').value,
       city: this.form.get('city').value,
       gender: this.form.get('gender').value,
-      joinedOn: Date.now()
+      joinedOn: Date.now(),
+      contact_number: this.form.get('contact_number').value
     };
     this.authService.registerUser(user).subscribe(data => {
       if (!data.success) {
