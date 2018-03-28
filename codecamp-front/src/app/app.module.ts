@@ -86,7 +86,7 @@ import { CommentComponent } from './components/comment/comment.component';
     FooterComponent,
     NotificationComponent,
     ForgotPasswordComponent,
-    ViewSolComponent
+    ViewSolComponent,
     CommentComponent
   ],
   imports: [

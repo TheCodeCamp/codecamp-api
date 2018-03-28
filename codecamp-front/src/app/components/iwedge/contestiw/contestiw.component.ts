@@ -12,7 +12,7 @@ export class ContestiwComponent implements OnInit {
 
   contestname;
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private contestService: ContestService,
     private router: Router
   ) { }
@@ -21,10 +21,10 @@ export class ContestiwComponent implements OnInit {
   }
   onAddContest() {
     this.router.navigate(['/contest/add-contest']);
-  }
+  }/*
   onClickGrab(i){
     this.contestname = i.name;
     this.contestService.changeContest(this.contestname);
     this.router.navigate(['/contest', i.id]);
-  }
+  }*/
 }

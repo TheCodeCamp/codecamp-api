@@ -65,12 +65,12 @@ const appRoutes: Routes = [
     },
     {
       path: 'iwedge',
-      component: IwedgeComponent,
-      canActivate: [AuthGuard]
+      component: IwedgeComponent
     },
     {
       path:'iwedge/contest',
       component: ContestiwComponent
+      
     },
     {
       path: 'contest',
