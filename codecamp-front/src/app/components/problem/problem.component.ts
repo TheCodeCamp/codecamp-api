@@ -16,6 +16,8 @@ export class ProblemComponent implements OnInit {
   contest;
   problem;
   base64Image;
+  showComment = false;
+  caretType = 'fa-caret-right';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -39,5 +41,15 @@ export class ProblemComponent implements OnInit {
 
   onSelectSubmit() {
     this.router.navigate([this.contest, 'submit', this.code]);
+  }
+
+  showComments() {
+    if (this.showComment) {
+      this.showComment = !(this.showComment);
+      this.caretType = 'fa-caret-right';
+    } else {
+      this.showComment = !(this.showComment);
+      this.caretType = 'fa-caret-down';
+    }
   }
 }

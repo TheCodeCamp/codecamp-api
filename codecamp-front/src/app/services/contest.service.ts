@@ -115,4 +115,13 @@ export class ContestService {
     this.Toggler.next(value);
   }
 
+  getComments(code, contest) {
+    return this.http.get(this.domain + 'contest/' + contest + '/problems/' + code + '/comment')
+    .map(comment => comment.json());
+  }
+
+  postComments(code, contest, comment, username) {
+    return this.http.post(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', {comment, username})
+    .map(comments => comments.json());
+  }
 }

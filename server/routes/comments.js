@@ -23,7 +23,7 @@ router.post('/:code/comment',(req,res) => {
     Problem.findOne({'code':code}).then((problem)=>{
         problem.comments.push({
             comment: req.body.comment,
-            username: req.body.username
+            username: req.body.username.username
         });
         problem.save().then(() => {
             res.json({
