@@ -13,6 +13,7 @@ const Solution = require('./../models/solution/solution');
 const User = require('./../models/user/user');
 const Problem = require('./../../contest/models/problem/problem');
 const Ranking = require('./../../contest/models/ranking/ranking');
+const Contest = require('./../../contest/models/contest/contest');
 
 const router = express.Router();
 
@@ -56,8 +57,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           json:true
           };
           rp(opt).then((body)=>{
-            console.log(body)
-            if(body===true){
+            if(body.result===true){
               User.findOne({'username':solution.username},(err,user)=>{
                 if(err){
                   res.json({
@@ -73,22 +73,35 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   solution.status = "Accepted";
                   solution.save();
                   var index = user.contest.findIndex(x => x.name===solution.contest);
+                  let endTime =  Contest.getEndTime(solution.contest);
+                  let timeNow = Date();
                   if(index>=0){
                     var problemIndex = user.contest[index].problemSolved.findIndex(x=>x.name ===solution.problem);
                     if(problemIndex===-1){
                       user.contest[index].problemSolved.push({name:solution.problem,submissionTime:Date()});
-                      user.contest[index].count++; 
+                      if(timeNow<=endTime){
+                        // console.log(user.contest[index].count)
+                        user.contest[index].count+=body.score; 
+                        // console.log(user.contest[index].count)
+                      }
                     }else{
                         if(!user.contest[index].problemSolved[problemIndex].submissionTime){
-                          // console.log('name' in (user.contest[index].problemSolved[problemIndex]))
-                          // console.log('33')
-                          user.contest[index].problemSolved[problemIndex].submissionTime=Date();
-                          user.contest[index].count++; 
+                          user.contest[index].problemSolved[problemIndex].submissionTime=timeNow;
+                
+                          if(timeNow<=endTime){
+                            // console.log(user.contest[index].count)
+                            user.contest[index].count+=body.score; 
+                          }
                         }
                     }
                     
                   }else{
-                    user.contest.push({name:solution.contest,problemSolved:[{name:solution.problem,submissionTime:Date()}],count:1});
+                    if(timeNow<=endTime){
+                      user.contest.push({name:solution.contest,problemSolved:[{name:solution.problem,submissionTime:Date()}],count:body.score});
+                    }else{
+                      user.contest.push({name:solution.contest,problemSolved:[{name:solution.problem,submissionTime:Date()}],count:0});
+                    }
+                    
 
                   }
                 }

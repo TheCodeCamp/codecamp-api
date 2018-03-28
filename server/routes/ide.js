@@ -5,7 +5,7 @@ const querystring = require('querystring');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
- // console.log(req.body)
+  console.log(req.body)
     
     let data = {
       language:(req.body.language).toLowerCase(),
@@ -32,7 +32,6 @@ router.post('/',(req,res)=>{
           body+=chunk;
         });
         resfromjudge.on('end', () => {
-          console.log(JSON.parse(body));
           res.send(JSON.parse(body));
         });
         
@@ -41,8 +40,6 @@ router.post('/',(req,res)=>{
       reqtojudge.on('error',(e)=>{
         console.error(`problem with request: ${e.message}`);
       })
-      
-      
       
       // write data to request body
       reqtojudge.write(dataString);

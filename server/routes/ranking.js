@@ -43,7 +43,7 @@ router.get('/:id',(req,res)=>{
                     }
                     time += penality*10;
 
-                    return {name:x.username,score:x.contest[index].count*100,time:time};
+                    return {name:x.username,score:x.contest[index].count,time:time};
                 }
             });
             res.json({'success': true, 'msg': userTry.sort(compare)})

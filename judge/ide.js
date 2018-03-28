@@ -7,7 +7,6 @@ const cp = require('./compileProblem');
 async function runCompiled(lang,file,input,t0){
 
     var cmd;
-    
     fs.writeFileSync(path.join(__dirname,"result/binary/ideInput.txt"),input);
     switch(lang){
         case "c":
@@ -19,8 +18,10 @@ async function runCompiled(lang,file,input,t0){
             break;
         case "java":
             cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" < ideInput.txt";
+            break;
         case "python":
             cmd =  "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" < ideInput.txt";  
+            break;
     }
    
     
@@ -47,13 +48,17 @@ async function runCompiled(lang,file,input,t0){
 async function IdeSolution(option) {
     const filename = await cp.base64tofile(option.description,option.language,1);
     let file ;
+    console.log(filename)
+    
     if(option.language!=='python'){
-        const file = await cp.compileProblem(option.language,filename,1);
+        file = await cp.compileProblem(option.language,filename,1);
     }else if(option.language==='python'){
         file = await cp.isPython(filename);
     }
+ 
     const t0 = process.hrtime();
     const result = await runCompiled(option.language,file,option.input,t0);
+    console.log(result)
     return result; 
 }
 
