@@ -56,6 +56,7 @@ export class EditProfileComponent implements OnInit {
       name: this.form.get('name').value ? this.form.get('name').value : this.user.name,
       username: this.form.get('username').value ? this.form.get('username').value : this.user.username,
       email_id: this.form.get('email_id').value ? this.form.get('email_id').value : this.user.email_id,
+      contact_number: this.form.get('contact_number').value ? this.form.get('contact_number').value : this.user.contact_number,
       college: this.form.get('college').value ? this.form.get('college').value : this.user.college,
       city: this.form.get('city').value ? this.form.get('city').value : this.user.city,
       dob: this.form.get('dob').value ? this.form.get('dob').value : this.user.dob,

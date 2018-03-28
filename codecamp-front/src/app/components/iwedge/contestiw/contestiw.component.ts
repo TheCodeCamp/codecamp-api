@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ContestiwComponent implements OnInit {
 
+  contestname;
   constructor(
     private authService: AuthService,
     private contestService: ContestService,
@@ -18,5 +19,12 @@ export class ContestiwComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  onAddContest() {
+    this.router.navigate(['/contest/add-contest']);
+  }
+  onClickGrab(i){
+    this.contestname = i.name;
+    this.contestService.changeContest(this.contestname);
+    this.router.navigate(['/contest', i.id]);
+  }
 }

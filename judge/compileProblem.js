@@ -140,8 +140,12 @@ const base64tofile = async (base64,lang,ide)=>{
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
     console.log(contest)
     const filename= await base64tofile(description,lang,0);
+    let file = filename;
     if(lang!=='python'){
-        const file = await compileProblem(lang,filename,0);
+        file = await compileProblem(lang,filename,0);
+    }else{
+        file = filename;
+        console.log(file);
     }
     const t0 = process.hrtime();
     const result= await runCompiled(lang,file,contest,problem,option,t0);
