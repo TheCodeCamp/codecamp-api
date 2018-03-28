@@ -1,4 +1,4 @@
-import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
+  import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 import { ContestService } from './services/contest.service';
 @Component({
@@ -11,7 +11,7 @@ import { ContestService } from './services/contest.service';
         marginLeft: '240px'
       })),
       state('false', style({
-        marginLeft: '0px  '
+        marginLeft: '0px'
       })),
       transition('true => false', animate('230ms ease-out')),
       transition('false => true', animate('700ms ease-in-out'))
@@ -21,8 +21,8 @@ import { ContestService } from './services/contest.service';
 export class AppComponent implements OnInit {
 
   panelVisible;
-  menuState:string = 'out';
-
+  p= false;
+  innerWidth: any;
   constructor(public progressService: NgProgress,
   private contestService: ContestService){
 
@@ -36,10 +36,6 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       this.progressService.inc(0.2);
     }, 2000);
-    if(!this.panelVisible)
-    // 1-line if statement that toggles the value:
-      this.menuState = 'in';
-    else  
-      this.menuState = 'out';
-    }
+  
+  }
 }

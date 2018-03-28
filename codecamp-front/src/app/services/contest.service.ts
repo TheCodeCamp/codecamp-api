@@ -115,4 +115,9 @@ export class ContestService {
     this.Toggler.next(value);
   }
 
+  getPracticeProblems(): Observable<any>{
+    return this.http.get(this.domain + 'practice')
+      .map(res=>res.json())
+  }
+
 }

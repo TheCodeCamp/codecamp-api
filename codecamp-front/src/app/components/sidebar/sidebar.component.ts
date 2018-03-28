@@ -37,5 +37,5 @@ export class SidebarComponent implements OnInit {
    onClick() {
     // Do something relevant with the object...
     return false;
-}
+    }
 }
