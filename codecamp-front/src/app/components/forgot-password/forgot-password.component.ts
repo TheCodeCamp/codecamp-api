@@ -31,14 +31,16 @@ onForgot() {
   const user = {
     email_id: this.form.get('email_id').value, // Email input field
   };
-  const success = false;
   this.authService.forgetPassword(user).subscribe(data => {
-    console.log(data)
+    if (data.success) {
+        this._flashMessagesService.show(data.msg, { cssClass: 'alert-success', timeout: 2000 });
+        this.router.navigate(['/login']);
+    } else {
+      this._flashMessagesService.show(data.msg, { cssClass: 'alert-danger', timeout: 2000 });
+    }
   });
-  if (success === false) {
-    this._flashMessagesService.show('not Found', { cssClass: 'alert-danger', timeout: 2000});
-  }
-  console.log(user);
+
+  //console.log(user);
 
 }
 }

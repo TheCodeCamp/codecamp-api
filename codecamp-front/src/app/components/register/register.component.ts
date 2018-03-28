@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   // message;
   // messageClass;
-
+  showPassword = false;
+  text = 'password';
+  iconOfHide = 'fa-eye-slash';
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -44,6 +46,7 @@ export class RegisterComponent implements OnInit {
       confirm: ['', Validators.required],
       college: ['', Validators.required],
       gender: ['', Validators.required],
+      contact_number: ['', Validators.required],
       dob: ['', Validators.required],
       city: ['', Validators.required]
     }, { validator: this.matchingPasswords('password', 'confirm')});
@@ -83,7 +86,8 @@ export class RegisterComponent implements OnInit {
       dob: this.form.get('dob').value,
       city: this.form.get('city').value,
       gender: this.form.get('gender').value,
-      joinedOn: Date.now()
+      joinedOn: Date.now(),
+      contact_number: this.form.get('contact_number').value
     };
     this.authService.registerUser(user).subscribe(data => {
       if (!data.success) {
@@ -97,5 +101,17 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       }
     });
+  }
+
+  onClick() {
+    this.showPassword = !this.showPassword;
+    // console.log(this.showPassword);
+    if ( this.showPassword ) {
+    this.text = 'text';
+    this.iconOfHide = 'fa-eye';
+    } else {
+    this.text = 'password';
+    this.iconOfHide = 'fa-eye-slash';
+    }
   }
 }

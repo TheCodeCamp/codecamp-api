@@ -13,7 +13,7 @@ function randomPasswordGenerator(){
 }
 
 module.exports.mailTo = function(email,username) {
-    // console.log(typeof email);
+    console.log(typeof email);
     const password = randomPasswordGenerator();
     const html=`<div style="margin-left:25%;margin-top:10%; width: 50%; align :center;">
     <p>
@@ -50,11 +50,11 @@ module.exports.mailTo = function(email,username) {
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                return console.log(error);
+                //return console.log(error);
             }
-            console.log('Message sent: %s', info.messageId);
+           // console.log('Message sent: %s', info.messageId);
             // Preview only available when sending through an Ethereal account
-            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+           // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...

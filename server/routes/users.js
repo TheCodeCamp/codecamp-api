@@ -10,7 +10,7 @@ const router = express.Router();
 const nodemailer = require('nodemailer');
 
 router.post('/signup',(req,res)=>{
-    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
+    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio','contact_number']);
     body.joinedOn= (new Date).toLocaleString();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
@@ -127,7 +127,7 @@ router.patch('/:username/edit',(req,res)=>{
     username = username.substr(1);
     // console.log(username);
     // const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
-    const body = _.pick(req.body,['name','college','dob','gender','city','joinedOn']);
+    const body = _.pick(req.body,['name','college','dob','gender','city','joinedOn','contact_number']);
     
     User.findOne({'username':username}).then((model) => {
        // console.log(model);
@@ -149,7 +149,7 @@ router.patch('/:username/edit',(req,res)=>{
 
 router.post('/forget',(req,res) => {
     const email_id = req.body.email_id;
-    console.log(email_id);
+     //console.log(email_id);
     User.findOne({email_id:email_id}).then((user)=>{
         //console.log(user.username);
         const password=(require('./../utils/auth/resetPassword.js')).mailTo(user.email_id,user.username);

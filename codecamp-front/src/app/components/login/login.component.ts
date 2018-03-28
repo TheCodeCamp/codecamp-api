@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   message = false;
   messageClass;
-
+  showPassword = false;
+  text = 'password';
+  iconOfHide = 'fa-eye-slash';
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -51,5 +53,16 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/']);
            }     // Navigate to dashboard view
       });
+  }
+  onClick() {
+    this.showPassword = !this.showPassword;
+    // console.log(this.showPassword);
+    if ( this.showPassword ) {
+    this.text = 'text';
+    this.iconOfHide = 'fa-eye';
+    } else {
+    this.text = 'password';
+    this.iconOfHide = 'fa-eye-slash';
+    }
   }
 }
