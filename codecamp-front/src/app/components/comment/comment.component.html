@@ -9,6 +9,10 @@
                           {{comment.comment}}
                           <br>
                         </p>
+                        <button
+                        class="btn btn-primary btn-sm pull-left "
+                        (click)="onDeleteComment(comment.comment,comment.username)"
+                        *ngIf="isAdmin">Delete</button>
                     </div>
                 </div>
             </div>
@@ -22,10 +26,10 @@
             <div class="panel panel-info">
                 <div class="panel-body">
 
-                    <form class="form-inline" [formGroup]="form" (submit)="onCommentSubmit()">
+                    <form [formGroup]="form" (submit)="onCommentSubmit()">
                         <textarea
                         placeholder="Write your comment here!"
-                        class="pb-cmnt-textarea form-control"
+                        class="form-control"
                         name="comment"
                         formControlName="comment">
                         </textarea>

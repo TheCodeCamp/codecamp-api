@@ -21,10 +21,12 @@ export class PracticeComponent implements OnInit {
   ngOnInit() {
     this.contestService.getPracticeProblems().subscribe((data) => {
       this.problems = data.msg;
+      console.log(data.msg)
     })
   }
 
   onSelectProblem(contest,code){
+    console.log(contest,code);
     this.router.navigate(['/practice', contest,code]);
   } 
 }

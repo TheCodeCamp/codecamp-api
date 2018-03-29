@@ -40,8 +40,7 @@ export class EditProfileComponent implements OnInit {
         dob: this.user.dob,
         gender: this.user.gender,
         city: this.user.city,
-        college: this.user.college,
-        joinedOn: this.user.joinedOn
+        college: this.user.college
 
     });
   }
@@ -52,7 +51,7 @@ export class EditProfileComponent implements OnInit {
     return t1[0];
     }
   }
-  onEdit(){
+  onEdit() {
     const usr = {
       name: this.form.get('name').value ? this.form.get('name').value : this.user.name,
       username: this.form.get('username').value ? this.form.get('username').value : this.user.username,
@@ -62,7 +61,7 @@ export class EditProfileComponent implements OnInit {
       city: this.form.get('city').value ? this.form.get('city').value : this.user.city,
       dob: this.form.get('dob').value ? this.form.get('dob').value : this.user.dob,
       gender: this.form.get('gender').value ? this.form.get('gender').value : this.user.gender,
-      joinedOn: this.form.get('joinedOn').value ? this.form.get('joinedOn').value : this.user.joinedOn
+      joinedOn: this.user.joinedOn
     };
 
     this.authService.editUser(usr).subscribe(data => {
