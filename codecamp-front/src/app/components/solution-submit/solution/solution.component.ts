@@ -16,7 +16,6 @@ export class SolutionComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.contestService.getSolution();
-    console.log(this.data)
     if(this.data === 'Accepted')
     {
       this.data = "Correct Answer";
