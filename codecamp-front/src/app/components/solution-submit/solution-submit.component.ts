@@ -115,7 +115,6 @@ public class Solution {
     };
     this.contestService.addSolution(solution).subscribe(data => {
       this.contestService.setSolution(data.msg.result);
-      console.log(data.msg)
       this.router.navigate(['/submit/complete']);
     });
   }
