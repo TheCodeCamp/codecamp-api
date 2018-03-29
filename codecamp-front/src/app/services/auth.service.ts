@@ -12,8 +12,8 @@ import { Subject } from 'rxjs/Subject';
 export class AuthService {
   public authToken: any;
   public user: any;
-  //public domain = 'http://localhost:80/';
-  public domain = '';
+  public domain = 'http://localhost:80/';
+  //public domain = '';
   public options;
 
   constructor(
