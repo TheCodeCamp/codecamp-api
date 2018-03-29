@@ -26,7 +26,7 @@ async function runCompiled(lang,file,input,t0){
    
     
     return new Promise((resolve,reject)=>{
-    exec(cmd,{timeout:8000,maxBuffer:5000000},(error, stdout, stderr) => { 
+    exec(cmd,{timeout:8000,maxBuffer:50000000},(error, stdout, stderr) => { 
         if (error) {      
             //console.log(error) 
            

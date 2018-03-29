@@ -43,7 +43,8 @@ export class AddProblemComponent implements OnInit {
       sourcelimit: ['', Validators.required],
       author: ['', Validators.required],
       Input: ['', Validators.required],
-      Output: ['', Validators.required]
+      Output: ['', Validators.required],
+      score: ['', Validators.required]
     });
   }
   onFileChange1(event) {
@@ -95,7 +96,8 @@ export class AddProblemComponent implements OnInit {
       author: this.form.get('author').value,
       testCaseInput: atob(this.Input),
       testCaseOutput: atob(this.Output),
-      image: this.image
+      image: this.image,
+      score: this.form.get('score').value
     };
 
 

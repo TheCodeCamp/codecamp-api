@@ -114,7 +114,7 @@ public class Solution {
       description: this.currentFileUpload
     };
     this.contestService.addSolution(solution).subscribe(data => {
-      this.contestService.setSolution(data.msg);
+      this.contestService.setSolution(data.msg.result);
       this.router.navigate(['/submit/complete']);
     });
   }

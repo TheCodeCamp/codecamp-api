@@ -3,10 +3,10 @@
         <div class="comments col-md-9" id="comments">
             <div class="comment mb-2 row">
                 <div class="comment-content col-md-11 col-sm-10" *ngFor="let comment of comments">
-                    <h5 class="comment-meta">{{comment.username}}</h5>
+                    <h5 class="comment-meta"><b>{{comment.username}}</b></h5>
                     <div class="comment-body">
                         <p>
-                          {{comment.comment}}  
+                          {{comment.comment}}
                           <br>
                         </p>
                     </div>
@@ -21,10 +21,10 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-info">
                 <div class="panel-body">
-                    
+
                     <form class="form-inline" [formGroup]="form" (submit)="onCommentSubmit()">
-                        <textarea 
-                        placeholder="Write your comment here!" 
+                        <textarea
+                        placeholder="Write your comment here!"
                         class="pb-cmnt-textarea form-control"
                         name="comment"
                         formControlName="comment">

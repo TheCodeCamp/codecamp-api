@@ -40,14 +40,16 @@ export class CommentComponent implements OnInit {
         Validators.required,
         Validators.maxLength(50)
       ])]
+
     });
   }
   onCommentSubmit() {
     const comment = this.form.get('comment').value;
-    console.log(comment);
+    const time = new Date();
+    // console.log(comment);
     this.contestService.postComments(this.code, this.contest, comment, this.username)
     .subscribe((comments) => {
-      console.log(comments);
+      // console.log(comments);
     });
     this.router.navigate([`/contest/${this.contest}/${this.code}`]);
   }

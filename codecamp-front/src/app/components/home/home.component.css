@@ -42,3 +42,15 @@
     max-width: 500px;
     margin: 10px auto 0;
 }
+
+.col-md-9,.col-md-3{
+    padding: 0%;
+}
+
+.alert{
+    border-radius: 0;
+}
+
+.alert-light{
+    padding: 12%;
+}

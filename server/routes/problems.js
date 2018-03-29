@@ -9,7 +9,7 @@ const router = express.Router({mergeParams: true})
 router.get('/:code',(req,res)=>{
     var code= req.params.code;
     Problem.findOne({'code':code})
-    .select('name id description -_id')
+    .select('code  name  successfulSubmission level  image contest description  input_format  output_format constraints   input_example   output_example   explanation_example  date_added   timelimit   sourcelimit   author   testCaseInput   testCaseOutput')
     .then((problem)=>{
         res.json({
             "success":true,

@@ -1,30 +1,28 @@
-
-<div class="container box">
-
-  <div class="row title">
-    <div class="col-md-6">
-      <p>Name</p>
-    </div>
-    <div class="col-md-3">
-      <p>Code</p>
-    </div>
-    <div class="col-md-3">
-      <p>Submission</p>
-    </div>
+<div class="container">
+    <div class="row">
+              <div class="col-md-6 head">
+                Problem
+              </div>
+              <div class="col-md-3 head">
+                Problem Code
+              </div>
+              <div class="col-md-3 head">
+                Successful Submission
+              </div>
+            </div>
+            <a
+            class="nav-link problem"
+            *ngFor="let i of problems"
+            (click)="onSelectProblem(i.contest,i.code)">
+              <div class="row">
+                <div class="col-md-6">
+                  {{i.name}}
+                </div>
+                <div class="col-md-3">
+                  {{i.code}}
+                  </div>
+              </div> 
+         </a>
+    <hr>
   </div>
-  <a
-  class="nav-link">
-  <div class="row problem ">
-    <div class="col-md-6">
-      <p>A puzzle Game</p>
-    </div>
-    <div class="col-md-3">
-      <p>H1</p>
-    </div>
-    <div class="col-md-3">
-      <p>43.43</p>
-    </div>
-  </div>
-  </a>
-  <hr>
-</div>
+  
