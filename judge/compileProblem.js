@@ -95,17 +95,32 @@ async function runCompiled(lang,file,contest,problem,option,t0){
 
 const checkResult=async (UserResult,serverResult)=>{
    // UserResult = fs.readFileSync(UserResult,'utf16le')
+//    console.log(UserResult)
+//    console.log(serverResult)
     return new Promise((resolve,reject)=>{
-        if(UserResult===serverResult){
-            resolve(true)
-        }else{
-            resolve(false)
-        }
+        // if(UserResult==serverResult){
+        //     resolve('Accepted')
+        // }else{
+        //     resolve('WA')
+        // }
+        fs.writeFileSync(path.join(__dirname,'result/user/serverResult.txt'),serverResult,{encoding:'utf8'});
+        fs.writeFileSync(path.join(__dirname,'result/user/userResult.txt'),UserResult,{encoding:'utf8'});
+         
+        exec("diff -Z "+path.join(__dirname,'result/user/userResult.txt') + " " + path.join(__dirname,'result/user/serverResult.txt'),(error, stdout, stderr) => { 
+            if (error) {      
+                // console.log(error) 
+                resolve('WA');
+            }
+            
+                resolve('Accepted')
+            
+          });
+        
     })
 }
 const serverResult = async (contest,problem)=>{
     return new Promise((resolve,reject)=>{
-       var buf= fs.readFileSync(path.join(__dirname,"result/output/"+contest+"/"+problem+".txt"),'utf8');
+       var buf= fs.readFileSync(path.join(__dirname,"result/output/"+contest+"/"+problem+".txt"));
        resolve(buf)
     }).catch((e)=>{
         console.log(e)
@@ -159,8 +174,9 @@ async function compileAndRunProblem(contest,problem,id,lang ,description,option)
     const result= await runCompiled(lang,file,contest,problem,option,t0);
     // console.log(result)
     const serverRes= await serverResult(contest,problem);
+    // console.log(serverRes)
     const Result = await checkResult(result,serverRes);
-    //console.log(Result);
+    console.log(Result);
     return Result;
   
 }

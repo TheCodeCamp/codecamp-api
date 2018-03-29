@@ -1,22 +1,48 @@
-p{
-    margin: 8px 0;
-}
-
-.title{
-    padding-top: 10px;
-    background: #343a40;
-    color: white;
-}
-a{
-    color: black;
-    padding: 0;
-}
-
-hr{
-    margin: 0;
-    border: 0.5px solid grey;
-}
-
 .problem{
     background: white;
+    border-bottom: 1px solid rgba(39,39,39,.1);
+    padding: 1% 0.5%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    cursor: pointer;
 }
+
+.breadcrumb{
+    background-color: inherit;
+    padding-top: 2%;
+    margin: 0;
+}
+
+.head {
+    padding: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    background: #111;
+    color: #fff;
+}
+.row{
+    margin: 0;
+}
+
+
+.col-md-3 {
+    text-align: center;
+}
+
+.display-4{
+    padding-left: 1%;
+}
+.main {
+    margin-top: 1%;
+    background: white;
+    padding: 2%;
+    border: 4px;
+}
+
+#timer{
+  color: red;
+  margin-right: 13px;
+}
+button.btn.btn-info{
+  margin-top:4%;
+}
+    

@@ -41,15 +41,15 @@ router.get('/:id',(req,res)=>{
           // console.log()    
           res.send({result:result,score:pro.score});
         }).catch((e)=>{
-          // console.log(e)
+          console.log(e)
           var compileError = /(g[/++/]|gcc|javac|CE)/;
           if(e.toString().match(compileError)){
-            res.status(200).send('CE');
+            res.status(200).send({result:'CE'});
           }else if(e.timelimit*1000>=option.timeout){
-            res.status(200).send('TLE');
+            res.status(200).send({result:'TLE'});
           }else{
             // console.log(e);
-            res.status(200).send('RE');
+            res.status(200).send({result:'RE'});
           }
       })
 

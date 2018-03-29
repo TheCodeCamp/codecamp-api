@@ -16,12 +16,13 @@ export class SolutionComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.contestService.getSolution();
-    if(this.data === true)
+    console.log(this.data)
+    if(this.data === 'Accepted')
     {
       this.data = "Correct Answer";
       this.condition = 'green';
     }
-    else if(this.data === false)
+    else if(this.data === 'WA')
     {
       this.data = "Wrong Answer";
       this.condition = 'red';
@@ -34,11 +35,6 @@ export class SolutionComponent implements OnInit {
     else if(this.data === 'TLE')
     {
       this.data = "Time Limit Exceed";
-      this.condition = 'blue';
-    }
-    else
-    {
-      this.data = "Compile Time Error";
       this.condition = 'blue';
     }
   }

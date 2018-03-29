@@ -1,0 +1,32 @@
+
+.head {
+    padding: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+}
+
+.sol{
+    padding: 3% 0;
+}
+.fa-times{
+    color: #e74c3c;
+}
+
+.fa-clock-o{
+    color: #3498db;
+}
+
+.fa-check{
+    color: #2ecc71;
+}
+
+.fa-exclamation-triangle{
+    color: #f1c40f;
+}
+
+.fa-exclamation-circle{
+    color: #c0392b;
+}

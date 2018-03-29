@@ -28,13 +28,16 @@ export class ProblemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.code = this.route.snapshot.params['problem'];
-    this.contest = this.route.snapshot.params['contest'];
+      this.code = this.route.snapshot.params['problem'];
+      this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblem(this.code, this.contest).subscribe(data => {
       this.problem = data.problem;
+      console.log(this.problem)
       this.base64Image = this.problem.image;
-      this.base64Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+      if(this.base64Image !== undefined) {
+        this.base64Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
       + this.base64Image);
+      }
     });
 
   }

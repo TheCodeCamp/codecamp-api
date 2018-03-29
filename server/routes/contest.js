@@ -131,7 +131,7 @@ router.get('/',(req,res)=>{
 
 router.post('/:id' , (req,res)=>{
     const id = req.params.id;
-    let body = _.pick(req.body,['code','name','successfulSubmission','image','level','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
+    let body = _.pick(req.body,['code','name','successfulSubmission','image','level','score','contest','description','input_format','output_format','constraints','input_example','output_example','explanation_example','date_added','timelimit','sourcelimit','author']);
     let testCaseInput = req.body.testCaseInput;
     body.contest = id;
     let testCaseOutput = req.body.testCaseOutput;
