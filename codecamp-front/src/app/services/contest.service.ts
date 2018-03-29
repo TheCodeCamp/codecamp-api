@@ -16,7 +16,7 @@ export class ContestService {
   public user: any;
   public contest: any;
   //public domain = 'http://localhost:80/';
-  public domain = '';
+   public domain = '';
   public options;
   public sol;
   public test;
@@ -136,5 +136,16 @@ export class ContestService {
   postComments(code, contest, comment, username) {
     return this.http.post(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', {comment, username})
     .map(comments => comments.json());
+  }
+
+  deleteComments(code, contest, comments) {
+    // console.log(comments);
+    return this.http.delete(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', 
+    new RequestOptions({
+      body: comments
+    }))
+    .map(res => {
+      return res.json();
+    });
   }
 }
