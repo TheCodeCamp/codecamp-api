@@ -41,7 +41,7 @@ router.get('/:id',(req,res)=>{
 
                         }
                     }
-                    time += penality*10;
+                    time += penality*100;
 
                     return {name:x.username,score:x.contest[index].count,time:time};
                 }

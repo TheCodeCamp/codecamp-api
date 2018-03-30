@@ -14,7 +14,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "c":
         case "C":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o /home/shiva/runer/" +file  +" "+ filename+" -lm";
+            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
@@ -62,17 +62,17 @@ async function runCompiled(lang,file,contest,problem,option,t0){
     var cmd;
     switch(lang){
         case "c":
-            cmd= "cd /home/shiva/runer"+ "&& ./" + file +  " <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt";
+            cmd= "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"./" + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "c++":
         case "cpp": 
-            cmd = "\"cd /home/shiva/runer\""+"** ./" + file +" <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt";
+            cmd = + "cd /home/shiva/runer"+"** ./" + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd /home/shiva/runer" +  " && java " + file +" <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt";
+            cmd =  "cd /home/shiva/runer" +  " && java " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "python":
-            cmd = "cd /home/shiva/runer" + " && python " + file +" <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt";
+            cmd = "cd /home/shiva/runer" + " && python " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
     }
     

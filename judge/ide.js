@@ -9,10 +9,10 @@ async function runCompiled(lang,file,input,t0){
     console.log(lang)
 
     var cmd;
-    fs.writeFileSync("/home/shiva/runer/ideInput.txt",input);
+    fs.writeFileSync(path.join(__dirname ,'result/input/ideInput.txt'),input);
     switch(lang){
         case "c":
-            cmd= "cd /home/shiva/runer"+ "&& ./" + file +  " < ideInput.txt";
+            cmd= "cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&& ./" + file +  " < ideInput.txt";
             break;
         case "c++":
         case "cpp": 
