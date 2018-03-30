@@ -68,7 +68,7 @@ export class AuthService {
   public checkisAdmin() {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined || user === null) {
-      
+
       return false;
 
     } else if (user.isAdmin === true) {

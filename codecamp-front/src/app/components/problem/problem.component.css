@@ -16,9 +16,6 @@ h6{
     font-weight: bold;
 }
 
-button{
- margin-left: 3.5%;
-}
 p{
   font-size: 15px;
 }
@@ -43,4 +40,9 @@ p{
     background: #2c3e50;
     color: #fff;
     text-align: center;
+}
+
+.score{
+    font-size: 18px;
+    font-weight: bolder;
 }

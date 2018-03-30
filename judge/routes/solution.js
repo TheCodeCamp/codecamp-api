@@ -19,7 +19,7 @@ router.get('/:id',(req,res)=>{
         const description=sol2._doc.description;
         const id = sol2._doc.id;
         const language= sol2._doc.language;
-        //console.log(language);
+        // console.log(language);
 
         Problem.findOne({'code':problem},function(err,pro){
           if(err){
@@ -37,8 +37,9 @@ router.get('/:id',(req,res)=>{
             }else if(language==='python'){
               pro.timeout = pro.timeout*5;
             }
+            console.log(contest,problem,id,language,description,option)
         judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{  
-          // console.log()    
+          console.log(result) 
           res.send({result:result,score:pro.score});
         }).catch((e)=>{
           console.log(e)
@@ -47,6 +48,8 @@ router.get('/:id',(req,res)=>{
             res.status(200).send({result:'CE'});
           }else if(e.timelimit*1000>=option.timeout){
             res.status(200).send({result:'TLE'});
+          }else if(e.result=="SC"){
+            res.status(200).send({result:'SC'});
           }else{
             // console.log(e);
             res.status(200).send({result:'RE'});

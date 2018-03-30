@@ -140,7 +140,7 @@ export class ContestService {
 
   deleteComments(code, contest, comments) {
     // console.log(comments);
-    return this.http.delete(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', 
+    return this.http.delete(this.domain + 'contest/' + contest + '/problems/' + code + '/comment',
     new RequestOptions({
       body: comments
     }))

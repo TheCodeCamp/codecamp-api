@@ -1,4 +1,10 @@
-textarea{
+pre{
     width: 100%;
     padding: 2% 4%;
+    margin-top: 3%;
+    background: white;
+}
+
+.container{
+    min-height: 800px;
 }

@@ -3,27 +3,30 @@ const fs = require('fs');
 const path = require('path');
 const exec = require('child_process').exec  ;
 const cp = require('./compileProblem');
+const isSysCall = require('./utils/authentication/systemcall');
 
 async function runCompiled(lang,file,input,t0){
+    console.log(lang)
 
     var cmd;
-    fs.writeFileSync(path.join(__dirname,"result/binary/ideInput.txt"),input);
+    fs.writeFileSync("/home/shiv/runer/ideInput.txt",input);
     switch(lang){
         case "c":
-            cmd= "cd "+ "\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " < ideInput.txt";
+            cmd= "cd /home/shiv/runer"+ "&& ./" + file +  " < ideInput.txt";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" < ideInput.txt";
+            cmd = "cd /home/shiv/runer"+ "&& ./" + file +" < ideInput.txt";
             break;
         case "java":
-            cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" < ideInput.txt";
+            cmd =  "cd /home/shiv/runer"+ " && java " + file +" < ideInput.txt";
             break;
         case "python":
-            cmd =  "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" < ideInput.txt";  
+            cmd =  "cd /home/shiv/runer" + " && python3 " + file +" < ideInput.txt";  
             break;
     }
    
+    
     
     return new Promise((resolve,reject)=>{
     exec(cmd,{timeout:8000,maxBuffer:50000000},(error, stdout, stderr) => { 
@@ -46,10 +49,11 @@ async function runCompiled(lang,file,input,t0){
 }
 
 async function IdeSolution(option) {
+    console.log(option)
     const filename = await cp.base64tofile(option.description,option.language,1);
+    // const isSecure = await isSysCall.containSysCall(filename);
+    // console.log('isSecure')
     let file ;
-    console.log(filename)
-    
     if(option.language!=='python'){
         file = await cp.compileProblem(option.language,filename,1);
     }else if(option.language==='python'){

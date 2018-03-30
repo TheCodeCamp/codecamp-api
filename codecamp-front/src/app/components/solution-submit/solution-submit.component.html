@@ -1,5 +1,6 @@
 
 <div class="container">
+  <br>
   <h4>Submit a Solution: {{problem}}</h4>
   <hr>
 <div class="insingleblock">
@@ -21,10 +22,10 @@
     </div>
     <div class="choose"><b>Choose the language</b>
       <select id="select" class="form-control col-lg-4">
-        <option value="C">C</option>
-        <option value="C++">C++</option>
-        <option value="Python">Python</option>
-        <option value="Java">Java</option>
+          <option value="C">C(gcc 5.7)</option>
+          <option value="C++">C++(g++ 5.7) </option>
+          <option value="Java">Java(jdk 8)</option>
+          <option value="Python">Python(3.5)</option>
       </select>
     </div>
 
@@ -43,6 +44,7 @@
         <button class="btn btn-success ml-auto"
         (click)="onClickSubmit()">Submit</button>
 
-      </div>
+    </div>
   </div>
+  <br>
 </div>

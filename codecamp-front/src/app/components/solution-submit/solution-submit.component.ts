@@ -32,16 +32,16 @@ export class SolutionSubmitComponent implements OnInit {
     private router: Router
   ) {
     this.content = `#include<stdio.h>
-//#include<bits/stdc++.h>
-//using namespace std;
-int main()
-{
+      //#include<bits/stdc++.h>
+      //using namespace std;
+      int main()
+      {
 
-    printf("Welcome To HackerCamp");
-    return 0;
+          printf("Welcome To HackerCamp");
+          return 0;
 
-}
-`;
+      }
+    `;
   }
 
   ngOnInit() {

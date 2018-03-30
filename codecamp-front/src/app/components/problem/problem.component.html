@@ -1,50 +1,51 @@
 
 <div class="container main">
-    <div class="col-md-12">
-        <h5 class="display-4">{{ problem?.name }}</h5>
-        <div class="row">
-        <div class="col-md-9">
-        <h5>Problem Code: {{ problem?.code }}</h5>
+  <div class="row">
+      <div class="col-md-9">
+          <h5 class="display-4">{{ problem?.name }}</h5>
+          <div class="row">
+          <div class="col-md-12">
+          <h5>Problem Code: {{ problem?.code }}</h5>
+        </div>
       </div>
-
-    <div class="col-md-3">
-    <button class="btn btn-success"
-    (click)="onSelectSubmit()">Submit</button>
-  </div>
-</div>
-</div>
+      </div>
+      <div class="col-md-3 pt-4">
+        <p class="score">Score: {{problem?.score}}</p>
+      <button class="btn btn-success"
+      (click)="onSelectSubmit()">Submit</button>
+    </div>
+    </div>
         <hr>
-
       <div class="row problem">
       <div class="col-md-8">
         <div class="row">
           <div class="col-md-12">
             <h6>Problem Statement:</h6>
-            <p [innerText]="problem?.description"></p>
+            <p [innerHtml]="problem?.description"></p>
           </div>
           <div class="col-md-12">
             <h6>Input</h6>
-            <p [innerText]="problem?.input_format"></p>
+            <p [innerHtml]="problem?.input_format"></p>
           </div>
           <div class="col-md-12">
               <h6>Output</h6>
-              <p [innerText]="problem?.output_format"></p>
+              <p [innerHtml]="problem?.output_format"></p>
             </div>
           <div class="col-md-12">
             <h6>Constraints</h6>
-            <p [innerText]="problem?.constraints"></p>
+            <p [innerHtml]="problem?.constraints"></p>
           </div>
           <div class="col-md-12">
             <h6>Input Testcase</h6>
-            <p [innerText]="problem?.input_example"></p>
+            <p [innerHtml]="problem?.input_example"></p>
           </div>
           <div class="col-md-12">
               <h6>Output Testcase</h6>
-              <p [innerText]="problem?.output_example"></p>
+              <p [innerHtml]="problem?.output_example"></p>
             </div>
           <div class="col-md-12">
             <h6>Explanations</h6>
-            <p [innerText]="problem?.explanation_example"></p>
+            <p [innerHtml]="problem?.explanation_example"></p>
           </div>
           </div>
           <img *ngIf="base64Image && problem.img !== null" [src]="base64Image" >

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ContestiwComponent implements OnInit {
 
   contest;
+  contestname;
   constructor(
     public authService: AuthService,
     private contestService: ContestService,
@@ -21,15 +22,15 @@ export class ContestiwComponent implements OnInit {
     this.contestService.getContest().subscribe(
       contest => {
       this.contest = contest.contests;
-      console.log(this.contest);
     });
   }
   onAddContest() {
     this.router.navigate(['/contest/add-contest']);
-  }/*
+  }
   onClickGrab(i){
     this.contestname = i.name;
     this.contestService.changeContest(this.contestname);
     this.router.navigate(['/contest', i.id]);
-  }*/
+  }
+
 }
