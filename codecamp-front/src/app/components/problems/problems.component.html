@@ -37,7 +37,7 @@
           </div>
           <a
           class="nav-link problem"
-          *ngFor="let i of (conditionToShowProblem?problems : [])"
+          *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() )?problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
               <div class="col-md-6">
