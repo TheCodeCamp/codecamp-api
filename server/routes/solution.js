@@ -58,6 +58,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           json:true
           };
           rp(opt).then((body)=>{
+            console.log(body)
             if(body.result==='Accepted'){
               User.findOne({'username':solution.username},(err,user)=>{
                 if(err){

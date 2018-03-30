@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "bitset": "cpp",
+        "array": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp"
+    },
+    "python.linting.pylintEnabled": false
+}
