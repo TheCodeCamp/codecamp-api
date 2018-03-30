@@ -113,6 +113,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                       Problem.findOne({'code':solution.problem},(err,prob)=>{
                         if(prob.users.findIndex(user=>user===solution.username)===-1){
                             prob.users.push(solution.username);
+                            prob.successfulSubmission = prob.users.length+1;
                         }
                         prob.save()
                             .then(()=>{

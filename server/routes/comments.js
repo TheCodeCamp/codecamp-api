@@ -48,6 +48,7 @@ router.delete('/:code/comment', (req, res) => {
             if(problem.comments[i].comment === comment && problem.comments[i].username === username){
                 problem.comments.splice(i,1);
                 i--;
+                break;
             }
         }
         problem.save().then(() => {

@@ -83,4 +83,11 @@ const ProblemSchema = new mongoose.Schema({
     ]
 } )
 
+// ProblemSchema.post('pre',(next)=>{
+//         var problem = this;
+//         problem.successfulSubmission = problem.users.length;
+//         next();
+// })
+
+
 module.exports=mongoose.model('Problem',ProblemSchema)
