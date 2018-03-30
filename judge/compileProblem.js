@@ -28,7 +28,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename;
+            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +" "+ filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
