@@ -8,7 +8,13 @@
       <div class="nav">
       <nav class="sidebar-nav">
           <div class="navbar-brand">
-              <img src="../../../assets/hc1.png" alt="" class="imageHomeIcon">
+              <a
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <img src="../../../assets/hc1.png" alt="" class="imageHomeIcon">
+              </a>
               HackerCamp
           </div>
           <hr>
@@ -21,7 +27,7 @@
                     <div class="notify setpos"> <span class="heartbit"></span> <span class="point"></span> </div>
                 </div>
                 <!-- User profile text -->
-                
+
             </div>
         <ul id="sidebarnav" class="in">
               <li class="nav-item">
@@ -47,7 +53,7 @@
                   class="nav-link"
                   routerLink="/practice"
                   routerLinkActive="active"
-                role="button" aria-expanded="false" 
+                role="button" aria-expanded="false"
                 aria-controls="collapseExample">
                 <i class="fa fa-paper-plane" aria-hidden="true"></i>
                 <span class="navtabs">Practice</span>
@@ -59,7 +65,7 @@
                   <a class="nav-link"
                   routerLink="/iwedge"
                     routerLinkActive="active">
-                    
+
                     <i class="fa fa-hand-pointer-o" aria-hidden="true"></i>
                     <span class="navtabs ml-2">Contest</span>
                   </a>

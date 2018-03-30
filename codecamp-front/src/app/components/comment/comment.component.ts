@@ -10,6 +10,7 @@ import { ContestService } from '../../services/contest.service';
 })
 export class CommentComponent implements OnInit {
   form: FormGroup;
+
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -47,10 +48,10 @@ export class CommentComponent implements OnInit {
 
   onCommentSubmit() {
     const comment = this.form.get('comment').value;
-    console.log(comment);
+    // console.log(comment);
     this.contestService.postComments(this.code, this.contest, comment, this.username)
     .subscribe((comments) => {
-      console.log(comments);
+      // console.log(comments);
     });
     this.router.navigate([`/contest/${this.contest}/${this.code}`]);
   }
@@ -58,10 +59,10 @@ export class CommentComponent implements OnInit {
   onDeleteComment(comment, user) {
     if (this.isAdmin) {
       const comments = { comment : comment, username : user };
-      console.log(comments);
+      // console.log(comments);
       this.contestService.deleteComments(this.code, this.contest, comments)
       .subscribe((res) => {
-        console.log(res);
+       // console.log(res);
       });
       this.router.navigate([`/contest/${this.contest}/${this.code}`]);
     }
