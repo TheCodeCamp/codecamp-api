@@ -38,12 +38,18 @@ textarea{
       width:100%;
       box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
-  
   .select {
-      margin: 2% 1%;
+    margin: 0px;
+    margin-bottom: 4px;
+    padding: 1%;
+    padding-left: 2%;
+    background: gray;
+    color: white;
   }
   .choose{
     margin: 2%;
+    margin-bottom: 0;
+    padding-bottom: 2%;
   }
   .options{
       margin-left: 2%;

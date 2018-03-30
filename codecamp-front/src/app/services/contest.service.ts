@@ -27,7 +27,7 @@ export class ContestService {
   private contestSource = new BehaviorSubject<string>('INFINITY WAR');
   currentContest = this.contestSource.asObservable();
 
-  private Toggler = new BehaviorSubject<boolean>(true); 
+  private Toggler = new BehaviorSubject<boolean>(true);
   toggle = this.Toggler.asObservable();
 
   public activeContest = new Subject();
@@ -126,7 +126,7 @@ export class ContestService {
   }
   getSoln(id): Observable<any>{
     return this.http.post(this.domain +'viewsolution', id)
-      .map(res=>res.json()) 
+      .map(res=>res.json())
   }
   getComments(code, contest) {
     return this.http.get(this.domain +'contest/' + contest + '/problems/' + code + '/comment')
@@ -134,7 +134,18 @@ export class ContestService {
   }
 
   postComments(code, contest, comment, username) {
-    return this.http.post(this.domain +'contest/' + contest + '/problems/' + code + '/comment', {comment, username})
+    return this.http.post(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', {comment, username})
     .map(comments => comments.json());
+  }
+
+  deleteComments(code, contest, comments) {
+    // console.log(comments);
+    return this.http.delete(this.domain + 'contest/' + contest + '/problems/' + code + '/comment', 
+    new RequestOptions({
+      body: comments
+    }))
+    .map(res => {
+      return res.json();
+    });
   }
 }

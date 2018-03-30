@@ -36,6 +36,8 @@ import { AddProblemComponent } from './components/add-problem/add-problem.compon
 
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
+
+import { AdminGuard } from './guards/admin.guard';
 import { SolutionSubmitComponent } from './components/solution-submit/solution-submit.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -101,7 +103,7 @@ import { CommentComponent } from './components/comment/comment.component';
     FlashMessagesModule.forRoot()
     //NgxPaginationModule
   ],
-  providers: [ AuthService, AuthGuard, NotAuthGuard, ContestService,
+  providers: [ AuthService, AuthGuard, NotAuthGuard, AdminGuard, ContestService,
     {provide: BrowserXhr, useClass: NgProgressBrowserXhr}],
   bootstrap: [AppComponent]
 })

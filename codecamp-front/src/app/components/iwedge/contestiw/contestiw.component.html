@@ -6,7 +6,25 @@
   </div>
 </div>
 
-<br >
+<br>
+
+<div class="container">
+    <div class="row" *ngFor="let i of contest">
+      <div class="col-md-6">
+          <div class="card-deck">
+            <div class="card">
+              <img class="card-img-top" *ngIf="i.name === 'Captain America'" src="../../assets/antman.jpg" alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">{{i.name}}</h4>
+                <p class="card-text">{{i.description}}</p>
+                <button class="btn btn-success">Grab Me!!</button>
+              </div>
+            </div>
+          </div>      
+      </div>
+    </div>
+  </div>
+
 <!--
 <ul  class="cards">
   <li  class="cards__item">

@@ -22,10 +22,12 @@ export class CommentComponent implements OnInit {
   code;
   contest;
   username;
+  isAdmin;
   ngOnInit() {
     this.code = this.route.snapshot.params['problem'];
     this.contest = this.route.snapshot.params['contest'];
     this.username = JSON.parse(localStorage.getItem('user'));
+    this.isAdmin = this.username.isAdmin;
     this.contestService.getComments(this.code, this.contest).subscribe((comment) => {
       if (comment.success) {
         this.comments = comment.msg;
@@ -38,10 +40,11 @@ export class CommentComponent implements OnInit {
     this.form = this.formBuilder.group({
       comment: ['', Validators.compose([
         Validators.required,
-        Validators.maxLength(50)
+        Validators.maxLength(100)
       ])]
     });
   }
+
   onCommentSubmit() {
     const comment = this.form.get('comment').value;
     console.log(comment);
@@ -52,6 +55,15 @@ export class CommentComponent implements OnInit {
     this.router.navigate([`/contest/${this.contest}/${this.code}`]);
   }
 
-
-
+  onDeleteComment(comment, user) {
+    if (this.isAdmin) {
+      const comments = { comment : comment, username : user };
+      console.log(comments);
+      this.contestService.deleteComments(this.code, this.contest, comments)
+      .subscribe((res) => {
+        console.log(res);
+      });
+      this.router.navigate([`/contest/${this.contest}/${this.code}`]);
+    }
+  }
 }

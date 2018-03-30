@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ContestiwComponent implements OnInit {
 
-  contestname;
+  contest;
   constructor(
     public authService: AuthService,
     private contestService: ContestService,
@@ -18,6 +18,11 @@ export class ContestiwComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.contestService.getContest().subscribe(
+      contest => {
+      this.contest = contest.contests;
+      console.log(this.contest);
+    });
   }
   onAddContest() {
     this.router.navigate(['/contest/add-contest']);

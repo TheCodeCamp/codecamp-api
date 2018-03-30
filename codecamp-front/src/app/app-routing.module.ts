@@ -30,6 +30,7 @@ import { ContestiwComponent } from './components/iwedge/contestiw/contestiw.comp
 import { ContactComponent } from './components/contact/contact.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ViewSolComponent } from './components/view-sol/view-sol.component';
+import { AdminGuard } from './guards/admin.guard';
 
 
 const appRoutes: Routes = [
@@ -114,7 +115,7 @@ const appRoutes: Routes = [
     {
       path: 'contest/add-contest',
       component: AddContestComponent,
-      canActivate: [AuthGuard]
+      canActivate: [AdminGuard]
     },
     {
       path: 'contest/:contest',
@@ -123,7 +124,7 @@ const appRoutes: Routes = [
     {
       path: 'contest/:contest/addproblem',
       component: AddProblemComponent,
-      canActivate: [AuthGuard]
+      canActivate: [AdminGuard]
     },
     {
       path: 'contest/:contest/ranking',

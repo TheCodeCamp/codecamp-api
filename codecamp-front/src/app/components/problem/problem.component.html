@@ -20,19 +20,19 @@
         <div class="row">
           <div class="col-md-12">
             <h6>Problem Statement:</h6>
-            <p>{{ problem?.description}}</p>
+            <p [innerText]="problem?.description"></p>
           </div>
           <div class="col-md-12">
             <h6>Input</h6>
-            <p>{{ problem?.input_format}}</p>
+            <p [innerText]="problem?.input_format"></p>
           </div>
           <div class="col-md-12">
               <h6>Output</h6>
-              <p>{{ problem?.output_format }}</p>
+              <p [innerText]="problem?.output_format"></p>
             </div>
           <div class="col-md-12">
             <h6>Constraints</h6>
-            <p>{{problem?.constraints}}</p>
+            <p [innerText]="problem?.constraints"></p>
           </div>
           <div class="col-md-12">
             <h6>Input Testcase</h6>
@@ -52,7 +52,24 @@
     </div>
 
     <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4 head">
+                Time/Date
+              </div>
+              <div class="col-md-2 head">
+                Res
+              </div>
+              <div class="col-md-3 head">
+                Lang
+              </div>
+              <div class="col-md-3 head">
+                Code
+              </div>
+              </div>
+              <div class="side">
+
       <app-submission></app-submission>
+              </div>
   </div>
 
   </div>
