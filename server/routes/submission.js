@@ -33,6 +33,26 @@ router.post('/',(req,res)=>{
     })
 })
 
+router.get('/:code',(req,res)=>{
+    let code = req.params.code;
+    Problem.findOne({'code':code},'users',
+    (err,pro)=>{
+        if(err){
+            return res.json(
+                {
+                    'msg':false
+                }
+            )
+        }
+        res.json(
+            {
+                'msg':true,
+                'submissions':pro.users.length
+            }
+        )
+    })
+})
+
 
 
 module.exports = router;

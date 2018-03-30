@@ -14,7 +14,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "c":
         case "C":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o /home/shiv/runer/" +file  +" "+ filename+" -lm";
+            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
@@ -22,13 +22,13 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "CPP":
         case "Cpp":
             file = path.basename(filename,'.cpp')+".out";
-            cmd="cd "+"\""+ path.join(__dirname,"/result/source") +"\""+ " && g++ -o /home/shiv/runer/"  + file + " " +filename;
+            cmd="cd "+"\""+ path.join(__dirname,"/result/source") +"\""+ " && g++ -o /home/shiva/runer/"  + file + " " +filename;
             break;
         case "java":
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\""+ path.join(__dirname,"/result/source") + "\" && javac -d /home/shiv/runer/" +  " " +filename;
+            cmd ="cd "+"\""+ path.join(__dirname,"/result/source") + "\" && javac -d /home/shiva/runer/" +  " " +filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -62,17 +62,17 @@ async function runCompiled(lang,file,contest,problem,option,t0){
     var cmd;
     switch(lang){
         case "c":
-            cmd= "cd /home/shiv/runer"+ " && ./" + file +  " <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd= "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"./" + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "c++":
         case "cpp": 
-            cmd = + "cd /home/shiv/runer"+" && ./" + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd = + "cd /home/shiva/runer"+"** ./" + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd /home/shiv/runer" +  " && java " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd =  "cd /home/shiva/runer" +  " && java " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "python":
-            cmd = "cd /home/shiv/runer" + " && python " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd = "cd /home/shiva/runer" + " && python " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
     }
     
@@ -129,7 +129,7 @@ const serverResult = async (contest,problem)=>{
 }
 
 const isPython = async (file)=>{
-    cmd = "cp " + path.join(__dirname + '/result/source/') + file + " /home/shiv/runer/Main.py"
+    cmd = "cp " + path.join(__dirname + '/result/source/') + file + " /home/shiva/runer/Main.py"
     console.log(cmd)
     return new Promise((resolve,reject)=>{
         exec(cmd,(error, stdout, stderr) => { 
