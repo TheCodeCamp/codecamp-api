@@ -20,6 +20,7 @@ const router = express.Router();
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
 router.post('/',upload.single(originalname),async (req,res)=>{
+  console.log(req.body)
     var solution;
      if(req.file){
       var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
@@ -57,7 +58,8 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           json:true
           };
           rp(opt).then((body)=>{
-            if(body.result===true){
+            console.log(body)
+            if(body.result==='Accepted'){
               User.findOne({'username':solution.username},(err,user)=>{
                 if(err){
                   res.json({
@@ -129,7 +131,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
 
                   
                     })
-              }else if(body==='CE'){
+              }else if(body.result==='CE'){
                 solution.status= "CE"
                 solution.save();
                 res.json({
@@ -137,7 +139,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   "msg":body
                 })
 
-              }else if(body==='TLE'){
+              }else if(body.result==='TLE'){
                 User.findOne({'username':solution.username},(err,user)=>{
                   if(err){
                     res.json({
@@ -193,7 +195,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
               })
             })
 
-            }else if(body==='RE'){
+            }else if(body.result==='RE'){
                 User.findOne({'username':solution.username},(err,user)=>{
                   if(err){
                     res.json({
@@ -250,7 +252,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
             })
 
               }
-              else if(!body){
+              else if(body.result==='WA'){
                 User.findOne({'username':solution.username},(err,user)=>{
                   if(err){
                     res.json({

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="comments col-md-9" id="comments">
+            <div class="comment mb-2 row">
+                <div class="comment-content col-md-11 col-sm-10" *ngFor="let comment of comments">
+                    <h5 class="comment-meta"><b>{{comment.username}}</b></h5>
+                    <div class="comment-body">
+                        <p>
+                          {{comment.comment}}
+                          <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-cmnt-container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-info">
+                <div class="panel-body">
+
+                    <form class="form-inline" [formGroup]="form" (submit)="onCommentSubmit()">
+                        <textarea
+                        placeholder="Write your comment here!"
+                        class="pb-cmnt-textarea form-control"
+                        name="comment"
+                        formControlName="comment">
+                        </textarea>
+                        <br>
+                        <button class="btn btn-primary pull-right" type="submit">Post</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

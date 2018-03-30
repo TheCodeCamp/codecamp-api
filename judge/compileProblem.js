@@ -3,6 +3,7 @@ const exec = require('child_process').exec  ;
 const path = require('path');
 const fs = require('fs')
 const buffer = require('buffer')
+const isSysCall = require('./utils/authentication/systemcall');
 
 
 //Compile program and check for error if okay the run it
@@ -13,7 +14,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "c":
         case "C":
             file = path.basename(filename,'.c') +".out ";
-            cmd="cd "+"\"" + path.join(__dirname,"result/source") +"\"" + " && gcc -o \"" +path.join(__dirname,"result/binary/") + "\""+file  +" "+ filename+" -lm";
+            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o /home/shiv/runer/" +file  +" "+ filename+" -lm";
             break
         case "c++":
         case "cpp":
@@ -21,13 +22,13 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "CPP":
         case "Cpp":
             file = path.basename(filename,'.cpp')+".out";
-            cmd="cd "+"\""+ path.join(__dirname,"result/source") +"\""+ " && g++ -o \"" + path.join(__dirname,"result/binary/")+ "\""+file + " " +filename;
+            cmd="cd "+"\""+ path.join(__dirname,"/result/source") +"\""+ " && g++ -o /home/shiv/runer/"  + file + " " +filename;
             break;
         case "java":
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\""+ path.join(__dirname,"result/source") + "\" && javac -d \"" + path.join(__dirname,"result/binary/") +"\" " +filename;
+            cmd ="cd "+"\""+ path.join(__dirname,"/result/source") + "\" && javac -d /home/shiv/runer/" +  " " +filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -61,17 +62,17 @@ async function runCompiled(lang,file,contest,problem,option,t0){
     var cmd;
     switch(lang){
         case "c":
-            cmd= "cd "+ "\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +  " <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd= "cd /home/shiv/runer"+ " && ./" + file +  " <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && ./" + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd = + "cd /home/shiv/runer"+" && ./" + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd "+"\""+ path.join(__dirname,"result/binary") + "\" && java " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd =  "cd /home/shiv/runer" +  " && java " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "python":
-            cmd = "cd "+"\""+ path.join(__dirname,"result/source") + "\" && python " + file +" <\""+ path.join(__dirname,"result/input/")+contest+"/"+problem+".txt\"";
+            cmd = "cd /home/shiv/runer" + " && python " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
     }
     
@@ -95,17 +96,32 @@ async function runCompiled(lang,file,contest,problem,option,t0){
 
 const checkResult=async (UserResult,serverResult)=>{
    // UserResult = fs.readFileSync(UserResult,'utf16le')
+//    console.log(UserResult)
+//    console.log(serverResult)
     return new Promise((resolve,reject)=>{
-        if(UserResult===serverResult){
-            resolve(true)
-        }else{
-            resolve(false)
-        }
+        // if(UserResult==serverResult){
+        //     resolve('Accepted')
+        // }else{
+        //     resolve('WA')
+        // }
+        fs.writeFileSync(path.join(__dirname,'/result/user/serverResult.txt'),serverResult,{encoding:'utf8'});
+        fs.writeFileSync(path.join(__dirname,'/result/user/userResult.txt'),UserResult,{encoding:'utf8'});
+         
+        exec("diff -Z "+path.join(__dirname,'/result/user/userResult.txt') + " " + path.join(__dirname,'/result/user/serverResult.txt'),(error, stdout, stderr) => { 
+            if (error) {      
+                // console.log(error) 
+                resolve('WA');
+            }
+            
+                resolve('Accepted')
+            
+          });
+        
     })
 }
 const serverResult = async (contest,problem)=>{
     return new Promise((resolve,reject)=>{
-       var buf= fs.readFileSync(path.join(__dirname,"result/output/"+contest+"/"+problem+".txt"),'utf8');
+       var buf= fs.readFileSync(path.join(__dirname,"/result/output/"+contest+"/"+problem+".txt"));
        resolve(buf)
     }).catch((e)=>{
         console.log(e)
@@ -113,8 +129,16 @@ const serverResult = async (contest,problem)=>{
 }
 
 const isPython = async (file)=>{
+    cmd = "cp " + path.join(__dirname + '/result/source/') + file + " /home/shiv/runer/Main.py"
+    console.log(cmd)
     return new Promise((resolve,reject)=>{
-        resolve(file);
+        exec(cmd,(error, stdout, stderr) => { 
+            if (error) {    
+                console.log(error)  
+                reject();
+            }
+            resolve(file);
+          });
     }).catch((e)=>{
         console.log(e);
     })
@@ -147,8 +171,10 @@ const base64tofile = async (base64,lang,ide)=>{
 }
 
 async function compileAndRunProblem(contest,problem,id,lang ,description,option){
-    // console.log(contest)
+     console.log(lang)
     const filename= await base64tofile(description,lang,0);
+    // const isSecure = await isSysCall.containSysCall(filename);
+    // console.log('isSecure')
     let file;
     if(lang!=='python'){
         file = await compileProblem(lang,filename,0);
@@ -159,8 +185,9 @@ async function compileAndRunProblem(contest,problem,id,lang ,description,option)
     const result= await runCompiled(lang,file,contest,problem,option,t0);
     // console.log(result)
     const serverRes= await serverResult(contest,problem);
+    // console.log(serverRes)
     const Result = await checkResult(result,serverRes);
-    //console.log(Result);
+    console.log(Result);
     return Result;
   
 }

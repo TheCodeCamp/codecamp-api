@@ -13,11 +13,12 @@ router.get('/',(req,res)=>{
         // })
         .populate({
             path: 'questions',
-            select:['name','code'],
+            select:['name','code','contest'],
             model: 'Problem'
         }).
         exec(function(err,question){
             if(err){
+                console.log(err)
                 return res.status(400).json({
                         'success':false,
                         'msg':'Wrong Request'

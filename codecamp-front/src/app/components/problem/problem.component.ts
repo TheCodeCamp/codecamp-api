@@ -16,6 +16,8 @@ export class ProblemComponent implements OnInit {
   contest;
   problem;
   base64Image;
+  showComment = false;
+  caretType = 'fa-caret-right';
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -26,18 +28,30 @@ export class ProblemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.code = this.route.snapshot.params['problem'];
-    this.contest = this.route.snapshot.params['contest'];
+      this.code = this.route.snapshot.params['problem'];
+      this.contest = this.route.snapshot.params['contest'];
     this.contestService.getProblem(this.code, this.contest).subscribe(data => {
       this.problem = data.problem;
       this.base64Image = this.problem.image;
-      this.base64Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
+      if(this.base64Image !== undefined) {
+        this.base64Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
       + this.base64Image);
+      }
     });
 
   }
 
   onSelectSubmit() {
     this.router.navigate([this.contest, 'submit', this.code]);
+  }
+
+  showComments() {
+    if (this.showComment) {
+      this.showComment = !(this.showComment);
+      this.caretType = 'fa-caret-right';
+    } else {
+      this.showComment = !(this.showComment);
+      this.caretType = 'fa-caret-down';
+    }
   }
 }

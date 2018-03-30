@@ -2,13 +2,14 @@ const express = require('express');
 const _ = require('lodash')
 //const db = require('./../utils/db/db');
 const Problem = require('./../../contest/models/problem/problem');
-const Contest = require('./../../contest/models/contest/contest')
+const Contest = require('./../../contest/models/contest/contest');
+const commentRoute = require('./comments.js');
 const router = express.Router({mergeParams: true})
 
 router.get('/:code',(req,res)=>{
     var code= req.params.code;
     Problem.findOne({'code':code})
-    .select('name id description -_id')
+    .select('code  name  successfulSubmission level  image contest description  input_format  output_format constraints   input_example   output_example   explanation_example  date_added   timelimit   sourcelimit   author   testCaseInput   testCaseOutput')
     .then((problem)=>{
         res.json({
             "success":true,
@@ -64,5 +65,6 @@ router.delete('/:code',(req,res)=>{
             'msg':'Error Occurred Please try Again'
         })
     })
-})
+});
+router.use('/',commentRoute);
 module.exports = router;

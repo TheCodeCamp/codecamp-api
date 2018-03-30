@@ -1,10 +1,9 @@
-
 <div class="container">
   <h4 class="display-4">Online IDE</h4>
   <hr>
 <div class="insingleblock">
   <div class="row select">
-      <div>Select language</div>
+      <div>Ide Editor Select language</div>
       <select (change)="selectLanguage($event)" class="options">
           <option value="c_cpp">C/C++</option>
           <option value="java">Java</option>
@@ -21,9 +20,9 @@
   </div>
   <div class="choose"><b>Choose the language</b>
     <select id="select" class="form-control col-lg-4">
-      <option value="C">C(Gcc 5.4)</option>
-      <option value="C++">C++(G++ 5.4)</option>
-      <option value="Java">Java(jdk-8)</option>
+      <option value="C">C(gcc 5.7)</option>
+      <option value="C++">C++(g++ 5.7) </option>
+      <option value="Java">Java(jdk 8)</option>
       <option value="Python">Python(2.7)</option>
     </select>
   </div>
@@ -39,7 +38,7 @@
 
         <p id="input" style="display:none">
             <br>
-        <textarea type="text" id="myTextarea" rows="6" [(ngModel)]="test" ></textarea>
+        <textarea type="text"  id="myTextarea" rows="6" [(ngModel)]="test" ></textarea>
         </p>
     </div>
 
@@ -55,15 +54,24 @@
               <strong>Status:</strong>{{output.msg}}
               <strong>Time:</strong>{{output.time}}
               <br>
-              <div id="text" class="alert alert-success submissionResult" role="alert">
+              <div id="text" *ngIf="output.msg === 'Successfully Executed' " class="alert alert-success submissionResult" role="alert">
                 <div class="row">
                     <div class="col-md-12">
-                        <span>
-                          {{output.output}}
+                        <span [innerText]="output.output">
                         </span>
                     </div>
                 </div>
             </div>
+
+            <div id="text" *ngIf="output.msg !== 'Successfully Executed' " class="alert alert-danger submissionResult" role="alert">
+                <div class="row">
+                    <div class="col-md-12">
+                        <span [innerText]="output.output">
+                        </span>
+                    </div>
+                </div>
+            </div>
+
             </div>
           </div>
 

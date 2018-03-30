@@ -50,6 +50,8 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ViewSolComponent } from './components/view-sol/view-sol.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -83,7 +85,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     ContactComponent,
     FooterComponent,
     NotificationComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ViewSolComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

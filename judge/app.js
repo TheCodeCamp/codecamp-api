@@ -1,4 +1,7 @@
 var cluster = require('cluster');
+const cors = require('cors')
+
+
 
 // Code to run if we're in the master process
 if (cluster.isMaster) {
@@ -32,8 +35,9 @@ if (cluster.isMaster) {
     const mongoose = require('mongoose')
 
     mongoose.Promise = global.Promise
-    mongoose.connect(process.env.MONGODB_URI || 'mongodb://159.89.174.200/OnlineJudge')
+    mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/OnlineJudge')
 
+    app.use(cors())
     const bodyParser = require('body-parser');
     app.use( bodyParser.json() );
     app.use(bodyParser.urlencoded({     

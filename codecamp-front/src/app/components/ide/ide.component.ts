@@ -99,6 +99,7 @@ public class Main {
       };
       this.contestService.addTest(test1).subscribe(data => {
         this.output = this.contestService.getTest();
+        //console.log(this.output)
       });
       const text = document.getElementById('myOutputArea');
         text.style.display = 'block';

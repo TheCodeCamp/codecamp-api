@@ -9,11 +9,13 @@
     [ease]="'easeInSine'"
 ></ng-progress>
 
-<div class="container-fluid">
+<div class="container-fluid" >
     <app-sidebar></app-sidebar>
-    <div class="wrapper" [@panelInOut]="panelVisible">
-        <flash-messages></flash-messages>
-        <router-outlet></router-outlet>
-    </div>
+        <div class="wrapper" [@panelInOut]="panelVisible" >
+            <flash-messages></flash-messages>
+            <router-outlet></router-outlet>
+        </div>
 </div>
+
+<app-footer></app-footer>
 

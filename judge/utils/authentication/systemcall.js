@@ -5,13 +5,15 @@ const fs = require('fs')
 const buffer = require('buffer')
 
 
-const containSysCall = async ()=>{
+const containSysCall = async (file)=>{
+    let cmd = "grep -f " + path.join(__dirname +'/syscalls_f.txt')+ " "+path.join(__dirname + './../../result/source/')+file;
     return new Promise((resolve,reject)=>{
         exec(cmd, (error, stdout, stderr) => {
             if (error) {
-              reject({result:false,msg:'Try to remove System Calls from your program and try again!'});
+                console.log(error)
+              reject({result:'SC',msg:'Try to remove System Calls from your program and try again!'});
             }
-            resolve(true);
+            resolve({result:true});
         })
     })
 }

@@ -32,6 +32,10 @@ export class ProblemsComponent implements OnInit {
   minutes;
   seconds;
   times;
+  time_hr;
+  time_day;
+  time_min;
+  time_sec;
   start;
   x;
   ticks = 0;
@@ -52,8 +56,8 @@ export class ProblemsComponent implements OnInit {
         this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
-        //console.log(this.start);
-        //console.log(this.end);
+        // console.log(this.start);
+        // console.log(this.end);
         var timer;
 
         if (this.start > new Date()) {
@@ -104,6 +108,10 @@ export class ProblemsComponent implements OnInit {
               var temp = String(day) + ' days ' + String(hour) + ' hr ' +String(minute) + ' min ' +String(second) + ' sec';
               ////this.contestService.time.next(temp);
               //this.contestService.time.subscribe(value => this.times = value);*/
+              this.time_day = day ;
+              this.time_hr = hour ;
+              this.time_min = minute ;
+              this.time_sec = second ;
               this.times = String(day) + ' days ' + String(hour) + ' hr ' + String(minute) + ' min ' + String(second) + ' sec';
           }
           }

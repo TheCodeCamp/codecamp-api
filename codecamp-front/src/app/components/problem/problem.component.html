@@ -47,7 +47,7 @@
             <p [innerText]="problem?.explanation_example"></p>
           </div>
           </div>
-          <img *ngIf="base64Image" [src]="base64Image" >
+          <img *ngIf="base64Image && problem.img !== null" [src]="base64Image" >
 
     </div>
 
@@ -60,9 +60,16 @@
   <div class="box">
 
     <b>Time Limit: </b><span [innerText]="problem?.timelimit"></span><b> ms</b><br>
-    <b>Source Limit: </b><span [innerText]="problem?.timelimit"></span><b> byte</b><br>
+    <b>Source Limit: </b><span [innerText]="problem?.sourcelimit"></span><b> byte</b><br>
     <b>Author: </b><span [innerText]="problem?.author"></span><br>
     <b>Languages: </b><span> C, C++, Java, Python</span>
 
+  </div>
+  <br>
+  <br>
+  <hr>
+  <div>
+      <h3 class="mb-2">Comment <i class="fa {{caretType}}" (click)="showComments()"></i></h3>
+    <app-comment *ngIf='showComment'></app-comment>
   </div>
 </div>
