@@ -13,7 +13,7 @@ function randomPasswordGenerator(){
 }
 
 module.exports.mailTo = function(email,username) {
-    console.log(typeof email);
+    // console.log(typeof email);
     const password = randomPasswordGenerator();
     const html=`<div style="margin-left:25%;margin-top:10%; width: 50%; align :center;">
     <p>
@@ -50,15 +50,64 @@ module.exports.mailTo = function(email,username) {
         // send mail with defined transport object
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
-                //return console.log(error);
+                return console.log(error);
             }
-           // console.log('Message sent: %s', info.messageId);
+            console.log('Message sent: %s', info.messageId);
             // Preview only available when sending through an Ethereal account
-           // console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     
             // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         });
     });
     return password;
+}
+
+
+module.exports.mailToUs = function(message,username,email) {
+    // console.log(typeof email);
+    // console.log(username);
+    const html=`<div style="margin-left:25%;margin-top:10%; width: 50%; align :center;">
+    <p>
+        <h2 style="color: rgb(60, 59, 59); font-family:'Courier';">  From User - <span style="font-size: 20px">${username}</span> (${email}) </h2>
+        
+    </p>
+    <hr>
+    <p>${message}</p>
+    <p></p>
+</div>`
+    nodemailer.createTestAccount((err, account) => {
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'hackercamp.kavalier@gmail.com', // generated ethereal user
+                pass: 'shiv7250' // generated ethereal password
+            }
+        });
+    
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"HackerCamp" <hackercamp.kavalier@gmail.com>', // sender address
+            to: 'hackercamp.kavalier@gmail.com',
+            subject: 'FeedBack', // Subject line
+            text: 'Feedback', // plain text body
+            html: html // html body
+        };
+    
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            // Preview only available when sending through an Ethereal account
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        });
+    });
 }

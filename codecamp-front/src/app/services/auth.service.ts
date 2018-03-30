@@ -97,4 +97,9 @@ export class AuthService {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain +'users/profile', this.options).map(res => res.json());
   }
+
+  sendFeedback(contacts) {
+    return this.http.post(this.domain + 'users/contact', contacts)
+    .map(res => res.json());
+  }
 }
