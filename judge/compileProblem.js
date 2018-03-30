@@ -28,7 +28,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
+            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -129,7 +129,7 @@ const serverResult = async (contest,problem)=>{
 }
 
 const isPython = async (file)=>{
-    cmd = "cp " + path.join(__dirname + '/result/source/') + file + " /home/shiva/runer/Main.py"
+    cmd = "cp " + path.join(__dirname + '/result/source/') + file + "  " + path.join(__dirname,"/result/binary/sandbox/")+"Main.py";
     console.log(cmd)
     return new Promise((resolve,reject)=>{
         exec(cmd,(error, stdout, stderr) => { 
