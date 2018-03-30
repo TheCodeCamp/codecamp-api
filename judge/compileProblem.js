@@ -28,7 +28,7 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
+            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +" "+ filename;
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -69,7 +69,7 @@ async function runCompiled(lang,file,contest,problem,option,t0){
             cmd = "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"./" + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"java " + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd =  "cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  java " + file  +  " <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "python":
             cmd = "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"python3 " + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
@@ -129,7 +129,7 @@ const serverResult = async (contest,problem)=>{
 }
 
 const isPython = async (file)=>{
-    cmd = "cp " + path.join(__dirname + '/result/source/') + file + " /home/shiva/runer/Main.py"
+    cmd = "cp " + path.join(__dirname + '/result/source/') + file + "  " + path.join(__dirname,"/result/binary/sandbox/")+"Main.py";
     console.log(cmd)
     return new Promise((resolve,reject)=>{
         exec(cmd,(error, stdout, stderr) => { 
