@@ -9,20 +9,20 @@ async function runCompiled(lang,file,input,t0){
     console.log(lang)
 
     var cmd;
-    fs.writeFileSync("/home/shiv/runer/ideInput.txt",input);
+    fs.writeFileSync("/home/shiva/runer/ideInput.txt",input);
     switch(lang){
         case "c":
-            cmd= "cd /home/shiv/runer"+ "&& ./" + file +  " < ideInput.txt";
+            cmd= "cd /home/shiva/runer"+ "&& ./" + file +  " < ideInput.txt";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd /home/shiv/runer"+ "&& ./" + file +" < ideInput.txt";
+            cmd = "cd /home/shiva/runer"+ "&& ./" + file +" < ideInput.txt";
             break;
         case "java":
-            cmd =  "cd /home/shiv/runer"+ " && java " + file +" < ideInput.txt";
+            cmd =  "cd /home/shiva/runer"+ " && java " + file +" < ideInput.txt";
             break;
         case "python":
-            cmd =  "cd /home/shiv/runer" + " && python3 " + file +" < ideInput.txt";  
+            cmd =  "cd /home/shiva/runer" + " && python3 " + file +" < ideInput.txt";  
             break;
     }
    
