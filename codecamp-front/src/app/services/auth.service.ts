@@ -12,8 +12,8 @@ import { Subject } from 'rxjs/Subject';
 export class AuthService {
   public authToken: any;
   public user: any;
-  //public domain = 'http://localhost:80/';
-  public domain = '';
+  public domain = 'http://localhost:80/';
+  //public domain = '';
   public options;
 
   constructor(
@@ -68,9 +68,14 @@ export class AuthService {
   public checkisAdmin() {
     let user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined || user === null) {
+      
       return false;
+
     } else if (user.isAdmin === true) {
       return true;
+    }
+    else{
+      return false;
     }
   }
 

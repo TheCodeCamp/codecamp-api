@@ -1,19 +1,5 @@
 
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-4 head">
-          Time/Date
-        </div>
-        <div class="col-md-2 head">
-          Res
-        </div>
-        <div class="col-md-3 head">
-          Lang
-        </div>
-        <div class="col-md-3 head">
-          Code
-        </div>
-        </div>
+<div class="container-fluid box">
         <div class="row sol text-center" *ngFor="let i of submit">
           <div class="col-md-4" [innerHTML]="replaceTZ(i.submitted_on)">
 

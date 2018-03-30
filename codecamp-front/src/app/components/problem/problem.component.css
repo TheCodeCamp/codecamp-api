@@ -28,3 +28,19 @@ p{
   background-color: rgb(201, 252, 235);
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
+
+.side{
+    height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.head {
+    padding: 2%;
+    font-size: 14px;
+    font-weight: bold;
+    background: #2c3e50;
+    color: #fff;
+    text-align: center;
+}
