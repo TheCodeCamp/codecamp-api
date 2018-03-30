@@ -12,17 +12,17 @@ async function runCompiled(lang,file,input,t0){
     fs.writeFileSync(path.join(__dirname ,'result/input/ideInput.txt'),input);
     switch(lang){
         case "c":
-            cmd= "cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&& ./" + file +  " < ideInput.txt";
+            cmd= "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \" ./" + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd /home/shiva/runer"+ "&& ./" + file +" < ideInput.txt";
+            cmd = "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \" ./" + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "java":
-            cmd =  "cd /home/shiva/runer"+ " && java " + file +" < ideInput.txt";
+            cmd =  "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \"java " + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "python":
-            cmd =  "cd /home/shiva/runer" + " && python3 " + file +" < ideInput.txt";  
+            cmd =  "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \"python3 " + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
     }
    
