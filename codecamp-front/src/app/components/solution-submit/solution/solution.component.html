@@ -1,18 +1,49 @@
 <div class="container">
     <div class="alert alert-success submissionResult" role="alert" *ngIf="condition === 'green'">
-        <span><i class="fa fa-check" aria-hidden="true"></i></span>
-        <strong>{{data}}</strong>
+        <div class="row">
+            <div class="col-md-12">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <br>
+                <strong>{{data}}</strong>
+            </div>
+        </div>
     </div>
     <div class="alert alert-danger submissionResult" role="alert" *ngIf="condition === 'red'">
-        <span><i class="fa fa-times" aria-hidden="true"></i></span>
-            <strong>{{data}}</strong>
+        <div class="row">
+            <div class="col-md-12">
+                <span><i class="fa fa-times" aria-hidden="true"></i></span>
+                <br>    
+                <strong>{{data}}</strong>   
+            </div>
+        </div>
+        
     </div>
-    <div class="alert alert-warning submissionResult" role="alert" *ngIf="condition === 'blue'">
+    <div class="alert alert-danger submissionResult" role="alert" *ngIf="condition === 'blue'">
+        <div class="row">
+            <div class="col-md-12">
+                <span>
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i></span>
+                    <br>    
+                    <strong>{{data}}</strong>            
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-warning submissionResult" role="alert" *ngIf="condition === 'com'">
         <div class="row">
             <div class="col-md-12">
                 <span>
                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>
                     <br>    
+                    <strong>{{data}}</strong>            
+            </div>
+        </div>
+    </div>
+    <div class="alert alert-dark submissionResult" role="alert" *ngIf="condition === 'dark'">
+        <div class="row">
+            <div class="col-md-12">
+                <span>
+                <i class="fa fa-exclamation-clock-o" aria-hidden="true"></i></span>
+                <br>    
                 <strong>{{data}}</strong>            
             </div>
         </div>

@@ -3,3 +3,7 @@
     margin: 10% 30%;
     text-align: center;
 }
+
+.container{
+    min-height: 800px;
+}

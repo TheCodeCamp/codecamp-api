@@ -8,19 +8,28 @@
 
 <br>
 
-<div class="container">
+<div class="container ques">
     <div class="row">
       <div class="col-md-6" *ngFor="let i of contest">
           <div class="card-deck">
             <div class="card">
-              <img class="card-img-top" *ngIf="i.name === 'Captain America'" src="../../assets/antman.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Captain America'" src="../../assets/camerica.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Black Widow'" src="../../assets/blackwidow.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Iron Man'" src="../../assets/ironman.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Black Panther'" src="../../assets/blackpanther.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Antman'" src="../../assets/antman.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Hulk'" src="../../assets/hulk.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Thor'" src="../../assets/thor.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Star Lord'" src="../../assets/starlord.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Spiderman'" src="../../assets/spiderman.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Doctor Strange'" src="../../assets/drstrange.jpg" alt="Card image cap">
               <div class="card-block">
                 <h4 class="card-title">{{i.name}}</h4>
                 <p class="card-text">{{i.description}}</p>
-                <button class="btn btn-success">Grab Me!!</button>
+                <button class="btn btn-success" (click)="onClickGrab(i)">Grab Me!!</button>
               </div>
             </div>
-          </div>
+          </div>      
       </div>
     </div>
   </div>
@@ -29,7 +38,7 @@
 <ul  class="cards">
   <li  class="cards__item">
     <div  class="card">
-
+      
       <div  class="card__content">
         <div  class="card__title">INTRA sd</div>
         <p  class="card__text"> </p>

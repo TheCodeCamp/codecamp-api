@@ -3,7 +3,6 @@
   <div class="row">
     <div class="col-md-12">
       <button class="btn btn-warning" (click)="onAddProblem()">Add Problems</button>
-      <button class="btn btn-danger" (click)="onDeleteContest()">Delete Contest</button>
     </div>
   </div>
 </div>
@@ -18,7 +17,6 @@
           </nav>
           <div class="row">
             <div class="col-md-7"><h1 class="display-4">{{contestname}}</h1></div>
-
           </div>
 
 
@@ -39,7 +37,7 @@
           </div>
           <a
           class="nav-link problem"
-          *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() ) ? problems : [])"
+          *ngFor="let i of (conditionToShowProblem?problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
               <div class="col-md-6">
@@ -69,22 +67,22 @@
             <div class="col-md-3" >
                 <b id="box-el">{{time_day}}</b>
                 <br><br>
-                <b>Day</b>
+                <b>D</b>
             </div>
             <div class="col-md-3">
                 <b id="box-el">{{time_hr}}</b>
                 <br><br>
-                 <b>Hr</b>
+                 <b>H</b>
               </div>
             <div class="col-md-3">
                 <b id="box-el">{{time_min}}</b>
                 <br><br>
-                <b>Mnts</b>
+                <b>M</b>
               </div>
             <div class="col-md-3">
                 <b id="box-el"> {{time_sec}} </b>
                 <br><br>
-                <b>Secs</b>
+                <b>S</b>
             </div>
           </div>
         </div>

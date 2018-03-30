@@ -6,3 +6,7 @@ h1{
   color: rgb(60, 59, 59);
   font-family: 'Courier';
 }
+
+.container{
+  min-height: 800px;
+}

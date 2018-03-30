@@ -16,7 +16,6 @@
 }
 
 [class*="col-"] {
-  background: #efefef;
   padding-top: .75rem;
   padding-bottom: .75rem;
   width: 100%;
@@ -26,6 +25,7 @@
   padding: 3%;
 }
 
-.col-md-6{
-  padding: 0;
+
+.ques{
+  min-height: 800px;
 }

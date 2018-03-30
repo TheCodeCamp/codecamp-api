@@ -37,6 +37,8 @@ export class ProblemComponent implements OnInit {
         this.base64Image = this.domSanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,'
       + this.base64Image);
       }
+      console.log(this.problem)
+      
     });
 
   }
