@@ -34,7 +34,7 @@ export class AuthService {
     this.authToken = localStorage.getItem('token'); // Get tokens and asssign to variable to be used elsewhere
   }
   public registerUser(user) {
-    return this.http.post(this.domain +'users/signup', user)
+    return this.http.post(this.domain + 'users/signup', user)
       .map(res => res.json());
   }
 
@@ -49,7 +49,7 @@ export class AuthService {
   }
 
   public editUser(user) {
-    return this.http.patch(this.domain +'users/:' + user.username + '/edit', user)
+    return this.http.patch(this.domain + 'users/:' + user.username + '/edit', user)
     .map(res => res.json());
   }
 
@@ -66,15 +66,14 @@ export class AuthService {
   }
 
   public checkisAdmin() {
-    let user = JSON.parse(localStorage.getItem('user'));
+    const user = JSON.parse(localStorage.getItem('user'));
     if (user === undefined || user === null) {
 
       return false;
 
     } else if (user.isAdmin === true) {
       return true;
-    }
-    else{
+    } else {
       return false;
     }
   }
@@ -95,6 +94,6 @@ export class AuthService {
   }
   getProfile() {
     this.createAuthenticationHeaders();
-    return this.http.get(this.domain +'users/profile', this.options).map(res => res.json());
+    return this.http.get(this.domain + 'users/profile', this.options).map(res => res.json());
   }
 }
