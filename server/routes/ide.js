@@ -38,7 +38,7 @@ router.post('/',(req,res)=>{
       });
 
       reqtojudge.on('error',(e)=>{
-        console.error(`problem with request: ${e.message}`);
+        console.error(`problem with request: ${e.message.split()}`);
       })
       
       // write data to request body

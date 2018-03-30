@@ -22,13 +22,13 @@ const compileProblem= async (lang , filename,checkFile)=>{
         case "CPP":
         case "Cpp":
             file = path.basename(filename,'.cpp')+".out";
-            cmd="cd "+"\""+ path.join(__dirname,"/result/source") +"\""+ " && g++ -o /home/shiva/runer/"  + file + " " +filename;
+            cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && g++ -o " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
             break;
         case "java":
         case "JAVA":
         case "Java":
             file = path.basename(filename,'.java')
-            cmd ="cd "+"\""+ path.join(__dirname,"/result/source") + "\" && javac -d /home/shiva/runer/" +  " " +filename;
+            cmd ="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && javac -d " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
     }        
     return new Promise((resolve,reject)=>{
      exec(cmd, (error, stdout, stderr) => {
@@ -66,13 +66,13 @@ async function runCompiled(lang,file,contest,problem,option,t0){
             break;
         case "c++":
         case "cpp": 
-            cmd = + "cd /home/shiva/runer"+"** ./" + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd = "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"./" + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "java":
-            cmd =  "cd /home/shiva/runer" +  " && java " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd =  "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"java " + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
         case "python":
-            cmd = "cd /home/shiva/runer" + " && python " + file +" <\""+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
+            cmd = "( cd "+path.join(__dirname ,'/result/binary/sandbox/') + "&&  su -c \"python3 " + file  +  "\" judge ) <"+ path.join(__dirname,"/result/input/")+contest+"/"+problem+".txt\"";
             break;
     }
     
