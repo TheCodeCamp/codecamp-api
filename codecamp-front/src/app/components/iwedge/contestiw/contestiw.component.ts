@@ -22,6 +22,7 @@ export class ContestiwComponent implements OnInit {
     this.contestService.getContest().subscribe(
       contest => {
       this.contest = contest.contests;
+      
     });
   }
   onAddContest() {

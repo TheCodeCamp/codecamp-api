@@ -1,6 +1,7 @@
 import { Component, OnInit, trigger, transition, style, animate, state } from '@angular/core';
 import { NgProgress } from 'ngx-progressbar';
 import { ContestService } from './services/contest.service';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
   panelVisible;
   menuState:string = 'out';
 
-  constructor(public progressService: NgProgress,
+  constructor(
+    private router: Router,
+    public progressService: NgProgress,
   private contestService: ContestService){
 
   }
@@ -41,5 +44,11 @@ export class AppComponent implements OnInit {
       this.menuState = 'in';
     else  
       this.menuState = 'out';
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
     }
 }
