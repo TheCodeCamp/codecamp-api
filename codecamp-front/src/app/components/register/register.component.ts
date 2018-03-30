@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       email_id: ['', Validators.compose([
         Validators.required, // Field is required
         Validators.minLength(5), // Minimum length is 5 characters
-        Validators.maxLength(30), // Maximum length is 30 characters
+        Validators.maxLength(50), // Maximum length is 30 characters
         this.validateEmail // Custom validation
       ])],
       password: ['', Validators.compose([
