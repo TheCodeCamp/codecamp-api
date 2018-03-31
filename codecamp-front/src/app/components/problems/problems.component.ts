@@ -54,10 +54,9 @@ export class ProblemsComponent implements OnInit {
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.username = this.user.username;
-    this.contestService.getProblems(this.contest, this.username).subscribe((contest) => {
-          this.problems = contest.msg[0].questions;
+
+    this.contestService.getProblems(this.contest).subscribe((contest) => {
+        this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);
         this.end = new Date(contest.msg[0].endTime);
         // console.log(this.start);

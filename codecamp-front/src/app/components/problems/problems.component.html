@@ -35,16 +35,9 @@
           *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() )?problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
-              <div class="col-md-5">
+              <div class="col-md-6">
                 {{i.name}}
               </div>
-              <div class="col-md-1" *ngIf="i.submission >= 0;else e">
-                <i class="fa fa-check" aria-hidden="true"></i>
-              </div>
-              <ng-template #e>
-                <div class="col-md-1">
-                </div>
-              </ng-template>
 
               <div class="col-md-3">
                 {{i.code}}

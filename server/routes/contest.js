@@ -48,7 +48,7 @@ router.post('/',(req,res)=>{
 router.use('/:id/problems',problemRoute)
 
 
-router.post('/:id',(req,res)=>{
+router.get('/:id',(req,res)=>{
     const id = req.params.id;
     // var Projection={
     //     _id:false,
@@ -88,13 +88,12 @@ router.post('/:id',(req,res)=>{
                 let description=x.description;
 
                 //console.log(x.questions.length);
-                let username = req.body.username;
+                
                for(let i=0;i<x.questions.length;i++)
                 {
                     //console.log(i);
                     result.push({
                         "successfullSubmission":x.questions[i].users.length,
-                        "submission": x.questions[i].users.findIndex(y=>y === username),
                         "name": x.questions[i].name,
                         "code": x.questions[i].code
                     });
