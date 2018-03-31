@@ -61,17 +61,13 @@ const appRoutes: Routes = [
       component: ProblemComponent
     },
     {
-      path: 'solution/:user/:id',
-      component: ViewSolComponent
-    },
-    {
       path: 'iwedge',
       component: IwedgeComponent
     },
     {
       path:'iwedge/contest',
       component: ContestiwComponent
-      
+
     },
     {
       path: 'contest',
