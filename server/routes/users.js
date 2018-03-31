@@ -171,4 +171,25 @@ router.post('/forget',(req,res) => {
     });
 });
 
+
+router.post('/contact',(req,res) => {
+    const user = req.body.name;
+    const email = req.body.email_id;
+    const message = req.body.message;
+    User.findOne({username:user}).then((users)=>{
+        //console.log(users.username);
+        (require('./../utils/auth/resetPassword.js')).mailToUs(message,users.username,email);
+        res.send({
+            'success':true,
+            'msg': 'Email Sent'
+        });
+    }).catch((err) => {
+        console.log(err)
+        res.json({
+            'success':false,
+            'msg':'User Not Found :('
+        });
+    });
+});
+
 module.exports = router;

@@ -9,20 +9,20 @@ async function runCompiled(lang,file,input,t0){
     console.log(lang)
 
     var cmd;
-    fs.writeFileSync("/home/shiv/runer/ideInput.txt",input);
+    fs.writeFileSync(path.join(__dirname ,'result/input/ideInput.txt'),input);
     switch(lang){
         case "c":
-            cmd= "cd /home/shiv/runer"+ "&& ./" + file +  " < ideInput.txt";
+            cmd= "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \" ./" + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "c++":
         case "cpp": 
-            cmd = "cd /home/shiv/runer"+ "&& ./" + file +" < ideInput.txt";
+            cmd = "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \" ./" + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "java":
-            cmd =  "cd /home/shiv/runer"+ " && java " + file +" < ideInput.txt";
+            cmd =  "cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  java " + file +  "  < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
         case "python":
-            cmd =  "cd /home/shiv/runer" + " && python3 " + file +" < ideInput.txt";  
+            cmd =  "( cd "+path.join(__dirname ,'result/binary/sandbox/')+ "&&  su -c \"python3 " + file +  " \" judge) < "+path.join(__dirname ,'result/input/')+"ideInput.txt";
             break;
     }
    

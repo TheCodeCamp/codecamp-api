@@ -28,6 +28,9 @@ export class RanklistComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
+    this.contestService.getRankings(this.contest).subscribe(contest => {
+      this.ranks = contest.msg;
+    })
     IntervalObservable.create(10000)
       .takeWhile(() => this.alive) // only fires when component is alive
       .subscribe(() => {

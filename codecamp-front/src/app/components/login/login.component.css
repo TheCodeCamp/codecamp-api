@@ -38,3 +38,7 @@ label{
 .col-md-3{
   padding: 1%;
 }
+
+.top{
+    min-height: 800px;
+}

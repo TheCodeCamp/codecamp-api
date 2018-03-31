@@ -3,22 +3,15 @@
   <div class="row">
     <div class="col-md-12">
       <button class="btn btn-warning" (click)="onAddProblem()">Add Problems</button>
-      <button class="btn btn-danger" (click)="onDeleteContest()">Delete Contest</button>
     </div>
   </div>
 </div>
 <div class="container main">
   <div class="row">
     <div class="col-md-12">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a routerLink="/contest">Contest</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{contestname}}</li>
-            </ol>
-          </nav>
+
           <div class="row">
             <div class="col-md-7"><h1 class="display-4">{{contestname}}</h1></div>
-
           </div>
 
 
@@ -39,7 +32,7 @@
           </div>
           <a
           class="nav-link problem"
-          *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() ) ? problems : [])"
+          *ngFor="let i of ((conditionToShowProblem || authService.checkisAdmin() )?problems : [])"
           (click)="onSelectProblem(i.code)">
             <div class="row">
               <div class="col-md-6">
@@ -47,6 +40,9 @@
               </div>
               <div class="col-md-3">
                 {{i.code}}
+              </div>
+              <div class="col-md-3">
+                {{i.successfullSubmission}}
               </div>
             </div>
           </a>
@@ -69,22 +65,22 @@
             <div class="col-md-3" >
                 <b id="box-el">{{time_day}}</b>
                 <br><br>
-                <b>Day</b>
+                <b>D</b>
             </div>
             <div class="col-md-3">
                 <b id="box-el">{{time_hr}}</b>
                 <br><br>
-                 <b>Hr</b>
+                 <b>H</b>
               </div>
             <div class="col-md-3">
                 <b id="box-el">{{time_min}}</b>
                 <br><br>
-                <b>Mnts</b>
+                <b>M</b>
               </div>
             <div class="col-md-3">
                 <b id="box-el"> {{time_sec}} </b>
                 <br><br>
-                <b>Secs</b>
+                <b>S</b>
             </div>
           </div>
         </div>

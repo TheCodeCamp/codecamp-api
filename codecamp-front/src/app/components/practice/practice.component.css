@@ -1,3 +1,7 @@
+.container{
+    min-height: 800px;
+}
+
 .problem{
     background: white;
     border-bottom: 1px solid rgba(39,39,39,.1);

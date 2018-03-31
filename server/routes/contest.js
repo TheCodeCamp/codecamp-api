@@ -59,7 +59,7 @@ router.get('/:id',(req,res)=>{
     Contest.find({'id':id}).
         populate({
             path: 'questions',
-            select:['name','code'],
+            select:['name','code','successfulSubmission','users'],
             model: 'Problem'
         }).
         exec(function(err,question){
@@ -75,12 +75,38 @@ router.get('/:id',(req,res)=>{
                             'success':false,
                             'msg':'Can\'t find any contest with given id'
                         })
-            }
+            }          
+            // let abc={}; 
+            // for(let i=0)
+            // console.log(abc);
+            const abc = question.map(x=>{
+                let result = [];
+                let name=x.name;
+                let startTime=x.startTime;
+                let endTime=x.endTime;
+                let id= x.id;
+                let description=x.description;
+
+                //console.log(x.questions.length);
+                
+               for(let i=0;i<x.questions.length;i++)
+                {
+                    //console.log(i);
+                    result.push({
+                        "successfullSubmission":x.questions[i].users.length,
+                        "name": x.questions[i].name,
+                        "code": x.questions[i].code
+                    });
+
+                }
+               
+               return {'questions':result,'name':name,'id':id,'startTime':startTime,'endTime':endTime,'description':description}
+            });
             res 
                 .status(200)
                 .json({
                     'success':true,
-                    'msg':question
+                    'msg':abc
                 })
         })
 })

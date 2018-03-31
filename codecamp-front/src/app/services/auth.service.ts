@@ -12,11 +12,10 @@ import { Subject } from 'rxjs/Subject';
 export class AuthService {
   public authToken: any;
   public user: any;
-  // public domain = 'http://localhost:80/';
+  //public domain = 'http://localhost:80/';
   public domain = '';
   public options;
-
-  constructor(
+    constructor(
   private http: Http
   ) { }
   public createAuthenticationHeaders() {
@@ -95,5 +94,10 @@ export class AuthService {
   getProfile() {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'users/profile', this.options).map(res => res.json());
+  }
+
+  sendFeedback(contacts) {
+    return this.http.post(this.domain + 'users/contact', contacts)
+    .map(res => res.json());
   }
 }
