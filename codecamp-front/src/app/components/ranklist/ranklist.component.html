@@ -1,10 +1,9 @@
-
 <div class="container main">
   <div class="row">
     <div class="col-md-12">
-      
+
       <p class="reload">Page Reloads in 10 seconds!!</p>
-      <p *ngIf="ranks===undefined">
+      <p *ngIf="rank===undefined">
         <br>
         <br>
         <strong>No Successful Solutions Submitted Yet.</strong></p>
@@ -33,10 +32,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let rank of ranks; let i=index;" id="tbl">
+        <tr *ngFor="let rnk of rank; let i=index;" id="tbl">
           <th scope="row">{{i+1}}</th>
-          <td>{{rank.name}}</td>
-          <td>{{rank.score}}</td>
+          <td>{{rnk.name}}</td>
+          <td>{{rnk.score}}</td>
         </tr>
 
       </tbody>

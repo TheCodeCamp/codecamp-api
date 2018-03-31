@@ -4,27 +4,27 @@ const cors = require('cors')
 
 
 // Code to run if we're in the master process
-if (cluster.isMaster) {
+// if (cluster.isMaster) {
 
-    // Count the machine's CPUs
-    var cpuCount = require('os').cpus().length;
+//     // Count the machine's CPUs
+//     var cpuCount = require('os').cpus().length;
 
-    // Create a worker for each CPU
-    for (var i = 0; i < cpuCount; i += 1) {
-        cluster.fork();
-    }
+//     // Create a worker for each CPU
+//     for (var i = 0; i < cpuCount; i += 1) {
+//         cluster.fork();
+//     }
 
-    // Listen for dying workers
-    cluster.on('exit', function (worker) {
+//     // Listen for dying workers
+//     cluster.on('exit', function (worker) {
 
-        // Replace the dead worker, we're not sentimental
-        console.log('Worker %d died :(', worker.id);
-        cluster.fork();
+//         // Replace the dead worker, we're not sentimental
+//         console.log('Worker %d died :(', worker.id);
+//         cluster.fork();
 
-    });
+//     });
 
-// Code to run if we're in a worker process
-} else {
+// // Code to run if we're in a worker process
+// } else {
     const express= require('express');
     const morgan = require('morgan');
     const passport = require('passport');
@@ -67,7 +67,7 @@ if (cluster.isMaster) {
 
     const port = process.env.PORT || 3001;
     app.listen(port);
-    console.log('magic is started at ' + port +'****worker :- ' +cluster.worker.id)
+    console.log('magic is started at ' + port )
 
     module.exports={app}
-}
+// }
