@@ -10,7 +10,7 @@ const app = express();
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://159.89.174.200:27017/OnlineJudge')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/OnlineJudge')
 app.use(express.static(__dirname+'/public/'));
 const bodyParser = require('body-parser');
 app.use(cors())
@@ -50,7 +50,7 @@ const solutions = require('./routes/solution');
 const rankings = require('./routes/ranking');
 const submission = require('./routes/submission');
 const practice = require('./routes/practice');
-const viewSolution = require('./routes/viewsolution');
+//const viewSolution = require('./routes/viewsolution');
 
 app.use('/ide',ide);
 app.use('/contest', contest);
@@ -59,7 +59,7 @@ app.use('/solution',solutions);
 app.use('/rankings',rankings);
 app.use('/submission',submission);
 app.use('/practice',practice);
-app.use('/viewsolution',viewSolution);
+//app.use('/viewsolution',viewSolution);
 
 
 // app.post('/',(req,res)=>{

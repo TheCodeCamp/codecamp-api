@@ -10,7 +10,7 @@
 
 <div class="container ques">
     <div class="row">
-      <div class="col-md-6" *ngFor="let i of contest">
+      <div class="col-md-12" *ngFor="let i of contest">
           <div class="card-deck">
             <div class="card">
               <img class="card-img-top" *ngIf="i.name === 'Captain America'" src="../../assets/camerica.jpg" alt="Card image cap">
@@ -22,6 +22,8 @@
               <img class="card-img-top" *ngIf="i.name === 'Thor'" src="../../assets/thor.jpg" alt="Card image cap">
               <img class="card-img-top" *ngIf="i.name === 'Star Lord'" src="../../assets/starlord.jpg" alt="Card image cap">
               <img class="card-img-top" *ngIf="i.name === 'Spiderman'" src="../../assets/spiderman.jpg" alt="Card image cap">
+              <img class="card-img-top" *ngIf="i.name === 'Final Showdown Against Thanos'" src="../../assets/infinitywars.jpg" alt="Card image cap">
+
               <img class="card-img-top" *ngIf="i.name === 'Doctor Strange'" src="../../assets/drstrange.jpg" alt="Card image cap">
               <div class="card-block">
                 <h4 class="card-title">{{i.name}}</h4>
@@ -29,7 +31,7 @@
                 <button class="btn btn-success" (click)="onClickGrab(i)">Grab Me!!</button>
               </div>
             </div>
-          </div>      
+          </div>
       </div>
     </div>
   </div>
@@ -38,7 +40,7 @@
 <ul  class="cards">
   <li  class="cards__item">
     <div  class="card">
-      
+
       <div  class="card__content">
         <div  class="card__title">INTRA sd</div>
         <p  class="card__text"> </p>

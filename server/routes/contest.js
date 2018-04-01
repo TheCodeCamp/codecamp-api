@@ -97,7 +97,6 @@ router.get('/:id',(req,res)=>{
                         "name": x.questions[i].name,
                         "code": x.questions[i].code
                     });
-
                 }
                
                return {'questions':result,'name':name,'id':id,'startTime':startTime,'endTime':endTime,'description':description}

@@ -32,9 +32,6 @@ export class SubmissionComponent implements OnInit {
   replaceTZ(time) {
     return time && time.replace(/[TZ]|.000/g, '<br>');
   }
-  onClickView(id){
-    this.router.navigate(['/solution',this.submission.user,id]) 
-  }
 }
 
 
