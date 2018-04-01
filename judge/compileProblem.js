@@ -11,7 +11,7 @@ const isSysCall = require('./utils/authentication/systemcall');
 const compileProblem= async (lang , filename,checkFile)=>{
     var cmd,file;
     switch(lang){
-        case "c":
+        case "c": 
         case "C":
             file = path.basename(filename,'.c') +".out ";
             cmd="cd "+"\"" + path.join(__dirname,"/result/source") +"\"" + " && gcc -o " + path.join(__dirname ,'/result/binary/sandbox/') +file  +" "+ filename+" -lm";
