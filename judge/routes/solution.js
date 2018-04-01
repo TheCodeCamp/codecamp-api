@@ -37,7 +37,7 @@ router.get('/:id',(req,res)=>{
             }else if(language==='python'){
               pro.timeout = pro.timeout*5;
             }
-            console.log(contest,problem,id,language,description,option)
+            // console.log(contest,problem,id,language,description,option)
         judge.compileAndRunProblem(contest,problem,id,language ,description,option).then((result)=>{  
           console.log(result) 
           res.send({result:result,score:pro.score});

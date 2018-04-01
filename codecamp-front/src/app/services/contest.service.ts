@@ -15,7 +15,7 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-  //public domain = 'http://localhost:80/';
+   //public domain = 'http://localhost:80/';
   public domain = '';
   public options;
   public sol;
@@ -62,12 +62,12 @@ export class ContestService {
   }
 
   public addProblem(problem, contest): Observable<any> {
-    return this.http.post(this.domain +'contest/' + contest, problem)
+    return this.http.post(this.domain + 'contest/' + contest, problem)
       .map(res => res.json());
   }
 
   public getProblems(contest): Observable<any> {
-    return this.http.get( this.domain +'contest/' + contest)
+    return this.http.get( this.domain + 'contest/' + contest)
         .map(res => res.json());
   }
 
@@ -77,7 +77,7 @@ export class ContestService {
   }
 
   public addSolution(solution): Observable<any> {
-    return this.http.post(this.domain +'solution', solution)
+    return this.http.post(this.domain + 'solution', solution)
       .map(res => res.json());
   }
   public deleteContest(contest) {
@@ -91,7 +91,7 @@ export class ContestService {
     return this.sol;
   }
   public getTest() {
-    //console.log(this.test);
+    // console.log(this.test);
     return this.test;
   }
   public setTest(test) {
@@ -109,27 +109,27 @@ export class ContestService {
   }
 
   getRankings(contest) {
-    return this.http.get(this.domain +'rankings/' + contest)
+    return this.http.get(this.domain + 'rankings/' + contest)
       .map(res => res.json());
   }
   ontoggle(value: boolean) {
     this.Toggler.next(value);
   }
 
-  getPracticeProblems(): Observable<any>{
-    return this.http.get(this.domain +'practice')
-      .map(res=>res.json())
+  getPracticeProblems(): Observable<any > {
+    return this.http.get(this.domain + 'practice')
+      .map(res => res.json());
   }
-  getSubmission(submission): Observable<any>{
-    return this.http.post(this.domain +'submission', submission)
-      .map(res=>res.json())
+  getSubmission(submission): Observable<any> {
+    return this.http.post(this.domain + 'submission', submission)
+      .map(res => res.json() );
   }
-  getSoln(id): Observable<any>{
-    return this.http.post(this.domain +'viewsolution', id)
-      .map(res=>res.json())
+  getSoln(id): Observable<any> {
+    return this.http.post(this.domain + 'viewsolution', id)
+      .map(res => res.json());
   }
   getComments(code, contest) {
-    return this.http.get(this.domain +'contest/' + contest + '/problems/' + code + '/comment')
+    return this.http.get(this.domain + 'contest/' + contest + '/problems/' + code + '/comment')
     .map(comment => comment.json());
   }
 

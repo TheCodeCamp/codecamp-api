@@ -41,6 +41,8 @@ export class ProblemsComponent implements OnInit {
   ticks = 0;
   typeOfNow = 'Contest Will Start In';
   conditionToShowProblem = false;
+  user;
+  username;
   constructor(
     private contestService: ContestService,
     private router: Router,
@@ -52,6 +54,7 @@ export class ProblemsComponent implements OnInit {
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
+
     this.contestService.getProblems(this.contest).subscribe((contest) => {
         this.problems = contest.msg[0].questions;
         this.start = new Date(contest.msg[0].startTime);

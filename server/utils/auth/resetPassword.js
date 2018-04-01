@@ -25,6 +25,8 @@ module.exports.mailTo = function(email,username) {
     <p> password:<b>${password}</b></p>
     <p>HackerCamp takes your account security very seriously. HackerCamp will never email you and ask you to disclose or verify your password . If you receive a suspicious email with a link to update your account information, do not click on the link—instead, report the email to HackerRank for investigation.</p>
     <p>We hope to see you again soon.</p>
+    <b>Team</b>
+    <b>Kavalier</b>
 </div>`
     nodemailer.createTestAccount((err, account) => {
         // create reusable transporter object using the default SMTP transport

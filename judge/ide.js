@@ -49,7 +49,7 @@ async function runCompiled(lang,file,input,t0){
 }
 
 async function IdeSolution(option) {
-    console.log(option)
+    // console.log(option)
     const filename = await cp.base64tofile(option.description,option.language,1);
     // const isSecure = await isSysCall.containSysCall(filename);
     // console.log('isSecure')

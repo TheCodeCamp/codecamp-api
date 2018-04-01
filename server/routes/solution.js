@@ -20,7 +20,7 @@ const router = express.Router();
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
 router.post('/',upload.single(originalname),async (req,res)=>{
-  console.log(req.body)
+  //console.log(req.body)
     var solution;
      if(req.file){
       var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;

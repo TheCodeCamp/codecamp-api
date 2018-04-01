@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     if(!this.panelVisible)
     // 1-line if statement that toggles the value:
       this.menuState = 'in';
-    else  
+    else
       this.menuState = 'out';
       this.router.events.subscribe((evt) => {
         if (!(evt instanceof NavigationEnd)) {

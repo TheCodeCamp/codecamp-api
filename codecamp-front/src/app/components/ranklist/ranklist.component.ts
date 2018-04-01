@@ -16,6 +16,7 @@ export class RanklistComponent implements OnInit, OnDestroy {
   contest;
   ranks;
   problems;
+  rank = [];
   private alive: boolean;
   constructor(
     private contestService: ContestService,
@@ -28,9 +29,18 @@ export class RanklistComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contest = this.route.snapshot.params['contest'];
+<<<<<<< HEAD
 
     this.contestService.getRankings(this.contest).subscribe(contest => {
       this.ranks = contest.msg;
+=======
+    this.contestService.getRankings(this.contest).subscribe(contest => {
+      this.ranks = contest.msg;
+      this.ranks.map( x=>{
+        if(x.score > 0)
+         this.rank.push(x)
+      })
+>>>>>>> f5fcd7dec13cbbfabbaef0d5d25cb9015a579a95
     })
     IntervalObservable.create(10000)
       .takeWhile(() => this.alive) // only fires when component is alive
@@ -40,7 +50,7 @@ export class RanklistComponent implements OnInit, OnDestroy {
         });
       });
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.alive = false;
   }
 

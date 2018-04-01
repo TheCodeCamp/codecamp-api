@@ -12,7 +12,7 @@ const problemRoute = require('./problems');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
-    Solution.find({'id':req.body.id},'description -_id',(err,solution)=>{
+    Solution.find({'id':req.body.id},'status -_id',(err,solution)=>{
         if(err){
             res.json({
                 'success':false,
