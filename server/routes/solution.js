@@ -16,7 +16,7 @@ const Ranking = require('./../../contest/models/ranking/ranking');
 const Contest = require('./../../contest/models/contest/contest');
 
 const router = express.Router();
-
+let judge=1;
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
 router.post('/',upload.single(originalname),async (req,res)=>{
@@ -53,12 +53,32 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           agentOptions.maxSockets = 5;
           agentOptions.maxFreeSockets = 5;
           const httpAgent = new http.Agent(agentOptions);
-          var opt ={uri:`http://localhost:3001/${sol.id}`,
-          agent:httpAgent,
-          json:true
+          let opt;
+          if(judge===1){
+              opt ={uri:`http://localhost:3001/${sol.id}`,
+              agent:httpAgent,
+              json:true
+            };
+            judge=2;
+          }else if(judge===2){
+              opt ={uri:`http://localhost:3001/${sol.id}`,
+              agent:httpAgent,
+              json:true
+            };
+            judge=3;
+          }else if(judge===3){
+              opt ={uri:`http://localhost:3001/${sol.id}`,
+              agent:httpAgent,
+              json:true
+            };
+          }
+      
+          opt ={uri:`http://localhost:3001/${sol.id}`,
+            agent:httpAgent,
+            json:true
           };
           rp(opt).then((body)=>{
-            console.log(body)
+            // console.log(body)
             if(body.result==='Accepted'){
               User.findOne({'username':solution.username},(err,user)=>{
                 if(err){

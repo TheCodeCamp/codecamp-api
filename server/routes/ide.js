@@ -3,7 +3,7 @@ const http = require('http');
 const querystring = require('querystring');
 
 const router = express.Router();
-
+let judge =1;
 router.post('/',(req,res)=>{
   console.log(req.body)
     
@@ -14,16 +14,43 @@ router.post('/',(req,res)=>{
     }
     
     const dataString = querystring.stringify(data);
-      
-      const options = {
-        port: 3001,
-        path: '/ide',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Content-Length': Buffer.byteLength(dataString)
-        }
-      };
+    let options;
+
+      if(judge===1){
+        options = {
+          port: 3001,
+          path: '/ide',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(dataString)
+          }
+        };
+        judge=2;
+      }else if(judge===2){
+        options = {
+          port: 3001,
+          path: '/ide',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(dataString)
+          }
+        };
+        judge=3;
+      }else if(judge===3){
+        options = {
+          port: 3001,
+          path: '/ide',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(dataString)
+          }
+        };
+        judge=1;
+      }
+       
       
       const reqtojudge = http.request(options, (resfromjudge) => {
         resfromjudge.setEncoding('utf8');   
