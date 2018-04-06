@@ -1,11 +1,60 @@
 #include<stdio.h>
-      //#include<bits/stdc++.h>
-      //using namespace std;
-      int main()
-      {
-
-          printf("Welcome To HackerCamp");
-          return 0;
-
-      }
-    
+int main()
+{
+    int t,n,x,h[10],s[10],tm,i,p;
+    scanf("%d",&t);
+    while(t--)
+    {
+        scanf("%d%d",&n,&x);
+        tm=p=0;
+        for(i=0;i<n;i++)
+            scanf("%d",&h[i]);
+        for(i=0;i<n;i++)
+            scanf("%d",&s[i]);
+        n--;
+        for(i=0;i<n;i++)
+        {
+            if(h[i]<=x)
+            {
+                p=1;
+                tm+=h[i]/10;
+                break;
+            }
+            else
+            {
+                if(h[i]-s[i]-h[i+1]<=x)
+                {
+                    p=1;
+                    tm+=h[i]-x-h[i+1];
+                }
+                else
+                {
+                    p=0;
+                    break;
+                }
+            }
+        }
+        if(i==n)
+        {
+            if(h[n]<=x)
+            {
+                p=1;
+                tm+=h[n]/10;
+            }
+            else
+            {
+                if(h[n]-s[n]<=x)
+                {
+                    p=1;
+                    tm+=h[n]-x;
+                }
+                else
+                    p=0;
+            }
+        }
+        if(p)
+            printf("possible\n%d\n",tm);
+        else
+            printf("impossible");
+    }
+}

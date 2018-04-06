@@ -35,7 +35,7 @@ if (cluster.isMaster) {
     const mongoose = require('mongoose')
 
     mongoose.Promise = global.Promise
-    mongoose.connect(process.env.MONGODB_URI)
+    mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/FlawlessEdge')
 
     app.use(cors())
     const bodyParser = require('body-parser');
