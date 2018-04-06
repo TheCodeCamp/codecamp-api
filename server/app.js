@@ -10,7 +10,11 @@ const app = express();
 const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
+<<<<<<< HEAD
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1/FlawlessEdge');
+=======
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/OnlineJudge')
+>>>>>>> de47f8a422464366c38b6fd80665e7d903de8199
 app.use(express.static(__dirname+'/public/'));
 const bodyParser = require('body-parser');
 app.use(cors())

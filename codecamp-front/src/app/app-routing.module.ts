@@ -43,11 +43,6 @@ const appRoutes: Routes = [
       component: AboutComponent
     },
     {
-      path: 'register',
-      component: RegisterComponent,
-      canActivate: [NotAuthGuard]
-    },
-    {
       path: 'login',
       component: LoginComponent,
       canActivate: [NotAuthGuard]
@@ -65,7 +60,7 @@ const appRoutes: Routes = [
       component: IwedgeComponent
     },
     {
-      path:'iwedge/contest',
+      path: 'iwedge/contest',
       component: ContestiwComponent
 
     },
@@ -128,7 +123,8 @@ const appRoutes: Routes = [
     },
     {
       path: 'contest/:contest/:problem',
-      component: ProblemComponent
+      component: ProblemComponent,
+      canActivate: [AuthGuard]
     },
     {
       path: 'contest/:contest/ranklist',

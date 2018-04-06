@@ -15,7 +15,7 @@ export class ContestService {
   public authToken: any;
   public user: any;
   public contest: any;
-   //public domain = 'http://localhost:80/';
+  // public domain = 'http://localhost:80/';
   public domain = '';
   public options;
   public sol;
