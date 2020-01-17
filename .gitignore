@@ -3,3 +3,4 @@ server/solutions/
 judge/result/
 solutions/
 codecamp-front/node_modules/
+package-lock.json
