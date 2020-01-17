@@ -1,4 +1,4 @@
 # CodeCamp
-An online Judge Platform API Using NodeJS
+An Online Judge Platform API for Coding Contests Using Golang
 
-Work in Progress...
+Work in Progress, rewriting the whole API again
