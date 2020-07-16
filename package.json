@@ -35,7 +35,7 @@
     "iconv": "^2.3.0",
     "jsonwebtoken": "^8.1.0",
 
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongodb": "^3.5.0",
     "mongoose": "^5.8.7",
     "morgan": "^1.9.1",
