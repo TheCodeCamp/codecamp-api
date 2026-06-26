@@ -26,7 +26,7 @@ var UserSchema = new mongoose.Schema({
     },
     college:{
         type:String,
-        required:true
+        default:""
     },
     dob:{
         type:Date
@@ -59,12 +59,12 @@ var UserSchema = new mongoose.Schema({
     contest:[{
         name:{
             type:mongoose.Schema.Types.String,
-            refs:'Contest'
+            ref:'Contest'
         },
         problemSolved:[{
             name:{
             type:mongoose.Schema.Types.String,
-            refs:'Problem'
+            ref:'Problem'
             },
             submissionTime:{
                 type:Date

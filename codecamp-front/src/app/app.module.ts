@@ -20,7 +20,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { AuthService } from './services/auth.service';
 import { ContestService } from './services/contest.service';
 
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IdeComponent } from './components/ide/ide.component';
 import { ProblemsComponent } from './components/problems/problems.component';
 import { AddContestComponent } from './components/add-contest/add-contest.component';
@@ -72,7 +72,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
     AceEditorModule,

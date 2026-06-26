@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Base URL of the API. Empty string means "same origin" (the built SPA is
+  // served by the API itself from server/public). When running `ng serve` on
+  // port 4200 during development, point this at the API host instead.
+  apiBase: 'http://localhost:80'
 };

@@ -1,10 +1,7 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
-const multer = require('multer');
-
 const _ = require('lodash');
-const {Contest,mongoose} = require('./../../contest/models/contest/contest');
+const {Contest} = require('./../../contest/models/contest/contest');
 const Problem = require('./../../contest/models/problem/problem');
 const problemRoute = require('./problems')
 

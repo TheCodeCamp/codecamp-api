@@ -8,7 +8,7 @@ const Contest = require('./../contest/contest');
 const RankingSchema = new Schema({
     username:{
         type:Schema.Types.String,
-        refs:'User'
+        ref:'User'
     },
     score:{
         type:Number,
@@ -23,11 +23,11 @@ const RankingSchema = new Schema({
     },
     problemSolved:[{
         type:Schema.Types.String,
-        refs:'Problem'
+        ref:'Problem'
     }],
     contest:{
         type:Schema.Types.String,
-        refs:'Contest'
+        ref:'Contest'
     }
 
 })
