@@ -40,7 +40,7 @@ const SolutionSchema = new mongoose.Schema({
 
 SolutionSchema.statics.getObjCount =function (username,contest,problem){
     var Solution = this;
-    return Solution.count({$and:[{'username':username},{'problem':problem},{'contest':contest}]});
+    return Solution.countDocuments({$and:[{'username':username},{'problem':problem},{'contest':contest}]});
 }
 
 module.exports= mongoose.model('Solution',SolutionSchema);

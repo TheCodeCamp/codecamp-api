@@ -1,24 +1,28 @@
 const express = require('express');
-const _ = require('lodash');
 const rp = require('request-promise')
 const http = require('http')
 const fs = require('fs')
-const app= require('./../../server/app')
-const mongoose = require('mongoose')
-const request = require('request')
 const multer = require('multer')
-// const encode = require('./../utils/encoding');
-//const db = require('./../utils/db/db');
+const { body } = require('express-validator');
+const config = require('./../config');
+const { handleValidation } = require('./../utils/validate');
 const Solution = require('./../models/solution/solution');
 const User = require('./../models/user/user');
 const Problem = require('./../../contest/models/problem/problem');
-const Ranking = require('./../../contest/models/ranking/ranking');
 
 const router = express.Router();
 
 var upload  = multer({dest:'solutions/'})
 var originalname = 'solution';
-router.post('/',upload.single(originalname),async (req,res)=>{
+
+const submitRules = [
+    body('username').isString().trim().notEmpty(),
+    body('contest').isString().trim().notEmpty(),
+    body('problem').isString().trim().notEmpty(),
+    body('language').isString().trim().notEmpty(),
+];
+
+router.post('/',upload.single(originalname),submitRules,handleValidation,async (req,res)=>{
     var solution;
      if(req.file){
       var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
@@ -28,13 +32,13 @@ router.post('/',upload.single(originalname),async (req,res)=>{
         username:req.body.username,
         id:req.body.contest+req.body.problem+req.body.username+count,
         language:req.body.language.toLowerCase(),
-        description:new Buffer(fs.readFileSync(req.file.path)).toString('base64'),
+        description:Buffer.from(fs.readFileSync(req.file.path)).toString('base64'),
         submitted_on:new Date() 
       });
     }
        
     else if (!req.file) {
-      var count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
+      count =await Solution.getObjCount(req.body.username,req.body.contest,req.body.problem)+1;
       solution = new Solution({ 
           problem:req.body.problem,
           contest:req.body.contest,
@@ -51,7 +55,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
           agentOptions.maxSockets = 5;
           agentOptions.maxFreeSockets = 5;
           const httpAgent = new http.Agent(agentOptions);
-          var opt ={uri:`http://localhost:3001/${sol.id}`,
+          var opt ={uri:`${config.judgeUrl}/${sol.id}`,
           agent:httpAgent,
           json:true
           };
@@ -61,7 +65,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                 if(err){
                   res.json({
                     "success":false,
-                    "msg":e
+                    "msg":err
                   })
                 }else if(!user){
                   return res.json({
@@ -124,7 +128,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   if(err){
                     res.json({
                       "success":false,
-                      "msg":e
+                      "msg":err
                     })
                   }else if(user){
                     var index = user.contest.findIndex(x => x.name===solution.contest);
@@ -178,7 +182,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   if(err){
                     res.json({
                       "success":false,
-                      "msg":e
+                      "msg":err
                     })
                   }else if(user){
                     var index = user.contest.findIndex(x => x.name===solution.contest);
@@ -233,7 +237,7 @@ router.post('/',upload.single(originalname),async (req,res)=>{
                   if(err){
                     res.json({
                       "success":false,
-                      "msg":e
+                      "msg":err
                     })
                   }else if(user){
                     var index = user.contest.findIndex(x => x.name===solution.contest);
@@ -296,4 +300,25 @@ router.post('/',upload.single(originalname),async (req,res)=>{
   })
 
 })
+
+// Submission history for a user, newest first, paginated.
+// GET /solution/history/:username?page=1&limit=20
+router.get('/history/:username', async (req, res, next) => {
+  try {
+    const page = Math.max(parseInt(req.query.page, 10) || 1, 1);
+    const limit = Math.min(Math.max(parseInt(req.query.limit, 10) || 20, 1), 100);
+    const filter = { username: req.params.username };
+    const [total, submissions] = await Promise.all([
+      Solution.countDocuments(filter),
+      Solution.find(filter, { description: 0 })
+        .sort({ submitted_on: -1 })
+        .skip((page - 1) * limit)
+        .limit(limit),
+    ]);
+    res.json({ success: true, page, limit, total, submissions });
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;

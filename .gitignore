@@ -3,3 +3,17 @@ server/solutions/
 judge/result/
 solutions/
 codecamp-front/node_modules/
+
+# Env & secrets
+.env
+.env.local
+
+# Logs
+*.log
+
+# Go judge build artifacts
+judge/bin/
+judge/judge
+
+# Frontend build output (served by the API)
+server/public/

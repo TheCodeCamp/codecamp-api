@@ -1,16 +1,23 @@
 const express = require('express');
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const _ = require('lodash');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
+const { body } = require('express-validator');
 const VerifyToken = require('./../utils/auth/verifyToken');
+const { handleValidation } = require('./../utils/validate');
 const jwt = require('jsonwebtoken');
+const config = require('./../config');
 const User = require('./../models/user/user');
 const router = express.Router();
 
-router.post('/signup',(req,res)=>{
-    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','joinedOn','bio']);
-    body.joinedOn= (new Date).toLocaleString();
+const signupRules = [
+    body('username').isString().trim().notEmpty(),
+    body('email_id').isEmail(),
+    body('password').isLength({ min: 6 }),
+];
+
+router.post('/signup', signupRules, handleValidation, (req,res)=>{
+    const body = _.pick(req.body,['username','email_id','name','college','password','dob','gender','city','bio']);
+    body.joinedOn = new Date();
     User.findOne({'username':body.username,'email_id':body.email_id},function(err,user){
         if(err){
             res.send(err)
@@ -20,11 +27,11 @@ router.post('/signup',(req,res)=>{
                 'msg':'User with Username Exists'
             })
         }else{
-            var user = new User(body);
-            bcrypt.hash(user.password, 10).then(function(hash) {
-                user.password=hash;
-                user.save().then((user) => {
-                    var token = jwt.sign({ username: user.username},'secret', {
+            const newUser = new User(body);
+            bcrypt.hash(newUser.password, 10).then(function(hash) {
+                newUser.password=hash;
+                newUser.save().then((user) => {
+                    var token = jwt.sign({ username: user.username},config.jwtSecret, {
                         expiresIn: 86400 // expires in 24 hours
                       });
                       res.status(200).json({
@@ -66,10 +73,14 @@ router.get('/profile', VerifyToken, function(req, res) {
 });
 
 
-router.post('/signin',(req,res)=>{
+const signinRules = [
+    body('username').isString().trim().notEmpty(),
+    body('password').notEmpty(),
+];
+
+router.post('/signin', signinRules, handleValidation, (req,res)=>{
     const body = _.pick(req.body,['username','email_id','password']);
-    console.log(`***${body.password} *** ${body.username}`);
-    
+
     User.findByUsername(body.username,body.password,(err,user)=>{
         if(err){
             console.log(err)
@@ -83,7 +94,7 @@ router.post('/signin',(req,res)=>{
                 'msg':'User not found'
             })
         }else if(user.isAdmin===true){
-            let token = jwt.sign({ username: user.username, isAdmin: user.isAdmin },'secret', {
+            let token = jwt.sign({ username: user.username, isAdmin: user.isAdmin },config.jwtSecret, {
                 expiresIn: 86400 // expires in 24 hours
               });
             res.json({
@@ -97,7 +108,7 @@ router.post('/signin',(req,res)=>{
             }) 
         }
         else if(user){
-            let token = jwt.sign({ username: user.username },'secret', {
+            let token = jwt.sign({ username: user.username },config.jwtSecret, {
                 expiresIn: 86400 // expires in 24 hours
               });
             res.json({
